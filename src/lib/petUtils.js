@@ -60,57 +60,7 @@ export function isMythicEligible(rarity) {
     return rarity === 'legendary' || rarity === 'secret' || rarity === 'infinity';
 }
 
-function normalizeInfinityEgg(rarities, worldEggs, stats) {
-    if (!rarities || !worldEggs?.length) {
-        return [];
-    }
-
-    const normalizedRarities = normalizeEgg(rarities, stats);
-
-    const petsByRarity = new Map();
-    for (const egg of worldEggs) {
-        for (const pet of egg.pets) {
-            const list = petsByRarity.get(pet.rarity) ?? [];
-            list.push(pet);
-            petsByRarity.set(pet.rarity, list);
-        }
-    }
-
-    const results = [];
-    for (const rarityEntry of normalizedRarities) {
-        const petsInRarity = petsByRarity.get(rarityEntry.rarity) ?? [];
-        if (petsInRarity.length === 0) {
-            continue;
-        }
-
-        const totalBaseChance = petsInRarity.reduce(
-            (sum, pet) => sum + (pet.baseChance ?? 0),
-            0
-        );
-
-        if (totalBaseChance > 0) {
-            for (const pet of petsInRarity) {
-                const shareWithinRarity = (pet.baseChance ?? 0) / totalBaseChance;
-                results.push({
-                    ...pet,
-                    finalChance: rarityEntry.finalChance * shareWithinRarity
-                });
-            }
-        } else {
-            const perPetChance = rarityEntry.finalChance / petsInRarity.length;
-            for (const pet of petsInRarity) {
-                results.push({
-                    ...pet,
-                    finalChance: perPetChance
-                });
-            }
-        }
-    }
-
-    return results;
-}
-
-function normalizeEgg(items, stats) {
+function normalizeData(items) {
     if (!items?.length) {
         return [];
     }
@@ -121,6 +71,22 @@ function normalizeEgg(items, stats) {
         baseChance: Number(p.baseChance ?? 0),
         rawChance: Number(p.baseChance ?? 0)
     }));
+
+    let totalBaseChance = list.reduce((sum, item) => sum + item.baseChance, 0);
+    if (!(totalBaseChance > 0)) {
+        totalBaseChance = 1;
+    }
+
+    for (const item of list) {
+        item.baseChance = item.baseChance / totalBaseChance;
+        item.rawChance = item.baseChance;
+    }
+    
+    return list;
+}
+
+function normalizeEgg(items, stats) {
+    const list = normalizeData(items);
 
     const baseLuckMultiplier = 1 + Number(stats?.luck ?? 0);
     const secretLuckMultiplier = Number(stats?.secretLuck ?? 1);
@@ -164,6 +130,58 @@ function normalizeEgg(items, stats) {
         ...item,
         finalChance: item.rawChance / totalRawChance
     }));
+}
+
+function normalizeInfinityEgg(rarities, worldEggs, stats) {
+    if (!rarities || !worldEggs?.length) {
+        return [];
+    }
+
+    const normalizedRarities = normalizeEgg(rarities, stats);
+
+    const petsByRarity = new Map();
+    for (const egg of worldEggs) {
+        for (const pet of egg.pets) {
+            const list = petsByRarity.get(pet.rarity) ?? [];
+            list.push(pet);
+            petsByRarity.set(pet.rarity, list);
+        }
+    }
+
+    const results = [];
+    for (const rarityEntry of normalizedRarities) {
+        const petsInRarity = petsByRarity.get(rarityEntry.rarity) ?? [];
+        if (petsInRarity.length === 0) {
+            continue;
+        }
+
+        const normalizedPets = normalizeData(petsInRarity);
+
+        const totalBaseChance = normalizedPets.reduce(
+            (sum, pet) => sum + (pet.baseChance ?? 0),
+            0
+        );
+
+        if (totalBaseChance > 0) {
+            for (const pet of normalizedPets) {
+                const shareWithinRarity = (pet.baseChance ?? 0) / totalBaseChance;
+                results.push({
+                    ...pet,
+                    finalChance: rarityEntry.finalChance * shareWithinRarity
+                });
+            }
+        } else {
+            const perPetChance = rarityEntry.finalChance / petsInRarity.length;
+            for (const pet of petsInRarity) {
+                results.push({
+                    ...pet,
+                    finalChance: perPetChance
+                });
+            }
+        }
+    }
+
+    return results;
 }
 
 function redistributeDecrease(list, amount, isEligible) {
