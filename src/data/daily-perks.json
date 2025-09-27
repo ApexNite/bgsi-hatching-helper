@@ -3,10 +3,10 @@
     "1": null,
     "2": {
         "normal": {
-            "baseHatchSpeed": 0.3
+            "baseHatchSpeed": 0.15
         },
         "premium": {
-            "baseHatchSpeed": 0.15
+            "baseHatchSpeed": 0.3
         }
     },
     "3": null,
