@@ -1,0 +1,9 @@
+{
+    "normal": {
+        "luck": 0.5,
+        "shinyChance": 0.5
+    },
+    "shiny": {
+        "mythicChance": 0.5
+    }
+}

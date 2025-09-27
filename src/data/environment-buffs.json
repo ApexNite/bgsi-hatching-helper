@@ -1,0 +1,8 @@
+[
+    {
+        "id": "board-game",
+        "name": "Board Game +200%",
+        "img": "icons/dice.png",
+        "baseLuck": 2
+    }
+]

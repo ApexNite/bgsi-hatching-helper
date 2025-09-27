@@ -1,0 +1,26 @@
+[
+    {
+        "id": "luck-event",
+        "name": "Luck Event",
+        "img": "icons/luck.png",
+        "luckMultiplier": 2
+    },
+    {
+        "id": "secret-event",
+        "name": "Secret Event",
+        "img": "icons/secret-luck.png",
+        "secretLuckMultiplier": 2
+    },
+    {
+        "id": "mythic-event",
+        "name": "Mythic Event",
+        "img": "icons/mythic.png",
+        "mythicChanceMultiplier": 2
+    },
+    {
+        "id": "shiny-event",
+        "name": "Shiny Event",
+        "img": "icons/shiny.png",
+        "shinyChanceMultiplier": 2
+    }
+]

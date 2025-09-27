@@ -1,0 +1,23 @@
+{
+    "0": null,
+    "1": null,
+    "2": {
+        "normal": {
+            "baseHatchSpeed": 0.3
+        },
+        "premium": {
+            "baseHatchSpeed": 0.15
+        }
+    },
+    "3": null,
+    "4": null,
+    "5": null,
+    "6": {
+        "normal": {
+            "luck": 2
+        },
+        "premium": {
+            "luck": 3.5
+        }
+    }
+}

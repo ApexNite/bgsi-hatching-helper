@@ -1,0 +1,24 @@
+{
+    "luckyStreak": [
+        {
+            "id": "lucky-streak-ii",
+            "name": "Lucky Streak II",
+            "luck": 0.3
+        },
+        {
+            "id": "lucky-streak",
+            "name": "Lucky Streak",
+            "luck": 0.2
+        },
+        {
+            "id": "none",
+            "name": "None"
+        }
+    ],
+    "fasterHatch": {
+        "baseHatchSpeed": 0.1
+    },
+    "luckierTogether": {
+        "baseLuck": 0.1
+    }
+}
