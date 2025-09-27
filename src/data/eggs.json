@@ -756,21 +756,21 @@
                 "name": "Neon Doggy",
                 "img": "pets/neon-doggy.png",
                 "rarity": "common",
-                "baseChance": 0.595
+                "baseChance": 0.64
             },
             {
                 "id": "hologram-dragon",
                 "name": "Hologram Dragon",
                 "img": "pets/hologram-dragon.png",
                 "rarity": "rare",
-                "baseChance": 0.255
+                "baseChance": 0.3
             },
             {
                 "id": "disco-ball",
                 "name": "Disco Ball",
                 "img": "pets/disco-ball.png",
                 "rarity": "epic",
-                "baseChance": 0.12
+                "baseChance": 0.3
             },
             {
                 "id": "neon-wyvern",
