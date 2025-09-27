@@ -1,7 +1,3 @@
-import dailyPerks from "../data/daily-perks.json";
-import indexData from "../data/index.json";
-import mastery from "../data/mastery.json";
-
 export function calculateBubbleBlessing(level) {
     const levelClamped = clamp(level, 0, 50);
     const hasLevel = levelClamped >= 1;
@@ -27,7 +23,7 @@ export function calculateSeasonPerks(stars) {
     };
 }
 
-export function calculateStats(modifiers = [], toggles = {}, numbers = {}) {
+export function calculateStats(modifiers, toggles, numbers, dailyPerksData, indexData, masteryData) {
     const {
         shrineBlessing = 0,
         dreamerBlessing = 0,
@@ -56,13 +52,11 @@ export function calculateStats(modifiers = [], toggles = {}, numbers = {}) {
 
     const applySource = (source) => {
         if (!source) {
-            
             return;
         }
 
         const times = source._value != null ? Number(source._value) : 1;
         if (!times) {
-            
             return;
         }
 
@@ -140,31 +134,31 @@ export function calculateStats(modifiers = [], toggles = {}, numbers = {}) {
     applySource(calculateSeasonPerks(seasonStars));
 
     if (toggles.worldNormal) {
-        if (indexData && indexData.normal) {
+        if (indexData?.normal) {
             applySource(indexData.normal);
         }
     }
 
     if (toggles.worldShiny) {
-        if (indexData && indexData.shiny) {
+        if (indexData?.shiny) {
             applySource(indexData.shiny);
         }
     }
 
     if (toggles.fasterHatchMastery) {
-        if (mastery && mastery.fasterHatch) {
-            applySource(mastery.fasterHatch);
+        if (masteryData?.fasterHatch) {
+            applySource(masteryData.fasterHatch);
         }
     }
 
     if (luckierTogether > 0) {
-        if (mastery && mastery.luckierTogether) {
-            applySource({ ...mastery.luckierTogether, _value: Number(luckierTogether) });
+        if (masteryData?.luckierTogether) {
+            applySource({ ...masteryData.luckierTogether, _value: Number(luckierTogether) });
         }
     }
 
     const dayIndex = new Date().getUTCDay();
-    const today = dailyPerks ? dailyPerks[dayIndex] : undefined;
+    const today = dailyPerksData ? dailyPerksData[dayIndex] : undefined;
     const selectedPerks = today ? (toggles.dailyPerks ? today.premium : today.normal) : undefined;
     if (selectedPerks) {
         applySource(selectedPerks);

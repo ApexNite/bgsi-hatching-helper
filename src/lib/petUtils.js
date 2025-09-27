@@ -1,5 +1,3 @@
-import eggs from '../data/eggs.json';
-
 const BASE_HATCH_SECONDS = 4.5;
 const RARITY_ORDER = Object.freeze({
     common: 0,
@@ -11,8 +9,8 @@ const RARITY_ORDER = Object.freeze({
     infinity: 6
 });
 
-export function getPetsToDisplay(eggId, worldId, stats) {
-    const egg = eggs.find(e => e.id === eggId);
+export function getPetsToDisplay(eggId, worldId, stats, eggs) {
+    const egg = eggs?.find(e => e.id === eggId);
     if (!egg) {
         return [];
     }

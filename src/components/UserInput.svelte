@@ -5,40 +5,91 @@
     import Checkbox from "./form/Checkbox.svelte";
     import NumberInput from "./form/NumberInput.svelte";
 
-    import eggs from "../data/eggs.json";
-    import rifts from "../data/rifts.json";
-    import potions from "../data/potions.json";
-    import specialPotions from "../data/special-potions.json";
-    import milestones from "../data/milestones.json";
-    import enchants from "../data/enchants.json";
-    import mastery from "../data/mastery.json";
-    import environmentBuffs from "../data/environment-buffs.json";
-    import gamepasses from "../data/gamepasses.json";
-    import events from "../data/events.json";
-    import worlds from "../data/worlds.json";
+    import {
+        eggs,
+        enchants,
+        environmentBuffs,
+        events,
+        gamepasses,
+        mastery,
+        milestones,
+        potions,
+        rifts,
+        specialPotions,
+        worlds,
+        dailyPerks,
+        index
+    } from "../stores.js";
 
     export let stats = { luck: 1, secretLuck: 1, shinyChance: 1 / 40, mythicChance: 1 / 100, hatchSpeed: 1, eggsPerHatch: 1 };
     export let selectedEggId = null;
     export let selectedWorldId = null;
 
     let selectedOptions = {
-        eggs: eggs[0]?.id,
-        worlds: worlds[0]?.id,
-        rifts: rifts[0]?.id,
-        luckyStreak: mastery.luckyStreak[mastery.luckyStreak.length - 1]?.id,
-        ...Object.fromEntries(
-            potions.map((potionType) => [potionType.id, potionType.potions[potionType.potions.length - 1]?.id || []])
-        ),
-        ...Object.fromEntries(
-            milestones.map((milestoneType) => [milestoneType.id, milestoneType.tiers[milestoneType.tiers.length - 1]?.id || []])
-        )
+        eggs: null,
+        worlds: null,
+        rifts: null,
+        luckyStreak: null
     };
 
-    let specialPotionToggles = Object.fromEntries(specialPotions.map((p) => [p.id, false]));
-    let environmentBuffToggles = Object.fromEntries(environmentBuffs.map((b) => [b.id, false]));
-    let gamepassToggles = Object.fromEntries(gamepasses.map((g) => [g.id, false]));
-    let eventToggles = Object.fromEntries(events.map((e) => [e.id, false]));
-    let enchantValues = Object.fromEntries(enchants.map((e) => [e.id, 0]));
+    $: if ($eggs && selectedOptions.eggs == null) {
+        selectedOptions = { ...selectedOptions, eggs: $eggs[0]?.id ?? null };
+    }
+    $: if ($worlds && selectedOptions.worlds == null) {
+        selectedOptions = { ...selectedOptions, worlds: $worlds[0]?.id ?? null };
+    }
+    $: if ($rifts && selectedOptions.rifts == null) {
+        selectedOptions = { ...selectedOptions, rifts: $rifts[0]?.id ?? null };
+    }
+    $: if ($mastery?.luckyStreak && selectedOptions.luckyStreak == null) {
+        const arr = $mastery.luckyStreak;
+        selectedOptions = { ...selectedOptions, luckyStreak: arr[arr.length - 1]?.id ?? null };
+    }
+    $: if ($potions?.length) {
+        const updates = {};
+        for (const potionType of $potions) {
+            if (selectedOptions[potionType.id] == null) {
+                const last = potionType.potions?.[potionType.potions.length - 1];
+                updates[potionType.id] = last?.id ?? null;
+            }
+        }
+        if (Object.keys(updates).length) selectedOptions = { ...selectedOptions, ...updates };
+    }
+    $: if ($milestones?.length) {
+        const updates = {};
+        for (const milestoneType of $milestones) {
+            if (selectedOptions[milestoneType.id] == null) {
+                const last = milestoneType.tiers?.[milestoneType.tiers.length - 1];
+                updates[milestoneType.id] = last?.id ?? null;
+            }
+        }
+        if (Object.keys(updates).length) selectedOptions = { ...selectedOptions, ...updates };
+    }
+
+    let specialPotionToggles = {};
+    $: if ($specialPotions && Object.keys(specialPotionToggles).length === 0) {
+        specialPotionToggles = Object.fromEntries($specialPotions.map((p) => [p.id, false]));
+    }
+
+    let environmentBuffToggles = {};
+    $: if ($environmentBuffs && Object.keys(environmentBuffToggles).length === 0) {
+        environmentBuffToggles = Object.fromEntries($environmentBuffs.map((b) => [b.id, false]));
+    }
+
+    let gamepassToggles = {};
+    $: if ($gamepasses && Object.keys(gamepassToggles).length === 0) {
+        gamepassToggles = Object.fromEntries($gamepasses.map((g) => [g.id, false]));
+    }
+
+    let eventToggles = {};
+    $: if ($events && Object.keys(eventToggles).length === 0) {
+        eventToggles = Object.fromEntries($events.map((e) => [e.id, false]));
+    }
+
+    let enchantValues = {};
+    $: if ($enchants && Object.keys(enchantValues).length === 0) {
+        enchantValues = Object.fromEntries($enchants.map((e) => [e.id, 0]));
+    }
 
     let toggleValues = {
         worldNormal: false,
@@ -55,19 +106,19 @@
         eggsPerHatch: 1
     };
 
-    $: selectedEgg = eggs.find((e) => e.id === selectedOptions.eggs);
+    $: selectedEgg = $eggs?.find((e) => e.id === selectedOptions.eggs);
     $: isInfinityEgg = selectedEgg?.type === "infinity";
     $: isWorldEgg = selectedEgg?.type === "world";
-    $: eggWorldName = isWorldEgg ? worlds.find((w) => w.id === selectedEgg.world)?.name || selectedEgg.world : "";
+    $: eggWorldName = isWorldEgg ? ($worlds?.find((w) => w.id === selectedEgg.world)?.name || selectedEgg.world) : "";
     $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
-    $: selectedRift = rifts.find((r) => r.id === selectedOptions.rifts) || rifts[0];
+    $: selectedRift = $rifts?.find((r) => r.id === selectedOptions.rifts) || $rifts?.[0];
 
     $: selectedEggId = selectedOptions.eggs;
     $: selectedWorldId = selectedOptions.worlds;
 
     function handleSelect({ option, id }) {
         if (id === "eggs") {
-            selectedOptions = { ...selectedOptions, [id]: option.id, rifts: rifts[0]?.id };
+            selectedOptions = { ...selectedOptions, [id]: option.id, rifts: $rifts?.[0]?.id ?? null };
             toggleValues.worldNormal = false;
             toggleValues.worldShiny = false;
         } else {
@@ -107,19 +158,23 @@
         const modifiers = [
             selectedEgg,
             selectedRift,
-            mastery.luckyStreak.find((s) => s.id === selectedOptions.luckyStreak),
-            ...potions.map((potionType) => potionType.potions.find((p) => p.id === selectedOptions[potionType.id])),
-            ...milestones.map((milestoneType) => milestoneType.tiers.find((t) => t.id === selectedOptions[milestoneType.id])),
-            ...specialPotions.filter((p) => specialPotionToggles[p.id]),
-            ...environmentBuffs.filter((b) => environmentBuffToggles[b.id]),
-            ...gamepasses.filter((g) => gamepassToggles[g.id]),
-            ...events.filter((ev) => eventToggles[ev.id]),
-            ...enchants
+            $mastery?.luckyStreak?.find((s) => s.id === selectedOptions.luckyStreak),
+            ...($potions || [])
+                .map((potionType) => potionType.potions.find((p) => p.id === selectedOptions[potionType.id]))
+                .filter(Boolean),
+            ...($milestones || [])
+                .map((milestoneType) => milestoneType.tiers.find((t) => t.id === selectedOptions[milestoneType.id]))
+                .filter(Boolean),
+            ...($specialPotions || []).filter((p) => specialPotionToggles[p.id]),
+            ...($environmentBuffs || []).filter((b) => environmentBuffToggles[b.id]),
+            ...($gamepasses || []).filter((g) => gamepassToggles[g.id]),
+            ...($events || []).filter((ev) => eventToggles[ev.id]),
+            ...($enchants || [])
                 .map((enchant) => ({ ...enchant, _value: Number(enchantValues[enchant.id]) }))
                 .filter((e) => e._value > 0)
         ].filter(Boolean);
 
-        stats = calculateStats(modifiers, toggleValues, numericValues);
+        stats = calculateStats(modifiers, toggleValues, numericValues, $dailyPerks, $index, $mastery);
     }
 </script>
 
@@ -135,8 +190,8 @@
                 <div class="menu-control">
                     <Dropdown
                         id="eggs"
-                        options={eggs}
-                        selectedOption={eggs.find((e) => e.id === selectedOptions.eggs)}
+                        options={$eggs || []}
+                        selectedOption={$eggs?.find((e) => e.id === selectedOptions.eggs)}
                         onSelect={handleSelect}
                     />
                 </div>
@@ -151,8 +206,8 @@
                     <div class="menu-control">
                         <Dropdown
                             id="worlds"
-                            options={worlds}
-                            selectedOption={worlds.find((e) => e.id === selectedOptions.worlds)}
+                            options={$worlds || []}
+                            selectedOption={$worlds?.find((e) => e.id === selectedOptions.worlds)}
                             onSelect={handleSelect}
                         />
                     </div>
@@ -166,7 +221,7 @@
                         Rift:
                     </span>
                     <div class="menu-control">
-                        <Dropdown id="rifts" options={rifts} selectedOption={selectedRift} onSelect={handleSelect} />
+                        <Dropdown id="rifts" options={$rifts || []} selectedOption={selectedRift} onSelect={handleSelect} />
                     </div>
                 </div>
             {/if}
@@ -218,7 +273,7 @@
 
         <!-- Potions -->
         <section class="menu-section">
-            {#each potions as potionType (potionType.id)}
+            {#each $potions || [] as potionType (potionType.id)}
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if potionType.img}
@@ -237,7 +292,7 @@
                 </div>
             {/each}
 
-            {#each specialPotions as potion (potion.id)}
+            {#each $specialPotions || [] as potion (potion.id)}
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if potion.img}
@@ -260,7 +315,7 @@
 
         <!-- Milestones -->
         <section class="menu-section">
-            {#each milestones as milestoneType (milestoneType.id)}
+            {#each $milestones || [] as milestoneType (milestoneType.id)}
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if milestoneType.img}
@@ -331,7 +386,7 @@
 
         <!-- Enchants -->
         <section class="menu-section">
-            {#each enchants as enchant (enchant.id)}
+            {#each $enchants || [] as enchant (enchant.id)}
                 <div class="menu-row">
                     <span class="menu-label">{enchant.name}:</span>
                     <div class="menu-control">
@@ -357,8 +412,8 @@
                 <div class="menu-control">
                     <Dropdown
                         id="luckyStreak"
-                        options={mastery.luckyStreak}
-                        selectedOption={mastery.luckyStreak.find((o) => o.id === selectedOptions["luckyStreak"]) || mastery.luckyStreak[mastery.luckyStreak.length - 1]}
+                        options={$mastery?.luckyStreak || []}
+                        selectedOption={$mastery?.luckyStreak?.find((o) => o.id === selectedOptions["luckyStreak"]) || $mastery?.luckyStreak?.[$mastery.luckyStreak.length - 1]}
                         onSelect={handleSelect}
                     />
                 </div>
@@ -397,7 +452,7 @@
 
         <!-- Environment -->
         <section class="menu-section">
-            {#each environmentBuffs as buff (buff.id)}
+            {#each $environmentBuffs || [] as buff (buff.id)}
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if buff.img}
@@ -434,7 +489,7 @@
                 </div>
             </div>
 
-            {#each gamepasses as gamepass (gamepass.id)}
+            {#each $gamepasses || [] as gamepass (gamepass.id)}
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if gamepass.img}
@@ -457,7 +512,7 @@
 
         <!-- Events -->
         <section class="menu-section">
-            {#each events as event (event.id)}
+            {#each $events || [] as event (event.id)}
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if event.img}
