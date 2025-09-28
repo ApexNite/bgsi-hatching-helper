@@ -770,7 +770,7 @@
                 "name": "Disco Ball",
                 "img": "pets/disco-ball.png",
                 "rarity": "epic",
-                "baseChance": 0.3
+                "baseChance": 0.03
             },
             {
                 "id": "neon-wyvern",
