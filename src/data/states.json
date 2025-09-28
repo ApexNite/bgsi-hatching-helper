@@ -1,0 +1,58 @@
+{
+    "daily-perks": {
+        "file": "/data/daily-perks.json",
+        "version": 1
+    },
+    "eggs": {
+        "file": "/data/eggs.json",
+        "version": 1
+    },
+    "enchants": {
+        "file": "/data/enchants.json",
+        "version": 1
+    },
+    "environment-buffs": {
+        "file": "/data/environment-buffs.json",
+        "version": 1
+    },
+    "events": {
+        "file": "/data/events.json",
+        "version": 1
+    },
+    "gamepasses": {
+        "file": "/data/gamepasses.json",
+        "version": 1
+    },
+    "index": {
+        "file": "/data/index.json",
+        "version": 1
+    },
+    "mastery": {
+        "file": "/data/mastery.json",
+        "version": 1
+    },
+    "milestones": {
+        "file": "/data/milestones.json",
+        "version": 1
+    },
+    "potions": {
+        "file": "/data/potions.json",
+        "version": 1
+    },
+    "rifts": {
+        "file": "/data/rifts.json",
+        "version": 1
+    },
+    "secret-bounty": {
+        "file": "/data/secret-bounty.json",
+        "version": 1
+    },
+    "special-potions": {
+        "file": "/data/special-potions.json",
+        "version": 1
+    },
+    "worlds": {
+        "file": "/data/worlds.json",
+        "version": 1
+    }
+}

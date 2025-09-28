@@ -1,22 +1,13 @@
 <script>
-  import { getPetsToDisplay, calculateHatchTime, isMythicEligible, getEggsWithInjectedPets } from '../lib/petUtils.js';
+  import { getPetsToDisplay, calculateHatchTime, isMythicEligible } from '../lib/petUtils.js';
   import { formatChance, formatTime } from '../lib/formatUtils.js';
-  import { eggs, dailyPerks, secretBounty } from '../stores.js';
 
   export let activeTab = 'chances';
   export let stats = { luck: 1, secretLuck: 1, shinyChance: 1 / 40, mythicChance: 1 / 40, hatchSpeed: 1 };
   export let selectedEggId = null;
   export let selectedWorldId = null;
 
-  $: eggsWithInjectedPets =
-    $eggs && $dailyPerks && $secretBounty
-      ? getEggsWithInjectedPets($eggs, $dailyPerks, $secretBounty)
-      : [];
-
-  $: petsToDisplay =
-    eggsWithInjectedPets && eggsWithInjectedPets.length
-      ? getPetsToDisplay(selectedEggId, selectedWorldId, stats, eggsWithInjectedPets)
-      : [];
+  $: petsToDisplay = getPetsToDisplay(selectedEggId, selectedWorldId, stats);
 </script>
 
 <div class="pet-table-container">

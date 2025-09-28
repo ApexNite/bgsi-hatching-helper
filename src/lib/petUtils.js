@@ -1,3 +1,7 @@
+import dailyPerks from "../data/daily-perks.json";
+import eggs from "../data/eggs.json";
+import secretBounty from "../data/secret-bounty.json";
+
 const BASE_HATCH_SECONDS = 4.5;
 const RARITY_ORDER = Object.freeze({
     common: 0,
@@ -9,19 +13,23 @@ const RARITY_ORDER = Object.freeze({
     infinity: 6
 });
 
-export function getPetsToDisplay(eggId, worldId, stats, eggs) {
+export function getPetsToDisplay(eggId, worldId, stats) {
+    const eggs = getEggsWithInjectedPets();
     const egg = eggs?.find(e => e.id === eggId);
+    
     if (!egg) {
         return [];
     }
 
     const isInfinity = egg.type === 'infinity';
     let worldEggs = null;
+
     if (isInfinity) {
         worldEggs = eggs.filter(e => e.world === worldId);
     }
 
     let pets;
+
     if (isInfinity) {
         pets = normalizeInfinityEgg(egg.rarities, worldEggs, stats);
     } else {
@@ -29,45 +37,6 @@ export function getPetsToDisplay(eggId, worldId, stats, eggs) {
     }
 
     return sortByRarity(pets);
-}
-
-export function getEggsWithInjectedPets(eggsData, dailyPerksData, secretBountyData) {
-    if (!eggsData) return {};
-    
-    const eggsCopy = JSON.parse(JSON.stringify(eggsData));
-
-    const now = new Date();
-    const utcDay = now.getUTCDay();
-    const utcDate = now.toISOString().slice(0, 10).replace(/-/g, '');
-
-    const perk = dailyPerksData?.[utcDay];
-    if (perk?.pets?.length) {
-        for (const egg of eggsCopy) {
-            egg.pets = egg.pets || [];
-            for (const perkPet of perk.pets) {
-                if (!egg.pets.some(p => p.id === perkPet.id)) {
-                    egg.pets.push(perkPet)
-                };
-            }
-        }
-    }
-
-    const bounty = secretBountyData?.eggs?.[utcDate];
-    if (bounty) {
-        const bountyPet = secretBountyData?.pets?.[bounty.pet];
-        if (bountyPet) {
-            const targetEgg = eggsCopy.find(e => e.id === bounty.egg);
-            if (targetEgg) {
-                targetEgg.pets = targetEgg.pets || [];
-
-                if (!targetEgg.pets.some(p => p.id === bountyPet.id)) {
-                    targetEgg.pets.push(bountyPet);
-                }
-            }
-        }
-    }
-
-    return eggsCopy;
 }
 
 export function calculateHatchTime(chance, stats) {
@@ -86,6 +55,7 @@ export function sortByRarity(pets) {
     pets.sort((a, b) => {
         const rarityRankA = RARITY_ORDER[a.rarity] ?? 999;
         const rarityRankB = RARITY_ORDER[b.rarity] ?? 999;
+
         if (rarityRankA !== rarityRankB) {
             return rarityRankA - rarityRankB;
         }
@@ -97,6 +67,47 @@ export function sortByRarity(pets) {
 
 export function isMythicEligible(rarity) {
     return rarity === 'legendary' || rarity === 'secret' || rarity === 'infinity';
+}
+
+function getEggsWithInjectedPets() {
+    if (!eggs) {
+        return {};
+    }
+    
+    const eggsCopy = JSON.parse(JSON.stringify(eggs));
+
+    const now = new Date();
+    const utcDay = now.getUTCDay();
+    const utcDate = now.toISOString().slice(0, 10).replace(/-/g, '');
+
+    const perk = dailyPerks?.[utcDay];
+    if (perk?.pets?.length) {
+        for (const egg of eggsCopy) {
+            egg.pets = egg.pets || [];
+            for (const perkPet of perk.pets) {
+                if (!egg.pets.some(p => p.id === perkPet.id)) {
+                    egg.pets.push(perkPet)
+                };
+            }
+        }
+    }
+
+    const bounty = secretBounty?.eggs?.[utcDate];
+    if (bounty) {
+        const bountyPet = secretBounty?.pets?.[bounty.pet];
+        if (bountyPet) {
+            const targetEgg = eggsCopy.find(e => e.id === bounty.egg);
+            if (targetEgg) {
+                targetEgg.pets = targetEgg.pets || [];
+
+                if (!targetEgg.pets.some(p => p.id === bountyPet.id)) {
+                    targetEgg.pets.push(bountyPet);
+                }
+            }
+        }
+    }
+
+    return eggsCopy;
 }
 
 function normalizeData(items) {
@@ -112,6 +123,7 @@ function normalizeData(items) {
     }));
 
     let totalBaseChance = list.reduce((sum, item) => sum + item.baseChance, 0);
+
     if (!(totalBaseChance > 0)) {
         totalBaseChance = 1;
     }
@@ -161,6 +173,7 @@ function normalizeEgg(items, stats) {
     }
 
     let totalRawChance = list.reduce((sum, item) => sum + item.rawChance, 0);
+    
     if (!(totalRawChance > 0)) {
         totalRawChance = 1;
     }
