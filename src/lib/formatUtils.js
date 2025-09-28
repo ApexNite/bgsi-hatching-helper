@@ -48,8 +48,12 @@ export function formatChance(chance) {
 
 export function formatChancePercent(chance) {
     const percentChance = chance * 100;
-    const digits = percentChance >= 10 ? 0 : percentChance >= 1 ? 2 : 3;
 
+    if (percentChance >= 10) {
+        return `${Math.round(percentChance)}%`;
+    }
+    
+    const digits = percentChance >= 1 ? 2 : 3;
     return `${percentChance.toFixed(digits)}%`;
 }
 
