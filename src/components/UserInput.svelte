@@ -495,7 +495,7 @@
                         {#if gamepass.img}
                             <img src={gamepass.img} alt={gamepass.name} class="menu-img" />
                         {/if}
-                        {gamepass.name}
+                        {gamepass.name}:
                     </span>
                     <div class="menu-control">
                         <Checkbox
