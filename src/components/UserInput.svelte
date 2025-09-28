@@ -1,5 +1,7 @@
 <script>
     import { calculateStats } from "../lib/statUtils.js";
+    import { setCookie, getCookie } from "../lib/cookieUtils.js";
+    import { onMount } from "svelte";
 
     import Dropdown from "./form/Dropdown.svelte";
     import Checkbox from "./form/Checkbox.svelte";
@@ -23,7 +25,7 @@
     export let selectedEggId = null;
     export let selectedWorldId = null;
 
-    let selectedOptions = {
+    const defaultSelectedOptions = {
         eggs: eggs[0]?.id,
         worlds: worlds[0]?.id,
         rifts: rifts[0]?.id,
@@ -34,37 +36,35 @@
         ...Object.fromEntries(
             milestones.map((milestoneType) => [milestoneType.id, milestoneType.tiers[milestoneType.tiers.length - 1]?.id || []])
         )
-    }
+    };
 
-    let specialPotionToggles = {};
-    specialPotionToggles = Object.fromEntries(specialPotions.map((p) => [p.id, false]));
-
-    let environmentBuffToggles = {};
-    environmentBuffToggles = Object.fromEntries(environmentBuffs.map((b) => [b.id, false]));
-
-    let gamepassToggles = {};
-    gamepassToggles = Object.fromEntries(gamepasses.map((g) => [g.id, false]));
-
-    let eventToggles = {};
-    eventToggles = Object.fromEntries(events.map((e) => [e.id, false]));
-
-    let enchantValues = {};
-    enchantValues = Object.fromEntries(enchants.map((e) => [e.id, 0]));
-
-    let toggleValues = {
+    const defaultSpecialPotionToggles = Object.fromEntries(specialPotions.map((p) => [p.id, false]));
+    const defaultEnvironmentBuffToggles = Object.fromEntries(environmentBuffs.map((b) => [b.id, false]));
+    const defaultGamepassToggles = Object.fromEntries(gamepasses.map((g) => [g.id, false]));
+    const defaultEventToggles = Object.fromEntries(events.map((e) => [e.id, false]));
+    const defaultEnchantValues = Object.fromEntries(enchants.map((e) => [e.id, 0]));
+    const defaultToggleValues = {
         worldNormal: false,
         worldShiny: false,
         fasterHatchMastery: false,
         dailyPerks: false
     };
-
-    let numericValues = {
+    const defaultNumericValues = {
         shrineBlessing: 0,
         dreamerBlessing: 0,
         seasonStars: 0,
         luckierTogether: 0,
         eggsPerHatch: 1
     };
+
+    let selectedOptions = defaultSelectedOptions;
+    let specialPotionToggles = defaultSpecialPotionToggles;
+    let environmentBuffToggles = defaultEnvironmentBuffToggles;
+    let gamepassToggles = defaultGamepassToggles;
+    let eventToggles = defaultEventToggles;
+    let enchantValues = defaultEnchantValues;
+    let toggleValues = defaultToggleValues;
+    let numericValues = defaultNumericValues;
 
     $: selectedEgg = eggs?.find((e) => e.id === selectedOptions.eggs);
     $: isInfinityEgg = selectedEgg?.type === "infinity";
@@ -75,44 +75,6 @@
 
     $: selectedEggId = selectedOptions.eggs;
     $: selectedWorldId = selectedOptions.worlds;
-
-    function handleSelect({ option, id }) {
-        if (id === "eggs") {
-            selectedOptions = { ...selectedOptions, [id]: option.id, rifts: rifts?.[0]?.id ?? null };
-            toggleValues.worldNormal = false;
-            toggleValues.worldShiny = false;
-        } else {
-            selectedOptions = { ...selectedOptions, [id]: option.id };
-        }
-    }
-
-    function updateSpecialPotionToggle(potionId) {
-        specialPotionToggles = { ...specialPotionToggles, [potionId]: !specialPotionToggles[potionId] };
-    }
-
-    function updateEnvironmentBuffToggle(buffId) {
-        environmentBuffToggles = { ...environmentBuffToggles, [buffId]: !environmentBuffToggles[buffId] };
-    }
-
-    function updateGamepassToggle(gamepassId) {
-        gamepassToggles = { ...gamepassToggles, [gamepassId]: !gamepassToggles[gamepassId] };
-    }
-
-    function updateEventToggle(eventId) {
-        eventToggles = { ...eventToggles, [eventId]: !eventToggles[eventId] };
-    }
-
-    function updateGameplayToggle(key) {
-        toggleValues = { ...toggleValues, [key]: !toggleValues[key] };
-    }
-
-    function updateNumericValue(key, value) {
-        numericValues = { ...numericValues, [key]: value };
-    }
-
-    function updateEnchantValue(enchantId, value) {
-        enchantValues = { ...enchantValues, [enchantId]: value };
-    }
 
     $: {
         const modifiers = [
@@ -135,6 +97,82 @@
         ].filter(Boolean);
 
         stats = calculateStats(modifiers, toggleValues, numericValues, dailyPerks, index, mastery);
+    }
+
+    onMount(() => {
+        const savedData = getCookie('hatching-helper-user-input');
+        
+        if (savedData) {
+            selectedOptions = { ...defaultSelectedOptions, ...savedData.selectedOptions };
+            specialPotionToggles = { ...defaultSpecialPotionToggles, ...savedData.specialPotionToggles };
+            environmentBuffToggles = { ...defaultEnvironmentBuffToggles, ...savedData.environmentBuffToggles };
+            gamepassToggles = { ...defaultGamepassToggles, ...savedData.gamepassToggles };
+            eventToggles = { ...defaultEventToggles, ...savedData.eventToggles };
+            enchantValues = { ...defaultEnchantValues, ...savedData.enchantValues };
+            toggleValues = { ...defaultToggleValues, ...savedData.toggleValues };
+            numericValues = { ...defaultNumericValues, ...savedData.numericValues };
+        }
+    });
+
+    function saveToCache() {
+        const dataToSave = {
+            selectedOptions,
+            specialPotionToggles,
+            environmentBuffToggles,
+            gamepassToggles,
+            eventToggles,
+            enchantValues,
+            toggleValues,
+            numericValues
+        };
+
+        setCookie('hatching-helper-user-input', dataToSave);
+    }
+
+    function handleSelect({ option, id }) {
+        if (id === "eggs") {
+            selectedOptions = { ...selectedOptions, [id]: option.id, rifts: rifts?.[0]?.id ?? null };
+            toggleValues.worldNormal = false;
+            toggleValues.worldShiny = false;
+        } else {
+            selectedOptions = { ...selectedOptions, [id]: option.id };
+        }
+        saveToCache();
+    }
+
+    function updateSpecialPotionToggle(potionId) {
+        specialPotionToggles = { ...specialPotionToggles, [potionId]: !specialPotionToggles[potionId] };
+        saveToCache();
+    }
+
+    function updateEnvironmentBuffToggle(buffId) {
+        environmentBuffToggles = { ...environmentBuffToggles, [buffId]: !environmentBuffToggles[buffId] };
+        saveToCache();
+    }
+
+    function updateGamepassToggle(gamepassId) {
+        gamepassToggles = { ...gamepassToggles, [gamepassId]: !gamepassToggles[gamepassId] };
+        saveToCache();
+    }
+
+    function updateEventToggle(eventId) {
+        eventToggles = { ...eventToggles, [eventId]: !eventToggles[eventId] };
+        saveToCache();
+    }
+
+    function updateGameplayToggle(key) {
+        toggleValues = { ...toggleValues, [key]: !toggleValues[key] };
+        saveToCache();
+    }
+
+    function updateNumericValue(key, value) {
+        numericValues = { ...numericValues, [key]: value };
+        saveToCache();
+    }
+
+    function updateEnchantValue(enchantId, value) {
+        enchantValues = { ...enchantValues, [enchantId]: value };
+        saveToCache();
     }
 </script>
 
