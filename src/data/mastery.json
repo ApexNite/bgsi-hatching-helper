@@ -16,7 +16,7 @@
         }
     ],
     "fasterHatch": {
-        "baseHatchSpeed": 0.1
+        "hatchSpeed": 0.1
     },
     "luckierTogether": {
         "baseLuck": 0.1
