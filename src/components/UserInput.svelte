@@ -184,7 +184,11 @@
         <section class="menu-section">
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/eggs.png" alt="Eggs" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/eggs.avif" type="image/avif">
+                        <source srcset="icons/eggs.webp" type="image/webp">
+                        <img src="icons/eggs.png" alt="Eggs" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Egg:
                 </span>
                 <div class="menu-control">
@@ -200,7 +204,11 @@
             {#if isInfinityEgg}
                 <div class="menu-row">
                     <span class="menu-label">
-                        <img src="worlds/the-overworld.png" alt="World" class="menu-img" />
+                        <picture>
+                            <source srcset="worlds/the-overworld.avif" type="image/avif">
+                            <source srcset="worlds/the-overworld.webp" type="image/webp">
+                            <img src="worlds/the-overworld.png" alt="World" class="menu-img" loading="lazy" decoding="async">
+                        </picture>
                         World:
                     </span>
                     <div class="menu-control">
@@ -217,7 +225,11 @@
             {#if isRiftableEgg}
                 <div class="menu-row">
                     <span class="menu-label">
-                        <img src="icons/rift.png" alt="Rift" class="menu-img" />
+                        <picture>
+                            <source srcset="icons/rift.avif" type="image/avif">
+                            <source srcset="icons/rift.webp" type="image/webp">
+                            <img src="icons/rift.png" alt="Rift" class="menu-img" loading="lazy" decoding="async">
+                        </picture>
                         Rift:
                     </span>
                     <div class="menu-control">
@@ -229,7 +241,11 @@
             {#if isWorldEgg}
                 <div class="menu-row">
                     <span class="menu-label">
-                        <img src="icons/index.png" alt="Index" class="menu-img" />
+                        <picture>
+                            <source srcset="icons/index.avif" type="image/avif">
+                            <source srcset="icons/index.webp" type="image/webp">
+                            <img src="icons/index.png" alt="Index" class="menu-img" loading="lazy" decoding="async">
+                        </picture>
                         {eggWorldName} Index:
                     </span>
                     <div class="menu-control world-index-controls">
@@ -256,7 +272,11 @@
         <section class="menu-section">
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/multi-egg.png" alt="Eggs Per Hatch" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/multi-egg.avif" type="image/avif">
+                        <source srcset="icons/multi-egg.webp" type="image/webp">
+                        <img src="icons/multi-egg.png" alt="Eggs Per Hatch" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Eggs Per Hatch:
                 </span>
                 <div class="menu-control">
@@ -273,19 +293,23 @@
 
         <!-- Potions -->
         <section class="menu-section">
-            {#each $potions || [] as potionType (potionType.id)}
+            {#each $potions || [] as potion (potion.id)}
                 <div class="menu-row">
                     <span class="menu-label">
-                        {#if potionType.img}
-                            <img src={potionType.img} alt={potionType.name} class="menu-img" />
+                        {#if potion.img}
+                            <picture>
+                                <source srcset="{potion.img}.avif" type="image/avif">
+                                <source srcset="{potion.img}.webp" type="image/webp">
+                                <img src="{potion.img}.png" alt={potion.name} class="menu-img" loading="lazy" decoding="async">
+                            </picture>
                         {/if}
-                        {potionType.name}:
+                        {potion.name}:
                     </span>
                     <div class="menu-control">
                         <Dropdown
-                            id={potionType.id}
-                            options={potionType.potions}
-                            selectedOption={potionType.potions.find((o) => o.id === selectedOptions[potionType.id]) || potionType.potions[potionType.potions.length - 1]}
+                            id={potion.id}
+                            options={potion.potions}
+                            selectedOption={potion.potions.find((o) => o.id === selectedOptions[potion.id]) || potion.potions[potion.potions.length - 1]}
                             onSelect={handleSelect}
                         />
                     </div>
@@ -296,7 +320,11 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if potion.img}
-                            <img src={potion.img} alt={potion.name} class="menu-img" />
+                            <picture>
+                                <source srcset="{potion.img}.avif" type="image/avif">
+                                <source srcset="{potion.img}.webp" type="image/webp">
+                                <img src="{potion.img}.png" alt={potion.name} class="menu-img" loading="lazy" decoding="async">
+                            </picture>
                         {/if}
                         {potion.name}:
                     </span>
@@ -315,19 +343,23 @@
 
         <!-- Milestones -->
         <section class="menu-section">
-            {#each $milestones || [] as milestoneType (milestoneType.id)}
+            {#each $milestones || [] as milestone (milestone.id)}
                 <div class="menu-row">
                     <span class="menu-label">
-                        {#if milestoneType.img}
-                            <img src={milestoneType.img} alt={milestoneType.name} class="menu-img" />
+                        {#if milestone.img}
+                            <picture>
+                                <source srcset="{milestone.img}.avif" type="image/avif">
+                                <source srcset="{milestone.img}.webp" type="image/webp">
+                                <img src="{milestone.img}.png" alt={milestone.name} class="menu-img" loading="lazy" decoding="async">
+                            </picture>
                         {/if}
-                        {milestoneType.name}:
+                        {milestone.name}:
                     </span>
                     <div class="menu-control">
                         <Dropdown
-                            id={milestoneType.id}
-                            options={milestoneType.tiers}
-                            selectedOption={milestoneType.tiers.find((o) => o.id === selectedOptions[milestoneType.id]) || milestoneType.tiers[milestoneType.tiers.length - 1]}
+                            id={milestone.id}
+                            options={milestone.tiers}
+                            selectedOption={milestone.tiers.find((o) => o.id === selectedOptions[milestone.id]) || milestone.tiers[milestone.tiers.length - 1]}
                             onSelect={handleSelect}
                         />
                     </div>
@@ -341,7 +373,11 @@
         <section class="menu-section">
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/bubble-shrine.png" alt="Shrine Blessing" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/bubble-shrine.avif" type="image/avif">
+                        <source srcset="icons/bubble-shrine.webp" type="image/webp">
+                        <img src="icons/bubble-shrine.png" alt="Shrine Blessing" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Shrine Blessing:
                 </span>
                 <div class="menu-control">
@@ -355,7 +391,11 @@
 
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/dreamer-blessing.png" alt="Dreamer Blessing" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/dreamer-blessing.avif" type="image/avif">
+                        <source srcset="icons/dreamer-blessing.webp" type="image/webp">
+                        <img src="icons/dreamer-blessing.png" alt="Dreamer Blessing" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Dreamer Blessing:
                 </span>
                 <div class="menu-control">
@@ -369,7 +409,11 @@
 
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/season-stars.png" alt="Season Stars" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/season-stars.avif" type="image/avif">
+                        <source srcset="icons/season-stars.webp" type="image/webp">
+                        <img src="icons/season-stars.png" alt="Season Stars" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Season Stars:
                 </span>
                 <div class="menu-control">
@@ -406,7 +450,11 @@
         <section class="menu-section">
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/lucky-streak.png" alt="Lucky Streak" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/lucky-streak.avif" type="image/avif">
+                        <source srcset="icons/lucky-streak.webp" type="image/webp">
+                        <img src="icons/lucky-streak.png" alt="Lucky Streak" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Lucky Streak:
                 </span>
                 <div class="menu-control">
@@ -421,7 +469,11 @@
 
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/luckier-together.png" alt="Luckier Together" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/luckier-together.avif" type="image/avif">
+                        <source srcset="icons/luckier-together.webp" type="image/webp">
+                        <img src="icons/luckier-together.png" alt="Luckier Together" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Luckier Together:
                 </span>
                 <div class="menu-control">
@@ -435,7 +487,11 @@
 
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/eggs.png" alt="Faster Hatch Mastery" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/eggs.avif" type="image/avif">
+                        <source srcset="icons/eggs.webp" type="image/webp">
+                        <img src="icons/eggs.png" alt="Faster Hatch Mastery" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Faster Hatch Mastery:
                 </span>
                 <div class="menu-control">
@@ -456,7 +512,11 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if buff.img}
-                            <img src={buff.img} alt={buff.name} class="menu-img" />
+                            <picture>
+                                <source srcset="{buff.img}.avif" type="image/avif">
+                                <source srcset="{buff.img}.webp" type="image/webp">
+                                <img src="{buff.img}.png" alt={buff.name} class="menu-img" loading="lazy" decoding="async">
+                            </picture>
                         {/if}
                         {buff.name}:
                     </span>
@@ -477,7 +537,11 @@
         <section class="menu-section">
             <div class="menu-row">
                 <span class="menu-label">
-                    <img src="icons/daily-perks.png" alt="Premium Daily Perks" class="menu-img" />
+                    <picture>
+                        <source srcset="icons/daily-perks.avif" type="image/avif">
+                        <source srcset="icons/daily-perks.webp" type="image/webp">
+                        <img src="icons/daily-perks.png" alt="Premium Daily Perks" class="menu-img" loading="lazy" decoding="async">
+                    </picture>
                     Premium Daily Perks:
                 </span>
                 <div class="menu-control">
@@ -493,7 +557,11 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if gamepass.img}
-                            <img src={gamepass.img} alt={gamepass.name} class="menu-img" />
+                            <picture>
+                                <source srcset="{gamepass.img}.avif" type="image/avif">
+                                <source srcset="{gamepass.img}.webp" type="image/webp">
+                                <img src="{gamepass.img}.png" alt={gamepass.name} class="menu-img" loading="lazy" decoding="async">
+                            </picture>
                         {/if}
                         {gamepass.name}:
                     </span>
@@ -516,7 +584,11 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         {#if event.img}
-                            <img src={event.img} alt={event.name} class="menu-img" />
+                            <picture>
+                                <source srcset="{event.img}.avif" type="image/avif">
+                                <source srcset="{event.img}.webp" type="image/webp">
+                                <img src="{event.img}.png" alt={event.name} class="menu-img" loading="lazy" decoding="async">
+                            </picture>
                         {/if}
                         {event.name}:
                     </span>

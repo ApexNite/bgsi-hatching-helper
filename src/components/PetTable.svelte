@@ -35,7 +35,11 @@
         <tr>
           <td>
             <div class="pet-name">
-              <img src={pet.img} alt={pet.name || pet.rarity} class="pet-image" />
+              <picture>
+                  <source srcset="{pet.img}.avif" type="image/avif">
+                  <source srcset="{pet.img}.webp" type="image/webp">
+                  <img src="{pet.img}.png" alt={pet.name || pet.rarity} class="pet-image" loading="lazy" decoding="async" />
+              </picture>
               <div class="pet-info">
                 <span class="name">{pet.name || pet.rarity}</span>
                 <span class="rarity-badge rarity-{pet.rarity}">{pet.rarity}</span>

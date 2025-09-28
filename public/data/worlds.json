@@ -2,16 +2,16 @@
     {
         "id": "the-overworld",
         "name": "The Overworld",
-        "img": "worlds/the-overworld.png"
+        "img": "worlds/the-overworld"
     },
     {
         "id": "minigame-paradise",
         "name": "Minigame Paradise",
-        "img": "worlds/minigame-paradise.png"
+        "img": "worlds/minigame-paradise"
     },
     {
         "id": "seven-seas",
         "name": "Seven Seas",
-        "img": "worlds/seven-seas.png"
+        "img": "worlds/seven-seas"
     }
 ]

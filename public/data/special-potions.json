@@ -2,7 +2,7 @@
     {
         "id": "infinity-elixir",
         "name": "Infinity Elixir",
-        "img": "potions/special/infinity-elixir.png",
+        "img": "potions/infinity-elixir",
         "luckMultiplier": 2,
         "secretLuckMultiplier": 2,
         "shinyChanceMultiplier": 2,
@@ -12,7 +12,7 @@
     {
         "id": "secret-elixir",
         "name": "Secret Elixir",
-        "img": "potions/special/secret-elixir.png",
+        "img": "potions/secret-elixir",
         "secretLuckMultiplier": 2,
         "mythicChanceMultiplier": 0.2,
         "overwriteMythicChanceMultiplier": true

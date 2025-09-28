@@ -9,33 +9,61 @@
 <div class="stats">
   {#if activeTab === "chances"}
     <div class="stat">
-      <img src="icons/luck.png" alt="Luck" />
+      <picture>
+          <source srcset="icons/luck.avif" type="image/avif">
+          <source srcset="icons/luck.webp" type="image/webp">
+          <img src="icons/luck.png" alt="Luck" loading="lazy" decoding="async">
+      </picture>
       <strong>{formatChancePercent(stats.luck)}</strong>
     </div>
     <div class="stat">
-      <img src="icons/secret-luck.png" alt="Secret Luck" />
+      <picture>
+          <source srcset="icons/secret-luck.avif" type="image/avif">
+          <source srcset="icons/secret-luck.webp" type="image/webp">
+          <img src="icons/secret-luck.png" alt="Secret Luck" loading="lazy" decoding="async">
+      </picture>
       <strong>{formatMultiplier(stats.secretLuck)}</strong>
     </div>
     <div class="stat">
-      <img src="icons/shiny.png" alt="Shiny Chance" />
+      <picture>
+          <source srcset="icons/shiny.avif" type="image/avif">
+          <source srcset="icons/shiny.webp" type="image/webp">
+          <img src="icons/shiny.png" alt="Shiny Chance" loading="lazy" decoding="async">
+      </picture>
       <strong>{formatChanceFraction(stats.shinyChance)}</strong>
     </div>
     <div class="stat">
-      <img src="icons/mythic.png" alt="Mythic Chance" />
+      <picture>
+          <source srcset="icons/mythic.avif" type="image/avif">
+          <source srcset="icons/mythic.webp" type="image/webp">
+          <img src="icons/mythic.png" alt="Mythic Chance" loading="lazy" decoding="async">
+      </picture>
       <strong>{formatChanceFraction(stats.mythicChance)}</strong>
     </div>
     <div class="stat">
-      <img src="icons/shiny-mythic.png" alt="Shiny Mythic Chance" />
+      <picture>
+          <source srcset="icons/shiny-mythic.avif" type="image/avif">
+          <source srcset="icons/shiny-mythic.webp" type="image/webp">
+          <img src="icons/shiny-mythic.png" alt="Shiny Mythic Chance" loading="lazy" decoding="async">
+      </picture>
       <strong>{formatChanceFraction(stats.shinyChance * stats.mythicChance)}</strong>
     </div>
   {/if}
   {#if activeTab === "times"}
     <div class="stat">
-      <img src="icons/timer.png" alt="Hatch Speed" />
+      <picture>
+          <source srcset="icons/timer.avif" type="image/avif">
+          <source srcset="icons/timer.webp" type="image/webp">
+          <img src="icons/timer.png" alt="Hatch Speed" loading="lazy" decoding="async">
+      </picture>
       <strong>{formatChancePercent(stats.hatchSpeed)}</strong>
     </div>
     <div class="stat">
-      <img src="icons/multi-egg.png" alt="Eggs Per Second" />
+      <picture>
+          <source srcset="icons/multi-egg.avif" type="image/avif">
+          <source srcset="icons/multi-egg.webp" type="image/webp">
+          <img src="icons/multi-egg.png" alt="Eggs Per Second" loading="lazy" decoding="async">
+      </picture>
       <strong>{calculateEggsPerSecond(stats.hatchSpeed, stats.eggsPerHatch).toFixed(2)} / s</strong>
     </div>
   {/if}

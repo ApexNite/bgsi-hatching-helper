@@ -2,13 +2,13 @@
     {
         "id": "double-luck-gamepass",
         "name": "Double Luck Gamepass",
-        "img": "icons/double-luck-gamepass.png",
+        "img": "icons/double-luck-gamepass",
         "luckMultiplier": 2
     },
     {
         "id": "fast-hatch-gamepass",
         "name": "Fast Hatch Gamepass",
-        "img": "icons/fast-hatch-gamepass.png",
+        "img": "icons/fast-hatch-gamepass",
         "baseHatchSpeed": 0.5
     }
 ]

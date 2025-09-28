@@ -2,96 +2,96 @@
     {
         "id": "hatching-milestone",
         "name": "Hatching Milestone",
-        "img": "icons/multi-egg.png",
+        "img": "icons/multi-egg",
         "tiers": [
             {
                 "id": "infinity-i",
                 "name": "Infinity I",
-                "img": "milestones/infinity.png",
+                "img": "milestones/infinity",
                 "luck": 3,
                 "baseHatchSpeed": 0.75
             },
             {
                 "id": "ultimate-i",
                 "name": "Ultimate I",
-                "img": "milestones/ultimate.png",
+                "img": "milestones/ultimate",
                 "luck": 2.25,
                 "baseHatchSpeed": 0.5
             },
             {
                 "id": "super-i",
                 "name": "Super I",
-                "img": "milestones/super.png",
+                "img": "milestones/super",
                 "luck": 1.75,
                 "baseHatchSpeed": 0.4
             },
             {
                 "id": "platinum-i",
                 "name": "Platinum I",
-                "img": "milestones/platinum.png",
+                "img": "milestones/platinum",
                 "luck": 1.5,
                 "baseHatchSpeed": 0.35
             },
             {
                 "id": "gold-iii",
                 "name": "Gold III",
-                "img": "milestones/gold.png",
+                "img": "milestones/gold",
                 "luck": 0.75,
                 "baseHatchSpeed": 0.3
             },
             {
                 "id": "gold-ii",
                 "name": "Gold II",
-                "img": "milestones/gold.png",
+                "img": "milestones/gold",
                 "luck": 0.5,
                 "baseHatchSpeed": 0.25
             },
             {
                 "id": "gold-i",
                 "name": "Gold I",
-                "img": "milestones/gold.png",
+                "img": "milestones/gold",
                 "luck": 0.35,
                 "baseHatchSpeed": 0.2
             },
             {
                 "id": "silver-iii",
                 "name": "Silver III",
-                "img": "milestones/silver.png",
+                "img": "milestones/silver",
                 "luck": 0.25,
                 "baseHatchSpeed": 0.15
             },
             {
                 "id": "silver-ii",
                 "name": "Silver II",
-                "img": "milestones/silver.png",
+                "img": "milestones/silver",
                 "luck": 0.2,
                 "baseHatchSpeed": 0.15
             },
             {
                 "id": "silver-i",
                 "name": "Silver I",
-                "img": "milestones/silver.png",
+                "img": "milestones/silver",
                 "luck": 0.15,
                 "baseHatchSpeed": 0.1
             },
             {
                 "id": "bronze-iii",
                 "name": "Bronze III",
-                "img": "milestones/bronze.png",
+                "img": "milestones/bronze",
                 "luck": 0.1,
                 "baseHatchSpeed": 0.05
             },
             {
                 "id": "bronze-ii",
                 "name": "Bronze II",
-                "img": "milestones/bronze.png",
+                "img": "milestones/bronze",
                 "luck": 0.05,
                 "baseHatchSpeed": 0.05
             },
             {
                 "id": "bronze-i",
                 "name": "Bronze I",
-                "img": "milestones/bronze.png",
+                "img": "milestones/bronze",
                 "luck": 0.05
             },
             {
@@ -103,12 +103,12 @@
     {
         "id": "secret-pets-milestone",
         "name": "Secret Pets Milestone",
-        "img": "icons/secret-pets.png",
+        "img": "icons/secret-pets",
         "tiers": [
             {
                 "id": "infinity-i",
                 "name": "Infinity I",
-                "img": "milestones/infinity.png",
+                "img": "milestones/infinity",
                 "luck": 2.5,
                 "shinyChance": 0.05,
                 "mythicChance": 0.025
@@ -116,7 +116,7 @@
             {
                 "id": "ultimate-i",
                 "name": "Ultimate I",
-                "img": "milestones/ultimate.png",
+                "img": "milestones/ultimate",
                 "luck": 2,
                 "shinyChance": 0.035,
                 "mythicChance": 0.02
@@ -124,7 +124,7 @@
             {
                 "id": "super-i",
                 "name": "Super I",
-                "img": "milestones/super.png",
+                "img": "milestones/super",
                 "luck": 1.5,
                 "shinyChance": 0.03,
                 "mythicChance": 0.01
@@ -132,28 +132,28 @@
             {
                 "id": "platinum-i",
                 "name": "Platinum I",
-                "img": "milestones/platinum.png",
+                "img": "milestones/platinum",
                 "luck": 1.25,
                 "shinyChance": 0.025
             },
             {
                 "id": "gold-i",
                 "name": "Gold I",
-                "img": "milestones/gold.png",
+                "img": "milestones/gold",
                 "luck": 1,
                 "shinyChance": 0.02
             },
             {
                 "id": "silver-i",
                 "name": "Silver I",
-                "img": "milestones/silver.png",
+                "img": "milestones/silver",
                 "luck": 0.75,
                 "shinyChance": 0.015
             },
             {
                 "id": "bronze-i",
                 "name": "Bronze I",
-                "img": "milestones/bronze.png",
+                "img": "milestones/bronze",
                 "luck": 0.5,
                 "shinyChance": 0.01
             },

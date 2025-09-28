@@ -2,48 +2,48 @@
     {
         "id": "lucky-potion",
         "name": "Lucky Potion",
-        "img": "potions/lucky/lucky-evolved.png",
+        "img": "potions/lucky-evolved",
         "potions": [
             {
                 "id": "lucky-infinity",
                 "name": "Lucky Infinity",
-                "img": "potions/lucky/lucky-infinity.png",
+                "img": "potions/lucky-infinity",
                 "luck": 6
             },
             {
                 "id": "lucky-evolved",
                 "name": "Lucky Evolved",
-                "img": "potions/lucky/lucky-evolved.png",
+                "img": "potions/lucky-evolved",
                 "luck": 4
             },
             {
                 "id": "lucky-v",
                 "name": "Lucky V",
-                "img": "potions/lucky/lucky-v.png",
+                "img": "potions/lucky-v",
                 "luck": 1.5
             },
             {
                 "id": "lucky-iv",
                 "name": "Lucky IV",
-                "img": "potions/lucky/lucky-iv.png",
+                "img": "potions/lucky-iv",
                 "luck": 0.65
             },
             {
                 "id": "lucky-iii",
                 "name": "Lucky III",
-                "img": "potions/lucky/lucky-iii.png",
+                "img": "potions/lucky-iii",
                 "luck": 0.3
             },
             {
                 "id": "lucky-ii",
                 "name": "Lucky II",
-                "img": "potions/lucky/lucky-ii.png",
+                "img": "potions/lucky-ii",
                 "luck": 0.2
             },
             {
                 "id": "lucky-i",
                 "name": "Lucky I",
-                "img": "potions/lucky/lucky-i.png",
+                "img": "potions/lucky-i",
                 "luck": 0.1
             },
             {
@@ -55,48 +55,48 @@
     {
         "id": "mythic-potion",
         "name": "Mythic Potion",
-        "img": "potions/mythic/mythic-evolved.png",
+        "img": "potions/mythic-evolved",
         "potions": [
             {
                 "id": "mythic-infinity",
                 "name": "Mythic Infinity",
-                "img": "potions/mythic/mythic-infinity.png",
+                "img": "potions/mythic-infinity",
                 "mythicChance": 3.75
             },
             {
                 "id": "mythic-evolved",
                 "name": "Mythic Evolved",
-                "img": "potions/mythic/mythic-evolved.png",
+                "img": "potions/mythic-evolved",
                 "mythicChance": 2.5
             },
             {
                 "id": "mythic-v",
                 "name": "Mythic V",
-                "img": "potions/mythic/mythic-v.png",
+                "img": "potions/mythic-v",
                 "mythicChance": 1.5
             },
             {
                 "id": "mythic-iv",
                 "name": "Mythic IV",
-                "img": "potions/mythic/mythic-iv.png",
+                "img": "potions/mythic-iv",
                 "mythicChance": 0.75
             },
             {
                 "id": "mythic-iii",
                 "name": "Mythic III",
-                "img": "potions/mythic/mythic-iii.png",
+                "img": "potions/mythic-iii",
                 "mythicChance": 0.3
             },
             {
                 "id": "mythic-ii",
                 "name": "Mythic II",
-                "img": "potions/mythic/mythic-ii.png",
+                "img": "potions/mythic-ii",
                 "mythicChance": 0.2
             },
             {
                 "id": "mythic-i",
                 "name": "Mythic I",
-                "img": "potions/mythic/mythic-i.png",
+                "img": "potions/mythic-i",
                 "mythicChance": 0.1
             },
             {
@@ -108,48 +108,48 @@
     {
         "id": "speed-potion",
         "name": "Speed Potion",
-        "img": "potions/speed/speed-evolved.png",
+        "img": "potions/speed-evolved",
         "potions": [
             {
                 "id": "speed-infinity",
                 "name": "Speed Infinity",
-                "img": "potions/speed/speed-infinity.png",
+                "img": "potions/speed-infinity",
                 "hatchSpeed": 1.25
             },
             {
                 "id": "speed-evolved",
                 "name": "Speed Evolved",
-                "img": "potions/speed/speed-evolved.png",
+                "img": "potions/speed-evolved",
                 "hatchSpeed": 1
             },
             {
                 "id": "speed-v",
                 "name": "Speed V",
-                "img": "potions/speed/speed-v.png",
+                "img": "potions/speed-v",
                 "hatchSpeed": 0.4
             },
             {
                 "id": "speed-iv",
                 "name": "Speed IV",
-                "img": "potions/speed/speed-iv.png",
+                "img": "potions/speed-iv",
                 "hatchSpeed": 0.25
             },
             {
                 "id": "speed-iii",
                 "name": "Speed III",
-                "img": "potions/speed/speed-iii.png",
+                "img": "potions/speed-iii",
                 "hatchSpeed": 0.2
             },
             {
                 "id": "speed-ii",
                 "name": "Speed II",
-                "img": "potions/speed/speed-ii.png",
+                "img": "potions/speed-ii",
                 "hatchSpeed": 0.15
             },
             {
                 "id": "speed-i",
                 "name": "Speed I",
-                "img": "potions/speed/speed-i.png",
+                "img": "potions/speed-i",
                 "hatchSpeed": 0.1
             },
             {

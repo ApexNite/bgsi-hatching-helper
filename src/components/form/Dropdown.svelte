@@ -40,7 +40,11 @@
 <div class="wrapper" bind:this={root}>
     <button class="button-dropdown" type="button" on:click={toggle}>
         {#if selectedOption?.img}
-            <img src={selectedOption.img} alt={selectedOption.name}/>
+            <picture>
+                <source srcset="{selectedOption.img}.avif" type="image/avif">
+                <source srcset="{selectedOption.img}.webp" type="image/webp">
+                <img src="{selectedOption.img}.png" alt={selectedOption.name} loading="lazy" decoding="async">
+            </picture>
         {/if}
         <span>{selectedOption?.name}</span>
     </button>
@@ -50,7 +54,11 @@
             {#each options as option}
                 <button class="dropdown-item" type="button" on:click={() => select(option)}>
                     {#if option.img}
-                        <img src={option.img} alt={option.name} />
+                        <picture>
+                            <source srcset="{option.img}.avif" type="image/avif">
+                            <source srcset="{option.img}.webp" type="image/webp">
+                            <img src="{option.img}.png" alt={option.name} loading="lazy" decoding="async">
+                        </picture>
                     {/if}
                     <span>{option.name}</span>
                 </button>
