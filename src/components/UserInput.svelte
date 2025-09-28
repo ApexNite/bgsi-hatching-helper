@@ -69,7 +69,6 @@
     $: selectedEgg = eggs?.find((e) => e.id === selectedOptions.eggs);
     $: isInfinityEgg = selectedEgg?.type === "infinity";
     $: isWorldEgg = selectedEgg?.type === "world";
-    $: eggWorldName = isWorldEgg ? (worlds?.find((w) => w.id === selectedEgg.world)?.name || selectedEgg.world) : "";
     $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
     $: selectedRift = rifts?.find((r) => r.id === selectedOptions.rifts) || rifts?.[0];
 
@@ -244,7 +243,7 @@
                             <source srcset="icons/index.webp" type="image/webp">
                             <img src="icons/index.png" alt="Index" class="menu-img" loading="lazy" decoding="async">
                         </picture>
-                        {eggWorldName} Index:
+                        Index:
                     </span>
                     <div class="menu-control world-index-controls">
                         <span class="index-label">Normal:</span>
