@@ -37,7 +37,6 @@ export function getEggsWithInjectedPets(eggsData, dailyPerksData, secretBountyDa
     const eggsCopy = JSON.parse(JSON.stringify(eggsData));
 
     const now = new Date();
-    now.setDate(now.getDate() + 2);
     const utcDay = now.getUTCDay();
     const utcDate = now.toISOString().slice(0, 10).replace(/-/g, '');
 
