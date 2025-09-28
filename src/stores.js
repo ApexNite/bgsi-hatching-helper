@@ -11,5 +11,6 @@ export const mastery = jsonStore("data/mastery.json");
 export const milestones = jsonStore("data/milestones.json");
 export const potions = jsonStore("data/potions.json");
 export const rifts = jsonStore("data/rifts.json");
+export const secretBounty = jsonStore("data/secret-bounty.json");
 export const specialPotions = jsonStore("data/special-potions.json");
 export const worlds = jsonStore("data/worlds.json");

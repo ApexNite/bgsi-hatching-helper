@@ -31,6 +31,46 @@ export function getPetsToDisplay(eggId, worldId, stats, eggs) {
     return sortByRarity(pets);
 }
 
+export function getEggsWithInjectedPets(eggsData, dailyPerksData, secretBountyData) {
+    if (!eggsData) return {};
+    
+    const eggsCopy = JSON.parse(JSON.stringify(eggsData));
+
+    const now = new Date();
+    now.setDate(now.getDate() + 2);
+    const utcDay = now.getUTCDay();
+    const utcDate = now.toISOString().slice(0, 10).replace(/-/g, '');
+
+    const perk = dailyPerksData?.[utcDay];
+    if (perk?.pets?.length) {
+        for (const egg of eggsCopy) {
+            egg.pets = egg.pets || [];
+            for (const perkPet of perk.pets) {
+                if (!egg.pets.some(p => p.id === perkPet.id)) {
+                    egg.pets.push(perkPet)
+                };
+            }
+        }
+    }
+
+    const bounty = secretBountyData?.eggs?.[utcDate];
+    if (bounty) {
+        const bountyPet = secretBountyData?.pets?.[bounty.pet];
+        if (bountyPet) {
+            const targetEgg = eggsCopy.find(e => e.id === bounty.egg);
+            if (targetEgg) {
+                targetEgg.pets = targetEgg.pets || [];
+
+                if (!targetEgg.pets.some(p => p.id === bountyPet.id)) {
+                    targetEgg.pets.push(bountyPet);
+                }
+            }
+        }
+    }
+
+    return eggsCopy;
+}
+
 export function calculateHatchTime(chance, stats) {
     if (!chance || !stats?.eggsPerHatch || !stats?.hatchSpeed) {
         return Infinity;
@@ -132,10 +172,31 @@ function normalizeEgg(items, stats) {
     }));
 }
 
+function removeDuplicatePetsFromEggs(eggs) {
+    const seenPetIds = new Set();
+    
+    for (const egg of eggs) {
+        if (!egg.pets) {
+            continue;
+        }
+        
+        egg.pets = egg.pets.filter(pet => {
+            if (seenPetIds.has(pet.id)) {
+                return false;
+            }
+
+            seenPetIds.add(pet.id);
+            return true;
+        });
+    }
+}
+
 function normalizeInfinityEgg(rarities, worldEggs, stats) {
     if (!rarities || !worldEggs?.length) {
         return [];
     }
+
+    removeDuplicatePetsFromEggs(worldEggs);
 
     const normalizedRarities = normalizeEgg(rarities, stats);
 

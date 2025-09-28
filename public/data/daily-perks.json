@@ -7,7 +7,16 @@
         },
         "premium": {
             "baseHatchSpeed": 0.3
-        }
+        },
+        "pets": [
+            {
+                "id": "illumination",
+                "name": "Illumination",
+                "img": "pets/illumination.png",
+                "rarity": "secret",
+                "baseChance": 1e-8
+            }
+        ]
     },
     "3": null,
     "4": null,
@@ -18,6 +27,15 @@
         },
         "premium": {
             "luck": 3.5
-        }
+        },
+        "pets": [
+            {
+                "id": "snake-eyes",
+                "name": "Snake Eyes",
+                "img": "pets/snake-eyes.png",
+                "rarity": "secret",
+                "baseChance": 1e-9
+            }
+        ]
     }
 }
