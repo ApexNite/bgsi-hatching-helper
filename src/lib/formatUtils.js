@@ -23,22 +23,22 @@ export function formatTime(seconds) {
     const years = Math.floor(seconds / SECONDS_PER_YEAR);
     
     if (years >= 1) {
-        const remainingDays = Math.round((seconds - years * SECONDS_PER_YEAR) / SECONDS_PER_DAY);
-        return `${years}y ${remainingDays}d`;
+        const remainingDays = Math.floor((seconds - years * SECONDS_PER_YEAR) / SECONDS_PER_DAY);
+        return remainingDays > 0 ? `${years}y ${remainingDays}d` : `${years}y`;
     }
     
     if (days >= 1) {
-        const remainingHours = Math.round((seconds - days * SECONDS_PER_DAY) / SECONDS_PER_HOUR);
-        return `${days}d ${remainingHours}h`;
+        const remainingHours = Math.floor((seconds - days * SECONDS_PER_DAY) / SECONDS_PER_HOUR);
+        return remainingHours > 0 ? `${days}d ${remainingHours}h` : `${days}d`;
     }
     
     if (hours >= 1) {
-        const remainingMinutes = Math.round((seconds - hours * SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);
-        return `${hours}h ${remainingMinutes}m`;
+        const remainingMinutes = Math.floor((seconds - hours * SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);
+        return remainingMinutes > 0 ? `${hours}h ${remainingMinutes}m` : `${hours}h`;
     }
     
-    const remainingSeconds = Math.round(seconds - minutes * SECONDS_PER_MINUTE);
-    return `${minutes}m ${remainingSeconds}s`;
+    const remainingSeconds = Math.floor(seconds - minutes * SECONDS_PER_MINUTE);
+    return remainingSeconds > 0 ? `${minutes}m ${remainingSeconds}s` : `${minutes}m`;
 }
 
 export function formatChance(chance) {
