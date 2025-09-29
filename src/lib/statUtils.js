@@ -84,7 +84,7 @@ export function calculateManualStats(manualStats, rift) {
 function calculateStatsFromTotals(totals) {
     return {
         luck: (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1),
-        secretLuck: (totals.baseSecretLuck || 0) + (totals.secretLuck || 0) * (totals.secretLuck || 1),
+        secretLuck: (totals.baseSecretLuck || 0) + (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
         shinyChance: (totals.baseShinyChance || 0) * (1 + (totals.shinyChance || 0)) * (totals.shinyChanceMultiplier || 1),
         mythicChance: (totals.baseMythicChance || 0) * (1 + totals.mythicChance) * (totals.hatchSpeedMultiplier || 1),
         hatchSpeed: (totals.baseHatchSpeed || 0) + (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
