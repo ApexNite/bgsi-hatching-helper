@@ -37,25 +37,31 @@
 </main>
 
 <style>
-.container {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  margin: 0.5rem 0 0;
-}
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0.5rem 0 0;
+  }
 
-.left-pane {
-  flex: 0 0 auto;
-}
+  .left-pane {
+    flex: 0 0 auto;
+  }
 
-.right-pane {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 0;
-}
+  .right-pane {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  @media (max-width: 600px) {
+    .right-pane {
+      flex: 0 0 auto;
+    }
+  }
 </style>
