@@ -3,7 +3,8 @@
   import { calculateEggsPerSecond } from "../lib/petUtils.js";
 
   export let activeTab = "chances";
-  export let stats = { luck: 1, secretLuck: 1, shinyChance: 1 / 40, mythicChance: 1 / 100, hatchSpeed: 1, eggsPerHatch: 1 };
+  export let stats = { luck: 1, secretLuck: 1, shinyChance: 1 / 40, mythicChance: 1 / 100, hatchSpeed: 1 };
+  export let eggsPerHatch = 1;
 </script>
 
 <div class="stats">
@@ -14,7 +15,7 @@
           <source srcset="icons/luck.webp" type="image/webp">
           <img src="icons/luck.png" alt="Luck" loading="lazy" decoding="async">
       </picture>
-      <strong>{formatChancePercent(stats.luck)}</strong>
+      <strong>{formatChancePercent(stats.luck, true)}</strong>
     </div>
     <div class="stat">
       <picture>
@@ -64,7 +65,7 @@
           <source srcset="icons/multi-egg.webp" type="image/webp">
           <img src="icons/multi-egg.png" alt="Eggs Per Second" loading="lazy" decoding="async">
       </picture>
-      <strong>{calculateEggsPerSecond(stats.hatchSpeed, stats.eggsPerHatch).toFixed(2)} / s</strong>
+      <strong>{calculateEggsPerSecond(stats.hatchSpeed, eggsPerHatch).toFixed(2)} / s</strong>
     </div>
   {/if}
 </div>
@@ -74,7 +75,7 @@
   display: flex;
   justify-content: space-between;
   background: var(--menu-bg);
-  box-shadow: var(--elevation-2);
+  box-shadow: var(--elevation);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
   padding: 0.75rem 1rem;

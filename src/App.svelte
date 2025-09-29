@@ -5,15 +5,17 @@
   import PetTable from "./components/PetTable.svelte";
 
   let activeTab = "chances";
-  let stats = null;
-  let selectedEggId = null;
-  let selectedWorldId = null;
+  let stats;
+  let eggsPerHatch;
+  let selectedEggId;
+  let selectedWorldId;
 </script>
 
 <main class="container">
   <div class="left-pane">
     <UserInput
       bind:stats
+      bind:eggsPerHatch
       bind:selectedEggId
       bind:selectedWorldId
     />
@@ -22,11 +24,12 @@
   <section class="right-pane">
     <TabSwitcher bind:activeTab={activeTab} />
 
-    <StatsBar {activeTab} {stats} />
+    <StatsBar {activeTab} {stats} {eggsPerHatch} />
 
     <PetTable
       {activeTab}
       {stats}
+      {eggsPerHatch}
       {selectedEggId}
       {selectedWorldId}
     />

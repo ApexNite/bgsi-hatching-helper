@@ -46,10 +46,10 @@ export function formatChance(chance) {
     return clampedChance < 0.001 ? formatChanceFraction(clampedChance) : formatChancePercent(clampedChance);
 }
 
-export function formatChancePercent(chance) {
+export function formatChancePercent(chance, forceRound = false) {
     const percentChance = chance * 100;
 
-    if (percentChance >= 10) {
+    if (percentChance >= 10 || forceRound) {
         return `${Math.round(percentChance)}%`;
     }
     

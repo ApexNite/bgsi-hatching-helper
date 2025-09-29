@@ -3,9 +3,10 @@
   import { formatChance, formatTime } from '../lib/formatUtils.js';
 
   export let activeTab = 'chances';
-  export let stats = { luck: 1, secretLuck: 1, shinyChance: 1 / 40, mythicChance: 1 / 40, hatchSpeed: 1 };
-  export let selectedEggId = null;
-  export let selectedWorldId = null;
+  export let stats;
+  export let eggsPerHatch;
+  export let selectedEggId;
+  export let selectedWorldId;
 
   $: petsToDisplay = getPetsToDisplay(selectedEggId, selectedWorldId, stats);
 </script>
@@ -61,21 +62,21 @@
           {/if}
           {#if activeTab === "times"}
             <td>
-              {formatTime(calculateHatchTime(pet.finalChance, stats))}
+              {formatTime(calculateHatchTime(pet.finalChance, stats.hatchSpeed, eggsPerHatch))}
             </td>
             <td>
-              {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance, stats))}
+              {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance, stats.hatchSpeed, eggsPerHatch))}
             </td>
             <td>
               {#if isMythicEligible(pet.rarity)}
-                {formatTime(calculateHatchTime(pet.finalChance * stats.mythicChance, stats))}
+                {formatTime(calculateHatchTime(pet.finalChance * stats.mythicChance, stats.hatchSpeed, eggsPerHatch))}
               {:else}
                 -
               {/if}
             </td>
             <td>
               {#if isMythicEligible(pet.rarity)}
-                {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance * stats.mythicChance, stats))}
+                {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance * stats.mythicChance, stats.hatchSpeed, eggsPerHatch))}
               {:else}
                 -
               {/if}
@@ -91,7 +92,7 @@
   .pet-table-container {
     background: var(--menu-bg);
     border: 1.5px solid var(--border);
-    box-shadow: var(--elevation-2);
+    box-shadow: var(--elevation);
     border-radius: var(--radius-md);
     overflow: hidden;
   }

@@ -24,7 +24,7 @@
   display: flex;
   width: 100%;
   background: var(--menu-bg);
-  box-shadow: var(--elevation-2);
+  box-shadow: var(--elevation);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
   padding: 4px;

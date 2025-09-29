@@ -39,12 +39,12 @@ export function getPetsToDisplay(eggId, worldId, stats) {
     return sortByRarity(pets);
 }
 
-export function calculateHatchTime(chance, stats) {
-    if (!chance || !stats?.eggsPerHatch || !stats?.hatchSpeed) {
+export function calculateHatchTime(chance, hatchSpeed, eggsPerHatch) {
+    if (!chance || !eggsPerHatch || !hatchSpeed) {
         return Infinity;
     }
 
-    return (1 / chance) / calculateEggsPerSecond(stats.hatchSpeed, stats.eggsPerHatch);
+    return (1 / chance) / calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
 }
 
 export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {

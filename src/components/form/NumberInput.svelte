@@ -3,22 +3,38 @@
     export let value = 0;
     export let onInput = null;
 
-    function handleInput(event) {
-        let val = Number(event.target.value);
+    let displayValue = String(value);
 
-        if (onInput) {
-            onInput({ value: val, id })
-        };
+    $: if (value !== Number(displayValue)) {
+        displayValue = String(value);
+    }
+
+    function handleInput(event) {
+        const newValue = event.target.value;
+        
+        if (/^\d*$/.test(newValue)) {
+            displayValue = newValue;
+            let val = Number(displayValue) || 0;
+            
+            if (onInput) {
+                onInput({ value: val, id })
+            }
+        } else {
+            event.target.value = displayValue;
+        }
     }
 </script>
 
 <div class="wrapper">
     <input
-        type="number"
+        type="text"
         class="number-input"
-        bind:value
+        bind:value={displayValue}
         on:input={handleInput}
         autocomplete="off"
+        maxlength="10"
+        inputmode="numeric"
+        pattern="\d*"
     />
 </div>
 
