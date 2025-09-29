@@ -3,24 +3,40 @@
     export let value = 0;
     export let onInput = null;
 
-    let displayValue = String(value);
+    function sanitize(str) {
+        let s = String(str ?? "");
+        s = s.replace(/\D/g, "");
+        s = s.slice(0, 10);
+        return s;
+    }
 
-    $: if (value !== Number(displayValue)) {
-        displayValue = String(value);
+    let text = "";
+
+    $: {
+        const numericText = Number(text);
+
+        if (!Number.isFinite(numericText) || numericText !== value) {
+            text = sanitize(value);
+        }
     }
 
     function handleInput(event) {
-        const newValue = event.target.value;
-        
-        if (/^\d*$/.test(newValue)) {
-            displayValue = newValue;
-            let val = Number(displayValue) || 0;
-            
-            if (onInput) {
-                onInput({ value: val, id })
-            }
+        const raw = event.target.value;
+        const next = sanitize(raw);
+
+        text = next;
+
+        let numeric = 0;
+        if (next !== "") {
+            numeric = Number(next);
         } else {
-            event.target.value = displayValue;
+            numeric = 0;
+        }
+
+        value = numeric;
+
+        if (onInput) {
+            onInput({ value: numeric, text: next, id });
         }
     }
 </script>
@@ -29,19 +45,18 @@
     <input
         type="text"
         class="number-input"
-        bind:value={displayValue}
+        value={text}
         on:input={handleInput}
         autocomplete="off"
-        maxlength="10"
         inputmode="numeric"
-        pattern="\d*"
+        pattern="[0-9]*"
+        maxlength={10}
     />
 </div>
 
 <style>
 .wrapper {
     display: inline-block;
-    position: relative;
 }
 
 .number-input {
@@ -60,11 +75,5 @@
 .number-input:hover,
 .number-input:focus-visible {
     background-color: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
-}
-
-.number-input::-webkit-outer-spin-button,
-.number-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 </style>
