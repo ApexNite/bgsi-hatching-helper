@@ -5,8 +5,12 @@
 
     function sanitize(str) {
         let s = String(str ?? "");
-        s = s.replace(/\D/g, "");
-        s = s.slice(0, 10);
+        s = s.replace(/[^0-9.]/g, "");
+        const parts = s.split(".");
+        if (parts.length > 2) {
+            s = parts[0] + "." + parts.slice(1).join("");
+        }
+        s = s.slice(0, 12);
         return s;
     }
 
@@ -27,7 +31,7 @@
         text = next;
 
         let numeric = 0;
-        if (next !== "") {
+        if (next !== "" && next !== ".") {
             numeric = Number(next);
         } else {
             numeric = 0;
@@ -48,9 +52,9 @@
         value={text}
         on:input={handleInput}
         autocomplete="off"
-        inputmode="numeric"
-        pattern="[0-9]*"
-        maxlength={10}
+        inputmode="decimal"
+        pattern="[0-9]*[.,]?[0-9]*"
+        maxlength={12}
     />
 </div>
 
