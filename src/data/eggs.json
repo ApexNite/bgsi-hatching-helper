@@ -680,6 +680,7 @@
                 "name": "Giant Cave Mole",
                 "img": "pets/mining-egg/giant-cave-mole",
                 "rarity": "secret",
+                "hasMythic": false,
                 "baseChance": 2e-9
             }
         ]
@@ -1345,6 +1346,7 @@
                 "name": "Sylently's Pet",
                 "img": "pets/developer-egg/sylentlys-pet",
                 "rarity": "infinity",
+                "hasMythic": false,
                 "baseChance": 2e-10
             }
         ]

@@ -46,14 +46,14 @@
               {formatChance(pet.finalChance * stats.shinyChance)}
             </td>
             <td>
-              {#if isMythicEligible(pet.rarity)}
+              {#if isMythicEligible(pet)}
                 {formatChance(pet.finalChance * stats.mythicChance)}
               {:else}
                 -
               {/if}
             </td>
             <td>
-              {#if isMythicEligible(pet.rarity)}
+              {#if isMythicEligible(pet)}
                 {formatChance(pet.finalChance * stats.shinyChance * stats.mythicChance)}
               {:else}
                 -
@@ -68,14 +68,14 @@
               {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance, stats.hatchSpeed, eggsPerHatch))}
             </td>
             <td>
-              {#if isMythicEligible(pet.rarity)}
+              {#if isMythicEligible(pet)}
                 {formatTime(calculateHatchTime(pet.finalChance * stats.mythicChance, stats.hatchSpeed, eggsPerHatch))}
               {:else}
                 -
               {/if}
             </td>
             <td>
-              {#if isMythicEligible(pet.rarity)}
+              {#if isMythicEligible(pet)}
                 {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance * stats.mythicChance, stats.hatchSpeed, eggsPerHatch))}
               {:else}
                 -

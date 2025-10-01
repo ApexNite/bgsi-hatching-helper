@@ -65,8 +65,11 @@ export function sortByRarity(pets) {
     return pets;
 }
 
-export function isMythicEligible(rarity) {
-    return rarity === 'legendary' || rarity === 'secret' || rarity === 'infinity';
+export function isMythicEligible(pet) {
+    const correctRarity = pet.rarity === 'legendary' || pet.rarity === 'secret' || pet.rarity === 'infinity';
+    const hasMythic = pet.hasMythic !== false;
+
+    return correctRarity && hasMythic;
 }
 
 function getEggsWithInjectedPets() {
