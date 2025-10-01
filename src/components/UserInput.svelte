@@ -216,7 +216,7 @@
     }
 </script>
 
-<main class="user-input">
+<div class="user-input">
     <div class="menu-header">
         <h2 class="menu-title">Hatching Settings</h2>
         <button class="mode-toggle-pill" on:click={toggleCalculationMode}>
@@ -760,7 +760,7 @@
             <button class="warning-dismiss" on:click={dismissWarning}>✕</button>
         </div>
     {/if}
-</main>
+</div>
 
 <style>
     .user-input {

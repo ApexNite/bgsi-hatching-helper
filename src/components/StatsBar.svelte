@@ -71,34 +71,34 @@
 </div>
 
 <style>
-.stats {
-  display: flex;
-  justify-content: space-between;
-  background: var(--menu-bg);
-  box-shadow: var(--elevation);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.75rem 1rem;
-  width: 100%;
-}
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    background: var(--menu-bg);
+    box-shadow: var(--elevation);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    width: 100%;
+  }
 
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 1;
-  justify-content: center;
-}
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+  }
 
-.stat img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
+  .stat img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
 
-.stat strong {
-  color: var(--primary-text);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
+  .stat strong {
+    color: var(--primary-text);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
 </style>

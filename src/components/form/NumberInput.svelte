@@ -59,25 +59,25 @@
 </div>
 
 <style>
-.wrapper {
-    display: inline-block;
-}
+    .wrapper {
+        display: inline-block;
+    }
 
-.number-input {
-    width: 180px;
-    min-height: 45px;
-    padding: 0.5rem 1rem;
-    font-size: 1.05rem;
-    background: var(--menu-bg);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-md);
-    appearance: textfield;
-    outline: none;
-    transition: background-color 0.2s ease;
-}
+    .number-input {
+        width: 180px;
+        min-height: 45px;
+        padding: 0.5rem 1rem;
+        font-size: 1.05rem;
+        background: var(--menu-bg);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-md);
+        appearance: textfield;
+        outline: none;
+        transition: background-color 0.2s ease;
+    }
 
-.number-input:hover,
-.number-input:focus-visible {
-    background-color: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
-}
+    .number-input:hover,
+    .number-input:focus-visible {
+        background-color: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
+    }
 </style>
