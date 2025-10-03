@@ -14,14 +14,10 @@
         return s;
     }
 
-    let text = "";
+    let text = sanitize(value);
 
-    $: {
-        const numericText = Number(text);
-
-        if (!Number.isFinite(numericText) || numericText !== value) {
-            text = sanitize(value);
-        }
+    $: if (Number(text) !== value) {
+        text = sanitize(value);
     }
 
     function handleInput(event) {
