@@ -1303,7 +1303,7 @@
                 "name": "Candle Phoenix",
                 "img": "pets/candle-egg/candle-phoenix",
                 "rarity": "legendary",
-                "baseChance": 0.0000005
+                "baseChance": 5e-7
             },
             {
                 "id": "willow-chandelier",
