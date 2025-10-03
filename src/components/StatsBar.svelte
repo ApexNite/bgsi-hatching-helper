@@ -15,7 +15,7 @@
           <source srcset="icons/luck.webp" type="image/webp">
           <img src="icons/luck.png" alt="Luck" loading="lazy" decoding="async">
       </picture>
-      <strong>{formatChancePercent(stats.luck, true)}</strong>
+      <strong>{formatChancePercent(stats.luck - 1, true)}</strong>
     </div>
     <div class="stat">
       <picture>

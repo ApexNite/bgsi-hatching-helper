@@ -142,8 +142,8 @@ function normalizeData(items) {
 function normalizeEgg(items, stats) {
     const list = normalizeData(items);
 
-    const baseLuckMultiplier = 1 + Number(stats?.luck ?? 0);
-    const secretLuckMultiplier = Number(stats?.secretLuck ?? 1);
+    const baseLuckMultiplier = stats?.luck ?? 1;
+    const secretLuckMultiplier = stats?.secretLuck ?? 1;
     const epicLuckMultiplier = Math.min(baseLuckMultiplier, 4);
 
     for (const item of list) {

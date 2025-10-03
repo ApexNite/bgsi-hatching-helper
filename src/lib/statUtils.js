@@ -57,7 +57,6 @@ export function calculateStats(sources, toggles, numbers, dailyPerksData, indexD
     }
 
     const stats = calculateStatsFromTotals(totals);
-    stats.luck -= 1;
 
     return stats;
 }
@@ -69,7 +68,7 @@ export function calculateManualStats(manualStats, rift) {
         shinyChance: 0,
         mythicChance: 0,
         hatchSpeed: 0,
-        baseLuck: manualStats.luck / 100,
+        baseLuck: 1 + manualStats.luck / 100,
         baseSecretLuck: manualStats.secretLuck,
         baseShinyChance: 1 / manualStats.shinyChance,
         baseMythicChance: 1 / manualStats.mythicChance,
