@@ -1265,6 +1265,70 @@
         ]
     },
     {
+        "id": "candle-egg",
+        "name": "Candle Egg",
+        "img": "eggs/candle-egg",
+        "type": "special",
+        "pets": [
+            {
+                "id": "candled-doggy",
+                "name": "Candled Doggy",
+                "img": "pets/candle-egg/candled-doggy",
+                "rarity": "common",
+                "baseChance": 0.64
+            },
+            {
+                "id": "kitty-wick",
+                "name": "Kitty Wick",
+                "img": "pets/candle-egg/kitty-wick",
+                "rarity": "rare",
+                "baseChance": 0.3
+            },
+            {
+                "id": "scented-candle",
+                "name": "Scented Candle",
+                "img": "pets/candle-egg/scented-candle",
+                "rarity": "epic",
+                "baseChance": 0.03
+            },
+            {
+                "id": "lantern-demon",
+                "name": "Lantern Demon",
+                "img": "pets/candle-egg/lantern-demon",
+                "rarity": "legendary",
+                "baseChance": 0.0001
+            },
+            {
+                "id": "candle-phoenix",
+                "name": "Candle Phoenix",
+                "img": "pets/candle-egg/candle-phoenix",
+                "rarity": "legendary",
+                "baseChance": 0.0000005
+            },
+            {
+                "id": "willow-chandelier",
+                "name": "Willow Chandelier",
+                "img": "pets/candle-egg/willow-chandelier",
+                "rarity": "legendary",
+                "baseChance": 1e-7
+            },
+            {
+                "id": "maple-divinity",
+                "name": "Maple Divinity",
+                "img": "pets/candle-egg/maple-divinity",
+                "rarity": "secret",
+                "baseChance": 5e-10
+            },
+            {
+                "id": "aureate-koi",
+                "name": "Aureate Koi",
+                "img": "pets/candle-egg/aureate-koi",
+                "rarity": "infinity",
+                "baseChance": 2e-11
+            }
+        ]
+    },
+    {
         "id": "developer-egg",
         "name": "Developer Egg",
         "img": "eggs/developer-egg",
