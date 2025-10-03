@@ -49,12 +49,13 @@ export function formatChance(chance) {
 export function formatChancePercent(chance, forceRound = false) {
     const percentChance = chance * 100;
 
-    if (percentChance >= 10 || forceRound) {
-        return `${Math.round(percentChance)}%`;
+    if (percentChance >= 100 || forceRound) {
+        return `${Math.floor(percentChance)}%`;
     }
     
-    const digits = percentChance >= 1 ? 2 : 3;
-    return `${percentChance.toFixed(digits)}%`;
+    let str = percentChance.toFixed(percentChance >= 10 ? 1 : 2);
+    str = str.replace(/\.?0+$/, '');
+    return `${str}%`;
 }
 
 export function formatChanceFraction(chance) {
