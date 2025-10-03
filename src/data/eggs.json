@@ -1161,13 +1161,6 @@
                 "img": "pets/classic-egg/1x1x1x1",
                 "rarity": "secret",
                 "baseChance": 2e-9
-            },
-            {
-                "id": "giant-classic-chicken",
-                "name": "Giant Classic Chicken",
-                "img": "pets/classic-egg/giant-classic-chicken",
-                "rarity": "secret",
-                "baseChance": 4e-10
             }
         ]
     },
