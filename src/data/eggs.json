@@ -1169,6 +1169,7 @@
         "name": "Secret Egg",
         "img": "eggs/secret-egg",
         "type": "special",
+        "includeInInfinity": ["the-overworld"],
         "pets": [
             {
                 "id": "round-spitty",

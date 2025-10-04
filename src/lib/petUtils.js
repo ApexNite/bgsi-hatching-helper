@@ -25,7 +25,9 @@ export function getPetsToDisplay(eggId, worldId, stats) {
     let worldEggs = null;
 
     if (isInfinity) {
-        worldEggs = eggs.filter(e => e.world === worldId);
+        worldEggs = eggs.filter(
+            e => e.world === worldId || e.includeInInfinity?.includes(worldId)
+        );
     }
 
     let pets;
