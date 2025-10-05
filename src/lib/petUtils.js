@@ -38,7 +38,9 @@ export function getPetsToDisplay(eggId, worldId, stats) {
         pets = normalizeEgg(egg.pets, stats);
     }
 
-    return sortByRarity(pets);
+    pets = addVariantChances(sortByRarity(pets), stats);
+
+    return pets;
 }
 
 export function calculateHatchTime(chance, hatchSpeed, eggsPerHatch) {
@@ -64,6 +66,7 @@ export function sortByRarity(pets) {
 
         return b.finalChance - a.finalChance;
     });
+
     return pets;
 }
 
@@ -72,6 +75,24 @@ export function isMythicEligible(pet) {
     const hasMythic = pet.hasMythic !== false;
 
     return correctRarity && hasMythic;
+}
+
+function addVariantChances(pets, stats) {
+    const shinyMultiplier = stats?.shinyChance ?? 0;
+    const baseMythicMultiplier = stats?.mythicChance ?? 0;
+
+    for (const pet of pets) {
+        const mythicEligible = isMythicEligible(pet);
+        const mythicMultiplier = mythicEligible
+            ? (pet.staticMythic ? 0.01 : baseMythicMultiplier)
+            : 0;
+
+        pet.finalShinyChance = pet.finalChance * shinyMultiplier;
+        pet.finalMythicChance = pet.finalChance * mythicMultiplier;
+        pet.finalShinyMythicChance = pet.finalChance * shinyMultiplier * mythicMultiplier;
+    }
+
+    return pets;
 }
 
 function getEggsWithInjectedPets() {

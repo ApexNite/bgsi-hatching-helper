@@ -1,5 +1,5 @@
 <script>
-  import { getPetsToDisplay, calculateHatchTime, isMythicEligible } from '../lib/petUtils.js';
+  import { getPetsToDisplay, calculateHatchTime } from '../lib/petUtils.js';
   import { formatChance, formatTime } from '../lib/formatUtils.js';
 
   export let activeTab = 'chances';
@@ -39,48 +39,20 @@
             </div>
           </td>
           {#if activeTab === 'chances'}
-            <td>
-              {formatChance(pet.finalChance)}
-            </td>
-            <td>
-              {formatChance(pet.finalChance * stats.shinyChance)}
-            </td>
-            <td>
-              {#if isMythicEligible(pet)}
-                {formatChance(pet.finalChance * stats.mythicChance)}
-              {:else}
-                -
-              {/if}
-            </td>
-            <td>
-              {#if isMythicEligible(pet)}
-                {formatChance(pet.finalChance * stats.shinyChance * stats.mythicChance)}
-              {:else}
-                -
-              {/if}
-            </td>
+            <td>{formatChance(pet.finalChance)}</td>
+            <td>{formatChance(pet.finalShinyChance)}</td>
+            <td>{pet.finalMythicChance > 0 ? formatChance(pet.finalMythicChance) : '-'}</td>
+            <td>{pet.finalShinyMythicChance > 0 ? formatChance(pet.finalShinyMythicChance) : '-'}</td>
           {/if}
-          {#if activeTab === "times"}
-            <td>
-              {formatTime(calculateHatchTime(pet.finalChance, stats.hatchSpeed, eggsPerHatch))}
-            </td>
-            <td>
-              {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance, stats.hatchSpeed, eggsPerHatch))}
-            </td>
-            <td>
-              {#if isMythicEligible(pet)}
-                {formatTime(calculateHatchTime(pet.finalChance * stats.mythicChance, stats.hatchSpeed, eggsPerHatch))}
-              {:else}
-                -
-              {/if}
-            </td>
-            <td>
-              {#if isMythicEligible(pet)}
-                {formatTime(calculateHatchTime(pet.finalChance * stats.shinyChance * stats.mythicChance, stats.hatchSpeed, eggsPerHatch))}
-              {:else}
-                -
-              {/if}
-            </td>
+          {#if activeTab === 'times'}
+            <td>{formatTime(calculateHatchTime(pet.finalChance, stats.hatchSpeed, eggsPerHatch))}</td>
+            <td>{formatTime(calculateHatchTime(pet.finalShinyChance, stats.hatchSpeed, eggsPerHatch))}</td>
+            <td>{pet.finalMythicChance > 0
+              ? formatTime(calculateHatchTime(pet.finalMythicChance, stats.hatchSpeed, eggsPerHatch))
+              : '-'}</td>
+            <td>{pet.finalShinyMythicChance > 0
+              ? formatTime(calculateHatchTime(pet.finalShinyMythicChance, stats.hatchSpeed, eggsPerHatch))
+              : '-'}</td>
           {/if}
         </tr>
       {/each}

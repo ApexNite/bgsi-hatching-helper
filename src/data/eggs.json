@@ -71,7 +71,8 @@
                 "name": "King Doggy",
                 "img": "pets/common-egg/king-doggy",
                 "rarity": "secret",
-                "baseChance": 1e-8
+                "baseChance": 1e-8,
+                "staticMythic": true
             }
         ]
     },
@@ -539,7 +540,8 @@
                 "name": "The Overlord",
                 "img": "pets/nightmare-egg/the-overlord",
                 "rarity": "secret",
-                "baseChance": 2e-8
+                "baseChance": 2e-8,
+                "staticMythic": true
             }
         ]
     },
@@ -740,7 +742,8 @@
                 "name": "Mech Robot",
                 "img": "pets/cyber-egg/mech-robot",
                 "rarity": "secret",
-                "baseChance": 1.5e-8
+                "baseChance": 1.5e-8,
+                "staticMythic": true
             }
         ]
     },
