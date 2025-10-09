@@ -55,8 +55,6 @@
     const defaultEventToggles = Object.fromEntries(events.map((e) => [e.id, false]));
     const defaultEnchantValues = Object.fromEntries(enchants.map((e) => [e.id, 0]));
     const defaultToggleValues = {
-        worldNormal: false,
-        worldShiny: false,
         fasterHatchMastery: false,
         dailyPerks: false
     };
@@ -67,6 +65,7 @@
         luckierTogether: 0,
         eggsPerHatch: 1
     };
+    const defaultWorldIndexStates = {};
 
     let selectedOptions = defaultSelectedOptions;
     let specialPotionToggles = defaultSpecialPotionToggles;
@@ -77,6 +76,7 @@
     let toggleValues = defaultToggleValues;
     let numericValues = defaultNumericValues;
     let manualStats = defaultManualStats;
+    let worldIndexStates = defaultWorldIndexStates;
 
     let dismissedManualWarning = false;
 
@@ -88,6 +88,10 @@
 
     $: selectedEggId = selectedOptions.eggs;
     $: selectedWorldId = selectedOptions.worlds;
+
+    $: currentWorldIndexState = isWorldEgg && selectedEgg?.world 
+        ? (worldIndexStates[selectedEgg.world] || { worldNormal: false, worldShiny: false })
+        : { worldNormal: false, worldShiny: false };
 
     $: {
         eggsPerHatch = numericValues.eggsPerHatch;
@@ -114,7 +118,13 @@
                     .filter((e) => e._value > 0)
             ].filter(Boolean);
 
-            stats = calculateStats(sources, toggleValues, numericValues, dailyPerks, index, mastery);
+            const toggleValuesWithWorldIndex = { 
+                ...toggleValues, 
+                worldNormal: currentWorldIndexState.worldNormal,
+                worldShiny: currentWorldIndexState.worldShiny
+            };
+
+            stats = calculateStats(sources, toggleValuesWithWorldIndex, numericValues, dailyPerks, index, mastery);
         }
     }
 
@@ -132,6 +142,7 @@
             toggleValues = { ...defaultToggleValues, ...savedData.toggleValues };
             numericValues = { ...defaultNumericValues, ...savedData.numericValues };
             manualStats = { ...defaultManualStats, ...savedData.manualStats };
+            worldIndexStates = { ...defaultWorldIndexStates, ...savedData.worldIndexStates };
             dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         }
     });
@@ -148,6 +159,7 @@
             toggleValues,
             numericValues,
             manualStats,
+            worldIndexStates,
             dismissedManualWarning
         };
 
@@ -172,8 +184,6 @@
     function handleSelect({ option, id }) {
         if (id === "eggs") {
             selectedOptions = { ...selectedOptions, [id]: option.id, rifts: rifts?.[0]?.id ?? null };
-            toggleValues.worldNormal = false;
-            toggleValues.worldShiny = false;
         } else {
             selectedOptions = { ...selectedOptions, [id]: option.id };
         }
@@ -212,6 +222,24 @@
 
     function updateEnchantValue(enchantId, value) {
         enchantValues = { ...enchantValues, [enchantId]: value };
+        saveToCache();
+    }
+
+    function updateWorldIndexToggle(key) {
+        if (!isWorldEgg || !selectedEgg?.world) {
+            return;
+        }
+
+        const newState = {
+            ...currentWorldIndexState,
+            [key]: !currentWorldIndexState[key]
+        };
+        
+        worldIndexStates = {
+            ...worldIndexStates,
+            [selectedEgg.world]: newState
+        };
+        
         saveToCache();
     }
 </script>
@@ -304,14 +332,14 @@
                         <span class="index-label">Normal:</span>
                         <Checkbox
                             id="world-normal"
-                            checked={toggleValues.worldNormal}
-                            onChange={() => updateGameplayToggle("worldNormal")}
+                            checked={currentWorldIndexState.worldNormal}
+                            onChange={() => updateWorldIndexToggle("worldNormal")}
                         />
                         <span class="index-label">Shiny:</span>
                         <Checkbox
                             id="world-shiny"
-                            checked={toggleValues.worldShiny}
-                            onChange={() => updateGameplayToggle("worldShiny")}
+                            checked={currentWorldIndexState.worldShiny}
+                            onChange={() => updateWorldIndexToggle("worldShiny")}
                         />
                     </div>
                 </div>
