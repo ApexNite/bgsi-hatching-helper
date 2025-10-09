@@ -6,8 +6,8 @@ import crypto from "node:crypto";
 
 sharp.cache(false);
 
-const INPUT_DIR = path.resolve(process.cwd(), "assets-originals");
-const OUTPUT_DIR = path.resolve(process.cwd(), "public", "assets");
+const INPUT_DIR = path.resolve(process.cwd(), "images-originals");
+const OUTPUT_DIR = path.resolve(process.cwd(), "public", "assets", "images");
 const SIZE = 96;
 const WEBP_QUALITY = 85;
 const AVIF_QUALITY = 60;

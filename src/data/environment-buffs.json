@@ -2,7 +2,7 @@
     {
         "id": "board-game",
         "name": "Board Game +200%",
-        "img": "assets/icons/dice",
+        "img": "assets/images/icons/dice",
         "baseLuck": 2
     }
 ]

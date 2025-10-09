@@ -12,7 +12,7 @@
             {
                 "id": "illumination",
                 "name": "Illumination",
-                "img": "assets/pets/perk/illumination",
+                "img": "assets/images/pets/perk/illumination",
                 "rarity": "secret",
                 "baseChance": 1e-8
             }
@@ -32,7 +32,7 @@
             {
                 "id": "snake-eyes",
                 "name": "Snake Eyes",
-                "img": "assets/pets/perk/snake-eyes",
+                "img": "assets/images/pets/perk/snake-eyes",
                 "rarity": "secret",
                 "baseChance": 1e-9
             }

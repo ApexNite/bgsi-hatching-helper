@@ -267,9 +267,9 @@
             <div class="menu-row">
                 <span class="menu-label">
                     <picture>
-                        <source srcset="assets/icons/eggs.avif" type="image/avif">
-                        <source srcset="assets/icons/eggs.webp" type="image/webp">
-                        <img src="assets/icons/eggs.png" alt="Eggs" class="menu-img" loading="lazy" decoding="async">
+                        <source srcset="assets/images/icons/eggs.avif" type="image/avif">
+                        <source srcset="assets/images/icons/eggs.webp" type="image/webp">
+                        <img src="assets/images/icons/eggs.png" alt="Eggs" class="menu-img" loading="lazy" decoding="async">
                     </picture>
                     Egg:
                 </span>
@@ -287,9 +287,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/worlds/the-overworld.avif" type="image/avif">
-                            <source srcset="assets/worlds/the-overworld.webp" type="image/webp">
-                            <img src="assets/worlds/the-overworld.png" alt="World" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/worlds/the-overworld.avif" type="image/avif">
+                            <source srcset="assets/images/worlds/the-overworld.webp" type="image/webp">
+                            <img src="assets/images/worlds/the-overworld.png" alt="World" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         World:
                     </span>
@@ -308,9 +308,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/rift.avif" type="image/avif">
-                            <source srcset="assets/icons/rift.webp" type="image/webp">
-                            <img src="assets/icons/rift.png" alt="Rift" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/rift.avif" type="image/avif">
+                            <source srcset="assets/images/icons/rift.webp" type="image/webp">
+                            <img src="assets/images/icons/rift.png" alt="Rift" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Rift:
                     </span>
@@ -324,9 +324,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/index.avif" type="image/avif">
-                            <source srcset="assets/icons/index.webp" type="image/webp">
-                            <img src="assets/icons/index.png" alt="Index" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/index.avif" type="image/avif">
+                            <source srcset="assets/images/icons/index.webp" type="image/webp">
+                            <img src="assets/images/icons/index.png" alt="Index" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Index:
                     </span>
@@ -355,9 +355,9 @@
             <div class="menu-row">
                 <span class="menu-label">
                     <picture>
-                        <source srcset="assets/icons/multi-egg.avif" type="image/avif">
-                        <source srcset="assets/icons/multi-egg.webp" type="image/webp">
-                        <img src="assets/icons/multi-egg.png" alt="Eggs Per Hatch" class="menu-img" loading="lazy" decoding="async">
+                        <source srcset="assets/images/icons/multi-egg.avif" type="image/avif">
+                        <source srcset="assets/images/icons/multi-egg.webp" type="image/webp">
+                        <img src="assets/images/icons/multi-egg.png" alt="Eggs Per Hatch" class="menu-img" loading="lazy" decoding="async">
                     </picture>
                     Eggs Per Hatch:
                 </span>
@@ -379,9 +379,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/luck.avif" type="image/avif">
-                            <source srcset="assets/icons/luck.webp" type="image/webp">
-                            <img src="assets/icons/luck.png" alt="Luck" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/luck.avif" type="image/avif">
+                            <source srcset="assets/images/icons/luck.webp" type="image/webp">
+                            <img src="assets/images/icons/luck.png" alt="Luck" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Luck (%):
                     </span>
@@ -397,9 +397,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/secret-luck.avif" type="image/avif">
-                            <source srcset="assets/icons/secret-luck.webp" type="image/webp">
-                            <img src="assets/icons/secret-luck.png" alt="Secret Luck" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/secret-luck.avif" type="image/avif">
+                            <source srcset="assets/images/icons/secret-luck.webp" type="image/webp">
+                            <img src="assets/images/icons/secret-luck.png" alt="Secret Luck" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Secret Luck (x):
                     </span>
@@ -415,9 +415,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/shiny.avif" type="image/avif">
-                            <source srcset="assets/icons/shiny.webp" type="image/webp">
-                            <img src="assets/icons/shiny.png" alt="Shiny Chance" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/shiny.avif" type="image/avif">
+                            <source srcset="assets/images/icons/shiny.webp" type="image/webp">
+                            <img src="assets/images/icons/shiny.png" alt="Shiny Chance" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Shiny Chance (1 in):
                     </span>
@@ -433,9 +433,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/mythic.avif" type="image/avif">
-                            <source srcset="assets/icons/mythic.webp" type="image/webp">
-                            <img src="assets/icons/mythic.png" alt="Mythic Chance" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/mythic.avif" type="image/avif">
+                            <source srcset="assets/images/icons/mythic.webp" type="image/webp">
+                            <img src="assets/images/icons/mythic.png" alt="Mythic Chance" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Mythic Chance (1 in):
                     </span>
@@ -451,9 +451,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/timer.avif" type="image/avif">
-                            <source srcset="assets/icons/timer.webp" type="image/webp">
-                            <img src="assets/icons/timer.png" alt="Hatch Speed" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/timer.avif" type="image/avif">
+                            <source srcset="assets/images/icons/timer.webp" type="image/webp">
+                            <img src="assets/images/icons/timer.png" alt="Hatch Speed" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Hatch Speed (%):
                     </span>
@@ -550,9 +550,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/bubble-shrine.avif" type="image/avif">
-                            <source srcset="assets/icons/bubble-shrine.webp" type="image/webp">
-                            <img src="assets/icons/bubble-shrine.png" alt="Shrine Blessing" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/bubble-shrine.avif" type="image/avif">
+                            <source srcset="assets/images/icons/bubble-shrine.webp" type="image/webp">
+                            <img src="assets/images/icons/bubble-shrine.png" alt="Shrine Blessing" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Shrine Blessing:
                     </span>
@@ -568,9 +568,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/dreamer-blessing.avif" type="image/avif">
-                            <source srcset="assets/icons/dreamer-blessing.webp" type="image/webp">
-                            <img src="assets/icons/dreamer-blessing.png" alt="Dreamer Blessing" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/dreamer-blessing.avif" type="image/avif">
+                            <source srcset="assets/images/icons/dreamer-blessing.webp" type="image/webp">
+                            <img src="assets/images/icons/dreamer-blessing.png" alt="Dreamer Blessing" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Dreamer Blessing:
                     </span>
@@ -586,9 +586,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/season-stars.avif" type="image/avif">
-                            <source srcset="assets/icons/season-stars.webp" type="image/webp">
-                            <img src="assets/icons/season-stars.png" alt="Season Stars" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/season-stars.avif" type="image/avif">
+                            <source srcset="assets/images/icons/season-stars.webp" type="image/webp">
+                            <img src="assets/images/icons/season-stars.png" alt="Season Stars" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Season Stars:
                     </span>
@@ -627,9 +627,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/lucky-streak.avif" type="image/avif">
-                            <source srcset="assets/icons/lucky-streak.webp" type="image/webp">
-                            <img src="assets/icons/lucky-streak.png" alt="Lucky Streak" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/lucky-streak.avif" type="image/avif">
+                            <source srcset="assets/images/icons/lucky-streak.webp" type="image/webp">
+                            <img src="assets/images/icons/lucky-streak.png" alt="Lucky Streak" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Lucky Streak:
                     </span>
@@ -646,9 +646,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/luckier-together.avif" type="image/avif">
-                            <source srcset="assets/icons/luckier-together.webp" type="image/webp">
-                            <img src="assets/icons/luckier-together.png" alt="Luckier Together" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/luckier-together.avif" type="image/avif">
+                            <source srcset="assets/images/icons/luckier-together.webp" type="image/webp">
+                            <img src="assets/images/icons/luckier-together.png" alt="Luckier Together" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Luckier Together:
                     </span>
@@ -664,9 +664,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/eggs.avif" type="image/avif">
-                            <source srcset="assets/icons/eggs.webp" type="image/webp">
-                            <img src="assets/icons/eggs.png" alt="Faster Hatch Mastery" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/eggs.avif" type="image/avif">
+                            <source srcset="assets/images/icons/eggs.webp" type="image/webp">
+                            <img src="assets/images/icons/eggs.png" alt="Faster Hatch Mastery" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Faster Hatch Mastery:
                     </span>
@@ -714,9 +714,9 @@
                 <div class="menu-row">
                     <span class="menu-label">
                         <picture>
-                            <source srcset="assets/icons/daily-perks.avif" type="image/avif">
-                            <source srcset="assets/icons/daily-perks.webp" type="image/webp">
-                            <img src="assets/icons/daily-perks.png" alt="Premium Daily Perks" class="menu-img" loading="lazy" decoding="async">
+                            <source srcset="assets/images/icons/daily-perks.avif" type="image/avif">
+                            <source srcset="assets/images/icons/daily-perks.webp" type="image/webp">
+                            <img src="assets/images/icons/daily-perks.png" alt="Premium Daily Perks" class="menu-img" loading="lazy" decoding="async">
                         </picture>
                         Premium Daily Perks:
                     </span>

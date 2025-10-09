@@ -11,41 +11,41 @@
   {#if activeTab === "chances"}
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/luck.avif" type="image/avif">
-          <source srcset="assets/icons/luck.webp" type="image/webp">
-          <img src="assets/icons/luck.png" alt="Luck" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/luck.avif" type="image/avif">
+          <source srcset="assets/images/icons/luck.webp" type="image/webp">
+          <img src="assets/images/icons/luck.png" alt="Luck" loading="lazy" decoding="async">
       </picture>
       <strong>{formatChancePercent(stats.luck - 1, true)}</strong>
     </div>
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/secret-luck.avif" type="image/avif">
-          <source srcset="assets/icons/secret-luck.webp" type="image/webp">
-          <img src="assets/icons/secret-luck.png" alt="Secret Luck" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/secret-luck.avif" type="image/avif">
+          <source srcset="assets/images/icons/secret-luck.webp" type="image/webp">
+          <img src="assets/images/icons/secret-luck.png" alt="Secret Luck" loading="lazy" decoding="async">
       </picture>
       <strong>{formatMultiplier(stats.secretLuck)}</strong>
     </div>
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/shiny.avif" type="image/avif">
-          <source srcset="assets/icons/shiny.webp" type="image/webp">
-          <img src="assets/icons/shiny.png" alt="Shiny Chance" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/shiny.avif" type="image/avif">
+          <source srcset="assets/images/icons/shiny.webp" type="image/webp">
+          <img src="assets/images/icons/shiny.png" alt="Shiny Chance" loading="lazy" decoding="async">
       </picture>
       <strong>{formatChanceFraction(stats.shinyChance)}</strong>
     </div>
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/mythic.avif" type="image/avif">
-          <source srcset="assets/icons/mythic.webp" type="image/webp">
-          <img src="assets/icons/mythic.png" alt="Mythic Chance" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/mythic.avif" type="image/avif">
+          <source srcset="assets/images/icons/mythic.webp" type="image/webp">
+          <img src="assets/images/icons/mythic.png" alt="Mythic Chance" loading="lazy" decoding="async">
       </picture>
       <strong>{formatChanceFraction(stats.mythicChance)}</strong>
     </div>
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/shiny-mythic.avif" type="image/avif">
-          <source srcset="assets/icons/shiny-mythic.webp" type="image/webp">
-          <img src="assets/icons/shiny-mythic.png" alt="Shiny Mythic Chance" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/shiny-mythic.avif" type="image/avif">
+          <source srcset="assets/images/icons/shiny-mythic.webp" type="image/webp">
+          <img src="assets/images/icons/shiny-mythic.png" alt="Shiny Mythic Chance" loading="lazy" decoding="async">
       </picture>
       <strong>{formatChanceFraction(stats.shinyChance * stats.mythicChance)}</strong>
     </div>
@@ -53,17 +53,17 @@
   {#if activeTab === "times"}
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/timer.avif" type="image/avif">
-          <source srcset="assets/icons/timer.webp" type="image/webp">
-          <img src="assets/icons/timer.png" alt="Hatch Speed" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/timer.avif" type="image/avif">
+          <source srcset="assets/images/icons/timer.webp" type="image/webp">
+          <img src="assets/images/icons/timer.png" alt="Hatch Speed" loading="lazy" decoding="async">
       </picture>
       <strong>{formatChancePercent(stats.hatchSpeed, true, true)}</strong>
     </div>
     <div class="stat">
       <picture>
-          <source srcset="assets/icons/multi-egg.avif" type="image/avif">
-          <source srcset="assets/icons/multi-egg.webp" type="image/webp">
-          <img src="assets/icons/multi-egg.png" alt="Eggs Per Second" loading="lazy" decoding="async">
+          <source srcset="assets/images/icons/multi-egg.avif" type="image/avif">
+          <source srcset="assets/images/icons/multi-egg.webp" type="image/webp">
+          <img src="assets/images/icons/multi-egg.png" alt="Eggs Per Second" loading="lazy" decoding="async">
       </picture>
       <strong>{calculateEggsPerSecond(stats.hatchSpeed, eggsPerHatch).toFixed(2)} / s</strong>
     </div>

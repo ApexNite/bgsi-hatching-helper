@@ -2,7 +2,7 @@
     {
         "id": "hatching-milestone",
         "name": "Hatching Milestone",
-        "img": "assets/icons/multi-egg",
+        "img": "assets/images/icons/multi-egg",
         "tiers": [
             {
                 "id": "infinity-i",
@@ -90,7 +90,7 @@
     {
         "id": "secret-pets-milestone",
         "name": "Secret Pets Milestone",
-        "img": "assets/icons/secret-pets",
+        "img": "assets/images/icons/secret-pets",
         "tiers": [
             {
                 "id": "infinity-i",

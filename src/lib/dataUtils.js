@@ -20,13 +20,13 @@ function processEggsAndPets(eggsArray) {
 
     for (const egg of eggsArray) {
         if (egg && !egg.img) {
-            egg.img = `assets/eggs/${egg.id}`;
+            egg.img = `assets/images/eggs/${egg.id}`;
         }
 
         if (Array.isArray(egg?.pets)) {
             for (const pet of egg.pets) {
                 if (pet && !pet.img) {
-                    pet.img = `assets/pets/${egg.id}/${pet.id}`;
+                    pet.img = `assets/images/pets/${egg.id}/${pet.id}`;
                 }
             }
         }
@@ -44,7 +44,7 @@ function processPotions(potionsArray) {
         if (Array.isArray(potion.potions)) {
             for (const subPotion of potion.potions) {
                 if (subPotion && !subPotion.img && subPotion.id !== "none") {
-                    subPotion.img = `assets/potions/${subPotion.id}`;
+                    subPotion.img = `assets/images/potions/${subPotion.id}`;
                 }
             }
         }
@@ -60,7 +60,7 @@ function processSpecialPotions(specialPotionsArray) {
 
     for (const potion of specialPotionsArray) {
         if (potion && !potion.img) {
-            potion.img = `assets/potions/${potion.id}`;
+            potion.img = `assets/images/potions/${potion.id}`;
         }
     }
 
@@ -76,7 +76,7 @@ function processMilestones(milestonesArray) {
         if (Array.isArray(milestone.tiers)) {
             for (const tier of milestone.tiers) {
                 if (tier && !tier.img && tier.id !== "none") {
-                    tier.img = `assets/milestones/${tier.id.replace(/-.*/, "")}`;
+                    tier.img = `assets/images/milestones/${tier.id.replace(/-.*/, "")}`;
                 }
             }
         }
@@ -92,7 +92,7 @@ function processWorlds(worldsArray) {
 
     for (const world of worldsArray) {
         if (world && !world.img) {
-            world.img = `assets/worlds/${world.id}`;
+            world.img = `assets/images/worlds/${world.id}`;
         }
     }
 

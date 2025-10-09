@@ -889,14 +889,6 @@
       "hash": "0ca0e55bf3463c26ac1b5854371a26385fe7dbe4",
       "cfg": "96|85|60"
     },
-    "worlds/seven-seas.png": {
-      "hash": "ee768e4d0f6638c53828c4fc189d3e9c43743b7e",
-      "cfg": "96|85|60"
-    },
-    "worlds/the-overworld.png": {
-      "hash": "b12403d01287a1dc719699782660e3c20cdea551",
-      "cfg": "96|85|60"
-    },
     "potions/infinity-elixir.png": {
       "hash": "e5e55492c82d226ba7abbb92cc180bb48f1249b5",
       "cfg": "96|85|60"
@@ -913,6 +905,26 @@
       "hash": "1ec2a55ce36f05cb358f5442cd9db196e39955cb",
       "cfg": "96|85|60"
     },
+    "potions/lucky-iii.png": {
+      "hash": "395b25c96b3240df9f947ff1a357a1322b172922",
+      "cfg": "96|85|60"
+    },
+    "potions/lucky-infinity.png": {
+      "hash": "afd120857576e7d4ae56aa53c46e507cba2c2e05",
+      "cfg": "96|85|60"
+    },
+    "potions/lucky-iv.png": {
+      "hash": "b7c89480774ace09331bacc47a8e430941c163cc",
+      "cfg": "96|85|60"
+    },
+    "potions/lucky-v.png": {
+      "hash": "4a07e321116dce46978322ce7c45a5bc041b4288",
+      "cfg": "96|85|60"
+    },
+    "potions/mythic-evolved.png": {
+      "hash": "05cc40eea98acfe59a9b1a09ab6d1f446caf4eee",
+      "cfg": "96|85|60"
+    },
     "potions/mythic-i.png": {
       "hash": "2aa103c8642a1194eec2b0ae00de24aab6810285",
       "cfg": "96|85|60"
@@ -921,32 +933,12 @@
       "hash": "b02522a1b300d23f420666a61457a6a6de89ebd8",
       "cfg": "96|85|60"
     },
-    "potions/lucky-iii.png": {
-      "hash": "395b25c96b3240df9f947ff1a357a1322b172922",
-      "cfg": "96|85|60"
-    },
     "potions/mythic-iii.png": {
       "hash": "2899abeabb53b27e49a712f2dd579c9857fd05f0",
       "cfg": "96|85|60"
     },
-    "potions/lucky-iv.png": {
-      "hash": "b7c89480774ace09331bacc47a8e430941c163cc",
-      "cfg": "96|85|60"
-    },
-    "potions/secret-elixir.png": {
-      "hash": "fadb5efc0f5f84ee39d331ba2a05db61a2bca7b9",
-      "cfg": "96|85|60"
-    },
-    "potions/speed-i.png": {
-      "hash": "882d61a0b6786a21ba69c68e4f48b36916604028",
-      "cfg": "96|85|60"
-    },
     "potions/mythic-infinity.png": {
       "hash": "557a2fdcbbcac6e00b4d47b6e13a3cd2c4729b1f",
-      "cfg": "96|85|60"
-    },
-    "potions/lucky-v.png": {
-      "hash": "4a07e321116dce46978322ce7c45a5bc041b4288",
       "cfg": "96|85|60"
     },
     "potions/mythic-iv.png": {
@@ -957,24 +949,28 @@
       "hash": "8f16a71df4f35af92600e2969e6e1c2cd39a4eb2",
       "cfg": "96|85|60"
     },
+    "potions/secret-elixir.png": {
+      "hash": "fadb5efc0f5f84ee39d331ba2a05db61a2bca7b9",
+      "cfg": "96|85|60"
+    },
     "potions/speed-evolved.png": {
       "hash": "c57fb0297b0d7239cfdd8ca682e0fb2655adb373",
       "cfg": "96|85|60"
     },
-    "potions/mythic-evolved.png": {
-      "hash": "05cc40eea98acfe59a9b1a09ab6d1f446caf4eee",
-      "cfg": "96|85|60"
-    },
-    "potions/speed-iii.png": {
-      "hash": "025195b1435c2d9bf3b516f5a7d298b48f688512",
+    "potions/speed-i.png": {
+      "hash": "882d61a0b6786a21ba69c68e4f48b36916604028",
       "cfg": "96|85|60"
     },
     "potions/speed-ii.png": {
       "hash": "10805538640304cf3a96b67aa44cc3581b9e58f1",
       "cfg": "96|85|60"
     },
-    "potions/lucky-infinity.png": {
-      "hash": "afd120857576e7d4ae56aa53c46e507cba2c2e05",
+    "potions/speed-iii.png": {
+      "hash": "025195b1435c2d9bf3b516f5a7d298b48f688512",
+      "cfg": "96|85|60"
+    },
+    "potions/speed-infinity.png": {
+      "hash": "9697b79afb3aa73e8cbd3fb1d455d5329530dcb7",
       "cfg": "96|85|60"
     },
     "potions/speed-iv.png": {
@@ -985,12 +981,16 @@
       "hash": "74f76cd6f95bdfff823b212d46523d29f0185903",
       "cfg": "96|85|60"
     },
-    "potions/speed-infinity.png": {
-      "hash": "9697b79afb3aa73e8cbd3fb1d455d5329530dcb7",
-      "cfg": "96|85|60"
-    },
     "worlds/minigame-paradise.png": {
       "hash": "390568126b5ad9d47aaa148b0c1cbe674068ab23",
+      "cfg": "96|85|60"
+    },
+    "worlds/seven-seas.png": {
+      "hash": "ee768e4d0f6638c53828c4fc189d3e9c43743b7e",
+      "cfg": "96|85|60"
+    },
+    "worlds/the-overworld.png": {
+      "hash": "b12403d01287a1dc719699782660e3c20cdea551",
       "cfg": "96|85|60"
     }
   }

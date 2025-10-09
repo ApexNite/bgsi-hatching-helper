@@ -2,7 +2,7 @@
     {
         "id": "lucky-potion",
         "name": "Lucky Potion",
-        "img": "assets/potions/lucky-evolved",
+        "img": "assets/images/potions/lucky-evolved",
         "potions": [
             {
                 "id": "lucky-infinity",
@@ -48,7 +48,7 @@
     {
         "id": "mythic-potion",
         "name": "Mythic Potion",
-        "img": "assets/potions/mythic-evolved",
+        "img": "assets/images/potions/mythic-evolved",
         "potions": [
             {
                 "id": "mythic-infinity",
@@ -94,7 +94,7 @@
     {
         "id": "speed-potion",
         "name": "Speed Potion",
-        "img": "assets/potions/speed-evolved",
+        "img": "assets/images/potions/speed-evolved",
         "potions": [
             {
                 "id": "speed-infinity",

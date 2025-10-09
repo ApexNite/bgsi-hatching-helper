@@ -2,25 +2,25 @@
     {
         "id": "luck-event",
         "name": "Luck Event",
-        "img": "assets/icons/luck",
+        "img": "assets/images/icons/luck",
         "luckMultiplier": 2
     },
     {
         "id": "secret-event",
         "name": "Secret Event",
-        "img": "assets/icons/secret-luck",
+        "img": "assets/images/icons/secret-luck",
         "secretLuckMultiplier": 2
     },
     {
         "id": "mythic-event",
         "name": "Mythic Event",
-        "img": "assets/icons/mythic",
+        "img": "assets/images/icons/mythic",
         "mythicChanceMultiplier": 2
     },
     {
         "id": "shiny-event",
         "name": "Shiny Event",
-        "img": "assets/icons/shiny",
+        "img": "assets/images/icons/shiny",
         "shinyChanceMultiplier": 2
     }
 ]
