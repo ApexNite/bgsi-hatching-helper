@@ -171,9 +171,8 @@ function applySource(totals, source) {
 
 function calculateBubbleBlessing(level) {
     const levelClamped = clamp(level, 0, 50);
-    const hasLevel = levelClamped >= 1;
-    const luck = hasLevel ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 : 0;
-    const baseHatchSpeed = (hasLevel ? 1 : 0) + (levelClamped >= 20 ? 0.05 + ((0.25 - 0.05) * (levelClamped - 20)) / 30 : 0);
+    const luck = levelClamped >= 1 ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 : 0;
+    const baseHatchSpeed = levelClamped >= 20 ? (0.05 + ((0.25 - 0.05) * (levelClamped - 20)) / 30) + 1 : 0;
 
     return { luck, baseHatchSpeed };
 }
