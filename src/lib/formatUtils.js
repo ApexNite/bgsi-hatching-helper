@@ -46,11 +46,11 @@ export function formatChance(chance) {
     return clampedChance < 0.001 ? formatChanceFraction(clampedChance) : formatChancePercent(clampedChance);
 }
 
-export function formatChancePercent(chance, forceRound = false) {
+export function formatChancePercent(chance, forceRound = false, roundUp = false) {
     const percentChance = chance * 100;
 
     if (percentChance >= 100 || forceRound) {
-        return `${Math.floor(percentChance)}%`;
+        return roundUp ? `${Math.ceil(percentChance)}%` : `${Math.floor(percentChance)}%`;
     }
     
     let str = percentChance.toFixed(percentChance >= 10 ? 1 : 2);

@@ -57,7 +57,7 @@
           <source srcset="icons/timer.webp" type="image/webp">
           <img src="icons/timer.png" alt="Hatch Speed" loading="lazy" decoding="async">
       </picture>
-      <strong>{formatChancePercent(stats.hatchSpeed)}</strong>
+      <strong>{formatChancePercent(stats.hatchSpeed, true, true)}</strong>
     </div>
     <div class="stat">
       <picture>
