@@ -123,12 +123,12 @@
     }
     
     img {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
         margin-right: 0.5rem;
     }
 
     .img-placeholder {
-        height: 28px;
+        height: 30px;
     }
 </style>
