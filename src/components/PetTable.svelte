@@ -110,7 +110,6 @@
   .pet-image {
     width: 32px;
     height: 32px;
-    object-fit: contain;
     flex-shrink: 0;
     display: block;
   }

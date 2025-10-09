@@ -45,6 +45,8 @@
                 <source srcset="{selectedOption.img}.webp" type="image/webp">
                 <img src="{selectedOption.img}.png" alt={selectedOption.name} loading="lazy" decoding="async">
             </picture>
+        {:else}
+            <span class="img-placeholder"></span>
         {/if}
         <span>{selectedOption?.name}</span>
     </button>
@@ -121,9 +123,12 @@
     }
     
     img {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
         margin-right: 0.5rem;
-        object-fit: cover;
+    }
+
+    .img-placeholder {
+        height: 28px;
     }
 </style>

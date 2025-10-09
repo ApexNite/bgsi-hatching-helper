@@ -2,7 +2,6 @@
     {
         "id": "infinity-egg",
         "name": "Infinity Egg",
-        "img": "eggs/infinity-egg",
         "type": "infinity",
         "rarities": [
             {
@@ -38,42 +37,36 @@
     {
         "id": "common-egg",
         "name": "Common Egg",
-        "img": "eggs/common-egg",
         "type": "world",
         "world": "the-overworld",
         "pets": [
             {
                 "id": "doggy",
                 "name": "Doggy",
-                "img": "pets/common-egg/doggy",
                 "rarity": "common",
                 "baseChance": 0.4
             },
             {
                 "id": "kitty",
                 "name": "Kitty",
-                "img": "pets/common-egg/kitty",
                 "rarity": "common",
                 "baseChance": 0.3
             },
             {
                 "id": "bunny",
                 "name": "Bunny",
-                "img": "pets/common-egg/bunny",
                 "rarity": "unique",
                 "baseChance": 0.25
             },
             {
                 "id": "bear",
                 "name": "Bear",
-                "img": "pets/common-egg/bear",
                 "rarity": "rare",
                 "baseChance": 0.05
             },
             {
                 "id": "king-doggy",
                 "name": "King Doggy",
-                "img": "pets/common-egg/king-doggy",
                 "rarity": "secret",
                 "baseChance": 1e-8,
                 "staticMythic": true
@@ -83,7 +76,6 @@
     {
         "id": "spotted-egg",
         "name": "Spotted Egg",
-        "img": "eggs/spotted-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": false,
@@ -91,35 +83,30 @@
             {
                 "id": "mouse",
                 "name": "Mouse",
-                "img": "pets/spotted-egg/mouse",
                 "rarity": "common",
                 "baseChance": 0.4
             },
             {
                 "id": "wolf",
                 "name": "Wolf",
-                "img": "pets/spotted-egg/wolf",
                 "rarity": "common",
                 "baseChance": 0.25
             },
             {
                 "id": "fox",
                 "name": "Fox",
-                "img": "pets/spotted-egg/fox",
                 "rarity": "unique",
                 "baseChance": 0.2
             },
             {
                 "id": "polar-bear",
                 "name": "Polar Bear",
-                "img": "pets/spotted-egg/polar-bear",
                 "rarity": "rare",
                 "baseChance": 0.1
             },
             {
                 "id": "panda",
                 "name": "Panda",
-                "img": "pets/spotted-egg/panda",
                 "rarity": "epic",
                 "baseChance": 0.05
             }
@@ -128,7 +115,6 @@
     {
         "id": "iceshard-egg",
         "name": "Iceshard Egg",
-        "img": "eggs/iceshard-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": false,
@@ -136,42 +122,36 @@
             {
                 "id": "ice-kitty",
                 "name": "Ice Kitty",
-                "img": "pets/iceshard-egg/ice-kitty",
                 "rarity": "common",
                 "baseChance": 0.3
             },
             {
                 "id": "deer",
                 "name": "Deer",
-                "img": "pets/iceshard-egg/deer",
                 "rarity": "common",
                 "baseChance": 0.25
             },
             {
                 "id": "ice-wolf",
                 "name": "Ice Wolf",
-                "img": "pets/iceshard-egg/ice-wolf",
                 "rarity": "unique",
                 "baseChance": 0.2
             },
             {
                 "id": "piggy",
                 "name": "Piggy",
-                "img": "pets/iceshard-egg/piggy",
                 "rarity": "rare",
                 "baseChance": 0.14
             },
             {
                 "id": "ice-deer",
                 "name": "Ice Deer",
-                "img": "pets/iceshard-egg/ice-deer",
                 "rarity": "rare",
                 "baseChance": 0.08
             },
             {
                 "id": "ice-dragon",
                 "name": "Ice Dragon",
-                "img": "pets/iceshard-egg/ice-dragon",
                 "rarity": "epic",
                 "baseChance": 0.03
             }
@@ -180,7 +160,6 @@
     {
         "id": "spikey-egg",
         "name": "Spikey Egg",
-        "img": "eggs/spikey-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -188,42 +167,36 @@
             {
                 "id": "golem",
                 "name": "Golem",
-                "img": "pets/spikey-egg/golem",
                 "rarity": "common",
                 "baseChance": 0.3
             },
             {
                 "id": "dinosaur",
                 "name": "Dinosaur",
-                "img": "pets/spikey-egg/dinosaur",
                 "rarity": "common",
                 "baseChance": 0.3
             },
             {
                 "id": "ruby-golem",
                 "name": "Ruby Golem",
-                "img": "pets/spikey-egg/ruby-golem",
                 "rarity": "unique",
                 "baseChance": 0.2
             },
             {
                 "id": "dragon",
                 "name": "Dragon",
-                "img": "pets/spikey-egg/dragon",
                 "rarity": "rare",
                 "baseChance": 0.12
             },
             {
                 "id": "dark-dragon",
                 "name": "Dark Dragon",
-                "img": "pets/spikey-egg/dark-dragon",
                 "rarity": "epic",
                 "baseChance": 0.065
             },
             {
                 "id": "emerald-golem",
                 "name": "Emerald Golem",
-                "img": "pets/spikey-egg/emerald-golem",
                 "rarity": "legendary",
                 "baseChance": 0.005
             }
@@ -232,7 +205,6 @@
     {
         "id": "magma-egg",
         "name": "Magma Egg",
-        "img": "eggs/magma-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -240,42 +212,36 @@
             {
                 "id": "magma-doggy",
                 "name": "Magma Doggy",
-                "img": "pets/magma-egg/magma-doggy",
                 "rarity": "common",
                 "baseChance": 0.45
             },
             {
                 "id": "magma-deer",
                 "name": "Magma Deer",
-                "img": "pets/magma-egg/magma-deer",
                 "rarity": "unique",
                 "baseChance": 0.305
             },
             {
                 "id": "magma-fox",
                 "name": "Magma Fox",
-                "img": "pets/magma-egg/magma-fox",
                 "rarity": "unique",
                 "baseChance": 0.15
             },
             {
                 "id": "magma-bear",
                 "name": "Magma Bear",
-                "img": "pets/magma-egg/magma-bear",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "demon",
                 "name": "Demon",
-                "img": "pets/magma-egg/demon",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "inferno-dragon",
                 "name": "Inferno Dragon",
-                "img": "pets/magma-egg/inferno-dragon",
                 "rarity": "legendary",
                 "baseChance": 0.0025
             }
@@ -284,7 +250,6 @@
     {
         "id": "crystal-egg",
         "name": "Crystal Egg",
-        "img": "eggs/crystal-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -292,42 +257,36 @@
             {
                 "id": "cave-bat",
                 "name": "Cave Bat",
-                "img": "pets/crystal-egg/cave-bat",
                 "rarity": "common",
                 "baseChance": 0.6
             },
             {
                 "id": "dark-bat",
                 "name": "Dark Bat",
-                "img": "pets/crystal-egg/dark-bat",
                 "rarity": "unique",
                 "baseChance": 0.299
             },
             {
                 "id": "angel",
                 "name": "Angel",
-                "img": "pets/crystal-egg/angel",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "emerald-bat",
                 "name": "Emerald Bat",
-                "img": "pets/crystal-egg/emerald-bat",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "unicorn",
                 "name": "Unicorn",
-                "img": "pets/crystal-egg/unicorn",
                 "rarity": "legendary",
                 "baseChance": 0.0025
             },
             {
                 "id": "flying-pig",
                 "name": "Flying Pig",
-                "img": "pets/crystal-egg/flying-pig",
                 "rarity": "legendary",
                 "baseChance": 0.001
             }
@@ -336,7 +295,6 @@
     {
         "id": "lunar-egg",
         "name": "Lunar Egg",
-        "img": "eggs/lunar-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -344,42 +302,36 @@
             {
                 "id": "space-mouse",
                 "name": "Space Mouse",
-                "img": "pets/lunar-egg/space-mouse",
                 "rarity": "common",
                 "baseChance": 0.6
             },
             {
                 "id": "space-bull",
                 "name": "Space Bull",
-                "img": "pets/lunar-egg/space-bull",
                 "rarity": "unique",
                 "baseChance": 0.299
             },
             {
                 "id": "lunar-fox",
                 "name": "Lunar Fox",
-                "img": "pets/lunar-egg/lunar-fox",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "lunarcorn",
                 "name": "Lunarcorn",
-                "img": "pets/lunar-egg/lunarcorn",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "lunar-serpent",
                 "name": "Lunar Serpent",
-                "img": "pets/lunar-egg/lunar-serpent",
                 "rarity": "legendary",
                 "baseChance": 0.0025
             },
             {
                 "id": "electra",
                 "name": "Electra",
-                "img": "pets/lunar-egg/electra",
                 "rarity": "legendary",
                 "baseChance": 0.001
             }
@@ -388,7 +340,6 @@
     {
         "id": "void-egg",
         "name": "Void Egg",
-        "img": "eggs/void-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -396,42 +347,36 @@
             {
                 "id": "void-kitty",
                 "name": "Void Kitty",
-                "img": "pets/void-egg/void-kitty",
                 "rarity": "common",
                 "baseChance": 0.65
             },
             {
                 "id": "void-bat",
                 "name": "Void Bat",
-                "img": "pets/void-egg/void-bat",
                 "rarity": "unique",
                 "baseChance": 0.319
             },
             {
                 "id": "void-demon",
                 "name": "Void Demon",
-                "img": "pets/void-egg/void-demon",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "dark-phoenix",
                 "name": "Dark Phoenix",
-                "img": "pets/void-egg/dark-phoenix",
                 "rarity": "legendary",
                 "baseChance": 0.0005
             },
             {
                 "id": "neon-elemental",
                 "name": "Neon Elemental",
-                "img": "pets/void-egg/neon-elemental",
                 "rarity": "legendary",
                 "baseChance": 0.0002
             },
             {
                 "id": "nullvoid",
                 "name": "NULLVoid",
-                "img": "pets/void-egg/nullvoid",
                 "rarity": "legendary",
                 "baseChance": 0.000001
             }
@@ -440,7 +385,6 @@
     {
         "id": "hell-egg",
         "name": "Hell Egg",
-        "img": "eggs/hell-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -448,42 +392,36 @@
             {
                 "id": "hell-piggy",
                 "name": "Hell Piggy",
-                "img": "pets/hell-egg/hell-piggy",
                 "rarity": "common",
                 "baseChance": 0.6
             },
             {
                 "id": "hell-dragon",
                 "name": "Hell Dragon",
-                "img": "pets/hell-egg/hell-dragon",
                 "rarity": "unique",
                 "baseChance": 0.299
             },
             {
                 "id": "hell-crawler",
                 "name": "Hell Crawler",
-                "img": "pets/hell-egg/hell-crawler",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "inferno-demon",
                 "name": "Inferno Demon",
-                "img": "pets/hell-egg/inferno-demon",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "inferno-cube",
                 "name": "Inferno Cube",
-                "img": "pets/hell-egg/inferno-cube",
                 "rarity": "legendary",
                 "baseChance": 0.00025
             },
             {
                 "id": "virus",
                 "name": "Virus",
-                "img": "pets/hell-egg/virus",
                 "rarity": "legendary",
                 "baseChance": 0.00002
             }
@@ -492,7 +430,6 @@
     {
         "id": "nightmare-egg",
         "name": "Nightmare Egg",
-        "img": "eggs/nightmare-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -500,49 +437,42 @@
             {
                 "id": "demon-doggy",
                 "name": "Demon Doggy",
-                "img": "pets/nightmare-egg/demon-doggy",
                 "rarity": "common",
                 "baseChance": 0.6
             },
             {
                 "id": "skeletal-deer",
                 "name": "Skeletal Deer",
-                "img": "pets/nightmare-egg/skeletal-deer",
                 "rarity": "unique",
                 "baseChance": 0.299
             },
             {
                 "id": "night-crawler",
                 "name": "Night Crawler",
-                "img": "pets/nightmare-egg/night-crawler",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "hell-bat",
                 "name": "Hell Bat",
-                "img": "pets/nightmare-egg/hell-bat",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "green-hydra",
                 "name": "Green Hydra",
-                "img": "pets/nightmare-egg/green-hydra",
                 "rarity": "legendary",
                 "baseChance": 0.00004
             },
             {
                 "id": "demonic-hydra",
                 "name": "Demonic Hydra",
-                "img": "pets/nightmare-egg/demonic-hydra",
                 "rarity": "legendary",
                 "baseChance": 0.00001
             },
             {
                 "id": "the-overlord",
                 "name": "The Overlord",
-                "img": "pets/nightmare-egg/the-overlord",
                 "rarity": "secret",
                 "baseChance": 2e-8,
                 "staticMythic": true
@@ -552,7 +482,6 @@
     {
         "id": "rainbow-egg",
         "name": "Rainbow Egg",
-        "img": "eggs/rainbow-egg",
         "type": "world",
         "world": "the-overworld",
         "riftable": true,
@@ -560,42 +489,36 @@
             {
                 "id": "red-golem",
                 "name": "Red Golem",
-                "img": "pets/rainbow-egg/red-golem",
                 "rarity": "common",
                 "baseChance": 0.6
             },
             {
                 "id": "orange-deer",
                 "name": "Orange Deer",
-                "img": "pets/rainbow-egg/orange-deer",
                 "rarity": "unique",
                 "baseChance": 0.299
             },
             {
                 "id": "yellow-fox",
                 "name": "Yellow Fox",
-                "img": "pets/rainbow-egg/yellow-fox",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "green-angel",
                 "name": "Green Angel",
-                "img": "pets/rainbow-egg/green-angel",
                 "rarity": "epic",
                 "baseChance": 0.022
             },
             {
                 "id": "hexarium",
                 "name": "Hexarium",
-                "img": "pets/rainbow-egg/hexarium",
                 "rarity": "legendary",
                 "baseChance": 0.00001
             },
             {
                 "id": "rainbow-shock",
                 "name": "Rainbow Shock",
-                "img": "pets/rainbow-egg/rainbow-shock",
                 "rarity": "legendary",
                 "baseChance": 0.000005
             }
@@ -604,28 +527,24 @@
     {
         "id": "showman-egg",
         "name": "Showman Egg",
-        "img": "eggs/showman-egg",
         "type": "world",
         "world": "minigame-paradise",
         "pets": [
             {
                 "id": "game-doggy",
                 "name": "Game Doggy",
-                "img": "pets/showman-egg/game-doggy",
                 "rarity": "common",
                 "baseChance": 0.55
             },
             {
                 "id": "gamer-boi",
                 "name": "Gamer Boi",
-                "img": "pets/showman-egg/gamer-boi",
                 "rarity": "common",
                 "baseChance": 0.4
             },
             {
                 "id": "queen-of-hearts",
                 "name": "Queen of Hearts",
-                "img": "pets/showman-egg/queen-of-hearts",
                 "rarity": "rare",
                 "baseChance": 0.05
             }
@@ -634,7 +553,6 @@
     {
         "id": "mining-egg",
         "name": "Mining Egg",
-        "img": "eggs/mining-egg",
         "type": "world",
         "world": "minigame-paradise",
         "riftable": true,
@@ -642,49 +560,42 @@
             {
                 "id": "mining-doggy",
                 "name": "Mining Doggy",
-                "img": "pets/mining-egg/mining-doggy",
                 "rarity": "common",
                 "baseChance": 0.6
             },
             {
                 "id": "mining-bat",
                 "name": "Mining Bat",
-                "img": "pets/mining-egg/mining-bat",
                 "rarity": "unique",
                 "baseChance": 0.3
             },
             {
                 "id": "cave-mole",
                 "name": "Cave Mole",
-                "img": "pets/mining-egg/cave-mole",
                 "rarity": "rare",
                 "baseChance": 0.07
             },
             {
                 "id": "ore-golem",
                 "name": "Ore Golem",
-                "img": "pets/mining-egg/ore-golem",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "crystal-unicorn",
                 "name": "Crystal Unicorn",
-                "img": "pets/mining-egg/crystal-unicorn",
                 "rarity": "legendary",
                 "baseChance": 0.005
             },
             {
                 "id": "stone-gargoyle",
                 "name": "Stone Gargoyle",
-                "img": "pets/mining-egg/stone-gargoyle",
                 "rarity": "legendary",
                 "baseChance": 0.00005
             },
             {
                 "id": "giant-cave-mole",
                 "name": "Giant Cave Mole",
-                "img": "pets/mining-egg/giant-cave-mole",
                 "rarity": "secret",
                 "hasMythic": false,
                 "baseChance": 2e-9
@@ -694,7 +605,6 @@
     {
         "id": "cyber-egg",
         "name": "Cyber Egg",
-        "img": "eggs/cyber-egg",
         "type": "world",
         "world": "minigame-paradise",
         "riftable": true,
@@ -702,49 +612,42 @@
             {
                 "id": "robo-kitty",
                 "name": "Robo Kitty",
-                "img": "pets/cyber-egg/robo-kitty",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "martian-kitty",
                 "name": "Martian Kitty",
-                "img": "pets/cyber-egg/martian-kitty",
                 "rarity": "unique",
                 "baseChance": 0.3
             },
             {
                 "id": "cyber-wolf",
                 "name": "Cyber Wolf",
-                "img": "pets/cyber-egg/cyber-wolf",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "cyborg-phoenix",
                 "name": "Cyborg Phoenix",
-                "img": "pets/cyber-egg/cyborg-phoenix",
                 "rarity": "legendary",
                 "baseChance": 0.0004
             },
             {
                 "id": "space-invader",
                 "name": "Space Invader",
-                "img": "pets/cyber-egg/space-invader",
                 "rarity": "legendary",
                 "baseChance": 0.00004
             },
             {
                 "id": "bionic-shard",
                 "name": "Bionic Shard",
-                "img": "pets/cyber-egg/bionic-shard",
                 "rarity": "legendary",
                 "baseChance": 0.0000015
             },
             {
                 "id": "mech-robot",
                 "name": "Mech Robot",
-                "img": "pets/cyber-egg/mech-robot",
                 "rarity": "secret",
                 "baseChance": 1.5e-8,
                 "staticMythic": true
@@ -754,7 +657,6 @@
     {
         "id": "neon-egg",
         "name": "Neon Egg",
-        "img": "eggs/neon-egg",
         "type": "world",
         "world": "minigame-paradise",
         "riftable": true,
@@ -762,49 +664,42 @@
             {
                 "id": "neon-doggy",
                 "name": "Neon Doggy",
-                "img": "pets/neon-egg/neon-doggy",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "hologram-dragon",
                 "name": "Hologram Dragon",
-                "img": "pets/neon-egg/hologram-dragon",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "disco-ball",
                 "name": "Disco Ball",
-                "img": "pets/neon-egg/disco-ball",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "neon-wyvern",
                 "name": "Neon Wyvern",
-                "img": "pets/neon-egg/neon-wyvern",
                 "rarity": "legendary",
                 "baseChance": 0.0003
             },
             {
                 "id": "neon-wire-eye",
                 "name": "Neon Wire Eye",
-                "img": "pets/neon-egg/neon-wire-eye",
                 "rarity": "legendary",
                 "baseChance": 0.000015
             },
             {
                 "id": "equalizer",
                 "name": "Equalizer",
-                "img": "pets/neon-egg/equalizer",
                 "rarity": "legendary",
                 "baseChance": 0.0000012
             },
             {
                 "id": "hyperwave-kitty",
                 "name": "Hyperwave Kitty",
-                "img": "pets/neon-egg/hyperwave-kitty",
                 "rarity": "secret",
                 "baseChance": 8e-9
             }
@@ -813,34 +708,29 @@
     {
         "id": "chance-egg",
         "name": "Chance Egg",
-        "img": "eggs/chance-egg",
         "type": "special",
         "pets": [
             {
                 "id": "galaxy-dice",
                 "name": "Galaxy Dice",
-                "img": "pets/chance-egg/galaxy-dice",
                 "rarity": "rare",
                 "baseChance": 0.9
             },
             {
                 "id": "chance-dragon",
                 "name": "Chance Dragon",
-                "img": "pets/chance-egg/chance-dragon",
                 "rarity": "epic",
                 "baseChance": 0.1
             },
             {
                 "id": "ring-master",
                 "name": "Ring Master",
-                "img": "pets/chance-egg/ring-master",
                 "rarity": "legendary",
                 "baseChance": 0.00001
             },
             {
                 "id": "royal-guardian",
                 "name": "Royal Guardian",
-                "img": "pets/chance-egg/royal-guardian",
                 "rarity": "secret",
                 "baseChance": 5e-9
             }
@@ -849,56 +739,48 @@
     {
         "id": "icy-egg",
         "name": "Icy Egg",
-        "img": "eggs/icy-egg",
         "type": "world",
         "world": "seven-seas",
         "pets": [
             {
                 "id": "snow-fox",
                 "name": "Snow Fox",
-                "img": "pets/icy-egg/snow-fox",
                 "rarity": "rare",
                 "baseChance": 0.64
             },
             {
                 "id": "penguin",
                 "name": "Penguin",
-                "img": "pets/icy-egg/penguin",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "ice-bear",
                 "name": "Ice Bear",
-                "img": "pets/icy-egg/ice-bear",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "marshmallow",
                 "name": "Marshmallow",
-                "img": "pets/icy-egg/marshmallow",
                 "rarity": "legendary",
                 "baseChance": 0.0005
             },
             {
                 "id": "minty-serpent",
                 "name": "Minty Serpent",
-                "img": "pets/icy-egg/minty-serpent",
                 "rarity": "legendary",
                 "baseChance": 0.000015
             },
             {
                 "id": "ice-winged-hydra",
                 "name": "Ice Winged Hydra",
-                "img": "pets/icy-egg/ice-winged-hydra",
                 "rarity": "legendary",
                 "baseChance": 0.0000012
             },
             {
                 "id": "giant-pearl",
                 "name": "Giant Pearl",
-                "img": "pets/icy-egg/giant-pearl",
                 "rarity": "secret",
                 "baseChance": 8e-9
             }
@@ -907,77 +789,66 @@
     {
         "id": "vine-egg",
         "name": "Vine Egg",
-        "img": "eggs/vine-egg",
         "type": "world",
         "world": "seven-seas",
         "pets": [
             {
                 "id": "vine-kitty",
                 "name": "Vine Kitty",
-                "img": "pets/vine-egg/vine-kitty",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "vine-dinosaur",
                 "name": "Vine Dinosaur",
-                "img": "pets/vine-egg/vine-dinosaur",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "vine-deer",
                 "name": "Vine Deer",
-                "img": "pets/vine-egg/vine-deer",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "thorn-dragon",
                 "name": "Thorn Dragon",
-                "img": "pets/vine-egg/thorn-dragon",
                 "rarity": "legendary",
                 "baseChance": 0.00025
             },
             {
                 "id": "flower-pot",
                 "name": "Flower Pot",
-                "img": "pets/vine-egg/flower-pot",
                 "rarity": "legendary",
                 "baseChance": 0.00001
             },
             {
                 "id": "lovely-lotus",
                 "name": "Lovely Lotus",
-                "img": "pets/vine-egg/lovely-lotus",
                 "rarity": "legendary",
                 "baseChance": 0.000001
             },
             {
                 "id": "earth-champion",
                 "name": "Earth Champion",
-                "img": "pets/vine-egg/earth-champion",
                 "rarity": "secret",
                 "baseChance": 2e-9
             },
             {
                 "id": "dark-champion",
                 "name": "Dark Champion",
-                "img": "pets/vine-egg/dark-champion",
                 "rarity": "secret",
                 "baseChance": 2e-9
             },
             {
                 "id": "fire-champion",
                 "name": "Fire Champion",
-                "img": "pets/vine-egg/fire-champion",
                 "rarity": "secret",
                 "baseChance": 2e-9
             },
             {
                 "id": "sky-champion",
                 "name": "Sky Champion",
-                "img": "pets/vine-egg/sky-champion",
                 "rarity": "secret",
                 "baseChance": 2e-9
             }
@@ -986,56 +857,48 @@
     {
         "id": "lava-egg",
         "name": "Lava Egg",
-        "img": "eggs/lava-egg",
         "type": "world",
         "world": "seven-seas",
         "pets": [
             {
                 "id": "lava-golem",
                 "name": "Lava Golem",
-                "img": "pets/lava-egg/lava-golem",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "lava-bat",
                 "name": "Lava Bat",
-                "img": "pets/lava-egg/lava-bat",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "lava-imp",
                 "name": "Lava Imp",
-                "img": "pets/lava-egg/lava-imp",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "magma-cube",
                 "name": "Magma Cube",
-                "img": "pets/lava-egg/magma-cube",
                 "rarity": "legendary",
                 "baseChance": 0.00025
             },
             {
                 "id": "night-dweller",
                 "name": "Night Dweller",
-                "img": "pets/lava-egg/night-dweller",
                 "rarity": "legendary",
                 "baseChance": 0.00001
             },
             {
                 "id": "fire-king",
                 "name": "Fire King",
-                "img": "pets/lava-egg/fire-king",
                 "rarity": "legendary",
                 "baseChance": 7.5e-7
             },
             {
                 "id": "hellshard",
                 "name": "Hellshard",
-                "img": "pets/lava-egg/hellshard",
                 "rarity": "secret",
                 "baseChance": 1e-9
             }
@@ -1044,63 +907,54 @@
     {
         "id": "atlantis-egg",
         "name": "Atlantis Egg",
-        "img": "eggs/atlantis-egg",
         "type": "world",
         "world": "seven-seas",
         "pets": [
             {
                 "id": "shark",
                 "name": "Shark",
-                "img": "pets/atlantis-egg/shark",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "crab",
                 "name": "Crab",
-                "img": "pets/atlantis-egg/crab",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "octopus",
                 "name": "Octopus",
-                "img": "pets/atlantis-egg/octopus",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "angler-fish",
                 "name": "Angler Fish",
-                "img": "pets/atlantis-egg/angler-fish",
                 "rarity": "legendary",
                 "baseChance": 0.00025
             },
             {
                 "id": "jellyfish",
                 "name": "Jellyfish",
-                "img": "pets/atlantis-egg/jellyfish",
                 "rarity": "legendary",
                 "baseChance": 0.000005
             },
             {
                 "id": "atlantis-guardian",
                 "name": "Atlantis Guardian",
-                "img": "pets/atlantis-egg/atlantis-guardian",
                 "rarity": "legendary",
                 "baseChance": 5e-7
             },
             {
                 "id": "tidal-god",
                 "name": "Tidal God",
-                "img": "pets/atlantis-egg/tidal-god",
                 "rarity": "secret",
                 "baseChance": 4e-9
             },
             {
                 "id": "abyssal-sea-dragon",
                 "name": "Abyssal Sea Dragon",
-                "img": "pets/atlantis-egg/abyssal-sea-dragon",
                 "rarity": "secret",
                 "baseChance": 5e-10
             }
@@ -1109,63 +963,54 @@
     {
         "id": "classic-egg",
         "name": "Classic Egg",
-        "img": "eggs/classic-egg",
         "type": "world",
         "world": "seven-seas",
         "pets": [
             {
                 "id": "classic-doggy",
                 "name": "Classic Doggy",
-                "img": "pets/classic-egg/classic-doggy",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "classic-kitty",
                 "name": "Classic Kitty",
-                "img": "pets/classic-egg/classic-kitty",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "classic-dragon",
                 "name": "Classic Dragon",
-                "img": "pets/classic-egg/classic-dragon",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "classic-unicorn",
                 "name": "Classic Unicorn",
-                "img": "pets/classic-egg/classic-unicorn",
                 "rarity": "legendary",
                 "baseChance": 0.00025
             },
             {
                 "id": "classic-dominus",
                 "name": "Classic Dominus",
-                "img": "pets/classic-egg/classic-dominus",
                 "rarity": "legendary",
                 "baseChance": 0.000005
             },
             {
                 "id": "classic-noob",
                 "name": "Classic Noob",
-                "img": "pets/classic-egg/classic-noob",
                 "rarity": "legendary",
                 "baseChance": 5e-7
             },
             {
                 "id": "classic-overlord",
                 "name": "Classic Overlord",
-                "img": "pets/classic-egg/classic-overlord",
                 "rarity": "secret",
                 "baseChance": 1e-8
             },
             {
                 "id": "1x1x1x1",
                 "name": "1x1x1x1",
-                "img": "pets/classic-egg/1x1x1x1",
                 "rarity": "secret",
                 "baseChance": 2e-9
             }
@@ -1174,21 +1019,20 @@
     {
         "id": "secret-egg",
         "name": "Secret Egg",
-        "img": "eggs/secret-egg",
         "type": "special",
-        "includeInInfinity": ["the-overworld"],
+        "includeInInfinity": [
+            "the-overworld"
+        ],
         "pets": [
             {
                 "id": "round-spitty",
                 "name": "Round Spitty",
-                "img": "pets/secret-egg/round-spitty",
                 "rarity": "common",
                 "baseChance": 1
             },
             {
                 "id": "gigantic-spitty",
                 "name": "Gigantic Spitty",
-                "img": "pets/secret-egg/gigantic-spitty",
                 "rarity": "infinity",
                 "baseChance": 2.5e-11
             }
@@ -1197,69 +1041,59 @@
     {
         "id": "autumn-egg",
         "name": "Autumn Egg",
-        "img": "eggs/autumn-egg",
         "type": "special",
         "pets": [
             {
                 "id": "squirrel",
                 "name": "Squirrel",
-                "img": "pets/autumn-egg/squirrel",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "moose",
                 "name": "Moose",
-                "img": "pets/autumn-egg/moose",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "leafy",
                 "name": "Leafy",
-                "img": "pets/autumn-egg/leafy",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "autumn-paragon",
                 "name": "Autumn Paragon",
-                "img": "pets/autumn-egg/autumn-paragon",
                 "rarity": "legendary",
                 "baseChance": 0.0002
             },
             {
                 "id": "monarch-butterfly",
                 "name": "Monarch Butterfly",
-                "img": "pets/autumn-egg/monarch-butterfly",
                 "rarity": "legendary",
                 "baseChance": 0.000001
             },
             {
                 "id": "crystal-acorn",
                 "name": "Crystal Acorn",
-                "img": "pets/autumn-egg/crystal-acorn",
                 "rarity": "legendary",
                 "baseChance": 2e-7
             },
             {
                 "id": "big-leafy",
                 "name": "Big Leafy",
-                "img": "pets/autumn-egg/big-leafy",
                 "rarity": "secret",
                 "baseChance": 1e-8
             },
             {
                 "id": "candycorn-shard",
                 "name": "Candycorn Shard",
-                "img": "pets/autumn-egg/candycorn-shard",
                 "rarity": "secret",
                 "baseChance": 2e-9
             },
             {
                 "id": "almighty-pumpkin",
                 "name": "Almighty Pumpkin",
-                "img": "pets/autumn-egg/almighty-pumpkin",
                 "rarity": "secret",
                 "baseChance": 5e-10
             }
@@ -1268,62 +1102,53 @@
     {
         "id": "candle-egg",
         "name": "Candle Egg",
-        "img": "eggs/candle-egg",
         "type": "special",
         "pets": [
             {
                 "id": "candled-doggy",
                 "name": "Candled Doggy",
-                "img": "pets/candle-egg/candled-doggy",
                 "rarity": "common",
                 "baseChance": 0.64
             },
             {
                 "id": "kitty-wick",
                 "name": "Kitty Wick",
-                "img": "pets/candle-egg/kitty-wick",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "scented-candle",
                 "name": "Scented Candle",
-                "img": "pets/candle-egg/scented-candle",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "lantern-demon",
                 "name": "Lantern Demon",
-                "img": "pets/candle-egg/lantern-demon",
                 "rarity": "legendary",
                 "baseChance": 0.0001
             },
             {
                 "id": "candle-phoenix",
                 "name": "Candle Phoenix",
-                "img": "pets/candle-egg/candle-phoenix",
                 "rarity": "legendary",
                 "baseChance": 5e-7
             },
             {
                 "id": "willow-chandelier",
                 "name": "Willow Chandelier",
-                "img": "pets/candle-egg/willow-chandelier",
                 "rarity": "legendary",
                 "baseChance": 1e-7
             },
             {
                 "id": "maple-divinity",
                 "name": "Maple Divinity",
-                "img": "pets/candle-egg/maple-divinity",
                 "rarity": "secret",
                 "baseChance": 5e-10
             },
             {
                 "id": "aureate-koi",
                 "name": "Aureate Koi",
-                "img": "pets/candle-egg/aureate-koi",
                 "rarity": "infinity",
                 "baseChance": 2e-11
             }
@@ -1332,84 +1157,72 @@
     {
         "id": "developer-egg",
         "name": "Developer Egg",
-        "img": "eggs/developer-egg",
         "type": "special",
         "riftable": true,
         "pets": [
             {
                 "id": "sircfenner-doggy",
                 "name": "Sircfenner Doggy",
-                "img": "pets/developer-egg/sircfenner-doggy",
                 "rarity": "rare",
                 "baseChance": 0.64
             },
             {
                 "id": "quamatic-bear",
                 "name": "Quamatic Bear",
-                "img": "pets/developer-egg/quamatic-bear",
                 "rarity": "rare",
                 "baseChance": 0.3
             },
             {
                 "id": "nert-dragon",
                 "name": "Nert Dragon",
-                "img": "pets/developer-egg/nert-dragon",
                 "rarity": "epic",
                 "baseChance": 0.03
             },
             {
                 "id": "sylentlys-hats",
                 "name": "Sylently's Hats",
-                "img": "pets/developer-egg/sylentlys-hats",
                 "rarity": "legendary",
                 "baseChance": 0.00001
             },
             {
                 "id": "isaac-rainbow-shock",
                 "name": "Isaac Rainbow Shock",
-                "img": "pets/developer-egg/isaac-rainbow-shock",
                 "rarity": "legendary",
                 "baseChance": 0.000001
             },
             {
                 "id": "sircfenner-plushie",
                 "name": "Sircfenner Plushie",
-                "img": "pets/developer-egg/sircfenner-plushie",
                 "rarity": "secret",
                 "baseChance": 5e-9
             },
             {
                 "id": "quamatic-plushie",
                 "name": "Quamatic Plushie",
-                "img": "pets/developer-egg/quamatic-plushie",
                 "rarity": "secret",
                 "baseChance": 5e-9
             },
             {
                 "id": "nert-plushie",
                 "name": "Nert Plushie",
-                "img": "pets/developer-egg/nert-plushie",
                 "rarity": "secret",
                 "baseChance": 5e-9
             },
             {
                 "id": "sylently-plushie",
                 "name": "Sylently Plushie",
-                "img": "pets/developer-egg/sylently-plushie",
                 "rarity": "secret",
                 "baseChance": 5e-9
             },
             {
                 "id": "obscureentity-plushie",
                 "name": "ObscureEntity Plushie",
-                "img": "pets/developer-egg/obscureentity-plushie",
                 "rarity": "secret",
                 "baseChance": 5e-9
             },
             {
                 "id": "sylentlys-pet",
                 "name": "Sylently's Pet",
-                "img": "pets/developer-egg/sylentlys-pet",
                 "rarity": "infinity",
                 "hasMythic": false,
                 "baseChance": 2e-10

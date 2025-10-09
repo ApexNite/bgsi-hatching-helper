@@ -1,6 +1,4 @@
-import dailyPerks from "../data/daily-perks.json";
-import eggs from "../data/eggs.json";
-import secretBounty from "../data/secret-bounty.json";
+import { eggs, ensureImagePaths, dailyPerks, secretBounty } from "./dataUtils.js";
 
 const BASE_HATCH_SECONDS = 4.5;
 const RARITY_ORDER = Object.freeze({
@@ -14,8 +12,8 @@ const RARITY_ORDER = Object.freeze({
 });
 
 export function getPetsToDisplay(eggId, worldId, stats) {
-    const eggs = getEggsWithInjectedPets();
-    const egg = eggs?.find(e => e.id === eggId);
+    const eggsWithPets = getEggsWithInjectedPets();
+    const egg = eggsWithPets?.find(e => e.id === eggId);
     
     if (!egg) {
         return [];
@@ -25,7 +23,7 @@ export function getPetsToDisplay(eggId, worldId, stats) {
     let worldEggs = null;
 
     if (isInfinity) {
-        worldEggs = eggs.filter(
+        worldEggs = eggsWithPets.filter(
             e => e.world === worldId || e.includeInInfinity?.includes(worldId)
         );
     }
@@ -133,6 +131,7 @@ function getEggsWithInjectedPets() {
         }
     }
 
+    ensureImagePaths(eggsCopy);
     return eggsCopy;
 }
 

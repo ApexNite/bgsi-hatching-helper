@@ -4,12 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "optimize:once": "node scripts/optimize-images.js",
+    "optimize:watch": "node scripts/optimize-images.js --watch",
+    "predev": "npm run optimize:once",
+    "dev": "concurrently \"npm:optimize:watch\" \"vite\"",
+    "prebuild": "npm run optimize:once",
     "build": "vite build",
+    "prepreview": "npm run build",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.0",
+    "chokidar": "^4.0.3",
+    "concurrently": "^9.2.1",
+    "sharp": "^0.34.4",
     "svelte": "^5.38.10",
     "vite": "^7.1.6"
   }
