@@ -28,6 +28,10 @@
             {
                 "rarity": "secret",
                 "baseChance": 2.5e-8
+            },
+            {
+                "rarity": "infinity",
+                "baseChance": 2.5e-11
             }
         ]
     },
