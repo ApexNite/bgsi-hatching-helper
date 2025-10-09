@@ -284,30 +284,15 @@ function normalizeInfinityEgg(rarities, worldEggs, stats) {
 }
 
 function redistributeDecrease(list, amount, isEligible) {
-    const EPSILON = 1e-15;
-    let remaining = amount;
-
-    let indices = list
-        .map((item, index) => ({ item, index }))
-        .filter(({ item }) => isEligible(item))
-        .map(({ index }) => index);
-
-    while (remaining > EPSILON && indices.length > 0) {
-        const perIndexDecrease = remaining / indices.length;
-        let consumedAmount = 0;
-        const nextIndices = [];
-
-        for (const index of indices) {
-            const availableToReduce = list[index].rawChance;
-            const decrease = Math.min(perIndexDecrease, availableToReduce);
-            list[index].rawChance = availableToReduce - decrease;
-            consumedAmount += decrease;
-            if (list[index].rawChance > EPSILON) {
-                nextIndices.push(index);
-            }
-        }
-
-        remaining -= consumedAmount;
-        indices = nextIndices;
+    const eligibleItems = list.filter(isEligible);
+    
+    if (eligibleItems.length === 0) {
+        return;
+    }
+    
+    const decreasePerItem = amount / eligibleItems.length;
+    
+    for (const item of eligibleItems) {
+        item.rawChance = Math.max(0, item.rawChance - decreasePerItem);
     }
 }
