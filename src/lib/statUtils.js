@@ -58,6 +58,9 @@ export function calculateStats(sources, toggles, numbers, dailyPerksData, indexD
 
     const stats = calculateStatsFromTotals(totals);
 
+    // just a bandage; need to figure out the real discrepency somehow
+    stats.luck -= totals.luckMultiplier > 0 ? 0 : 1;
+
     return stats;
 }
 
