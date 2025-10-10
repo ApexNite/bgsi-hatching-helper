@@ -10,11 +10,11 @@
         },
         "pets": [
             {
-                "id": "illumination",
-                "name": "Illumination",
-                "img": "assets/images/pets/perk/illumination",
+                "id": "kitty-pot",
+                "name": "Kitty Pot",
+                "img": "assets/images/pets/perk/kitty-pot",
                 "rarity": "secret",
-                "baseChance": 1e-8
+                "baseChance": 2e-9
             }
         ]
     },
@@ -30,9 +30,9 @@
         },
         "pets": [
             {
-                "id": "snake-eyes",
-                "name": "Snake Eyes",
-                "img": "assets/images/pets/perk/snake-eyes",
+                "id": "super-shock",
+                "name": "Super Shock",
+                "img": "assets/images/pets/perk/super-shock",
                 "rarity": "secret",
                 "baseChance": 1e-9
             }

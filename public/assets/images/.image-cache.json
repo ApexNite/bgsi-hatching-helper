@@ -2,995 +2,1027 @@
   "version": 1,
   "files": {
     "eggs/atlantis-egg.png": {
-      "hash": "30a298e83c9a204ee9d1358c7a27a7e9b37d7e6c",
+      "hash": "fbfa5de8383e8132362e0759080bd5692201f1ad",
       "cfg": "96|85|60"
     },
     "eggs/autumn-egg.png": {
-      "hash": "d1a1ca720346ad2df78309c9ea94f4ab9331846e",
+      "hash": "9413695ef53d863abdd7f6bf83f0101a9bf6c39a",
       "cfg": "96|85|60"
     },
     "eggs/candle-egg.png": {
-      "hash": "e79cc8d06f12c7902bb48a985ceb7e54e0d76f54",
+      "hash": "19c06094480ab1dcfe3c73ec04c75cb1b100fd22",
       "cfg": "96|85|60"
     },
     "eggs/chance-egg.png": {
-      "hash": "12f969bef88d03529049286c83235ae2e41036bc",
+      "hash": "b1136a23982bb86872ce2e72aff5aaf63c37f11a",
       "cfg": "96|85|60"
     },
     "eggs/classic-egg.png": {
-      "hash": "c913567736c5ec15399c5736da75b9d213b47d13",
+      "hash": "059132dcce022794b8e583e2b39cb8c1d113df5a",
       "cfg": "96|85|60"
     },
     "eggs/common-egg.png": {
-      "hash": "4ec269d1aefec52ae991686ff4a365eebd56dbc5",
+      "hash": "9dc6b49f4b31e63eb2cbe9a9aab244e82766bd52",
       "cfg": "96|85|60"
     },
     "eggs/crystal-egg.png": {
-      "hash": "404a9f6ade503ff14d6b144a7fd5f8f3be2fe5f6",
+      "hash": "bcafce37e6caee444103263cbf3ba1567d4e4935",
       "cfg": "96|85|60"
     },
     "eggs/cyber-egg.png": {
-      "hash": "699044f019f4b964cf397edb59c9afae9d83b798",
+      "hash": "5c0e56d85879f0d98e362b6eb9b7e5cdc36d7d98",
       "cfg": "96|85|60"
     },
     "eggs/developer-egg.png": {
-      "hash": "2bdf3674c3677e1cb8a1d5bc114fce004b8caf37",
+      "hash": "4a3d09db2d485ab0ef4ff0928f1599fd5ae42435",
       "cfg": "96|85|60"
     },
     "eggs/hell-egg.png": {
-      "hash": "3a2e4826faf8c69a210de577c05f5068f8e7cadd",
+      "hash": "d2f0e395193d586870976a0682ac251e8178713b",
       "cfg": "96|85|60"
     },
     "eggs/iceshard-egg.png": {
-      "hash": "fa2c5f44fc803a94b6f18ca80ecd892f67e62d1b",
+      "hash": "2a4583d8dd81cd0493d903c997abfd9ca62facb0",
       "cfg": "96|85|60"
     },
     "eggs/icy-egg.png": {
-      "hash": "9a09f5740dc7495626bd8cff642d9a447f4432ae",
+      "hash": "e955de5be8310f022153cd306c5b380fbc53a0f5",
       "cfg": "96|85|60"
     },
     "eggs/infinity-egg.png": {
-      "hash": "c75b23a58c2acff06235c6a643fd1dd9a4d952fa",
+      "hash": "9196fbd80da013be04e57c41306b8d0868754058",
       "cfg": "96|85|60"
     },
     "eggs/lava-egg.png": {
-      "hash": "911954b551534b1d5f65ee8efc08b9465940a529",
+      "hash": "90f321e3ad73eab6cc05c064696ea7b275defaf3",
       "cfg": "96|85|60"
     },
     "eggs/lunar-egg.png": {
-      "hash": "0880fea37bba662fa5f2592cf2328e442b6a0e4a",
+      "hash": "e04fdb42b782c7c14df880dcfe9d32ee37cfb9eb",
       "cfg": "96|85|60"
     },
     "eggs/magma-egg.png": {
-      "hash": "f5e1283a65351518526b2dd733a266622408eeaf",
+      "hash": "4f65c110f49f83306dcee093ad661e54a16d2011",
       "cfg": "96|85|60"
     },
     "eggs/mining-egg.png": {
-      "hash": "6ab568a4c31a3400aad9ab2154c4bf8dc0217c48",
+      "hash": "85c5fc416464c89842adf8e6f49b967cc675fb45",
       "cfg": "96|85|60"
     },
     "eggs/neon-egg.png": {
-      "hash": "ef0020a4ec44e6a166d48d3063d34e3ac3cf2db8",
+      "hash": "e2d61a37ca22aa43aa8321e606d414a2778a70c0",
       "cfg": "96|85|60"
     },
     "eggs/nightmare-egg.png": {
-      "hash": "904e29af48059c5c3b50c6e84c698d4d989bc1a6",
+      "hash": "0654f471a1481e22ef3fa8c445563efde99ff7b1",
       "cfg": "96|85|60"
     },
     "eggs/rainbow-egg.png": {
-      "hash": "3e9aea2f92d27a0342752596007b4e478ea160fc",
+      "hash": "c7dd6ea8785e9a1f15adbd6db834abcc1a3bdcf5",
       "cfg": "96|85|60"
     },
     "eggs/secret-egg.png": {
-      "hash": "c56d08189cbf66c42a6638782f370d5cfd67875a",
+      "hash": "aa589f2aff03350594a0cad4f4a515f448f156e3",
       "cfg": "96|85|60"
     },
     "eggs/showman-egg.png": {
-      "hash": "965603d4d9a87758eedbec68994633eddd6f29c9",
+      "hash": "a9d99181533bcec78f48dbc065bb97ca9bffc787",
       "cfg": "96|85|60"
     },
     "eggs/spikey-egg.png": {
-      "hash": "ccb07be373bc7f60ea6ed1a83f918e16ef6db9db",
+      "hash": "9aad85ea92708d55076a48044b7e39518e92c622",
       "cfg": "96|85|60"
     },
     "eggs/spotted-egg.png": {
-      "hash": "83352c933a19dd55bdcda4fe00c288b9cd64a3b3",
+      "hash": "e29fe7488fb1337b511a5f40b70ce8f9de2b2e3c",
       "cfg": "96|85|60"
     },
     "eggs/vine-egg.png": {
-      "hash": "52a234a20096a0cc75a7b7ad77983bfd474da767",
+      "hash": "c60003c1c8e30610df58b5eabe04186031644f3f",
       "cfg": "96|85|60"
     },
     "eggs/void-egg.png": {
-      "hash": "512287d860010ebd04ee4903a9472fcd9a0b15e2",
+      "hash": "9929d1fc28a302ff9070b946dc3a9fa411002d09",
       "cfg": "96|85|60"
     },
     "icons/bubble-shrine.png": {
-      "hash": "0389547858d77f46015c3b0879b3a717c6c07406",
+      "hash": "d9c4eb6ccc65a02fd8ff563994beec016bc19ef1",
       "cfg": "96|85|60"
     },
     "icons/daily-perks.png": {
-      "hash": "0fb285a63a8f7f3254ebb846608595c841a8562f",
+      "hash": "9d8ab501a828ce41aa3592e8cfd695866c2d1716",
       "cfg": "96|85|60"
     },
     "icons/dice.png": {
-      "hash": "ccd30510dfb64a06285338ed45e23d9a7d4fe7f3",
+      "hash": "12b2ad0ff3a4b5201519fcd21febb81195a43296",
       "cfg": "96|85|60"
     },
     "icons/double-luck-gamepass.png": {
-      "hash": "d27d823a385fe44917ef44e56f75f231d70dbe29",
+      "hash": "967fe8ba158d321b23e2f6104def24896eb319ae",
       "cfg": "96|85|60"
     },
     "icons/dreamer-blessing.png": {
-      "hash": "4f4bc1e94b19e895ba025b4aa34fa29d5d8c695b",
+      "hash": "967a687b05d4eb404785a08bf0b83b2a740dd480",
       "cfg": "96|85|60"
     },
     "icons/eggs.png": {
-      "hash": "ec5df683928f651a65f75affb9304e8b925175fe",
+      "hash": "21d06eb0024e1a91e7e19f85e7c748c0b71da021",
       "cfg": "96|85|60"
     },
     "icons/fast-hatch-gamepass.png": {
-      "hash": "0f03b5c44947b2587c933d9ab893c0e071a2ae3a",
+      "hash": "f62b579a66a4f7d9e0ca2207179176f2a4a2a30b",
       "cfg": "96|85|60"
     },
     "icons/index.png": {
-      "hash": "5763b2fd64ad74813d7a6b49535a463d05b92d29",
+      "hash": "c61fdc8ba8f4ff2f4b28e49909489a08e72c5c22",
       "cfg": "96|85|60"
     },
     "icons/luck.png": {
-      "hash": "3df8d66642ded3a8c16e4778589c7381dcc86938",
+      "hash": "a36438618d0d9e6b0c36e0af524433d416a396da",
       "cfg": "96|85|60"
     },
     "icons/luckier-together.png": {
-      "hash": "f3b1436dacbdf7c69ba3d7d20206c0f5fd54408c",
+      "hash": "6e81061b179256cfb5bf49854aa8ddf6cbc6f75a",
       "cfg": "96|85|60"
     },
     "icons/lucky-streak.png": {
-      "hash": "da76eab3e5357d03f6747ef93d67db4e13184310",
+      "hash": "1e69a29088c65dfaba28d6bf0bf82725aa3c2fcc",
       "cfg": "96|85|60"
     },
     "icons/milestones.png": {
-      "hash": "dc01b65e0fa9a738dd8464c4c43cd688ad113b4c",
+      "hash": "e06f244938a308efedc9dc1d2b528c594840b1e3",
       "cfg": "96|85|60"
     },
     "icons/multi-egg.png": {
-      "hash": "1e1650962cbe57f4a461b8f6a3b2816584deae9d",
+      "hash": "4a8a1aa63707f1816cce63ea45f9a080d8abceb9",
       "cfg": "96|85|60"
     },
     "icons/mythic.png": {
-      "hash": "74ce100fdb728412718b2c2fddf55810573eea25",
+      "hash": "32870a555f9b333cff8b7dbd38bd8dc2341ad757",
       "cfg": "96|85|60"
     },
     "icons/rift.png": {
-      "hash": "1ec7f07f30eaf91f144b606dc8a36084617217c3",
+      "hash": "60f88d3d568aa343628349ce98b83920ce072d22",
       "cfg": "96|85|60"
     },
     "icons/season-stars.png": {
-      "hash": "0b569d2e1094622cd99e17f0940d294919912fd8",
+      "hash": "ba2a5b406a365f022143ce80b98355a2edb1414d",
       "cfg": "96|85|60"
     },
     "icons/secret-luck.png": {
-      "hash": "48e78addd13573b5b24c9dceee78b2c65813a4f7",
+      "hash": "3edd9b28a44b7ad2fefeaf69f6abf98005fb40eb",
       "cfg": "96|85|60"
     },
     "icons/secret-pets.png": {
-      "hash": "f95b0216e3370655983631e2da03a5e9587eb7c9",
+      "hash": "5a436f8ef3d6899d02b5798e0439bb7fbebf3c74",
       "cfg": "96|85|60"
     },
     "icons/shiny-mythic.png": {
-      "hash": "c50b3d60c9a2c2c5e71aa3598178c28c341b9a14",
+      "hash": "f1e959d3c6fa6864d071ad029dbe795a62f7c10e",
       "cfg": "96|85|60"
     },
     "icons/shiny.png": {
-      "hash": "0da9865ad4d806bc384b5545175524feaae7c4f6",
+      "hash": "ddc6381b4f1ecf6d3b5d8ba7504e40bdee94ee3e",
       "cfg": "96|85|60"
     },
     "icons/timer.png": {
-      "hash": "85c4043c77c3e2713161921a672daeced635c2b3",
+      "hash": "2c0427d548d490c96795b014744660fa50d1684b",
       "cfg": "96|85|60"
     },
     "milestones/bronze.png": {
-      "hash": "c99403713dbca548cfa030958e624a7cc6bb1397",
+      "hash": "b8c6bae6ca893d68e1019dd3cb6b002deefae461",
       "cfg": "96|85|60"
     },
     "milestones/gold.png": {
-      "hash": "453b8f9e243046c6cc1d2a67ef4361282fbc3255",
+      "hash": "ecd85b72eba7426878e7d1742482554c720d141f",
       "cfg": "96|85|60"
     },
     "milestones/infinity.png": {
-      "hash": "e273d3c9f21052eaef4931e8e477d8819c257af7",
+      "hash": "73091b14b014a0f861f5603d1c68a0d46857d237",
       "cfg": "96|85|60"
     },
     "milestones/platinum.png": {
-      "hash": "981b2c6c4d53e7e39b907527d6759e96a002ccf3",
+      "hash": "01eef1849fbbb21d8930c015891c6acc7607b43a",
       "cfg": "96|85|60"
     },
     "milestones/silver.png": {
-      "hash": "34d73bec7c1d01da5c2dca62b8061163bd156d35",
+      "hash": "625bceb2c535a15a28c94a9bd3462abe6b618708",
       "cfg": "96|85|60"
     },
     "milestones/super.png": {
-      "hash": "3b06d3ada316ac35c5b7562e2db6f65bc0e99afe",
+      "hash": "5586c52c21cf955a9feddef82707e13853d1da57",
       "cfg": "96|85|60"
     },
     "milestones/ultimate.png": {
-      "hash": "0864a52ba0819e58b6be8bbf6fb20098c1aa312e",
+      "hash": "0d7489ef881faf5acec19c134b65ba40c6264501",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/abyssal-sea-dragon.png": {
-      "hash": "fb0bd1a1f160ea480cf87819d1c19c80da849f23",
+      "hash": "b41901831ce32aecdd05b609ca26723ac3671a82",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/angler-fish.png": {
-      "hash": "75631e1fd5d6285a28575f2684d15da5e5c65083",
+      "hash": "2a6fc0978e3afcb8372f5388aba56351ddb84ff9",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/atlantis-guardian.png": {
-      "hash": "d0f5057040a1eec149aa229b094ffd527b774298",
+      "hash": "4f1771b3a6b386adf6662e49d273ed673f1e0e7f",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/crab.png": {
-      "hash": "7d33f3e2e6aab9f89ea9297b232785a20a164ba6",
+      "hash": "ce216866e4b2d30ac8b017627a23205a1cccd2f9",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/jellyfish.png": {
-      "hash": "2edf11131e129e68fc10165e164cb460bb915618",
+      "hash": "7190da3cf31f1be3b14d2ea9f4a435cc6215b3a2",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/octopus.png": {
-      "hash": "f681352e0ae54ce2f9888c310ab607a7fee7a1b9",
+      "hash": "f0d85b302d46a7c3f58bd65189eb57a16968a3e8",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/shark.png": {
-      "hash": "e0201add27ade41a9330dd5e99c86933c967b676",
+      "hash": "bd81c4f30d05aaab19c8acd31e2c15d83e1c88c4",
       "cfg": "96|85|60"
     },
     "pets/atlantis-egg/tidal-god.png": {
-      "hash": "9a1c771469b87aa5499e01c1f886a9371f82ac00",
+      "hash": "ae768ea3faf7d9580e670314a4be1a8210afb99f",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/almighty-pumpkin.png": {
-      "hash": "c740e7676a448f243056cd7139d66306aef9724d",
+      "hash": "6c226f78ccc12ad60c763f5d2d6c7679c0fb905a",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/autumn-paragon.png": {
-      "hash": "7fa48e78b6b77b8f4ea29acc0f605ddda97c10dd",
+      "hash": "5ecfa62b71dca3749563ce4e66b5e6c63a46a2de",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/big-leafy.png": {
-      "hash": "e9c3cf60c6a637c3662316e7198beae326efb167",
+      "hash": "aeb5029d21b7ea724f98e53810a3b7e134bdd924",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/candycorn-shard.png": {
-      "hash": "ed711c5bcaf8b4372f307f7eb5704e8190e5feca",
+      "hash": "1b74015b47bf2d82bfb3e50710a62313e665cd40",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/crystal-acorn.png": {
-      "hash": "76a7d871c935e43d1197d1e5172957cc884ae315",
+      "hash": "bb786945b1ee30396ea6e7f0b49c5d752cf3775b",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/leafy.png": {
-      "hash": "40426af802f7d8a5947176c3a19608beb25bdc05",
+      "hash": "525818a783b780ed5eb1c3a047bf1a030db3bb35",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/monarch-butterfly.png": {
-      "hash": "a9eb202d7e10ec8a378d48bf1f2f1cf954036d42",
+      "hash": "c93c1c32c0d5062ac11f4cf2de34ca2a2c2311e2",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/moose.png": {
-      "hash": "5bbd6ead24ada17d7e5b9c2a22e8413daec67fe9",
+      "hash": "c4bdcba1995dcf5c9d3702a6095dce1ba30f7617",
       "cfg": "96|85|60"
     },
     "pets/autumn-egg/squirrel.png": {
-      "hash": "236d6614cb66bff5da97316fb2a1d8f1a441b722",
+      "hash": "0d7a4f568d323fec55bef7d2509a4f9d777b6a69",
       "cfg": "96|85|60"
     },
     "pets/bounty/frost-sentinel.png": {
-      "hash": "bdc2c5121de1189a99d7a5cc7b3aba2e08eb82c9",
+      "hash": "b4d8d3a0b4a69ca17814ba0694cf5a05d53071b9",
       "cfg": "96|85|60"
     },
     "pets/bounty/shattered-soul.png": {
-      "hash": "854785d5a8bb04110c428da321001455a169db2d",
+      "hash": "a4da5bfdbd09f572bb95a0ef3f5b5477fd997fa7",
       "cfg": "96|85|60"
     },
     "pets/bounty/ultimate-clover.png": {
-      "hash": "e1990cacf592308eb60dc1ffa1a11d2d5bfabce5",
+      "hash": "a4ffa69b6647f99a3af03862e345fadf739c9031",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/aureate-koi.png": {
-      "hash": "45297a3aa1326ff7b01d3e2d627fd682fa12a45d",
+      "hash": "b5d6f5f57b4d2daca3814bd3a8122b185c59ddc6",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/candle-phoenix.png": {
-      "hash": "df9f24033ca26ddb562682d9507dee014cecff84",
+      "hash": "f3679d18b47e29add265166db7bfb02b7f04d600",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/candled-doggy.png": {
-      "hash": "799cac6bd36406570b3586f06042bc498801c89d",
+      "hash": "512a4203749b22417d80570e846003c69c1c78ab",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/kitty-wick.png": {
-      "hash": "83c6b8e69e266ab8294be3c5e68f8f6ee5963c75",
+      "hash": "6b3f83e460cececcec24cac580ac4a15658cd3b7",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/lantern-demon.png": {
-      "hash": "015ed726c9b4931fca70f519af5ea23193e52a45",
+      "hash": "a199d3063c3f5ba916fb9fcab038578339458d55",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/maple-divinity.png": {
-      "hash": "1c503969ac6b3a7b8a0edb252746c18eabc03a07",
+      "hash": "f1681e180cb5521db9760f0e2a23651cba945e42",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/scented-candle.png": {
-      "hash": "f96cf7d002da8664d9cbb50f40dad5b0add361d6",
+      "hash": "29ae83c4809b9d6201f96970f0d07a28b9ad6941",
       "cfg": "96|85|60"
     },
     "pets/candle-egg/willow-chandelier.png": {
-      "hash": "cc9c56e802ad89c910d83814328483ef7543623e",
+      "hash": "8d65ac993e233f159e86921140423b9df08d94b2",
       "cfg": "96|85|60"
     },
     "pets/chance-egg/chance-dragon.png": {
-      "hash": "92a6978ebbef6dd0668bfd67a29f2b400d4442a4",
+      "hash": "c6a45ad6b5fe9e29c1122749dd5ef51b33c18343",
       "cfg": "96|85|60"
     },
     "pets/chance-egg/galaxy-dice.png": {
-      "hash": "9bdde3178a036b38d2a36d183ac68c362dda8a8e",
+      "hash": "5e653f9ba3e5d69265b1b4bae0578af7fd7a87c3",
       "cfg": "96|85|60"
     },
     "pets/chance-egg/ring-master.png": {
-      "hash": "cd8bd2f9384f6ded92c8d02d998213003d9e1bfc",
+      "hash": "8d902861ae38c71ad861996b36c37856baff7239",
       "cfg": "96|85|60"
     },
     "pets/chance-egg/royal-guardian.png": {
-      "hash": "3fcfb194cb8dc47b3a73e1a4f55a0e73c06d4c17",
+      "hash": "4627fd24a78985c8ee9326b76d45bf3e47cbba61",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/1x1x1x1.png": {
-      "hash": "7ef45bc9552d67f78b083bdc1ce7528b85eeba41",
+      "hash": "cb1e05253a290ac273bd4c745951d047416a99e4",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-doggy.png": {
-      "hash": "c714206501dc44d83c129068981c722c977d1c53",
+      "hash": "04ae526007abf023a97563667802aab6e6d9f62e",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-dominus.png": {
-      "hash": "b4f1f6990312dc833cd7f97206c9dcb05e877f59",
+      "hash": "caaa59d12b5e6c73fb0fe97a286eb8d5e0a300c2",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-dragon.png": {
-      "hash": "a02cba1a15dce6b7e871c42e5d86089cc314394f",
+      "hash": "e15c9b8803d27478e95c80964a38013121c12671",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-kitty.png": {
-      "hash": "2327e3bac046ec9f9ce800c3336fc6d53603c524",
+      "hash": "66a0b31428c3527fd0835764ba2526a599d356d1",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-noob.png": {
-      "hash": "52f497090586906e4001723f824b3131f8dcc7f4",
+      "hash": "2d1384dbae6c281a3ec5066f70d951855344bfb8",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-overlord.png": {
-      "hash": "e1ea4f346d063c53c27a201c303e957bcf6271f0",
+      "hash": "7626d1ffc27e3e39fd5e83d60a90e6cb3e7d28ea",
       "cfg": "96|85|60"
     },
     "pets/classic-egg/classic-unicorn.png": {
-      "hash": "535bb7551b5032b3d0df719ff0cb53b647810e9c",
+      "hash": "59e0e8ffeba16aa8844986e77e44e701a62ec29b",
       "cfg": "96|85|60"
     },
     "pets/common-egg/bear.png": {
-      "hash": "893cc64138cec1fc003b0d9b3a299fbad7cc0a41",
+      "hash": "ea616cfb518cb05d06cddd6d677f43ae93fcb060",
       "cfg": "96|85|60"
     },
     "pets/common-egg/bunny.png": {
-      "hash": "25beb3628f829bb588594f8828c967b87150f3b6",
+      "hash": "d8bf6f4a5e9e3a21d47fee3bb874aac91ff94d3b",
       "cfg": "96|85|60"
     },
     "pets/common-egg/doggy.png": {
-      "hash": "06534ce34b16a43e1380c19cf2c138edaa528dd5",
+      "hash": "a41e1397a73a696d7a0c048c6675a604b4497cb9",
       "cfg": "96|85|60"
     },
     "pets/common-egg/king-doggy.png": {
-      "hash": "60edb76c61007c6b345723280b3b6cc1791c0db7",
+      "hash": "f0c3d2c0e34560096116674306bfd049233e5d65",
       "cfg": "96|85|60"
     },
     "pets/common-egg/kitty.png": {
-      "hash": "48812e3aaf8c88b17ddc0fef56a4485caf4219e6",
+      "hash": "45a588115b5d6525dfe7171338b6605225989963",
       "cfg": "96|85|60"
     },
     "pets/crystal-egg/angel.png": {
-      "hash": "6f6ffaade5a65a655a1e46ebc0c33c04755a9409",
+      "hash": "41692b77e2b8687331cf7893a4bf7843f4476ef0",
       "cfg": "96|85|60"
     },
     "pets/crystal-egg/cave-bat.png": {
-      "hash": "7ee255c1532a42d555540dbabe024671861e1ec7",
+      "hash": "e8b1b70079f5d5757f1fc7f6dadcbad395f15aa8",
       "cfg": "96|85|60"
     },
     "pets/crystal-egg/dark-bat.png": {
-      "hash": "a2365bb6425b26c933dc0586468c54cc298aeee0",
+      "hash": "4e6094306ec21cec531dfbad030d66919896c3cc",
       "cfg": "96|85|60"
     },
     "pets/crystal-egg/emerald-bat.png": {
-      "hash": "3a30ff3385878afe478ae093bc4dcf968b06e0f6",
+      "hash": "fc35ceea640275e71bc5e6cb71f8fbe13615409c",
       "cfg": "96|85|60"
     },
     "pets/crystal-egg/flying-pig.png": {
-      "hash": "a3d3e98771c32667b308bb2dffc571b5469e8f08",
+      "hash": "69db6855f2322201e420b388960aed21f28418ba",
       "cfg": "96|85|60"
     },
     "pets/crystal-egg/unicorn.png": {
-      "hash": "ecbdf8b8c26736331d7e84434b76eed8bc96c64c",
+      "hash": "a9296456017e6cf0df24f4f77a7323ef7a2e4fde",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/bionic-shard.png": {
-      "hash": "e80553f3b8f6627d8f7fdf30912e6f186895bd42",
+      "hash": "2342971427b9bbb0dc83c9cdef22dee28b30001d",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/cyber-wolf.png": {
-      "hash": "ba8c7f91d8d37ba4f661508abbef73aaf8e96584",
+      "hash": "2494dd90b925da24986f52125b8a41f874e185be",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/cyborg-phoenix.png": {
-      "hash": "21fa36c8ca80d0b7aac007e0e1a913c93dd55b27",
+      "hash": "c19873d50002973fb1d9459cc5e494015ee7ddb2",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/martian-kitty.png": {
-      "hash": "496682241345a9ed12164e07766eb605190b2503",
+      "hash": "5578ac64e0605a29fdd470a23fe84a923b722853",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/mech-robot.png": {
-      "hash": "be4d1111736aeccd1c9f0d6410c275dc89426ebb",
+      "hash": "379ddc2e6b37d86f87ec58e18c1fa7f537bb502c",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/robo-kitty.png": {
-      "hash": "abdc2e2f1f8c337c4bab3f2da42b9826bf9a8e5a",
+      "hash": "292ded27c467aa6eb7080af5f3b00a1f279f9564",
       "cfg": "96|85|60"
     },
     "pets/cyber-egg/space-invader.png": {
-      "hash": "19497344bebc65b2618ec1500f31b7900fb6e8ac",
+      "hash": "0847938232ab4d72b433b14c08a3a850c5c77639",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/isaac-rainbow-shock.png": {
-      "hash": "e5293b1ef913b76792791453e3d2579fb0d4e720",
+      "hash": "c369638ef7f93380548f96d6fc92b3d39a51ce00",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/nert-dragon.png": {
-      "hash": "616ba5c552fe403171ec8ddbb3649d125bfa577f",
+      "hash": "2caa5259126fe4059275c6d53128731201084123",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/nert-plushie.png": {
-      "hash": "1405ab2444336e7f906c1a0b09c1e4602889c35c",
+      "hash": "84c709ca37febe834a32a0c291f4aed9696a1d47",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/obscureentity-plushie.png": {
-      "hash": "cad17525e8d417a3572a22cd8e055f9dbad23450",
+      "hash": "6489e006ce094b5ab3b562373b64790f05b87a05",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/quamatic-bear.png": {
-      "hash": "9af8d01e6c98bbc474ce1327ad6ef90195440e12",
+      "hash": "ac3d319c4d582a85fe987dc72f22508ea3540715",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/quamatic-plushie.png": {
-      "hash": "1ccb941466c4655dc3366f5001c6ebf464922473",
+      "hash": "4ff37264fd44dfd1c10691756d7caed32da11f03",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/sircfenner-doggy.png": {
-      "hash": "d1b2fa421c8ab66a3229b6e97149464462298687",
+      "hash": "3b509c79591917325d91a0f42bf693788c1b6b91",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/sircfenner-plushie.png": {
-      "hash": "412829774d6dc479500f3cc0fa79d63ba3cc78db",
+      "hash": "b8cc288fb7a14de5414bca3d4dab01017cb1d1ba",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/sylently-plushie.png": {
-      "hash": "f2732b149186315e8c1a803e5b50dbfba47c639e",
+      "hash": "b972c6da2b6d91e01392b1017db312dd75d2cdd7",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/sylentlys-hats.png": {
-      "hash": "a97f9bccab868a133594a1cd69638cfc319266ca",
+      "hash": "7b6f0df43b1c3f909d0b1fbfe14d750c535c37f3",
       "cfg": "96|85|60"
     },
     "pets/developer-egg/sylentlys-pet.png": {
-      "hash": "a22f5a08e4e06ddb766f519555a2e82257474f76",
+      "hash": "1c8c1657752f51af46324f2ff98213d83bdb3a46",
       "cfg": "96|85|60"
     },
     "pets/hell-egg/hell-crawler.png": {
-      "hash": "426c86cce5c7eaa70c97c490b37a9a1b6a89dc78",
+      "hash": "1be8899a73ab2c79565bc3972b09e37d5c9e9d09",
       "cfg": "96|85|60"
     },
     "pets/hell-egg/hell-dragon.png": {
-      "hash": "fe642614c948428c15e109dce0d047e10c402409",
+      "hash": "28be74f994ca8513d53311585d0ebb119ccb2233",
       "cfg": "96|85|60"
     },
     "pets/hell-egg/hell-piggy.png": {
-      "hash": "aebdf2724a60804c4e3bb6fd74c83ed3bda97d65",
+      "hash": "cc9794c13a1fe8c92cf422c6babd06b02bfc3a6f",
       "cfg": "96|85|60"
     },
     "pets/hell-egg/inferno-cube.png": {
-      "hash": "ef6e75bcc8bf17a3270b63f679796f32944f4219",
+      "hash": "db79524dc388ef6e88ac681add68ad3134584c60",
       "cfg": "96|85|60"
     },
     "pets/hell-egg/inferno-demon.png": {
-      "hash": "971b3f6297d988af52621f4b0974463837662792",
+      "hash": "842ecf102f91d11f99026d7c8a598cfc007f724b",
       "cfg": "96|85|60"
     },
     "pets/hell-egg/virus.png": {
-      "hash": "07e38dde06b50ec1450621b7e43e958894f5ea12",
+      "hash": "8619e289db369fd02cc4345f94b907537662b825",
       "cfg": "96|85|60"
     },
     "pets/iceshard-egg/deer.png": {
-      "hash": "18dda2579a3a7abd3fd9dce4700e05b530d72994",
+      "hash": "4d77ff70d5a905a594641ce93193df6a3243b5fa",
       "cfg": "96|85|60"
     },
     "pets/iceshard-egg/ice-deer.png": {
-      "hash": "998a4a65edc11551ce826c2a1ee52662568d59cc",
+      "hash": "764e59316c81fd01d9819b9d85cfbedc39ab8b2f",
       "cfg": "96|85|60"
     },
     "pets/iceshard-egg/ice-dragon.png": {
-      "hash": "ddd2b4df7622f8886948a72c9f6162c1b7adbaa9",
+      "hash": "5883db5bab50e0e955f59663a5315928759fe96c",
       "cfg": "96|85|60"
     },
     "pets/iceshard-egg/ice-kitty.png": {
-      "hash": "af2b460c2287feb7500656f791a76df449ae78ce",
+      "hash": "28c95e2607442ce7307523af184187498f4b9678",
       "cfg": "96|85|60"
     },
     "pets/iceshard-egg/ice-wolf.png": {
-      "hash": "c8544d7fd3019ae16eb13c2770878f1c5355b5bd",
+      "hash": "991bd0beedded84a51d45c6f35df4cc5978c599a",
       "cfg": "96|85|60"
     },
     "pets/iceshard-egg/piggy.png": {
-      "hash": "ed39ad8252a52331efb8195dcdc3d730da1fa853",
+      "hash": "9e0953dbb8c2f71d76971aa3a0b79b0b9f570c49",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/giant-pearl.png": {
-      "hash": "ece7b5bf0f5e84967712c31901a583b6149b9e37",
+      "hash": "4d3e66957ca7c8c3f910b54955a4a54b41ea3f95",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/ice-bear.png": {
-      "hash": "84d2b8ab5784dc16cb080d2c3db0c11433b34092",
+      "hash": "6e9af1977b73330a8a92b0d8b1ba5f190ae4428e",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/ice-winged-hydra.png": {
-      "hash": "960725943bc8d9c15adc860b5946c71c36682efd",
+      "hash": "f34393fdaae46299b6db523623861394f3542e28",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/marshmallow.png": {
-      "hash": "886db06999893b0a1aa4291c59c47d328388b45d",
+      "hash": "496880fcd34c500c1fcc47f9e5cae276cf1e068e",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/minty-serpent.png": {
-      "hash": "e7963e3e83d91d35cbea772902f05b6b27a9a26b",
+      "hash": "d2a6ec28a397e48ef39318e8dc9f9a88eea06c65",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/penguin.png": {
-      "hash": "3404bd097f046e9c13b63adac423666276938d5e",
+      "hash": "3e074631498a79002cf03069a208cb595012b838",
       "cfg": "96|85|60"
     },
     "pets/icy-egg/snow-fox.png": {
-      "hash": "c8cd1134646453602027594e2f6f6b7d65b0d895",
+      "hash": "bf11850cb1763c99fdc23b265d7f137d6955d9f6",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/fire-king.png": {
-      "hash": "bfaeb507b400ae0ed60233a4beda84da44bc3e70",
+      "hash": "aa0a47adf891130ebd8b7215a3b0277af71e2c9e",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/hellshard.png": {
-      "hash": "e265dab2247e188fb050fd124d4478bdd1d780f6",
+      "hash": "01b58e32278dbbdd34aa29f814890b6c7fae8985",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/lava-bat.png": {
-      "hash": "5de0795dde34db7779bd688fccbda66cf67d5015",
+      "hash": "286f8761019136c254a92865a028ace2df09aac3",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/lava-golem.png": {
-      "hash": "6a71cd0c03730d621fc25e4320df15cacfa9b1ab",
+      "hash": "619e8c2f00605c128c34d7800261eede7d073fa1",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/lava-imp.png": {
-      "hash": "4aa7670fef41ecbc63adab457862fd68a962bdcf",
+      "hash": "431a7917353018004723d07367429293ef024f54",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/magma-cube.png": {
-      "hash": "fc26bb9b2f71028a61aecf405b666df9c5360f84",
+      "hash": "03d0a4b5c7ee7a407f9bf6ef40c3a59b1642664b",
       "cfg": "96|85|60"
     },
     "pets/lava-egg/night-dweller.png": {
-      "hash": "387baf9608cfa3d7d9ec9a202017a03dcdd56f95",
+      "hash": "1ab3207e48153a092562786d60fde02a1a35b397",
       "cfg": "96|85|60"
     },
     "pets/lunar-egg/electra.png": {
-      "hash": "66b015516dca703b3686332c05f64524d58f0587",
+      "hash": "1d431bb79b2d1dd986749e49980465f8880a8280",
       "cfg": "96|85|60"
     },
     "pets/lunar-egg/lunar-fox.png": {
-      "hash": "4fb5de60ad25ebd507495db24f7c896108e60d1c",
+      "hash": "8029a664e0fe5f424386236fb8a62d8fa05c4702",
       "cfg": "96|85|60"
     },
     "pets/lunar-egg/lunar-serpent.png": {
-      "hash": "a8224cc93abf3bc0ebf03cb03e0621a08a65badd",
+      "hash": "916c4f32c78f4f8d1b28da69f63735ba15bba6fa",
       "cfg": "96|85|60"
     },
     "pets/lunar-egg/lunarcorn.png": {
-      "hash": "1013964a477c0402d4612b79cc0fdbe4767f035c",
+      "hash": "d340b637dfaeea7a0c393e2ffcaf43966408aab6",
       "cfg": "96|85|60"
     },
     "pets/lunar-egg/space-bull.png": {
-      "hash": "d9b82f168884b71ab7d4cda7caf7179b14b35982",
+      "hash": "5fe4091c70f2ed5d3cb9fe567d3f1dff0a92a624",
       "cfg": "96|85|60"
     },
     "pets/lunar-egg/space-mouse.png": {
-      "hash": "0fee2bd68553f3ae1fcb8fe00f65a5051e196b47",
+      "hash": "dc90114a39fb5820f30ee2768271cef8095fb5b7",
       "cfg": "96|85|60"
     },
     "pets/magma-egg/demon.png": {
-      "hash": "fb69671bc2f0a8c07f81a231ee45c37799f7bc4b",
+      "hash": "24f43d91bfcc7b87962c25eb647ad2970ab97e41",
       "cfg": "96|85|60"
     },
     "pets/magma-egg/inferno-dragon.png": {
-      "hash": "c1082be1db562c471d4777ead68384c15d3182d9",
+      "hash": "1c6472ef0b31d0b955054bca3f9fe3b19b73f189",
       "cfg": "96|85|60"
     },
     "pets/magma-egg/magma-bear.png": {
-      "hash": "22213b95e6424e31344bb98fad9c2c69818ce4ec",
+      "hash": "9c85bd2da6f999a1caebfb972ce65e7021cd287e",
       "cfg": "96|85|60"
     },
     "pets/magma-egg/magma-deer.png": {
-      "hash": "e39981524f582d0410baefa3c4fc28558e58887d",
+      "hash": "48bff6b41a3675caad74766e1050de1e24bb91a4",
       "cfg": "96|85|60"
     },
     "pets/magma-egg/magma-doggy.png": {
-      "hash": "075df7ed959005ed1f6026d37407530d182c0304",
+      "hash": "20485c464c2f609d6aa7e9d6db3b00a27d4a5f7c",
       "cfg": "96|85|60"
     },
     "pets/magma-egg/magma-fox.png": {
-      "hash": "6c5084e5f90d25b722cbe88be7ee3dd5bf4a1501",
+      "hash": "632bada424cae732c02f14dc14dce148c87b32a1",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/cave-mole.png": {
-      "hash": "e480e48df3cd242260d3e8913a5e291fa964377d",
+      "hash": "0c3c4df1735e40b96365cc18d1b61465f97fb7c1",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/crystal-unicorn.png": {
-      "hash": "b0e83acf224a6e6f8831a724c357b8acd00fd3de",
+      "hash": "5771b8dc863ddcd0339058fe59f48eb8a2daba94",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/giant-cave-mole.png": {
-      "hash": "d1124c908bdec08211d0764185a83bc6a5585ff6",
+      "hash": "13daedd0cfcaeb3c45d472e3cfd4d69d79d89fea",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/mining-bat.png": {
-      "hash": "5e50112b7d7437e111e335a5499a108fefc543ed",
+      "hash": "4bfc3f12175eb1fbb98b7969f9341f8ac40b4296",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/mining-doggy.png": {
-      "hash": "e94ba1295c4aaccb88971e19bed6101edf21a0b2",
+      "hash": "8174ee28dec18c39612f5ad3295a623e0d69b34b",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/ore-golem.png": {
-      "hash": "6db886f952b71b6f91c6a49f9359eaf3f5ac1ca1",
+      "hash": "1c8ce2be7686f1a2138036a27c8d8cc0a79c83f9",
       "cfg": "96|85|60"
     },
     "pets/mining-egg/stone-gargoyle.png": {
-      "hash": "a76fc6d59ab243f6145cf9d0fb344dae68261db1",
+      "hash": "888cd52e3821991c85e53ac1825c5e78f998f09e",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/disco-ball.png": {
-      "hash": "453d08b7bed7dcb0599b7a9299f0fa1f1abaec16",
+      "hash": "379da0e30b2dbc208622379f4f098898cc9905f4",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/equalizer.png": {
-      "hash": "7dcf4f35ea3c620639bae26d025a814361abbf50",
+      "hash": "91a76c268070aa2ec5c09f4a0dcbe6a693bd1b6d",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/hologram-dragon.png": {
-      "hash": "024a4e20df10a4de39214ef5d1eddbd0363de343",
+      "hash": "81bdc0f84e504703623c44074fd4d7d479ae61da",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/hyperwave-kitty.png": {
-      "hash": "650ec63fc4f45d7d24f9babebb758696e4f63496",
+      "hash": "7ed72b5837efe68fe9df2a6fccbc82ea4371716c",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/neon-doggy.png": {
-      "hash": "cba496f2dba3a06c09c7dad494231df9a02d977e",
+      "hash": "8d1a3f4f1b39423dbb948590a68ded17afab7a9a",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/neon-wire-eye.png": {
-      "hash": "66a08ac8bc99717114e20febb52c0c601ce47c65",
+      "hash": "537a5a25c60894e2013455576f6f98ae6281c0bd",
       "cfg": "96|85|60"
     },
     "pets/neon-egg/neon-wyvern.png": {
-      "hash": "2f09b95e638afb834a97294264bf768d9d659a1e",
+      "hash": "4d8631df220ce36d44c0c179c45bb9b05e36a348",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/demon-doggy.png": {
-      "hash": "aef01897b8fc26445b46bf2c7858dfedc4abf52f",
+      "hash": "bd9d9e1bef6a25220ca71e10ce98ba4379f44f1c",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/demonic-hydra.png": {
-      "hash": "dfb482c7fbf14a1b5dfd12099a9ef71234918fd8",
+      "hash": "36b302bf474d4df1ff778aec45492ef44389961e",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/green-hydra.png": {
-      "hash": "2af5131034205ae1e77343d1b775e63958f19e27",
+      "hash": "f855358f2993ff06760260688ceb88a6ce259257",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/hell-bat.png": {
-      "hash": "14e1e99d7d387ef2ecbfcfdc786f1c1f9025b463",
+      "hash": "850eb69217bcc4dd82a292163d4b36ae037fc324",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/night-crawler.png": {
-      "hash": "9b89d63ac9e010469eed80efcf52dedc438d3a24",
+      "hash": "cd635e28f5cc0260edbe926abb738435c076722c",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/skeletal-deer.png": {
-      "hash": "588862c8c4456e2904b4b21a1f558e71a5df2718",
+      "hash": "975d327dd828116336ee5eeb53c58b30af904cc9",
       "cfg": "96|85|60"
     },
     "pets/nightmare-egg/the-overlord.png": {
-      "hash": "d76b4f35deaed4b815d8bae5bc98dc4f5dad4e3c",
-      "cfg": "96|85|60"
-    },
-    "pets/perk/illumination.png": {
-      "hash": "5b95af2d0862bc5fc489d97d254b3baec051d03e",
-      "cfg": "96|85|60"
-    },
-    "pets/perk/snake-eyes.png": {
-      "hash": "ea38826e3f5a270ed92bd94808635400b2a810e3",
+      "hash": "c5a74ad08f727b7ebeb5adada1f054fb18a88bae",
       "cfg": "96|85|60"
     },
     "pets/rainbow-egg/green-angel.png": {
-      "hash": "3629c797b553a7d04929c53a325ce7beac5594d3",
+      "hash": "ce9494c9cca86de1e230ce47e6b236dd73da4af8",
       "cfg": "96|85|60"
     },
     "pets/rainbow-egg/hexarium.png": {
-      "hash": "551762384c05d60fd829f320c7fae3ac31b057dc",
+      "hash": "bd8b2d9bab82aaaf1541d4202218e94d72df3d5f",
       "cfg": "96|85|60"
     },
     "pets/rainbow-egg/orange-deer.png": {
-      "hash": "2489cbebaa636f26aff8d8b0dc513cbe1f3d30cb",
+      "hash": "a1e3ac3e78b3f56ba94a14624a5692149bed1497",
       "cfg": "96|85|60"
     },
     "pets/rainbow-egg/rainbow-shock.png": {
-      "hash": "4e232f18539d3d5cfdb080f8f3787a6f11fd9a01",
+      "hash": "fc65b88286d824bf7ce121ba3fc1dd646b6dcc07",
       "cfg": "96|85|60"
     },
     "pets/rainbow-egg/red-golem.png": {
-      "hash": "1c029e4fe7fd3b441e56589afab38d058f66e80f",
+      "hash": "02d08532286b497a4236898473a950e85ba50335",
       "cfg": "96|85|60"
     },
     "pets/rainbow-egg/yellow-fox.png": {
-      "hash": "2cdb5cafa7c4411995a2cdabb7792968f22a86c5",
+      "hash": "6ceeb1dff4a5bd9512f121ea49585ab45ea9b1bd",
       "cfg": "96|85|60"
     },
     "pets/secret-egg/gigantic-spitty.png": {
-      "hash": "3ab6cdeaa9099017746880944717fb324e318942",
+      "hash": "3e0f86423e5cd621e1eba997d2e2d4b6baac3330",
       "cfg": "96|85|60"
     },
     "pets/secret-egg/round-spitty.png": {
-      "hash": "0f31841aa7442b84911b8124ba93fea6e22536a4",
+      "hash": "08bd12b356a2c0197b21d0d5efc7d309047a060e",
       "cfg": "96|85|60"
     },
     "pets/showman-egg/game-doggy.png": {
-      "hash": "0fc5486373d0fbf66f2f40a2d6e3ab537381d112",
+      "hash": "2cb7dc78b3daffded1722c2174a0e311c87ed9ab",
       "cfg": "96|85|60"
     },
     "pets/showman-egg/gamer-boi.png": {
-      "hash": "67a62c7af7ac798c52651f6f4fe8bf1ef7dcbc83",
+      "hash": "786333c238ff8567e575905b71b053fc8105ca31",
       "cfg": "96|85|60"
     },
     "pets/showman-egg/queen-of-hearts.png": {
-      "hash": "891b22ee8e8096caeae8548a34fcc5b5d0d59e26",
+      "hash": "f9aeca48f423119562834a84b93944cafc9f8cd3",
       "cfg": "96|85|60"
     },
     "pets/spikey-egg/dark-dragon.png": {
-      "hash": "92d67bc9293dd6cb3610035a8df24b96f208d1e5",
+      "hash": "eea71b5424395ef11bf946060645a0ad7d09fda4",
       "cfg": "96|85|60"
     },
     "pets/spikey-egg/dinosaur.png": {
-      "hash": "42955fa426d5430bef34520daf87d37719421b7c",
+      "hash": "6dd168f621cca2ca974603bd0009f93e820a077a",
       "cfg": "96|85|60"
     },
     "pets/spikey-egg/dragon.png": {
-      "hash": "a525e0322fd1a6e69625e45a0e2ced054c64e999",
+      "hash": "96b94dd188c595cf4c3766eed02bd9f6d74743ac",
       "cfg": "96|85|60"
     },
     "pets/spikey-egg/emerald-golem.png": {
-      "hash": "002ff6878cfef6a5f49316e527b0c02cf88a3b7a",
+      "hash": "b62004628081196e980b396da3376c88a4da8de7",
       "cfg": "96|85|60"
     },
     "pets/spikey-egg/golem.png": {
-      "hash": "0e664426dd12a73d08cbc6775b4ce391a8da6270",
+      "hash": "2a94ff7f65ea15ac09fe89abd2eebf357b462533",
       "cfg": "96|85|60"
     },
     "pets/spikey-egg/ruby-golem.png": {
-      "hash": "e74750b1c5a63a49f07a290c806900479af92b5e",
+      "hash": "40540bed44d9fd94080ebb507e300186a87b44a5",
       "cfg": "96|85|60"
     },
     "pets/spotted-egg/fox.png": {
-      "hash": "8bf36f9ccdefd7b21d11e5c351c53a75b370d1ea",
+      "hash": "70e958bcfac23ce2f69cdf30e5fb149ac337e76d",
       "cfg": "96|85|60"
     },
     "pets/spotted-egg/mouse.png": {
-      "hash": "bebf9d3027f5beda3623069f3cdb1e57085ca91e",
+      "hash": "62696a06e8ceee86010181084e6d363128a0bcef",
       "cfg": "96|85|60"
     },
     "pets/spotted-egg/panda.png": {
-      "hash": "0b49e6c22d728da6267d7569dcdbbf32887b51cc",
+      "hash": "cb3af1466e626b1464b6016113099fbdfc59f48b",
       "cfg": "96|85|60"
     },
     "pets/spotted-egg/polar-bear.png": {
-      "hash": "9fec346ac0bea6c01a6dd199fe8520bc5a16522f",
+      "hash": "a033835f12ca9fad9b5bf747a53c21037fb80754",
       "cfg": "96|85|60"
     },
     "pets/spotted-egg/wolf.png": {
-      "hash": "213e2bd0b47e0ca545621c5c5daad611940648b7",
+      "hash": "f72aee39a5ed7061a34cae34de556de8126d5334",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/dark-champion.png": {
-      "hash": "27fe3d222b41e7928a80e81814161c1f96433d7a",
+      "hash": "e24f17d66f31b1512514d65f9596266906ae6409",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/earth-champion.png": {
-      "hash": "fc11fdb78072eec83165158446029698b9c3a312",
+      "hash": "6d8d3d8e5d73371c8db680704ca2f5ef6dfc17f0",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/fire-champion.png": {
-      "hash": "70dfd1581b70806b1f7009a79102df72353ee67a",
+      "hash": "ab7e8bfa8d7017696457744dc40443dd2d708b4f",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/flower-pot.png": {
-      "hash": "da9d2248e072196e58a3a085563f3041f62e2898",
+      "hash": "095d7def9bfce309f9618e60ad9037f9ea42cc41",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/lovely-lotus.png": {
-      "hash": "af8c159a64ff4dfe854bef739b2c0d7a0141599e",
+      "hash": "dabdc26d3aabdfcd110c354daa9624b66d4fd274",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/sky-champion.png": {
-      "hash": "92d18e5e1d66c19782875acab5619f45e2596968",
+      "hash": "af6dd31770471cd421f9394193beca8db74ea5af",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/thorn-dragon.png": {
-      "hash": "2fad9f18236b3c2a927a9ff642b78838968b8fe7",
+      "hash": "522e37c01c16c3fbeb889c85e1a802b1cad6c54d",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/vine-deer.png": {
-      "hash": "99bad5ee11595bf7980de3796e991eef00cf98b7",
+      "hash": "29fcc91f7f5932eb843a35c437a7eb961f586dbc",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/vine-dinosaur.png": {
-      "hash": "a4039ac809adf44fc80659e132315292f960f337",
+      "hash": "aca6efa47db42fc502d0cdb07c856953f769ad94",
       "cfg": "96|85|60"
     },
     "pets/vine-egg/vine-kitty.png": {
-      "hash": "f90c39291a8869e7f09de691e545c275533cbd2a",
+      "hash": "cc7631c7194bdcb632583db01ff279e5a9e1e60d",
       "cfg": "96|85|60"
     },
     "pets/void-egg/dark-phoenix.png": {
-      "hash": "9eb319e8cfc38f78c0e9e6d6c5f9877909df9bca",
+      "hash": "cf594fedb43b78f74f985c247ed4ae173838833e",
       "cfg": "96|85|60"
     },
     "pets/void-egg/neon-elemental.png": {
-      "hash": "077b4bb79f14acb73defcaddbb194837b3f00e8a",
+      "hash": "40da22ac2bdf33251606c383eb8cb026dd938510",
       "cfg": "96|85|60"
     },
     "pets/void-egg/nullvoid.png": {
-      "hash": "6bec75a3220bec6d64743c5ec9fc6986ab913585",
+      "hash": "9fe80131b70e7c618ecc56932038cba44a0d3956",
       "cfg": "96|85|60"
     },
     "pets/void-egg/void-bat.png": {
-      "hash": "d511ff3d074d47f2f2ec44c75c89b725a698c1e5",
+      "hash": "f59196f48c41ac154ec8cf914c646598af7e2061",
       "cfg": "96|85|60"
     },
     "pets/void-egg/void-demon.png": {
-      "hash": "f1a05439aa3e8db0afd353b9e4edbfa47f0a53a3",
+      "hash": "0030c9fb5199f09659d742ab949d679d34c10256",
       "cfg": "96|85|60"
     },
     "pets/void-egg/void-kitty.png": {
-      "hash": "0ca0e55bf3463c26ac1b5854371a26385fe7dbe4",
+      "hash": "ac6fb2193a727688086cd053334c02c6bed71fac",
       "cfg": "96|85|60"
     },
     "potions/infinity-elixir.png": {
-      "hash": "e5e55492c82d226ba7abbb92cc180bb48f1249b5",
+      "hash": "a654b7d47d29502eecaba5f557e1f7ec3a4ce296",
       "cfg": "96|85|60"
     },
     "potions/lucky-evolved.png": {
-      "hash": "ab55dc376bc35beb473e8f06852c943477b4e8f4",
+      "hash": "7c62495c481e2bf93b0bc19bdb335e33ce51bd87",
       "cfg": "96|85|60"
     },
     "potions/lucky-i.png": {
-      "hash": "a27ddc6f63f41e9c04711fa0bf4096277729a91f",
+      "hash": "d2d43bcc6b9e88546c8be62be27ba6e83c4658e6",
       "cfg": "96|85|60"
     },
     "potions/lucky-ii.png": {
-      "hash": "1ec2a55ce36f05cb358f5442cd9db196e39955cb",
+      "hash": "368f6001f575f7a1c17165636becb2863d8f7414",
       "cfg": "96|85|60"
     },
     "potions/lucky-iii.png": {
-      "hash": "395b25c96b3240df9f947ff1a357a1322b172922",
+      "hash": "3e0a5d05456260953151eec04c9d1a22d045a5cd",
       "cfg": "96|85|60"
     },
     "potions/lucky-infinity.png": {
-      "hash": "afd120857576e7d4ae56aa53c46e507cba2c2e05",
+      "hash": "e4c0ebf6bcc969a973e93321f13abe4584a34203",
       "cfg": "96|85|60"
     },
     "potions/lucky-iv.png": {
-      "hash": "b7c89480774ace09331bacc47a8e430941c163cc",
+      "hash": "27fb3166165efb1ab51532de78d8f1bedec72285",
       "cfg": "96|85|60"
     },
     "potions/lucky-v.png": {
-      "hash": "4a07e321116dce46978322ce7c45a5bc041b4288",
+      "hash": "36a581d4b1eb2c89e4ddaed61887ff9033a80ccb",
       "cfg": "96|85|60"
     },
     "potions/mythic-evolved.png": {
-      "hash": "05cc40eea98acfe59a9b1a09ab6d1f446caf4eee",
+      "hash": "9bb714941f2a450f63fc61bbfebf2e4f54a0bf49",
       "cfg": "96|85|60"
     },
     "potions/mythic-i.png": {
-      "hash": "2aa103c8642a1194eec2b0ae00de24aab6810285",
+      "hash": "7546abe85f5792b26b595b282fa6b85ff68cb585",
       "cfg": "96|85|60"
     },
     "potions/mythic-ii.png": {
-      "hash": "b02522a1b300d23f420666a61457a6a6de89ebd8",
+      "hash": "d562773981b1ef38cb058a0887496a57e6da78b0",
       "cfg": "96|85|60"
     },
     "potions/mythic-iii.png": {
-      "hash": "2899abeabb53b27e49a712f2dd579c9857fd05f0",
+      "hash": "b853765c7f31d308ed9a263490948bd95e2f02a7",
       "cfg": "96|85|60"
     },
     "potions/mythic-infinity.png": {
-      "hash": "557a2fdcbbcac6e00b4d47b6e13a3cd2c4729b1f",
+      "hash": "4c03812a50119d6f80461f60b3ebd8636d6d7020",
       "cfg": "96|85|60"
     },
     "potions/mythic-iv.png": {
-      "hash": "c480efe9187d3d7c93a1a6449d81962d48fd6a95",
+      "hash": "893c24cdd305be6e4d0fe3a4c4641b45f1a37a01",
       "cfg": "96|85|60"
     },
     "potions/mythic-v.png": {
-      "hash": "8f16a71df4f35af92600e2969e6e1c2cd39a4eb2",
+      "hash": "ce19983b95687bbcd4946cf3a3cde0723a5536b1",
       "cfg": "96|85|60"
     },
     "potions/secret-elixir.png": {
-      "hash": "fadb5efc0f5f84ee39d331ba2a05db61a2bca7b9",
+      "hash": "f86ee5fd58aaa7e4a1f268a0ff10dc38fe6224cf",
       "cfg": "96|85|60"
     },
     "potions/speed-evolved.png": {
-      "hash": "c57fb0297b0d7239cfdd8ca682e0fb2655adb373",
+      "hash": "ee07d207f9a0ddd48c4e126d990da60d6862d08f",
       "cfg": "96|85|60"
     },
     "potions/speed-i.png": {
-      "hash": "882d61a0b6786a21ba69c68e4f48b36916604028",
+      "hash": "7bec9a9eee533177878f19209b3b85ea781cdce4",
       "cfg": "96|85|60"
     },
     "potions/speed-ii.png": {
-      "hash": "10805538640304cf3a96b67aa44cc3581b9e58f1",
+      "hash": "b75bffd915c985554bb1e2793c85b774254dbe91",
       "cfg": "96|85|60"
     },
     "potions/speed-iii.png": {
-      "hash": "025195b1435c2d9bf3b516f5a7d298b48f688512",
+      "hash": "5680ac7040d9f16f8fd0eaf5c896e1c211d0a12e",
       "cfg": "96|85|60"
     },
     "potions/speed-infinity.png": {
-      "hash": "9697b79afb3aa73e8cbd3fb1d455d5329530dcb7",
+      "hash": "8b87ed540ea713e6fe23b296e72e685ad4153edd",
       "cfg": "96|85|60"
     },
     "potions/speed-iv.png": {
-      "hash": "538eb611276179d18dfe7d3054b605783152d7be",
+      "hash": "311f4a6761c116977b38e74f7dd932119ca18e90",
       "cfg": "96|85|60"
     },
     "potions/speed-v.png": {
-      "hash": "74f76cd6f95bdfff823b212d46523d29f0185903",
+      "hash": "192fd27c37387d6c014c5935ef62e3e9e06b5dc4",
       "cfg": "96|85|60"
     },
     "worlds/minigame-paradise.png": {
-      "hash": "390568126b5ad9d47aaa148b0c1cbe674068ab23",
+      "hash": "cd197b64290e3f0fb8666cc1182b21236413090e",
       "cfg": "96|85|60"
     },
     "worlds/seven-seas.png": {
-      "hash": "ee768e4d0f6638c53828c4fc189d3e9c43743b7e",
+      "hash": "92c7f06cc81c900a58bbdaa8676114bd0f344234",
       "cfg": "96|85|60"
     },
     "worlds/the-overworld.png": {
-      "hash": "b12403d01287a1dc719699782660e3c20cdea551",
+      "hash": "d94efb23e798110a225711d8cabdbd0f5f6f4ac4",
+      "cfg": "96|85|60"
+    },
+    "eggs/cartoon-egg.png": {
+      "hash": "585414848631870cede2ff162c156cbb1d735bf2",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/cartoon-doggy.png": {
+      "hash": "3c778b936a323cccdad231ca164795d8830e8168",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/cartoon-hexarium.png": {
+      "hash": "82f83282784695f282fe104fb666b3d91cae5f86",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/cartoon-hydra.png": {
+      "hash": "dd7f4123ac0b992669f98b6f261bfcbdfef950cd",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/cartoon-kitty.png": {
+      "hash": "feb0eb49b6728ebf9cfde602c41e4c9c40ebd2ca",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/cartoon-overlord.png": {
+      "hash": "4b9f61920154698147ad30395ad19d98d0d2f164",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/angelic-ghost-spirit.png": {
+      "hash": "6253cf1fd24269e4ea38d447e50a13deb4367662",
+      "cfg": "96|85|60"
+    },
+    "pets/cartoon-egg/demonic-ghost-spirit.png": {
+      "hash": "c3e201ec17012bc9fff1a21739cbcb5a89689707",
+      "cfg": "96|85|60"
+    },
+    "pets/perk/kitty-pot.png": {
+      "hash": "6ed9bf7a4124a34dcfb2ebdd1d344813eaa31ac7",
+      "cfg": "96|85|60"
+    },
+    "pets/perk/super-shock.png": {
+      "hash": "968e1c8c6e3aa7d04fbd5c64b0b24878fe93a7df",
       "cfg": "96|85|60"
     }
   }
