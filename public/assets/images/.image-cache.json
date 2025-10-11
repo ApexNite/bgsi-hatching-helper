@@ -1024,6 +1024,10 @@
     "pets/perk/super-shock.png": {
       "hash": "968e1c8c6e3aa7d04fbd5c64b0b24878fe93a7df",
       "cfg": "96|85|60"
+    },
+    "pets/candle-egg/fall-pyramidium.png": {
+      "hash": "681b1c2c4ffe0c1647dc12b0662a0c8a370e86ae",
+      "cfg": "96|85|60"
     }
   }
 }
