@@ -1188,12 +1188,14 @@
                 "id": "sylentlys-hats",
                 "name": "Sylently's Hats",
                 "rarity": "legendary",
+                "hasMythic": false,
                 "baseChance": 0.00001
             },
             {
                 "id": "isaac-rainbow-shock",
                 "name": "Isaac Rainbow Shock",
                 "rarity": "legendary",
+                "hasMythic": false,
                 "baseChance": 0.000001
             },
             {
