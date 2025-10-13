@@ -1150,6 +1150,7 @@
                 "id": "fall-pyramidium",
                 "name": "Fall Pyramidium",
                 "rarity": "secret",
+                "hasMythic": false,
                 "baseChance": 1e-10
             },
             {
