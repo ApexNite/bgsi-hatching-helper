@@ -31,7 +31,7 @@
     let calculationMode = 'calculated';
 
     const defaultManualStats = {
-        luck: 100,
+        luck: 0,
         secretLuck: 1, 
         shinyChance: 40,
         mythicChance: 100,
