@@ -142,7 +142,8 @@ function applySource(totals, source) {
     if (typeof source.mythicChanceMultiplier === "number") {
         if (source.overwriteMythicChanceMultiplier) {
             totals.mythicChanceMultiplier = source.mythicChanceMultiplier;
-        } else {
+            totals._mythicChanceMultiplierOverwritten = true;
+        } else if (!totals._mythicChanceMultiplierOverwritten) {
             totals.mythicChanceMultiplier += source.mythicChanceMultiplier;
         }
     }
