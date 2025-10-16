@@ -7,8 +7,8 @@ export function calculateStats(sources, toggles, numbers, dailyPerksData, indexD
         hatchSpeed: 1,
         luckMultiplier: 0,
         secretLuckMultiplier: 1,
-        shinyChanceMultiplier: 0,
-        mythicChanceMultiplier: 0,
+        shinyChanceMultiplier: 1,
+        mythicChanceMultiplier: 1,
         hatchSpeedMultiplier: 0,
         baseLuck: 0,
         baseSecretLuck: 0,
@@ -84,6 +84,8 @@ export function calculateManualStats(manualStats, rift) {
 }
 
 function calculateStatsFromTotals(totals) {
+    console.log((totals.baseShinyChance || 0) * (1 + (totals.shinyChance || 0)) * (totals.shinyChanceMultiplier || 1));
+
     return {
         luck: (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1),
         secretLuck: (totals.baseSecretLuck || 0) + (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
@@ -136,7 +138,7 @@ function applySource(totals, source) {
     }
 
     if (typeof source.shinyChanceMultiplier === "number") {
-        totals.shinyChanceMultiplier += source.shinyChanceMultiplier;
+        totals.shinyChanceMultiplier *= source.shinyChanceMultiplier;
     }
 
     if (typeof source.mythicChanceMultiplier === "number") {
@@ -144,7 +146,7 @@ function applySource(totals, source) {
             totals.mythicChanceMultiplier = source.mythicChanceMultiplier;
             totals._mythicChanceMultiplierOverwritten = true;
         } else if (!totals._mythicChanceMultiplierOverwritten) {
-            totals.mythicChanceMultiplier += source.mythicChanceMultiplier;
+            totals.mythicChanceMultiplier *= source.mythicChanceMultiplier;
         }
     }
 
