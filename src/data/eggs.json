@@ -951,12 +951,6 @@
                 "name": "Tidal God",
                 "rarity": "secret",
                 "baseChance": 4e-9
-            },
-            {
-                "id": "abyssal-sea-dragon",
-                "name": "Abyssal Sea Dragon",
-                "rarity": "secret",
-                "baseChance": 5e-10
             }
         ]
     },
