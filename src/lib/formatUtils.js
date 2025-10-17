@@ -48,12 +48,15 @@ export function formatChance(chance) {
 
 export function formatChancePercent(chance, forceRound = false, roundUp = false) {
     const percentChance = chance * 100;
+    const correctedPercent = Math.abs(percentChance - Math.round(percentChance)) < 0.000001 
+        ? Math.round(percentChance) 
+        : percentChance;
 
-    if (percentChance >= 100 || forceRound) {
-        return roundUp ? `${Math.ceil(percentChance)}%` : `${Math.floor(percentChance)}%`;
+    if (correctedPercent >= 100 || forceRound) {
+        return roundUp ? `${Math.ceil(correctedPercent)}%` : `${Math.floor(correctedPercent)}%`;
     }
     
-    let str = percentChance.toFixed(percentChance >= 10 ? 1 : 2);
+    let str = correctedPercent.toFixed(correctedPercent >= 10 ? 1 : 2);
     str = str.replace(/\.?0+$/, '');
     return `${str}%`;
 }
