@@ -84,8 +84,6 @@ export function calculateManualStats(manualStats, rift) {
 }
 
 function calculateStatsFromTotals(totals) {
-    console.log((totals.baseShinyChance || 0) * (1 + (totals.shinyChance || 0)) * (totals.shinyChanceMultiplier || 1));
-
     return {
         luck: (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1),
         secretLuck: (totals.baseSecretLuck || 0) + (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
