@@ -1158,5 +1158,161 @@
                 "baseChance": 2e-9
             }
         ]
+    },
+    {
+        "id": "pumpkin-egg",
+        "name": "Pumpkin Egg",
+        "type": "special",
+        "event": "halloween",
+        "pets": [
+            {
+                "id": "pumpkin-doggy",
+                "name": "Pumpkin Doggy",
+                "rarity": "common",
+                "baseChance": 0.65
+            },
+            {
+                "id": "pumpkin-bunny",
+                "name": "Pumpkin Bunny",
+                "rarity": "unique",
+                "baseChance": 0.3
+            },
+            {
+                "id": "pumpkin-golem",
+                "name": "Pumpkin Golem",
+                "rarity": "rare",
+                "baseChance": 0.04
+            },
+            {
+                "id": "dumb-pumpkin",
+                "name": "DUMB PUMPKIN",
+                "rarity": "secret",
+                "baseChance": 1.5e-8
+            }
+        ]
+    },
+    {
+        "id": "costume-egg",
+        "name": "Costume Egg",
+        "type": "special",
+        "event": "halloween",
+        "pets": [
+            {
+                "id": "pirate-doggy",
+                "name": "Pirate Doggy",
+                "rarity": "common",
+                "baseChance": 0.65
+            },
+            {
+                "id": "booger-boi",
+                "name": "Booger Boi",
+                "rarity": "unique",
+                "baseChance": 0.3
+            },
+            {
+                "id": "ghost-lord",
+                "name": "Ghost Lord",
+                "rarity": "legendary",
+                "baseChance": 0.0005
+            },
+            {
+                "id": "trickster",
+                "name": "Trickster",
+                "rarity": "legendary",
+                "baseChance": 0.0001
+            },
+            {
+                "id": "franken-bot",
+                "name": "Franken Bot",
+                "rarity": "secret",
+                "baseChance": 2.5e-9
+            }
+        ]
+    },
+    {
+        "id": "sinister-egg",
+        "name": "Sinister Egg",
+        "type": "special",
+        "event": "halloween",
+        "pets": [
+            {
+                "id": "light-vessel",
+                "name": "Light Vessel",
+                "rarity": "common",
+                "baseChance": 0.65
+            },
+            {
+                "id": "dark-vessel",
+                "name": "Dark Vessel",
+                "rarity": "unique",
+                "baseChance": 0.3
+            },
+            {
+                "id": "pure-vessel",
+                "name": "Pure Vessel",
+                "rarity": "epic",
+                "baseChance": 0.03
+            },
+            {
+                "id": "crimson-eye",
+                "name": "Crimson Eye",
+                "rarity": "legendary",
+                "baseChance": 0.00015
+            },
+            {
+                "id": "equinox",
+                "name": "Equinox",
+                "rarity": "legendary",
+                "baseChance": 0.0000025
+            },
+            {
+                "id": "witches-pot",
+                "name": "Witches-Pot",
+                "rarity": "legendary",
+                "baseChance": 2.5e-7
+            },
+            {
+                "id": "all-seeing-shard",
+                "name": "All Seeing Shard",
+                "rarity": "secret",
+                "baseChance": 2e-9
+            },
+            {
+                "id": "angelic-skull",
+                "name": "Angelic Skull",
+                "rarity": "secret",
+                "baseChance": 1e-10
+            },
+            {
+                "id": "wolf-skull",
+                "name": "Wolf Skull",
+                "rarity": "secret",
+                "baseChance": 1e-10
+            },
+            {
+                "id": "guardian-skull",
+                "name": "Guardian Skull",
+                "rarity": "secret",
+                "baseChance": 1e-10
+            },
+            {
+                "id": "sinister-skull",
+                "name": "Sinister Skull",
+                "rarity": "secret",
+                "baseChance": 1e-10
+            },
+            {
+                "id": "king-skull",
+                "name": "King Skull",
+                "rarity": "secret",
+                "baseChance": 1e-10
+            },
+            {
+                "id": "sinister-lord",
+                "name": "Sinister Lord",
+                "rarity": "infinity",
+                "baseChance": 1.25e-11
+            }
+        ]
     }
 ]
