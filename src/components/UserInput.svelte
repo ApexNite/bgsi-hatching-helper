@@ -1,6 +1,6 @@
 <script>
     import { calculateStats, calculateManualStats } from "../lib/statUtils.js";
-    import { setCookie, getCookie } from "../lib/cookieUtils.js";
+    import { setCookie, getCookie, deleteCookie } from "../lib/cookieUtils.js";
     import { onMount } from "svelte";
 
     import Dropdown from "./form/Dropdown.svelte";
@@ -28,6 +28,8 @@
     export let eggsPerHatch;
     export let selectedEggId;
     export let selectedWorldId;
+
+    const COOKIE_VERSION = 2;
 
     let calculationMode = 'calculated';
 
@@ -148,27 +150,34 @@
     }
 
     onMount(() => {
-        const savedData = getCookie('hatching-helper-user-input');
-        
-        if (savedData) {
-            calculationMode = savedData.calculationMode || 'calculated';
-            selectedOptions = { ...defaultSelectedOptions, ...savedData.selectedOptions };
-            specialPotionToggles = { ...defaultSpecialPotionToggles, ...savedData.specialPotionToggles };
-            environmentBuffToggles = { ...defaultEnvironmentBuffToggles, ...savedData.environmentBuffToggles };
-            gamepassToggles = { ...defaultGamepassToggles, ...savedData.gamepassToggles };
-            eventToggles = { ...defaultEventToggles, ...savedData.eventToggles };
-            enchantValues = { ...defaultEnchantValues, ...savedData.enchantValues };
-            toggleValues = { ...defaultToggleValues, ...savedData.toggleValues };
-            numericValues = { ...defaultNumericValues, ...savedData.numericValues };
-            manualStats = { ...defaultManualStats, ...savedData.manualStats };
-            worldIndexStates = { ...defaultWorldIndexStates, ...savedData.worldIndexStates };
-            halloweenUpgradeValues = { ...defaultHalloweenUpgradeValues, ...savedData.halloweenUpgradeValues };
-            dismissedManualWarning = savedData.dismissedManualWarning ?? false;
+        try {
+            const savedData = getCookie('hatching-helper-user-input');
+
+            if (savedData && savedData.version === COOKIE_VERSION) {
+                calculationMode = savedData.calculationMode || 'calculated';
+                selectedOptions = { ...defaultSelectedOptions, ...savedData.selectedOptions };
+                specialPotionToggles = { ...defaultSpecialPotionToggles, ...savedData.specialPotionToggles };
+                environmentBuffToggles = { ...defaultEnvironmentBuffToggles, ...savedData.environmentBuffToggles };
+                gamepassToggles = { ...defaultGamepassToggles, ...savedData.gamepassToggles };
+                eventToggles = { ...defaultEventToggles, ...savedData.eventToggles };
+                enchantValues = { ...defaultEnchantValues, ...savedData.enchantValues };
+                toggleValues = { ...defaultToggleValues, ...savedData.toggleValues };
+                numericValues = { ...defaultNumericValues, ...savedData.numericValues };
+                manualStats = { ...defaultManualStats, ...savedData.manualStats };
+                worldIndexStates = { ...defaultWorldIndexStates, ...savedData.worldIndexStates };
+                halloweenUpgradeValues = { ...defaultHalloweenUpgradeValues, ...savedData.halloweenUpgradeValues };
+                dismissedManualWarning = savedData.dismissedManualWarning ?? false;
+            } else if (savedData) {
+                deleteCookie('hatching-helper-user-input');
+            }
+        } catch (e) {
+            deleteCookie('hatching-helper-user-input');
         }
     });
 
     function saveToCache() {
         const dataToSave = {
+            version: COOKIE_VERSION,
             calculationMode,
             selectedOptions,
             specialPotionToggles,
