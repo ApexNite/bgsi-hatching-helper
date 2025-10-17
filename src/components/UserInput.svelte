@@ -106,6 +106,9 @@
                 selectedRift,
                 mastery?.luckyStreak?.find((s) => s.id === selectedOptions.luckyStreak),
                 ...(potions || [])
+                    .filter((potionType) => 
+                        !potionType.event || (selectedEgg.event && potionType.event === selectedEgg.event)
+                    )
                     .map((potionType) => potionType.potions.find((p) => p.id === selectedOptions[potionType.id]))
                     .filter(Boolean),
                 ...(milestones || [])
@@ -470,26 +473,28 @@
             <!-- Potions -->
             <section class="menu-section">
                 {#each potions || [] as potion (potion.id)}
-                    <div class="menu-row">
-                        <span class="menu-label">
-                            {#if potion.img}
-                                <picture>
-                                    <source srcset="{potion.img}.avif" type="image/avif">
-                                    <source srcset="{potion.img}.webp" type="image/webp">
-                                    <img src="{potion.img}.png" alt={potion.name} class="menu-img" loading="lazy" decoding="async">
-                                </picture>
-                            {/if}
-                            {potion.name}:
-                        </span>
-                        <div class="menu-control">
-                            <Dropdown
-                                id={potion.id}
-                                options={potion.potions}
-                                selectedOption={potion.potions.find((o) => o.id === selectedOptions[potion.id]) || potion.potions[potion.potions.length - 1]}
-                                onSelect={handleSelect}
-                            />
+                    {#if !potion.event || (selectedEgg.event && potion.event === selectedEgg.event)}
+                        <div class="menu-row">
+                            <span class="menu-label">
+                                {#if potion.img}
+                                    <picture>
+                                        <source srcset="{potion.img}.avif" type="image/avif">
+                                        <source srcset="{potion.img}.webp" type="image/webp">
+                                        <img src="{potion.img}.png" alt={potion.name} class="menu-img" loading="lazy" decoding="async">
+                                    </picture>
+                                {/if}
+                                {potion.name}:
+                            </span>
+                            <div class="menu-control">
+                                <Dropdown
+                                    id={potion.id}
+                                    options={potion.potions}
+                                    selectedOption={potion.potions.find((o) => o.id === selectedOptions[potion.id]) || potion.potions[potion.potions.length - 1]}
+                                    onSelect={handleSelect}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    {/if}
                 {/each}
 
                 {#each specialPotions || [] as potion (potion.id)}
