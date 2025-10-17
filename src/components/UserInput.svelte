@@ -14,6 +14,7 @@
         environmentBuffs,
         events,
         gamepasses,
+        halloweenUpgrades,
         index,
         mastery,
         milestones,
@@ -68,6 +69,7 @@
         eggsPerHatch: 1
     };
     const defaultWorldIndexStates = {};
+    const defaultHalloweenUpgradeValues = {};
 
     let selectedOptions = defaultSelectedOptions;
     let specialPotionToggles = defaultSpecialPotionToggles;
@@ -79,6 +81,7 @@
     let numericValues = defaultNumericValues;
     let manualStats = defaultManualStats;
     let worldIndexStates = defaultWorldIndexStates;
+    let halloweenUpgradeValues = defaultHalloweenUpgradeValues;
 
     let dismissedManualWarning = false;
 
@@ -86,6 +89,8 @@
     $: isInfinityEgg = selectedEgg?.type === "infinity";
     $: isWorldEgg = selectedEgg?.type === "world";
     $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
+    $: isHalloweenEgg = selectedEgg?.event === "halloween";
+
     $: selectedRift = rifts?.find((r) => r.id === selectedOptions.rifts) || rifts?.[0];
 
     $: selectedEggId = selectedOptions.eggs;
@@ -120,7 +125,16 @@
                 ...(events || []).filter((ev) => eventToggles[ev.id]),
                 ...(enchants || [])
                     .map((enchant) => ({ ...enchant, _value: Number(enchantValues[enchant.id]) }))
-                    .filter((e) => e._value > 0)
+                    .filter((e) => e._value > 0),
+                ...(halloweenUpgrades || [])
+                    .map((upgrade) => {
+                        const level = Number(halloweenUpgradeValues[upgrade.id]);
+                        if (level > 0 && upgrade.levels[level]) {
+                            return { ...upgrade.levels[level] };
+                        }
+                        return null;
+                    })
+                    .filter(Boolean)
             ].filter(Boolean);
 
             const toggleValuesWithWorldIndex = { 
@@ -148,6 +162,7 @@
             numericValues = { ...defaultNumericValues, ...savedData.numericValues };
             manualStats = { ...defaultManualStats, ...savedData.manualStats };
             worldIndexStates = { ...defaultWorldIndexStates, ...savedData.worldIndexStates };
+            halloweenUpgradeValues = { ...defaultHalloweenUpgradeValues, ...savedData.halloweenUpgradeValues };
             dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         }
     });
@@ -165,6 +180,7 @@
             numericValues,
             manualStats,
             worldIndexStates,
+            halloweenUpgradeValues,
             dismissedManualWarning
         };
 
@@ -245,6 +261,11 @@
             [selectedEgg.world]: newState
         };
         
+        saveToCache();
+    }
+
+    function updateHalloweenUpgradeValue(upgradeId, value) {
+        halloweenUpgradeValues = { ...halloweenUpgradeValues, [upgradeId]: value };
         saveToCache();
     }
 </script>
@@ -606,6 +627,35 @@
                     </div>
                 </div>
             </section>
+            
+            {#if isHalloweenEgg && calculationMode !== "manual"}
+                <div class="section-separator"></div>
+
+                <!-- Halloween Upgrades -->
+                <section class="menu-section">
+                    {#each halloweenUpgrades || [] as upgrade (upgrade.id)}
+                        <div class="menu-row">
+                            <span class="menu-label">
+                                {#if upgrade.img}
+                                    <picture>
+                                        <source srcset="{upgrade.img}.avif" type="image/avif">
+                                        <source srcset="{upgrade.img}.webp" type="image/webp">
+                                        <img src="{upgrade.img}.png" alt={upgrade.name} class="menu-img" loading="lazy" decoding="async">
+                                    </picture>
+                                {/if}
+                                {upgrade.name}:
+                            </span>
+                            <div class="menu-control">
+                                <NumberInput
+                                    id={upgrade.id}
+                                    value={halloweenUpgradeValues[upgrade.id]}
+                                    onInput={({ value }) => updateHalloweenUpgradeValue(upgrade.id, value)}
+                                />
+                            </div>
+                        </div>
+                    {/each}
+                </section>
+            {/if}
 
             <div class="section-separator"></div>
 

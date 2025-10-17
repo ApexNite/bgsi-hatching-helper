@@ -1,0 +1,62 @@
+[
+    {
+        "id": "halloween-luck",
+        "name": "Halloween Luck",
+        "img": "assets/images/icons/luck",
+        "levels": {
+            "1": {
+                "luck": 0.1
+            },
+            "2": {
+                "luck": 0.15
+            },
+            "3": {
+                "luck": 0.20
+            },
+            "4": {
+                "luck": 0.25
+            },
+            "5": {
+                "luck": 0.30
+            }
+        }
+    },
+    {
+        "id": "halloween-secret-luck",
+        "name": "Halloween Secret Luck",
+        "img": "assets/images/icons/halloween-secret-luck",
+        "levels": {
+            "1": {
+                "secretLuck": 0.01
+            },
+            "2": {
+                "secretLuck": 0.02
+            },
+            "3": {
+                "secretLuck": 0.03
+            },
+            "4": {
+                "secretLuck": 0.05
+            }
+        }
+    },
+    {
+        "id": "halloween-infinity-luck",
+        "name": "Halloween Infinity Luck",
+        "img": "assets/images/icons/infinity-luck",
+        "levels": {
+            "1": {
+                "infinityLuck": 0.01
+            },
+            "2": {
+                "infinityLuck": 0.02
+            },
+            "3": {
+                "infinityLuck": 0.03
+            },
+            "4": {
+                "infinityLuck": 0.05
+            }
+        }
+    }
+]

@@ -2,16 +2,19 @@ export function calculateStats(sources, toggles, numbers, dailyPerksData, indexD
     const totals = {
         luck: 2,
         secretLuck: 1,
+        infinityLuck: 1,
         shinyChance: 0,
         mythicChance: 0,
         hatchSpeed: 1,
         luckMultiplier: 0,
         secretLuckMultiplier: 1,
+        infinityLuckMultiplier: 1,
         shinyChanceMultiplier: 1,
         mythicChanceMultiplier: 1,
         hatchSpeedMultiplier: 0,
         baseLuck: 0,
         baseSecretLuck: 0,
+        baseInfinityLuck: 0,
         baseShinyChance: 1 / 40,
         baseMythicChance: 1 / 100,
         baseHatchSpeed: 0
@@ -68,11 +71,13 @@ export function calculateManualStats(manualStats, rift) {
     const totals = {
         luck: 0,
         secretLuck: 0,
+        infinityLuck: 0,
         shinyChance: 0,
         mythicChance: 0,
         hatchSpeed: 0,
         baseLuck: 1 + manualStats.luck / 100,
         baseSecretLuck: manualStats.secretLuck,
+        baseInfinityLuck: manualStats.infinityLuck || 0,
         baseShinyChance: 1 / manualStats.shinyChance,
         baseMythicChance: 1 / manualStats.mythicChance,
         baseHatchSpeed: manualStats.hatchSpeed / 100
@@ -87,6 +92,7 @@ function calculateStatsFromTotals(totals) {
     return {
         luck: (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1),
         secretLuck: (totals.baseSecretLuck || 0) + (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
+        infinityLuck: (totals.baseInfinityLuck || 0) + (totals.infinityLuck || 0) * (totals.infinityLuckMultiplier || 1),
         shinyChance: (totals.baseShinyChance || 0) * (1 + (totals.shinyChance || 0)) * (totals.shinyChanceMultiplier || 1),
         mythicChance: (totals.baseMythicChance || 0) * (1 + totals.mythicChance) * (totals.mythicChanceMultiplier || 1),
         hatchSpeed: (totals.baseHatchSpeed || 0) + (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
@@ -127,6 +133,10 @@ function applySource(totals, source) {
         totals.secretLuck += source.secretLuck * times;
     }
 
+    if (typeof source.infinityLuck === "number") {
+        totals.infinityLuck += source.infinityLuck * times;
+    }
+
     if (typeof source.luckMultiplier === "number") {
         totals.luckMultiplier += source.luckMultiplier;
     }
@@ -152,6 +162,10 @@ function applySource(totals, source) {
         totals.secretLuckMultiplier *= source.secretLuckMultiplier;
     }
 
+    if (typeof source.infinityLuckMultiplier === "number") {
+        totals.infinityLuckMultiplier *= source.infinityLuckMultiplier;
+    }
+
     if (typeof source.baseLuck === "number") {
         totals.baseLuck += source.baseLuck * times;
     }
@@ -170,6 +184,10 @@ function applySource(totals, source) {
 
     if (typeof source.baseSecretLuck === "number") {
         totals.baseSecretLuck += source.baseSecretLuck * times;
+    }
+
+    if (typeof source.baseInfinityLuck === "number") {
+        totals.baseInfinityLuck += source.baseInfinityLuck * times;
     }
 }
 

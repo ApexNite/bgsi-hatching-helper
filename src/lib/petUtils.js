@@ -166,12 +166,15 @@ function normalizeEgg(items, stats) {
 
     const baseLuckMultiplier = stats?.luck ?? 1;
     const secretLuckMultiplier = stats?.secretLuck ?? 1;
+    const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
     const epicLuckMultiplier = Math.min(baseLuckMultiplier, 4);
 
     for (const item of list) {
         switch (item.rarity) {
-            case 'secret':
             case 'infinity':
+                item.rawChance = item.baseChance * baseLuckMultiplier * secretLuckMultiplier * infinityLuckMultiplier;
+                break;
+            case 'secret':
                 item.rawChance = item.baseChance * baseLuckMultiplier * secretLuckMultiplier;
                 break;
             case 'legendary':
