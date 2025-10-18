@@ -130,10 +130,13 @@
                     .filter((e) => e._value > 0),
                 ...(halloweenUpgrades || [])
                     .map((upgrade) => {
-                        const level = Number(halloweenUpgradeValues[upgrade.id]);
+                        let level = Number(halloweenUpgradeValues[upgrade.id]);
+                        level = Math.min(level, Object.keys(upgrade.levels).length);
+
                         if (level > 0 && upgrade.levels[level]) {
                             return { ...upgrade.levels[level] };
                         }
+
                         return null;
                     })
                     .filter(Boolean)
