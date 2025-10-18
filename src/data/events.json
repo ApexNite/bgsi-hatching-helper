@@ -15,7 +15,7 @@
         "id": "mythic-event",
         "name": "Mythic Event",
         "img": "assets/images/icons/mythic",
-        "mythicChanceMultiplier": 2
+        "mythicChance": 0.25
     },
     {
         "id": "shiny-event",
