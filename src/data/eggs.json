@@ -1164,6 +1164,7 @@
         "name": "Pumpkin Egg",
         "type": "special",
         "event": "halloween",
+        "riftable": true,
         "pets": [
             {
                 "id": "pumpkin-doggy",
@@ -1196,6 +1197,7 @@
         "name": "Costume Egg",
         "type": "special",
         "event": "halloween",
+        "riftable": true,
         "pets": [
             {
                 "id": "pirate-doggy",
@@ -1234,6 +1236,7 @@
         "name": "Sinister Egg",
         "type": "special",
         "event": "halloween",
+        "riftable": true,
         "pets": [
             {
                 "id": "light-vessel",
