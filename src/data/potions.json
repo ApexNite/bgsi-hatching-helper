@@ -136,45 +136,5 @@
                 "name": "None"
             }
         ]
-    },
-    {
-        "id": "halloween-elixir",
-        "name": "Halloween Elixir",
-        "img": "assets/images/potions/halloween-elixir-iv",
-        "event": "halloween",
-        "potions": [
-            {
-                "id": "halloween-elixir-iv",
-                "name": "Halloween Elixir IV",
-                "luck": 2.5,
-                "shinyChance": 2.5,
-                "mythicChance": 2
-            },
-            {
-                "id": "halloween-elixir-iii",
-                "name": "Halloween Elixir III",
-                "luck": 1.5,
-                "shinyChance": 1.5,
-                "mythicChance": 1
-            },
-            {
-                "id": "halloween-elixir-ii",
-                "name": "Halloween Elixir II",
-                "luck": 1,
-                "shinyChance": 1,
-                "mythicChance": 0.75
-            },
-            {
-                "id": "halloween-elixir-i",
-                "name": "Halloween Elixir I",
-                "luck": 0.5,
-                "shinyChance": 0.5,
-                "mythicChance": 0.25
-            },
-            {
-                "id": "none",
-                "name": "None"
-            }
-        ]
     }
 ]

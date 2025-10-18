@@ -13,6 +13,7 @@
         enchants,
         environmentBuffs,
         events,
+        eventPotions,
         gamepasses,
         halloweenUpgrades,
         index,
@@ -48,6 +49,9 @@
         luckyStreak: mastery.luckyStreak[mastery.luckyStreak.length - 1]?.id,
         ...Object.fromEntries(
             potions.map((potionType) => [potionType.id, potionType.potions[potionType.potions.length - 1]?.id || []])
+        ),
+        ...Object.fromEntries(
+            eventPotions.map((potionType) => [potionType.id, potionType.potions[potionType.potions.length - 1]?.id || []])
         ),
         ...Object.fromEntries(
             milestones.map((milestoneType) => [milestoneType.id, milestoneType.tiers[milestoneType.tiers.length - 1]?.id || []])
@@ -113,6 +117,9 @@
                 selectedRift,
                 mastery?.luckyStreak?.find((s) => s.id === selectedOptions.luckyStreak),
                 ...(potions || [])
+                    .map((potionType) => potionType.potions.find((p) => p.id === selectedOptions[potionType.id]))
+                    .filter(Boolean),
+                ...(eventPotions || [])
                     .filter((potionType) => 
                         !potionType.event || (selectedEgg.event && potionType.event === selectedEgg.event)
                     )
@@ -507,6 +514,29 @@
             <!-- Potions -->
             <section class="menu-section">
                 {#each potions || [] as potion (potion.id)}
+                    <div class="menu-row">
+                        <span class="menu-label">
+                            {#if potion.img}
+                                <picture>
+                                    <source srcset="{potion.img}.avif" type="image/avif">
+                                    <source srcset="{potion.img}.webp" type="image/webp">
+                                    <img src="{potion.img}.png" alt={potion.name} class="menu-img" loading="lazy" decoding="async">
+                                </picture>
+                            {/if}
+                            {potion.name}:
+                        </span>
+                        <div class="menu-control">
+                            <Dropdown
+                                id={potion.id}
+                                options={potion.potions}
+                                selectedOption={potion.potions.find((o) => o.id === selectedOptions[potion.id]) || potion.potions[potion.potions.length - 1]}
+                                onSelect={handleSelect}
+                            />
+                        </div>
+                    </div>
+                {/each}
+
+                {#each eventPotions || [] as potion (potion.id)}
                     {#if !potion.event || (selectedEgg.event && potion.event === selectedEgg.event)}
                         <div class="menu-row">
                             <span class="menu-label">
