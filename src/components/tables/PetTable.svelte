@@ -1,6 +1,6 @@
 <script>
-  import { getPetsToDisplay, calculateHatchTime } from '../lib/petUtils.js';
-  import { formatChance, formatTime } from '../lib/formatUtils.js';
+  import { getPetsToDisplay, calculateHatchTime } from '../../lib/petUtils.js';
+  import { formatChance, formatTime } from '../../lib/formatUtils.js';
 
   export let activeTab = 'chances';
   export let stats;

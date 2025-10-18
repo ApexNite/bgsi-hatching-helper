@@ -1,6 +1,6 @@
 <script>
-  import { formatChancePercent, formatChanceFraction, formatMultiplier } from "../lib/formatUtils.js";
-  import { calculateEggsPerSecond } from "../lib/petUtils.js";
+  import { formatChancePercent, formatChanceFraction, formatMultiplier } from "../../lib/formatUtils.js";
+  import { calculateEggsPerSecond } from "../../lib/petUtils.js";
 
   export let activeTab = "chances";
   export let stats = { luck: 1, secretLuck: 1, shinyChance: 1 / 40, mythicChance: 1 / 100, hatchSpeed: 1 };

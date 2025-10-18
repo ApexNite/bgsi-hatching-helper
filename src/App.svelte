@@ -1,8 +1,8 @@
 <script>
-  import UserInput from "./components/UserInput.svelte";
-  import TabSwitcher from "./components/TabSwitcher.svelte";
-  import StatsBar from "./components/StatsBar.svelte";
-  import PetTable from "./components/PetTable.svelte";
+  import UserInput from "./components/containers/UserInput.svelte";
+  import TabSwitcher from "./components/navigation/TabSwitcher.svelte";
+  import StatsBar from "./components/bars/StatsBar.svelte";
+  import PetTable from "./components/tables/PetTable.svelte";
 
   let activeTab = "chances";
   let stats;

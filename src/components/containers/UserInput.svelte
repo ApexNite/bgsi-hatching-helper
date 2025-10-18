@@ -1,11 +1,12 @@
 <script>
-    import { calculateStats, calculateManualStats } from "../lib/statUtils.js";
-    import { setCookie, getCookie, deleteCookie } from "../lib/cookieUtils.js";
+    import { calculateStats, calculateManualStats } from "../../lib/statUtils.js";
+    import { setCookie, getCookie, deleteCookie } from "../../lib/cookieUtils.js";
     import { onMount } from "svelte";
 
-    import Dropdown from "./form/Dropdown.svelte";
-    import Checkbox from "./form/Checkbox.svelte";
-    import NumberInput from "./form/NumberInput.svelte";
+    import Dropdown from "../form/Dropdown.svelte";
+    import Checkbox from "../form/Checkbox.svelte";
+    import NumberInput from "../form/NumberInput.svelte";
+    import WarningBanner from "../warnings/WarningBanner.svelte";
 
     import {
         dailyPerks,
@@ -23,14 +24,14 @@
         rifts,
         specialPotions,
         worlds
-    } from "../lib/dataUtils.js";
+    } from "../../lib/dataUtils.js";
 
     export let stats;
     export let eggsPerHatch;
     export let selectedEggId;
     export let selectedWorldId;
 
-    const COOKIE_VERSION = 2;
+    const COOKIE_VERSION = 3;
 
     let calculationMode = 'calculated';
 
@@ -90,6 +91,7 @@
     let halloweenUpgradeValues = defaultHalloweenUpgradeValues;
 
     let dismissedManualWarning = false;
+    let dismissedHalloweenEventWarning = false;
 
     $: selectedEgg = eggs?.find((e) => e.id === selectedOptions.eggs);
     $: isInfinityEgg = selectedEgg?.type === "infinity";
@@ -177,6 +179,7 @@
                 worldIndexStates = { ...defaultWorldIndexStates, ...savedData.worldIndexStates };
                 halloweenUpgradeValues = { ...defaultHalloweenUpgradeValues, ...savedData.halloweenUpgradeValues };
                 dismissedManualWarning = savedData.dismissedManualWarning ?? false;
+                dismissedHalloweenEventWarning = savedData.dismissedHalloweenEventWarning ?? false;
             } else if (savedData) {
                 deleteCookie('hatching-helper-user-input');
             }
@@ -200,7 +203,8 @@
             manualStats,
             worldIndexStates,
             halloweenUpgradeValues,
-            dismissedManualWarning
+            dismissedManualWarning,
+            dismissedHalloweenEventWarning
         };
 
         setCookie('hatching-helper-user-input', dataToSave);
@@ -211,8 +215,13 @@
         saveToCache();
     }
 
-    function dismissWarning() {
+    function dismissManualWarning() {
         dismissedManualWarning = true;
+        saveToCache();
+    }
+
+    function dismissHalloweenEventWarning() {
+        dismissedHalloweenEventWarning = true;
         saveToCache();
     }
 
@@ -885,14 +894,31 @@
         {/if}
     </div>
 
-    {#if calculationMode === 'manual' && !dismissedManualWarning}
-        <div class="warning-banner">
-            <span class="warning-icon">⚠️</span>
-            <p class="warning-text">
-                Debug stats may not reflect actual values!
-            </p>
-            <button class="warning-dismiss" on:click={dismissWarning}>✕</button>
-        </div>
+    {#if calculationMode === 'manual' && !selectedEgg.event && !dismissedManualWarning}
+        <WarningBanner
+            type="warning"
+            title="Debug stats may be inaccurate!"
+            items={[
+                { label: "World Index", description: "Shown in debug stats for all eggs; only affects world eggs" },
+                { label: "Mythic Event", description: "Not shown in debug" },
+                { label: "Secret Pets Milestone", description: "Secret luck bonus not shown in debug" }
+            ]}
+            recommendation="Use Calculated mode for more accurate results"
+            onDismiss={dismissManualWarning}
+        />
+    {/if}
+
+    {#if calculationMode === 'manual' && selectedEgg.event === "halloween" && !dismissedHalloweenEventWarning}
+        <WarningBanner
+            type="error"
+            title="Debug stats are inaccurate!"
+            items={[
+                { label: "Halloween Elixir", description: "Not shown in debug stats" },
+                { label: "Halloween Upgrades", description: "Not shown in debug stats" }
+            ]}
+            recommendation="Use Calculated mode for more accurate results"
+            onDismiss={dismissHalloweenEventWarning}
+        />
     {/if}
 </div>
 
@@ -1008,50 +1034,5 @@
         font-size: 1.05rem;
         font-weight: 500;
         white-space: nowrap;
-    }
-
-    .warning-banner {
-        background: rgba(255, 255, 0, 0.1);
-        border: 1px solid rgba(255, 255, 0, 0.3);
-        border-radius: var(--radius-md);
-        padding: 1rem;
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .warning-icon {
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .warning-text {
-        margin: 0;
-        font-size: 0.9rem;
-        font-weight: 500;
-        flex: 1;
-    }
-
-    .warning-dismiss {
-        background: rgba(255, 255, 0, 0.1);
-        border: none;
-        color: var(--primary-text);
-        cursor: pointer;
-        width: 28px;
-        height: 28px;
-        border-radius: var(--radius-md);
-        font-size: 0.95rem;
-        line-height: 1;
-        transition: background-color 0.2s ease;
-    }
-
-    .warning-dismiss:hover {
-        background: rgba(255, 255, 0, 0.15);
-    }
-
-    .warning-dismiss:active {
-        transform: scale(0.97);
-        background: rgba(255, 255, 0, 0.2);
     }
 </style>
