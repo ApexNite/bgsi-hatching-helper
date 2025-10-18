@@ -1250,7 +1250,6 @@
           description:
             "Shown in debug stats for all eggs; only affects world eggs",
         },
-        { label: "Mythic Event", description: "Not shown in debug" },
         {
           label: "Secret Pets Milestone",
           description: "Secret luck bonus not shown in debug",
