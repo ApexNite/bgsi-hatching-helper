@@ -730,6 +730,7 @@
                             id="luckier-together"
                             value={numericValues.luckierTogether}
                             onInput={({ value }) => updateNumericValue("luckierTogether", value)}
+                            hoverText="Amount of Friends in the server"
                         />
                     </div>
                 </div>
