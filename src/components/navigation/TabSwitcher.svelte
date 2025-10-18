@@ -6,14 +6,14 @@
   <button
     class="tab-button"
     class:activeTab={activeTab === "chances"}
-    on:click={() => activeTab = "chances"}
+    on:click={() => (activeTab = "chances")}
   >
     Hatching Chances
   </button>
   <button
     class="tab-button"
     class:activeTab={activeTab === "times"}
-    on:click={() => activeTab = "times"}
+    on:click={() => (activeTab = "times")}
   >
     Hatching Times
   </button>
@@ -30,7 +30,7 @@
     padding: 4px;
     gap: 4px;
   }
-  
+
   .tab-button {
     flex: 1;
     background: none;
@@ -43,11 +43,11 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
   }
-  
+
   .tab-button:hover {
-      background-color: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
+    background-color: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
   }
-  
+
   .tab-button.activeTab {
     background: color-mix(in srgb, var(--accent) 10%, var(--menu-bg));
   }

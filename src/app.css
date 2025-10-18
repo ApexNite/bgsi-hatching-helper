@@ -1,10 +1,10 @@
 :root {
   font-family: Helvetica, Arial, sans-serif;
-  
+
   --background: #121212;
   --menu-bg: #181818;
-  --primary-text: #E0E0E0;
-  --secondary-text: #B0B0B0;
+  --primary-text: #e0e0e0;
+  --secondary-text: #b0b0b0;
   --border: #444444;
   --accent: #888888;
 
@@ -29,19 +29,36 @@ body {
   background-color: var(--background);
 }
 
-h1, h2, h3, h4, h5, h6, strong, span, li, label, input {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+span,
+li,
+label,
+input {
   color: var(--primary-text);
 }
 
-p, small, .secondary, .hint, .subtext {
+p,
+small,
+.secondary,
+.hint,
+.subtext {
   color: var(--secondary-text);
 }
 
-hr, .divider, .bordered {
+hr,
+.divider,
+.bordered {
   border-color: var(--border);
 }
 
-a, .accent {
+a,
+.accent {
   color: var(--accent);
 }
 

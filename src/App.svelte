@@ -22,7 +22,7 @@
   </div>
 
   <section class="right-pane">
-    <TabSwitcher bind:activeTab={activeTab} />
+    <TabSwitcher bind:activeTab />
 
     <StatsBar {activeTab} {stats} {eggsPerHatch} />
 

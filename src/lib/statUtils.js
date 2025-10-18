@@ -1,232 +1,267 @@
-export function calculateStats(sources, toggles, numbers, dailyPerksData, indexData, masteryData) {
-    const totals = {
-        luck: 2,
-        secretLuck: 1,
-        infinityLuck: 1,
-        shinyChance: 0,
-        mythicChance: 0,
-        hatchSpeed: 1,
-        luckMultiplier: 0,
-        secretLuckMultiplier: 1,
-        infinityLuckMultiplier: 1,
-        shinyChanceMultiplier: 1,
-        mythicChanceMultiplier: 1,
-        hatchSpeedMultiplier: 0,
-        baseLuck: 0,
-        baseSecretLuck: 0,
-        baseInfinityLuck: 0,
-        baseShinyChance: 1 / 40,
-        baseMythicChance: 1 / 100,
-        baseHatchSpeed: 0
-    };
+export function calculateStats(
+  sources,
+  toggles,
+  numbers,
+  dailyPerksData,
+  indexData,
+  masteryData,
+) {
+  const totals = {
+    luck: 2,
+    secretLuck: 1,
+    infinityLuck: 1,
+    shinyChance: 0,
+    mythicChance: 0,
+    hatchSpeed: 1,
+    luckMultiplier: 0,
+    secretLuckMultiplier: 1,
+    infinityLuckMultiplier: 1,
+    shinyChanceMultiplier: 1,
+    mythicChanceMultiplier: 1,
+    hatchSpeedMultiplier: 0,
+    baseLuck: 0,
+    baseSecretLuck: 0,
+    baseInfinityLuck: 0,
+    baseShinyChance: 1 / 40,
+    baseMythicChance: 1 / 100,
+    baseHatchSpeed: 0,
+  };
 
-    for (const source of sources) {
-        applySource(totals, source);
+  for (const source of sources) {
+    applySource(totals, source);
+  }
+
+  applySource(totals, calculateBubbleBlessing(numbers.shrineBlessing));
+  applySource(totals, calculateDreamerBlessing(numbers.dreamerBlessing));
+  applySource(totals, calculateSeasonPerks(numbers.seasonStars));
+
+  if (toggles.worldNormal) {
+    if (indexData?.normal) {
+      applySource(totals, indexData.normal);
     }
+  }
 
-    applySource(totals, calculateBubbleBlessing(numbers.shrineBlessing));
-    applySource(totals, calculateDreamerBlessing(numbers.dreamerBlessing));
-    applySource(totals, calculateSeasonPerks(numbers.seasonStars));
-
-    if (toggles.worldNormal) {
-        if (indexData?.normal) {
-            applySource(totals, indexData.normal);
-        }
+  if (toggles.worldShiny) {
+    if (indexData?.shiny) {
+      applySource(totals, indexData.shiny);
     }
+  }
 
-    if (toggles.worldShiny) {
-        if (indexData?.shiny) {
-            applySource(totals, indexData.shiny);
-        }
+  if (toggles.fasterHatchMastery) {
+    if (masteryData?.fasterHatch) {
+      applySource(totals, masteryData.fasterHatch);
     }
+  }
 
-    if (toggles.fasterHatchMastery) {
-        if (masteryData?.fasterHatch) {
-            applySource(totals, masteryData.fasterHatch);
-        }
+  if (numbers.luckierTogether > 0) {
+    if (masteryData?.luckierTogether) {
+      applySource(totals, {
+        ...masteryData.luckierTogether,
+        _value: Number(numbers.luckierTogether),
+      });
     }
+  }
 
-    if (numbers.luckierTogether > 0) {
-        if (masteryData?.luckierTogether) {
-            applySource(totals, { ...masteryData.luckierTogether, _value: Number(numbers.luckierTogether) });
-        }
-    }
+  const today = dailyPerksData
+    ? dailyPerksData[new Date().getUTCDay()]
+    : undefined;
+  const selectedPerks = today
+    ? toggles.dailyPerks
+      ? today.premium
+      : today.normal
+    : undefined;
 
-    const today = dailyPerksData ? dailyPerksData[new Date().getUTCDay()] : undefined;
-    const selectedPerks = today ? (toggles.dailyPerks ? today.premium : today.normal) : undefined;
-    
-    if (selectedPerks) {
-        applySource(totals, selectedPerks);
-    }
+  if (selectedPerks) {
+    applySource(totals, selectedPerks);
+  }
 
-    const stats = calculateStatsFromTotals(totals);
+  const stats = calculateStatsFromTotals(totals);
 
-    // just a bandage; need to figure out the real discrepency somehow
-    stats.luck -= totals.luckMultiplier > 0 ? 0 : 1;
+  // just a bandage; need to figure out the real discrepency somehow
+  stats.luck -= totals.luckMultiplier > 0 ? 0 : 1;
 
-    return stats;
+  return stats;
 }
 
 export function calculateManualStats(manualStats, sources) {
-    const totals = {
-        luck: 0,
-        secretLuck: 0,
-        infinityLuck: 0,
-        shinyChance: 0,
-        mythicChance: 0,
-        hatchSpeed: 0,
-        baseLuck: 1 + manualStats.luck / 100,
-        baseSecretLuck: manualStats.secretLuck,
-        baseInfinityLuck: manualStats.infinityLuck || 1,
-        baseShinyChance: 1 / manualStats.shinyChance,
-        baseMythicChance: 1 / manualStats.mythicChance,
-        baseHatchSpeed: manualStats.hatchSpeed / 100
-    };
+  const totals = {
+    luck: 0,
+    secretLuck: 0,
+    infinityLuck: 0,
+    shinyChance: 0,
+    mythicChance: 0,
+    hatchSpeed: 0,
+    baseLuck: 1 + manualStats.luck / 100,
+    baseSecretLuck: manualStats.secretLuck,
+    baseInfinityLuck: manualStats.infinityLuck || 1,
+    baseShinyChance: 1 / manualStats.shinyChance,
+    baseMythicChance: 1 / manualStats.mythicChance,
+    baseHatchSpeed: manualStats.hatchSpeed / 100,
+  };
 
-    for (const source of sources) {
-        applySource(totals, source);
-    }
-    
-    return calculateStatsFromTotals(totals);
+  for (const source of sources) {
+    applySource(totals, source);
+  }
+
+  return calculateStatsFromTotals(totals);
 }
 
 function calculateStatsFromTotals(totals) {
-    return {
-        luck: (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1),
-        secretLuck: (totals.baseSecretLuck || 0) + (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
-        infinityLuck: (totals.baseInfinityLuck || 0) + (totals.infinityLuck || 0) * (totals.infinityLuckMultiplier || 1),
-        shinyChance: (totals.baseShinyChance || 0) * (1 + (totals.shinyChance || 0)) * (totals.shinyChanceMultiplier || 1),
-        mythicChance: (totals.baseMythicChance || 0) * (1 + totals.mythicChance) * (totals.mythicChanceMultiplier || 1),
-        hatchSpeed: (totals.baseHatchSpeed || 0) + (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
-    };
+  return {
+    luck:
+      (totals.baseLuck || 0) +
+      (totals.luck || 0) * (totals.luckMultiplier || 1),
+    secretLuck:
+      (totals.baseSecretLuck || 0) +
+      (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
+    infinityLuck:
+      (totals.baseInfinityLuck || 0) +
+      (totals.infinityLuck || 0) * (totals.infinityLuckMultiplier || 1),
+    shinyChance:
+      (totals.baseShinyChance || 0) *
+      (1 + (totals.shinyChance || 0)) *
+      (totals.shinyChanceMultiplier || 1),
+    mythicChance:
+      (totals.baseMythicChance || 0) *
+      (1 + totals.mythicChance) *
+      (totals.mythicChanceMultiplier || 1),
+    hatchSpeed:
+      (totals.baseHatchSpeed || 0) +
+      (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
+  };
 }
 
 function applySource(totals, source) {
-    if (!totals) {
-        return;
-    }
+  if (!totals) {
+    return;
+  }
 
-    if (!source) {
-        return;
-    }
+  if (!source) {
+    return;
+  }
 
-    const times = source._value != null ? Number(source._value) : 1;
-    if (!times) {
-        return;
-    }
+  const times = source._value != null ? Number(source._value) : 1;
+  if (!times) {
+    return;
+  }
 
-    if (typeof source.luck === "number") {
-        totals.luck += source.luck * times;
-    }
+  if (typeof source.luck === "number") {
+    totals.luck += source.luck * times;
+  }
 
-    if (typeof source.hatchSpeed === "number") {
-        totals.hatchSpeed += source.hatchSpeed * times;
-    }
+  if (typeof source.hatchSpeed === "number") {
+    totals.hatchSpeed += source.hatchSpeed * times;
+  }
 
-    if (typeof source.shinyChance === "number") {
-        totals.shinyChance += source.shinyChance * times;
-    }
+  if (typeof source.shinyChance === "number") {
+    totals.shinyChance += source.shinyChance * times;
+  }
 
-    if (typeof source.mythicChance === "number") {
-        totals.mythicChance += source.mythicChance * times;
-    }
+  if (typeof source.mythicChance === "number") {
+    totals.mythicChance += source.mythicChance * times;
+  }
 
-    if (typeof source.secretLuck === "number") {
-        totals.secretLuck += source.secretLuck * times;
-    }
+  if (typeof source.secretLuck === "number") {
+    totals.secretLuck += source.secretLuck * times;
+  }
 
-    if (typeof source.infinityLuck === "number") {
-        totals.infinityLuck += source.infinityLuck * times;
-    }
+  if (typeof source.infinityLuck === "number") {
+    totals.infinityLuck += source.infinityLuck * times;
+  }
 
-    if (typeof source.luckMultiplier === "number") {
-        totals.luckMultiplier += source.luckMultiplier;
-    }
+  if (typeof source.luckMultiplier === "number") {
+    totals.luckMultiplier += source.luckMultiplier;
+  }
 
-    if (typeof source.hatchSpeedMultiplier === "number") {
-        totals.hatchSpeedMultiplier += source.hatchSpeedMultiplier;
-    }
+  if (typeof source.hatchSpeedMultiplier === "number") {
+    totals.hatchSpeedMultiplier += source.hatchSpeedMultiplier;
+  }
 
-    if (typeof source.shinyChanceMultiplier === "number") {
-        totals.shinyChanceMultiplier *= source.shinyChanceMultiplier;
-    }
+  if (typeof source.shinyChanceMultiplier === "number") {
+    totals.shinyChanceMultiplier *= source.shinyChanceMultiplier;
+  }
 
-    if (typeof source.mythicChanceMultiplier === "number") {
-        if (source.overwriteMythicChanceMultiplier) {
-            totals.mythicChanceMultiplier = source.mythicChanceMultiplier;
-            totals._mythicChanceMultiplierOverwritten = true;
-        } else if (!totals._mythicChanceMultiplierOverwritten) {
-            totals.mythicChanceMultiplier *= source.mythicChanceMultiplier;
-        }
+  if (typeof source.mythicChanceMultiplier === "number") {
+    if (source.overwriteMythicChanceMultiplier) {
+      totals.mythicChanceMultiplier = source.mythicChanceMultiplier;
+      totals._mythicChanceMultiplierOverwritten = true;
+    } else if (!totals._mythicChanceMultiplierOverwritten) {
+      totals.mythicChanceMultiplier *= source.mythicChanceMultiplier;
     }
+  }
 
-    if (typeof source.secretLuckMultiplier === "number") {
-        totals.secretLuckMultiplier *= source.secretLuckMultiplier;
-    }
+  if (typeof source.secretLuckMultiplier === "number") {
+    totals.secretLuckMultiplier *= source.secretLuckMultiplier;
+  }
 
-    if (typeof source.infinityLuckMultiplier === "number") {
-        totals.infinityLuckMultiplier *= source.infinityLuckMultiplier;
-    }
+  if (typeof source.infinityLuckMultiplier === "number") {
+    totals.infinityLuckMultiplier *= source.infinityLuckMultiplier;
+  }
 
-    if (typeof source.baseLuck === "number") {
-        totals.baseLuck += source.baseLuck * times;
-    }
+  if (typeof source.baseLuck === "number") {
+    totals.baseLuck += source.baseLuck * times;
+  }
 
-    if (typeof source.baseHatchSpeed === "number") {
-        totals.baseHatchSpeed += source.baseHatchSpeed * times;
-    }
+  if (typeof source.baseHatchSpeed === "number") {
+    totals.baseHatchSpeed += source.baseHatchSpeed * times;
+  }
 
-    if (typeof source.baseShinyChance === "number") {
-        totals.baseShinyChance += source.baseShinyChance * times;
-    }
+  if (typeof source.baseShinyChance === "number") {
+    totals.baseShinyChance += source.baseShinyChance * times;
+  }
 
-    if (typeof source.baseMythicChance === "number") {
-        totals.baseMythicChance += source.baseMythicChance * times;
-    }
+  if (typeof source.baseMythicChance === "number") {
+    totals.baseMythicChance += source.baseMythicChance * times;
+  }
 
-    if (typeof source.baseSecretLuck === "number") {
-        totals.baseSecretLuck += source.baseSecretLuck * times;
-    }
+  if (typeof source.baseSecretLuck === "number") {
+    totals.baseSecretLuck += source.baseSecretLuck * times;
+  }
 
-    if (typeof source.baseInfinityLuck === "number") {
-        totals.baseInfinityLuck += source.baseInfinityLuck * times;
-    }
+  if (typeof source.baseInfinityLuck === "number") {
+    totals.baseInfinityLuck += source.baseInfinityLuck * times;
+  }
 }
 
 function calculateBubbleBlessing(level) {
-    const levelClamped = clamp(level, 0, 50);
-    const luck = levelClamped >= 1 ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 : 0;
-    const baseHatchSpeed = levelClamped >= 20 ? (0.05 + ((0.25 - 0.05) * (levelClamped - 20)) / 30) + 1 : 0;
+  const levelClamped = clamp(level, 0, 50);
+  const luck =
+    levelClamped >= 1 ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 : 0;
+  const baseHatchSpeed =
+    levelClamped >= 20
+      ? 0.05 + ((0.25 - 0.05) * (levelClamped - 20)) / 30 + 1
+      : 0;
 
-    return { luck, baseHatchSpeed };
+  return { luck, baseHatchSpeed };
 }
 
 function calculateDreamerBlessing(level) {
-    const levelClamped = clamp(level, 0, 50);
-    const secretLuckMultiplier = levelClamped > 10 ? 1 + ((2 + (levelClamped - 10) * 1.2) / 100) : null;
+  const levelClamped = clamp(level, 0, 50);
+  const secretLuckMultiplier =
+    levelClamped > 10 ? 1 + (2 + (levelClamped - 10) * 1.2) / 100 : null;
 
-    return { secretLuckMultiplier };
+  return { secretLuckMultiplier };
 }
 
 function calculateSeasonPerks(stars) {
-    const starsClamped = clamp(stars, 0, 1500);
+  const starsClamped = clamp(stars, 0, 1500);
 
-    return {
-        luck: starsClamped / 600,
-        hatchSpeed: starsClamped / 7500
-    };
+  return {
+    luck: starsClamped / 600,
+    hatchSpeed: starsClamped / 7500,
+  };
 }
 
 function clamp(value, min, max) {
-    const numericValue = Number(value) || 0;
-    
-    if (numericValue < min) {
-        return min;
-    }
+  const numericValue = Number(value) || 0;
 
-    if (numericValue > max) {
-        return max;
-    }
+  if (numericValue < min) {
+    return min;
+  }
 
-    return numericValue;
+  if (numericValue > max) {
+    return max;
+  }
+
+  return numericValue;
 }
