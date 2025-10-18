@@ -152,7 +152,6 @@
         color: var(--primary-text);
         background: color-mix(in srgb, var(--accent) 30%, transparent);
         padding: 0.5rem;
-        border-radius: var(--radius-sm);
         border-left: 3px solid var(--accent);
         margin-top: 0.25rem;
     }
