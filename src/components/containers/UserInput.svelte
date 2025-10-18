@@ -178,7 +178,7 @@
             _value: Number(enchantValues[enchant.id]),
           }))
           .filter((e) => e._value > 0),
-        ...(halloweenUpgrades || [])
+        ...(isHalloweenEgg ? (halloweenUpgrades || []) : [])
           .map((upgrade) => {
             let level = Number(halloweenUpgradeValues[upgrade.id]);
             level = Math.min(level, Object.keys(upgrade.levels).length);
