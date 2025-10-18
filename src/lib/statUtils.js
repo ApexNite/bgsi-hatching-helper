@@ -77,7 +77,7 @@ export function calculateManualStats(manualStats, sources) {
         hatchSpeed: 0,
         baseLuck: 1 + manualStats.luck / 100,
         baseSecretLuck: manualStats.secretLuck,
-        baseInfinityLuck: manualStats.infinityLuck || 0,
+        baseInfinityLuck: manualStats.infinityLuck || 1,
         baseShinyChance: 1 / manualStats.shinyChance,
         baseMythicChance: 1 / manualStats.mythicChance,
         baseHatchSpeed: manualStats.hatchSpeed / 100
