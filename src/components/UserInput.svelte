@@ -110,7 +110,7 @@
         eggsPerHatch = numericValues.eggsPerHatch;
 
         if (calculationMode === 'manual') {
-            stats = calculateManualStats(manualStats, selectedRift);
+            stats = calculateManualStats(manualStats, [selectedRift]);
         } else {
             const sources = [
                 selectedEgg,

@@ -67,7 +67,7 @@ export function calculateStats(sources, toggles, numbers, dailyPerksData, indexD
     return stats;
 }
 
-export function calculateManualStats(manualStats, rift) {
+export function calculateManualStats(manualStats, sources) {
     const totals = {
         luck: 0,
         secretLuck: 0,
@@ -83,8 +83,10 @@ export function calculateManualStats(manualStats, rift) {
         baseHatchSpeed: manualStats.hatchSpeed / 100
     };
 
-    applySource(totals, rift);
-
+    for (const source of sources) {
+        applySource(totals, source);
+    }
+    
     return calculateStatsFromTotals(totals);
 }
 
