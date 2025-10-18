@@ -467,8 +467,8 @@
   }
 
   .aggregate-dot {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border: 2px solid currentColor;
     border-radius: 50%;
   }
