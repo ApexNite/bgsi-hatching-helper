@@ -402,6 +402,7 @@
                         id="eggs-per-hatch"
                         value={numericValues.eggsPerHatch}
                         onInput={({ value }) => updateNumericValue("eggsPerHatch", value)}
+                        hoverText="Amount of Eggs Opened Per Hatch"
                     />
                 </div>
             </div>
@@ -599,6 +600,7 @@
                             id="shrine-blessing"
                             value={numericValues.shrineBlessing}
                             onInput={({ value }) => updateNumericValue("shrineBlessing", value)}
+                            hoverText="Bubble Shrine Blessing Level (Max 50)"
                         />
                     </div>
                 </div>
@@ -617,6 +619,7 @@
                             id="dreamer-blessing"
                             value={numericValues.dreamerBlessing}
                             onInput={({ value }) => updateNumericValue("dreamerBlessing", value)}
+                            hoverText="Dreamer Shrine Blessing Level (Max 50)"
                         />
                     </div>
                 </div>
@@ -635,6 +638,7 @@
                             id="season-stars"
                             value={numericValues.seasonStars}
                             onInput={({ value }) => updateNumericValue("seasonStars", value)}
+                            hoverText="Infinite Track Season Pass Stars (Max 1500)"
                         />
                     </div>
                 </div>
@@ -662,6 +666,7 @@
                                     id={upgrade.id}
                                     value={halloweenUpgradeValues[upgrade.id]}
                                     onInput={({ value }) => updateHalloweenUpgradeValue(upgrade.id, value)}
+                                    hoverText={upgrade.hoverText}
                                 />
                             </div>
                         </div>
@@ -681,6 +686,7 @@
                                 id={enchant.id}
                                 value={enchantValues[enchant.id]}
                                 onInput={({ value }) => updateEnchantValue(enchant.id, value)}
+                                hoverText="Amount of Pets Equiped with the {enchant.name} Enchant"
                             />
                         </div>
                     </div>

@@ -3,6 +3,7 @@
         "id": "halloween-luck",
         "name": "Halloween Luck",
         "img": "assets/images/icons/luck",
+        "hoverText": "Halloween Upgrade Luck Level (Max 5)",
         "levels": {
             "1": {
                 "luck": 0.1
@@ -25,6 +26,7 @@
         "id": "halloween-secret-luck",
         "name": "Halloween Secret Luck",
         "img": "assets/images/icons/halloween-secret-luck",
+        "hoverText": "Halloween Upgrade Secret Luck Level (Max 4)",
         "levels": {
             "1": {
                 "secretLuck": 0.01
@@ -44,6 +46,7 @@
         "id": "halloween-infinity-luck",
         "name": "Halloween Infinity Luck",
         "img": "assets/images/icons/infinity-luck",
+        "hoverText": "Halloween Upgrade Infinity Luck Level (Max 4)",
         "levels": {
             "1": {
                 "infinityLuck": 0.01

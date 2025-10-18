@@ -2,6 +2,7 @@
     export let id = "";
     export let value = 0;
     export let onInput = null;
+    export let hoverText = "";
 
     function sanitize(str) {
         let s = String(str ?? "");
@@ -51,6 +52,7 @@
         inputmode="decimal"
         pattern="[0-9]*[.,]?[0-9]*"
         maxlength={12}
+        title={hoverText}
     />
 </div>
 
