@@ -4,8 +4,9 @@ import enchantsJson from "../data/enchants.json";
 import environmentBuffsJson from "../data/environment-buffs.json";
 import eventsJson from "../data/events.json";
 import eventPotionsJson from "../data/event-potions.json";
+import eventSpecialPotionsJson from "../data/event-special-potions.json";
+import eventUpgradesJson from "../data/event-upgrades.json";
 import gamepassesJson from "../data/gamepasses.json";
-import halloweenUpgradesJson from "../data/halloween-upgrades.json";
 import indexJson from "../data/index.json";
 import masteryJson from "../data/mastery.json";
 import milestonesJson from "../data/milestones.json";
@@ -115,8 +116,11 @@ export const enchants = processData(enchantsJson);
 export const environmentBuffs = processData(environmentBuffsJson);
 export const events = processData(eventsJson);
 export const eventPotions = processPotions(processData(eventPotionsJson));
+export const eventSpecialPotions = processSpecialPotions(
+  processData(eventSpecialPotionsJson),
+);
 export const gamepasses = processData(gamepassesJson);
-export const halloweenUpgrades = processData(halloweenUpgradesJson);
+export const eventUpgrades = processData(eventUpgradesJson);
 export const index = processData(indexJson);
 export const mastery = processData(masteryJson);
 export const milestones = processMilestones(processData(milestonesJson));

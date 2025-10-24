@@ -15,8 +15,9 @@
     environmentBuffs,
     events,
     eventPotions,
+    eventSpecialPotions,
+    eventUpgrades,
     gamepasses,
-    halloweenUpgrades,
     index,
     mastery,
     milestones,
@@ -31,7 +32,7 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 3;
+  const COOKIE_VERSION = 4;
 
   let calculationMode = "calculated";
 
@@ -71,6 +72,9 @@
   const defaultSpecialPotionToggles = Object.fromEntries(
     specialPotions.map((p) => [p.id, false]),
   );
+  const defaultEventSpecialPotionToggles = Object.fromEntries(
+    (eventSpecialPotions || []).map((p) => [p.id, false]),
+  );
   const defaultEnvironmentBuffToggles = Object.fromEntries(
     environmentBuffs.map((b) => [b.id, false]),
   );
@@ -95,10 +99,11 @@
     eggsPerHatch: 1,
   };
   const defaultWorldIndexStates = {};
-  const defaultHalloweenUpgradeValues = {};
+  const defaultEventUpgradeValues = {};
 
   let selectedOptions = defaultSelectedOptions;
   let specialPotionToggles = defaultSpecialPotionToggles;
+  let eventSpecialPotionToggles = defaultEventSpecialPotionToggles;
   let environmentBuffToggles = defaultEnvironmentBuffToggles;
   let gamepassToggles = defaultGamepassToggles;
   let eventToggles = defaultEventToggles;
@@ -107,7 +112,7 @@
   let numericValues = defaultNumericValues;
   let manualStats = defaultManualStats;
   let worldIndexStates = defaultWorldIndexStates;
-  let halloweenUpgradeValues = defaultHalloweenUpgradeValues;
+  let eventUpgradeValues = defaultEventUpgradeValues;
 
   let dismissedManualWarning = false;
   let dismissedHalloweenEventWarning = false;
@@ -132,6 +137,10 @@
         }
       : { worldNormal: false, worldShiny: false };
 
+  $: visibleEventUpgrades = (eventUpgrades || []).filter(
+    (u) => selectedEgg?.event && u.event === selectedEgg.event,
+  );
+
   $: {
     eggsPerHatch = numericValues.eggsPerHatch;
 
@@ -155,12 +164,19 @@
               !potionType.event ||
               (selectedEgg.event && potionType.event === selectedEgg.event),
           )
-          .map((potionType) =>
-            potionType.potions.find(
+          .map((potionType) => {
+            const selected = potionType.potions.find(
               (p) => p.id === selectedOptions[potionType.id],
-            ),
-          )
+            );
+            return selected ? { ...selected, event: potionType.event } : null;
+          })
           .filter(Boolean),
+        ...(eventSpecialPotions || []).filter(
+          (p) =>
+            (!p.event ||
+              (selectedEgg.event && p.event === selectedEgg.event)) &&
+            eventSpecialPotionToggles[p.id],
+        ),
         ...(milestones || [])
           .map((milestoneType) =>
             milestoneType.tiers.find(
@@ -178,13 +194,14 @@
             _value: Number(enchantValues[enchant.id]),
           }))
           .filter((e) => e._value > 0),
-        ...(isHalloweenEgg ? (halloweenUpgrades || []) : [])
+        ...(selectedEgg?.event ? eventUpgrades || [] : [])
+          .filter((upgrade) => upgrade.event === selectedEgg.event)
           .map((upgrade) => {
-            let level = Number(halloweenUpgradeValues[upgrade.id]);
+            let level = Number(eventUpgradeValues[upgrade.id]);
             level = Math.min(level, Object.keys(upgrade.levels).length);
 
             if (level > 0 && upgrade.levels[level]) {
-              return { ...upgrade.levels[level] };
+              return { ...upgrade.levels[level], event: upgrade.event };
             }
 
             return null;
@@ -223,6 +240,10 @@
           ...defaultSpecialPotionToggles,
           ...savedData.specialPotionToggles,
         };
+        eventSpecialPotionToggles = {
+          ...defaultEventSpecialPotionToggles,
+          ...savedData.eventSpecialPotionToggles,
+        };
         environmentBuffToggles = {
           ...defaultEnvironmentBuffToggles,
           ...savedData.environmentBuffToggles,
@@ -240,9 +261,9 @@
           ...defaultWorldIndexStates,
           ...savedData.worldIndexStates,
         };
-        halloweenUpgradeValues = {
-          ...defaultHalloweenUpgradeValues,
-          ...savedData.halloweenUpgradeValues,
+        eventUpgradeValues = {
+          ...defaultEventUpgradeValues,
+          ...savedData.eventUpgradeValues,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedHalloweenEventWarning =
@@ -261,6 +282,7 @@
       calculationMode,
       selectedOptions,
       specialPotionToggles,
+      eventSpecialPotionToggles,
       environmentBuffToggles,
       gamepassToggles,
       eventToggles,
@@ -269,7 +291,7 @@
       numericValues,
       manualStats,
       worldIndexStates,
-      halloweenUpgradeValues,
+      eventUpgradeValues,
       dismissedManualWarning,
       dismissedHalloweenEventWarning,
     };
@@ -315,6 +337,14 @@
     specialPotionToggles = {
       ...specialPotionToggles,
       [potionId]: !specialPotionToggles[potionId],
+    };
+    saveToCache();
+  }
+
+  function updateEventSpecialPotionToggle(potionId) {
+    eventSpecialPotionToggles = {
+      ...eventSpecialPotionToggles,
+      [potionId]: !eventSpecialPotionToggles[potionId],
     };
     saveToCache();
   }
@@ -373,8 +403,8 @@
     saveToCache();
   }
 
-  function updateHalloweenUpgradeValue(upgradeId, value) {
-    halloweenUpgradeValues = { ...halloweenUpgradeValues, [upgradeId]: value };
+  function updateEventUpgradeValue(upgradeId, value) {
+    eventUpgradeValues = { ...eventUpgradeValues, [upgradeId]: value };
     saveToCache();
   }
 </script>
@@ -788,6 +818,36 @@
           {/if}
         {/each}
 
+        {#each eventSpecialPotions || [] as potion (potion.id)}
+          {#if !potion.event || (selectedEgg.event && potion.event === selectedEgg.event)}
+            <div class="menu-row">
+              <span class="menu-label">
+                {#if potion.img}
+                  <picture>
+                    <source srcset="{potion.img}.avif" type="image/avif" />
+                    <source srcset="{potion.img}.webp" type="image/webp" />
+                    <img
+                      src="{potion.img}.png"
+                      alt={potion.name}
+                      class="menu-img"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                {/if}
+                {potion.name}:
+              </span>
+              <div class="menu-control">
+                <Checkbox
+                  id={potion.id}
+                  checked={eventSpecialPotionToggles[potion.id]}
+                  onChange={() => updateEventSpecialPotionToggle(potion.id)}
+                />
+              </div>
+            </div>
+          {/if}
+        {/each}
+
         {#each specialPotions || [] as potion (potion.id)}
           <div class="menu-row">
             <span class="menu-label">
@@ -953,12 +1013,11 @@
         </div>
       </section>
 
-      {#if isHalloweenEgg && calculationMode !== "manual"}
-        <div class="section-separator"></div>
+      <div class="section-separator"></div>
 
-        <!-- Halloween Upgrades -->
+      {#if visibleEventUpgrades.length > 0}
         <section class="menu-section">
-          {#each halloweenUpgrades || [] as upgrade (upgrade.id)}
+          {#each visibleEventUpgrades as upgrade (upgrade.id)}
             <div class="menu-row">
               <span class="menu-label">
                 {#if upgrade.img}
@@ -979,18 +1038,18 @@
               <div class="menu-control">
                 <NumberInput
                   id={upgrade.id}
-                  value={halloweenUpgradeValues[upgrade.id]}
+                  value={eventUpgradeValues[upgrade.id] || 0}
                   onInput={({ value }) =>
-                    updateHalloweenUpgradeValue(upgrade.id, value)}
+                    updateEventUpgradeValue(upgrade.id, value)}
                   hoverText={upgrade.hoverText}
                 />
               </div>
             </div>
           {/each}
         </section>
-      {/if}
 
-      <div class="section-separator"></div>
+        <div class="section-separator"></div>
+      {/if}
 
       <!-- Enchants -->
       <section class="menu-section">
@@ -1260,12 +1319,16 @@
     />
   {/if}
 
-  {#if calculationMode === "manual" && selectedEgg.event === "halloween" && !dismissedHalloweenEventWarning}
+  {#if calculationMode === "manual" && isHalloweenEgg && !dismissedHalloweenEventWarning}
     <WarningBanner
       type="error"
       title="Debug stats are inaccurate!"
       items={[
         { label: "Halloween Elixir", description: "Not shown in debug stats" },
+        {
+          label: "Halloween Infinity Elixir",
+          description: "Not shown in debug stats",
+        },
         {
           label: "Halloween Upgrades",
           description: "Not shown in debug stats",

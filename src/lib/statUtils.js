@@ -27,8 +27,14 @@ export function calculateStats(
     baseHatchSpeed: 0,
   };
 
+  const eventBonusMultipliers = collectEventBonusMultipliers(sources);
+
   for (const source of sources) {
-    applySource(totals, source);
+    const adjusted = applyEventBonusMultipliersToSource(
+      source,
+      eventBonusMultipliers,
+    );
+    applySource(totals, adjusted);
   }
 
   applySource(totals, calculateBubbleBlessing(numbers.shrineBlessing));
@@ -99,8 +105,14 @@ export function calculateManualStats(manualStats, sources) {
     baseHatchSpeed: manualStats.hatchSpeed / 100,
   };
 
+  const eventBonusMultipliers = collectEventBonusMultipliers(sources);
+
   for (const source of sources) {
-    applySource(totals, source);
+    const adjusted = applyEventBonusMultipliersToSource(
+      source,
+      eventBonusMultipliers,
+    );
+    applySource(totals, adjusted);
   }
 
   return calculateStatsFromTotals(totals);
@@ -264,4 +276,104 @@ function clamp(value, min, max) {
   }
 
   return numericValue;
+}
+
+function collectEventBonusMultipliers(sources) {
+  const result = {};
+
+  for (const s of sources || []) {
+    const isProvider =
+      typeof s?.potionLuckMultiplier === "number" ||
+      typeof s?.potionShinyChanceMultiplier === "number" ||
+      typeof s?.potionMythicChanceMultiplier === "number" ||
+      typeof s?.potionSecretLuckMultiplier === "number" ||
+      typeof s?.potionInfinityLuckMultiplier === "number" ||
+      typeof s?.potionHatchSpeedMultiplier === "number";
+
+    if (!isProvider || !s?.event) {
+      continue;
+    }
+
+    const ev = s.event;
+    if (!result[ev]) {
+      result[ev] = [];
+    }
+
+    result[ev].push(s);
+  }
+
+  return result;
+}
+
+function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
+  if (!source || !source.event) {
+    return source;
+  }
+
+  const isSpecialBonusProvider =
+    typeof source.potionLuckMultiplier === "number" ||
+    typeof source.potionShinyChanceMultiplier === "number" ||
+    typeof source.potionMythicChanceMultiplier === "number" ||
+    typeof source.potionSecretLuckMultiplier === "number" ||
+    typeof source.potionInfinityLuckMultiplier === "number" ||
+    typeof source.potionHatchSpeedMultiplier === "number";
+
+  if (isSpecialBonusProvider) {
+    return source;
+  }
+
+  const providers = eventBonusMultipliers?.[source.event];
+  if (!providers || providers.length === 0) {
+    return source;
+  }
+
+  let changed = false;
+  const adjusted = { ...source };
+
+  for (const p of providers) {
+    if (
+      typeof adjusted.luck === "number" &&
+      typeof p.potionLuckMultiplier === "number"
+    ) {
+      adjusted.luck *= p.potionLuckMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.shinyChance === "number" &&
+      typeof p.potionShinyChanceMultiplier === "number"
+    ) {
+      adjusted.shinyChance *= p.potionShinyChanceMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.mythicChance === "number" &&
+      typeof p.potionMythicChanceMultiplier === "number"
+    ) {
+      adjusted.mythicChance *= p.potionMythicChanceMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.secretLuck === "number" &&
+      typeof p.potionSecretLuckMultiplier === "number"
+    ) {
+      adjusted.secretLuck *= p.potionSecretLuckMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.infinityLuck === "number" &&
+      typeof p.potionInfinityLuckMultiplier === "number"
+    ) {
+      adjusted.infinityLuck *= p.potionInfinityLuckMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.hatchSpeed === "number" &&
+      typeof p.potionHatchSpeedMultiplier === "number"
+    ) {
+      adjusted.hatchSpeed *= p.potionHatchSpeedMultiplier;
+      changed = true;
+    }
+  }
+
+  return changed ? adjusted : source;
 }
