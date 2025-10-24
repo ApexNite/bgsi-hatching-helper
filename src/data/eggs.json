@@ -1309,7 +1309,7 @@
                 "id": "trick-o-treat",
                 "name": "Trick O' Treat",
                 "rarity": "legendary",
-                "baseChance": 1e-8
+                "baseChance": 1e-7
             },
             {
                 "id": "sinister-shard",
