@@ -1220,7 +1220,7 @@
             },
             {
                 "id": "witches-pot",
-                "name": "Witches-Pot",
+                "name": "Witches Pot",
                 "rarity": "legendary",
                 "baseChance": 2.5e-7
             },
@@ -1265,6 +1265,69 @@
                 "name": "Sinister Lord",
                 "rarity": "infinity",
                 "baseChance": 1.25e-11
+            }
+        ]
+    },
+    {
+        "id": "mutant-egg",
+        "name": "Mutant Egg",
+        "type": "special",
+        "event": "halloween",
+        "riftable": true,
+        "pets": [
+            {
+                "id": "mutant-kitty",
+                "name": "Mutant Kitty",
+                "rarity": "common",
+                "baseChance": 0.65
+            },
+            {
+                "id": "mutant-bunny",
+                "name": "Mutant Bunny",
+                "rarity": "unique",
+                "baseChance": 0.3
+            },
+            {
+                "id": "mutant-dragon",
+                "name": "Mutant Dragon",
+                "rarity": "epic",
+                "baseChance": 0.03
+            },
+            {
+                "id": "king-eye",
+                "name": "King Eye",
+                "rarity": "legendary",
+                "baseChance": 0.00015
+            },
+            {
+                "id": "evil-marshmallow",
+                "name": "Evil Marshmallow",
+                "rarity": "legendary",
+                "baseChance": 1.5e-7
+            },
+            {
+                "id": "trick-o-treat",
+                "name": "Trick O' Treat",
+                "rarity": "legendary",
+                "baseChance": 1e-8
+            },
+            {
+                "id": "sinister-shard",
+                "name": "Sinister Shard",
+                "rarity": "secret",
+                "baseChance": 5e-10
+            },
+            {
+                "id": "angelic-spirit",
+                "name": "Angelic Spirit",
+                "rarity": "secret",
+                "baseChance": 1e-10
+            },
+            {
+                "id": "radiance",
+                "name": "Radiance",
+                "rarity": "infinity",
+                "baseChance": 1e-11
             }
         ]
     }
