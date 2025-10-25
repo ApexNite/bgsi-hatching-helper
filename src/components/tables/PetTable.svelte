@@ -526,18 +526,21 @@
   .rarity-infinity {
     background: linear-gradient(
       to right,
-      #6666ff,
-      #0099ff,
-      #00ff00,
-      #ff3399,
-      #6666ff
+      #cc4444,
+      #cc7744,
+      #cccc44,
+      #44cc44,
+      #4444cc,
+      #6644aa,
+      #aa44cc,
+      #cc4444
     );
     background-size: 400% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     border-color: var(--rarity-infinity-border);
-    animation: infinityWave 12s ease-in-out infinite;
+    animation: infinityWave 16s linear infinite;
   }
 
   @property --legendary-hue {
@@ -559,12 +562,11 @@
   }
 
   @keyframes infinityWave {
-    0%,
-    100% {
-      background-position: 0 0;
+    0% {
+      background-position: 0% 0;
     }
-    50% {
-      background-position: 100% 0;
+    100% {
+      background-position: -400% 0;
     }
   }
 </style>
