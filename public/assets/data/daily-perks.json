@@ -1,0 +1,41 @@
+{
+  "0": null,
+  "1": null,
+  "2": {
+    "normal": {
+      "baseHatchSpeed": 0.15
+    },
+    "premium": {
+      "baseHatchSpeed": 0.3
+    },
+    "pets": [
+      {
+        "id": "kitty-pot",
+        "name": "Kitty Pot",
+        "img": "assets/images/pets/perk/kitty-pot",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      }
+    ]
+  },
+  "3": null,
+  "4": null,
+  "5": null,
+  "6": {
+    "normal": {
+      "luck": 2
+    },
+    "premium": {
+      "luck": 3.5
+    },
+    "pets": [
+      {
+        "id": "super-shock",
+        "name": "Super Shock",
+        "img": "assets/images/pets/perk/super-shock",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      }
+    ]
+  }
+}

@@ -1,11 +1,16 @@
-export function calculateStats(
-  sources,
-  toggles,
-  numbers,
-  dailyPerksData,
-  indexData,
-  masteryData,
-) {
+import { get } from "svelte/store";
+import { dataStore, isDataLoaded } from "./dataStore.js";
+
+export function calculateStats(sources, toggles, numbers) {
+  if (!get(isDataLoaded)) {
+    return null;
+  }
+
+  const data = get(dataStore);
+  const dailyPerksData = data.dailyPerks;
+  const indexData = data.index;
+  const masteryData = data.mastery;
+
   const totals = {
     luck: 2,
     secretLuck: 1,

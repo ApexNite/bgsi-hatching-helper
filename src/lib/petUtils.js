@@ -1,9 +1,5 @@
-import {
-  eggs,
-  ensureImagePaths,
-  dailyPerks,
-  secretBounty,
-} from "./dataUtils.js";
+import { get } from "svelte/store";
+import { dataStore, isDataLoaded, processEggsAndPets } from "./dataStore.js";
 
 const BASE_HATCH_SECONDS = 4.5;
 const RARITY_ORDER = Object.freeze({
@@ -190,17 +186,19 @@ function addVariantChances(pets, stats) {
 }
 
 function getEggsWithInjectedPets() {
-  if (!eggs) {
-    return {};
+  const data = get(dataStore);
+
+  if (!isDataLoaded || !data.eggs) {
+    return [];
   }
 
-  const eggsCopy = JSON.parse(JSON.stringify(eggs));
+  const eggsCopy = JSON.parse(JSON.stringify(data.eggs));
 
   const now = new Date();
   const utcDay = now.getUTCDay();
   const utcDate = now.toISOString().slice(0, 10).replace(/-/g, "");
 
-  const perk = dailyPerks?.[utcDay];
+  const perk = data.dailyPerks?.[utcDay];
   if (perk?.pets?.length) {
     for (const egg of eggsCopy) {
       egg.pets = egg.pets || [];
@@ -212,9 +210,9 @@ function getEggsWithInjectedPets() {
     }
   }
 
-  const bounty = secretBounty?.eggs?.[utcDate];
+  const bounty = data.secretBounty?.eggs?.[utcDate];
   if (bounty) {
-    const bountyPet = secretBounty?.pets?.[bounty.pet];
+    const bountyPet = data.secretBounty?.pets?.[bounty.pet];
     if (bountyPet) {
       const targetEgg = eggsCopy.find((e) => e.id === bounty.egg);
       if (targetEgg) {
@@ -227,7 +225,7 @@ function getEggsWithInjectedPets() {
     }
   }
 
-  ensureImagePaths(eggsCopy);
+  processEggsAndPets(eggsCopy);
   return eggsCopy;
 }
 

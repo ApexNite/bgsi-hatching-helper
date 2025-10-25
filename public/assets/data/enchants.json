@@ -1,0 +1,22 @@
+[
+  {
+    "id": "high-roller",
+    "name": "🎲 High Roller",
+    "luck": 0.1
+  },
+  {
+    "id": "ultra-roller",
+    "name": "🎲 Ultra Roller",
+    "luck": 0.25
+  },
+  {
+    "id": "secret-hunter",
+    "name": "🔮 Secret Hunter",
+    "secretLuck": 0.05
+  },
+  {
+    "id": "shiny-seeker",
+    "name": "🌟 Shiny seeker",
+    "shinyChance": 0.002
+  }
+]
