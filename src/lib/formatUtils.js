@@ -65,10 +65,11 @@ export function formatChancePercent(
   chance,
   forceRound = false,
   roundUp = false,
+  correct = false,
 ) {
   const percentChance = chance * 100;
-  const correctedPercent =
-    Math.abs(percentChance - Math.round(percentChance)) < 0.000001
+  const correctedPercent = 
+    correct && Math.abs(percentChance - Math.round(percentChance)) < 0.000001
       ? Math.round(percentChance)
       : percentChance;
 
@@ -82,7 +83,7 @@ export function formatChancePercent(
     let decimalPlaces = 2;
     let testValue = correctedPercent;
 
-    while (testValue < 1 && testValue > 0 && decimalPlaces < 10) {
+    while (testValue < 1 && testValue > 0 && decimalPlaces < 20) {
       testValue *= 10;
       decimalPlaces++;
     }

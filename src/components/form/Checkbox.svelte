@@ -2,7 +2,12 @@
   export let id = "";
   export let checked = false;
   export let onChange = null;
+  export let size = "md";
 
+  $: styleVars =
+    size === "sm"
+      ? "--hit-size:28px; --box-size:20px; --check-w:6px; --check-h:10px; --check-top:45%;"
+      : "--hit-size:45px; --box-size:32px; --check-w:12px; --check-h:18px; --check-top:40%;";
   function handleChange(event) {
     if (onChange) {
       onChange(event.target.checked);
@@ -10,7 +15,7 @@
   }
 </script>
 
-<div class="wrapper">
+<div class="wrapper" style={styleVars}>
   <label class="checkbox-label">
     <input type="checkbox" {id} bind:checked on:change={handleChange} />
     <span class="custom-checkbox"></span>
@@ -26,8 +31,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: var(--hit-size, 45px);
+    height: var(--hit-size, 45px);
     cursor: pointer;
   }
 
@@ -38,8 +43,8 @@
 
   .custom-checkbox {
     position: relative;
-    width: 32px;
-    height: 32px;
+    width: var(--box-size, 32px);
+    height: var(--box-size, 32px);
     background: var(--menu-bg);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
@@ -49,16 +54,17 @@
   .custom-checkbox::after {
     content: "";
     position: absolute;
-    width: 12px;
-    height: 18px;
+    width: var(--check-w, 12px);
+    height: var(--check-h, 18px);
     border: solid var(--accent);
     border-width: 0 2px 2px 0;
-    transform: rotate(45deg) translate(-2px, -2px);
+    transform: rotate(45deg);
     opacity: 0;
     transition: opacity 0.2s ease;
-    top: 50%;
+    top: var(--check-top, 40%);
     left: 50%;
-    margin: -9px 0 0 -6px;
+    margin: calc(-1 * (var(--check-h, 18px) / 2)) 0 0
+      calc(-1 * (var(--check-w, 12px) / 2));
   }
 
   input[type="checkbox"]:checked + .custom-checkbox {

@@ -30,7 +30,7 @@
           decoding="async"
         />
       </picture>
-      <strong>{formatChancePercent(stats.luck - 1, true)}</strong>
+      <strong>{formatChancePercent(stats.luck - 1, true, false, true)}</strong>
     </div>
     <div class="stat">
       <picture>
@@ -111,7 +111,7 @@
           decoding="async"
         />
       </picture>
-      <strong>{formatChancePercent(stats.hatchSpeed, true, true)}</strong>
+      <strong>{formatChancePercent(stats.hatchSpeed, true, true, true)}</strong>
     </div>
     <div class="stat">
       <picture>

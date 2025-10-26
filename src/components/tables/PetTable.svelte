@@ -12,6 +12,8 @@
     formatChanceFraction,
   } from "../../lib/formatUtils.js";
   import { getCookie, setCookie, deleteCookie } from "../../lib/cookieUtils.js";
+  import Checkbox from "../form/Checkbox.svelte";
+  import Radio from "../form/Radio.svelte";
 
   export let activeTab = "chances";
   export let stats;
@@ -28,9 +30,11 @@
     showAnySecretInfinity: false,
   };
 
-  let settings = defaultSettings;
+  let settings = { ...defaultSettings };
   let settingsOpen = false;
-  let settingsHost;
+  let settingsButton;
+  let settingsMenu;
+  let settingsMenuPosition = { top: 0, right: 0 };
 
   onMount(() => {
     try {
@@ -41,18 +45,20 @@
       } else if (savedData) {
         deleteCookie("hatching-helper-pet-table-settings");
       }
-    } catch (e) {
+    } catch {
       deleteCookie("hatching-helper-pet-table-settings");
     }
 
     const onDocClick = (e) => {
-      if (!settingsHost) {
+      if (!settingsButton || settingsButton.contains(e.target)) {
         return;
       }
 
-      if (!settingsHost.contains(e.target)) {
-        settingsOpen = false;
+      if (settingsMenu && settingsMenu.contains(e.target)) {
+        return;
       }
+
+      settingsOpen = false;
     };
 
     document.addEventListener("click", onDocClick);
@@ -60,12 +66,22 @@
   });
 
   function saveSettings() {
-    const dataToSave = {
+    setCookie("hatching-helper-pet-table-settings", {
       version: COOKIE_VERSION,
       settings,
-    };
+    });
+  }
 
-    setCookie("hatching-helper-pet-table-settings", dataToSave);
+  function toggleSettings() {
+    if (!settingsOpen && settingsButton) {
+      const rect = settingsButton.getBoundingClientRect();
+      settingsMenuPosition = {
+        top: rect.bottom + 4,
+        right: window.innerWidth - rect.right,
+      };
+    }
+
+    settingsOpen = !settingsOpen;
   }
 
   $: basePets = getPetsToDisplay(selectedEggId, selectedWorldId, stats);
@@ -75,10 +91,9 @@
     anySecretInfinity: settings.showAnySecretInfinity,
   });
 
-  const specialSet = new Set(["legendary", "secret", "infinity"]);
   $: filteredPets = settings.hideNonSpecial
     ? petsWithAggregates.filter((p) =>
-        specialSet.has((p.rarity || "").toLowerCase()),
+        ["legendary", "secret", "infinity"].includes(p.rarity),
       )
     : petsWithAggregates;
 
@@ -105,211 +120,226 @@
   }
 </script>
 
-<div class="pet-table-container">
-  <table class="pet-table">
-    <thead>
-      <tr>
-        <th>Pet</th>
-        <th>Normal</th>
-        <th>Shiny</th>
-        <th>Mythic</th>
-        <th class="has-settings" bind:this={settingsHost}>
-          <div class="th-content">
-            <span>Shiny Mythic</span>
-            <button
-              class="settings-btn"
-              on:click={() => (settingsOpen = !settingsOpen)}
-            >
-              ⚙️
-            </button>
-
-            {#if settingsOpen}
-              <div class="settings-menu">
-                <div class="section">
-                  <div class="section-title">Chance display</div>
-                  <label>
-                    <input
-                      type="radio"
-                      name="chanceMode"
-                      value="auto"
-                      checked={settings.chanceDisplayMode === "auto"}
-                      on:change={() => setChanceDisplayMode("auto")}
-                    />
-                    Auto
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="chanceMode"
-                      value="percent"
-                      checked={settings.chanceDisplayMode === "percent"}
-                      on:change={() => setChanceDisplayMode("percent")}
-                    />
-                    Percent
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="chanceMode"
-                      value="fraction"
-                      checked={settings.chanceDisplayMode === "fraction"}
-                      on:change={() => setChanceDisplayMode("fraction")}
-                    />
-                    Fraction
-                  </label>
-                </div>
-
-                <div class="section">
-                  <div class="section-title">Rows</div>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={settings.hideNonSpecial}
-                      on:change={() => toggle("hideNonSpecial")}
-                    />
-                    Hide Easy Pets
-                  </label>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={settings.showAnyLegendary}
-                      on:change={() => toggle("showAnyLegendary")}
-                    />
-                    Show Any Legendary
-                  </label>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={settings.showAnySecretInfinity}
-                      on:change={() => toggle("showAnySecretInfinity")}
-                    />
-                    Show Any Secret
-                  </label>
-                </div>
-              </div>
-            {/if}
-          </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each filteredPets as pet (pet.id || pet.__aggregateId || pet.rarity)}
+<div class="pet-table-wrapper">
+  <div class="pet-table-container">
+    <table class="pet-table">
+      <thead>
         <tr>
-          <td>
-            <div class="pet-name">
-              {#if pet.__aggregate}
-                <div class="aggregate-dot rarity-{pet.rarity}"></div>
-                <div class="pet-info">
-                  <span class="name">{pet.name}</span>
-                  <span class="rarity-badge rarity-{pet.rarity}"
-                    >{pet.rarity}</span
-                  >
-                </div>
-              {:else}
-                <picture>
-                  <source srcset="{pet.img}.avif" type="image/avif" />
-                  <source srcset="{pet.img}.webp" type="image/webp" />
-                  <img
-                    src="{pet.img}.png"
-                    alt={pet.name || pet.rarity}
-                    class="pet-image"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-                <div class="pet-info">
-                  <span class="name">{pet.name || pet.rarity}</span>
-                  <span class="rarity-badge rarity-{pet.rarity}"
-                    >{pet.rarity}</span
-                  >
-                </div>
-              {/if}
+          <th>Pet</th>
+          <th>Normal</th>
+          <th>Shiny</th>
+          <th>Mythic</th>
+          <th>
+            <div class="th-content">
+              <span>Shiny Mythic</span>
+              <button
+                class="settings-btn"
+                bind:this={settingsButton}
+                on:click={toggleSettings}
+              >
+                ⚙️
+              </button>
             </div>
-          </td>
-
-          {#if activeTab === "chances"}
-            <td>{displayChance(pet.finalChance)}</td>
-            <td>{displayChance(pet.finalShinyChance)}</td>
-            <td>
-              {#if pet.finalMythicChance > 0}
-                {displayChance(pet.finalMythicChance)}
-              {:else}
-                -
-              {/if}
-            </td>
-            <td>
-              {#if pet.finalShinyMythicChance > 0}
-                {displayChance(pet.finalShinyMythicChance)}
-              {:else}
-                -
-              {/if}
-            </td>
-          {/if}
-
-          {#if activeTab === "times"}
-            <td
-              >{formatTime(
-                calculateHatchTime(
-                  pet.finalChance,
-                  stats.hatchSpeed,
-                  eggsPerHatch,
-                ),
-              )}</td
-            >
-            <td
-              >{formatTime(
-                calculateHatchTime(
-                  pet.finalShinyChance,
-                  stats.hatchSpeed,
-                  eggsPerHatch,
-                ),
-              )}</td
-            >
-            <td>
-              {#if pet.finalMythicChance > 0}
-                {formatTime(
-                  calculateHatchTime(
-                    pet.finalMythicChance,
-                    stats.hatchSpeed,
-                    eggsPerHatch,
-                  ),
-                )}
-              {:else}
-                -
-              {/if}
-            </td>
-            <td>
-              {#if pet.finalShinyMythicChance > 0}
-                {formatTime(
-                  calculateHatchTime(
-                    pet.finalShinyMythicChance,
-                    stats.hatchSpeed,
-                    eggsPerHatch,
-                  ),
-                )}
-              {:else}
-                -
-              {/if}
-            </td>
-          {/if}
+          </th>
         </tr>
-      {/each}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {#each filteredPets as pet (pet.id || pet.__aggregateId || pet.rarity)}
+          <tr>
+            <td>
+              <div class="pet-name">
+                {#if pet.__aggregate}
+                  <div class="aggregate-dot rarity-{pet.rarity}"></div>
+                  <div class="pet-info">
+                    <span class="name">{pet.name}</span>
+                    <span class="rarity-badge rarity-{pet.rarity}"
+                      >{pet.rarity}</span
+                    >
+                  </div>
+                {:else}
+                  <picture>
+                    <source srcset="{pet.img}.avif" type="image/avif" />
+                    <source srcset="{pet.img}.webp" type="image/webp" />
+                    <img
+                      src="{pet.img}.png"
+                      alt={pet.name || pet.rarity}
+                      class="pet-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                  <div class="pet-info">
+                    <span class="name">{pet.name || pet.rarity}</span>
+                    <span class="rarity-badge rarity-{pet.rarity}"
+                      >{pet.rarity}</span
+                    >
+                  </div>
+                {/if}
+              </div>
+            </td>
+
+            {#if activeTab === "chances"}
+              <td>{displayChance(pet.finalChance)}</td>
+              <td>{displayChance(pet.finalShinyChance)}</td>
+              <td>
+                {#if pet.finalMythicChance > 0}
+                  {displayChance(pet.finalMythicChance)}
+                {:else}
+                  -
+                {/if}
+              </td>
+              <td>
+                {#if pet.finalShinyMythicChance > 0}
+                  {displayChance(pet.finalShinyMythicChance)}
+                {:else}
+                  -
+                {/if}
+              </td>
+            {/if}
+
+            {#if activeTab === "times"}
+              <td>
+                {formatTime(
+                  calculateHatchTime(
+                    pet.finalChance,
+                    stats.hatchSpeed,
+                    eggsPerHatch,
+                  ),
+                )}
+              </td>
+              <td>
+                {formatTime(
+                  calculateHatchTime(
+                    pet.finalShinyChance,
+                    stats.hatchSpeed,
+                    eggsPerHatch,
+                  ),
+                )}
+              </td>
+              <td>
+                {#if pet.finalMythicChance > 0}
+                  {formatTime(
+                    calculateHatchTime(
+                      pet.finalMythicChance,
+                      stats.hatchSpeed,
+                      eggsPerHatch,
+                    ),
+                  )}
+                {:else}
+                  -
+                {/if}
+              </td>
+              <td>
+                {#if pet.finalShinyMythicChance > 0}
+                  {formatTime(
+                    calculateHatchTime(
+                      pet.finalShinyMythicChance,
+                      stats.hatchSpeed,
+                      eggsPerHatch,
+                    ),
+                  )}
+                {:else}
+                  -
+                {/if}
+              </td>
+            {/if}
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+
+  {#if settingsOpen}
+    <div
+      class="settings-menu"
+      bind:this={settingsMenu}
+      style="position: fixed; top: {settingsMenuPosition.top}px; right: {settingsMenuPosition.right}px;"
+    >
+      <div class="section">
+        <div class="section-title">Chance display</div>
+        <label class="row">
+          <Radio
+            name="chanceMode"
+            value="auto"
+            checked={settings.chanceDisplayMode === "auto"}
+            onChange={() => setChanceDisplayMode("auto")}
+            size="sm"
+          />
+          <span>Auto</span>
+        </label>
+        <label class="row">
+          <Radio
+            name="chanceMode"
+            value="percent"
+            checked={settings.chanceDisplayMode === "percent"}
+            onChange={() => setChanceDisplayMode("percent")}
+            size="sm"
+          />
+          <span>Percent</span>
+        </label>
+        <label class="row">
+          <Radio
+            name="chanceMode"
+            value="fraction"
+            checked={settings.chanceDisplayMode === "fraction"}
+            onChange={() => setChanceDisplayMode("fraction")}
+            size="sm"
+          />
+          <span>Fraction</span>
+        </label>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Rows</div>
+        <label class="row">
+          <Checkbox
+            id="hideNonSpecial"
+            checked={settings.hideNonSpecial}
+            onChange={() => toggle("hideNonSpecial")}
+            size="sm"
+          />
+          <span>Hide Easy Pets</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="showAnyLegendary"
+            checked={settings.showAnyLegendary}
+            onChange={() => toggle("showAnyLegendary")}
+            size="sm"
+          />
+          <span>Show Any Legendary</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="showAnySecretInfinity"
+            checked={settings.showAnySecretInfinity}
+            onChange={() => toggle("showAnySecretInfinity")}
+            size="sm"
+          />
+          <span>Show Any Secret</span>
+        </label>
+      </div>
+    </div>
+  {/if}
 </div>
 
-<!-- TODO: fix overflow issues & look through and clean up form input -->
 <style>
+  .pet-table-wrapper {
+    position: relative;
+  }
+
   .pet-table-container {
     background: var(--menu-bg);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--elevation);
-    overflow: visible;
+    overflow-x: auto;
+    max-width: 100%;
   }
 
   .pet-table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     color: var(--primary-text);
   }
@@ -343,10 +373,6 @@
     border-bottom: none;
   }
 
-  .has-settings {
-    position: relative;
-  }
-
   .th-content {
     display: flex;
     align-items: center;
@@ -375,16 +401,14 @@
   }
 
   .settings-menu {
-    position: absolute;
-    top: calc(100% + 4px);
-    right: 0;
-    z-index: 40;
+    z-index: 1000;
     width: 260px;
     background: var(--menu-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 0.5rem;
     color: var(--primary-text);
+    box-shadow: var(--elevation);
   }
 
   .section {
@@ -394,70 +418,18 @@
   .section-title {
     margin-bottom: 0.4rem;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
     opacity: 0.9;
   }
 
-  .section label {
+  .row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.25rem 0;
     cursor: pointer;
     font-size: 0.95rem;
-  }
-
-  .section input[type="radio"],
-  .section input[type="checkbox"] {
-    position: relative;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: var(--menu-bg);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-  }
-
-  .section input[type="radio"] {
-    border-radius: 50%;
-  }
-
-  .section input[type="radio"]:hover,
-  .section input[type="checkbox"]:hover {
-    background: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
-  }
-
-  .section input[type="radio"]:checked,
-  .section input[type="checkbox"]:checked {
-    background: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
-    border-color: var(--accent);
-  }
-
-  .section input[type="radio"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .section input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 10px;
-    border: solid var(--accent);
-    border-width: 0 2px 2px 0;
-    transform: translate(-50%, -60%) rotate(45deg);
+    font-weight: 700;
   }
 
   .pet-name {
@@ -516,7 +488,6 @@
   .rarity-secret {
     color: var(--rarity-secret);
   }
-
   .rarity-legendary {
     color: hsl(var(--legendary-hue) 100% 60%);
     animation: legendaryHue 6s linear infinite;
