@@ -1063,12 +1063,23 @@
                   {upgrade.name}:
                 </span>
                 <div class="menu-control">
-                  <NumberInput
+                  <Dropdown
                     id={upgrade.id}
-                    value={eventUpgradeValues[upgrade.id] || 0}
-                    onInput={({ value }) =>
-                      updateEventUpgradeValue(upgrade.id, value)}
-                    hoverText={upgrade.hoverText}
+                    options={[
+                      { id: 0, name: "None" },
+                      ...Object.keys(upgrade.levels || {}).map((l) => ({
+                        id: Number(l),
+                        name: `Level ${l}`,
+                      })),
+                    ].sort((a, b) => a.id - b.id)}
+                    selectedOption={{
+                      id: eventUpgradeValues[upgrade.id] || 0,
+                      name: eventUpgradeValues[upgrade.id]
+                        ? `Level ${eventUpgradeValues[upgrade.id]}`
+                        : "None",
+                    }}
+                    onSelect={({ option }) =>
+                      updateEventUpgradeValue(upgrade.id, option.id)}
                   />
                 </div>
               </div>
