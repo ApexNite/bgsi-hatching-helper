@@ -930,8 +930,8 @@
                       ...Object.keys(upgrade.levels || {}).map((l) => ({
                         id: Number(l),
                         name: `Level ${l}`,
-                      })),
-                    ].sort((a, b) => a.id - b.id)}
+                      }))
+                    ].sort((a, b) => b.id - a.id)}
                     selectedOption={{
                       id: eventUpgradeValues[upgrade.id] || 0,
                       name: eventUpgradeValues[upgrade.id]
