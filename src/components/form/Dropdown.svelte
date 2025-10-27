@@ -46,7 +46,7 @@
         base={selectedOption.img}
         alt={selectedOption.name}
         decoding="async"
-        size="26px"
+        size="30px"
       />
     </span>
       
@@ -69,8 +69,8 @@
             <SmartImage
               base={option.img}
               alt={option.name}
-              decoding="lazy"
-              size="26px"
+              decoding="async"
+              size="30px"
             />
           </span>
           {/if}
