@@ -1352,7 +1352,7 @@
           },
           {
             label: "Secret Pets Milestone",
-            description: "Secret luck bonus not shown in debug",
+            description: "Secret luck bonus not shown in debug stats",
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
