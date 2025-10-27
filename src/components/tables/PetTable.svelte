@@ -63,8 +63,17 @@
       settingsOpen = false;
     };
 
+    const onScroll = () => {
+      settingsOpen = false;
+    };
+
     document.addEventListener("click", onDocClick);
-    return () => document.removeEventListener("click", onDocClick);
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      document.removeEventListener("click", onDocClick);
+      window.removeEventListener("scroll", onScroll);
+    };
   });
 
   function saveSettings() {
