@@ -18,6 +18,7 @@ export const dataStore = writable({
   secretBounty: null,
   specialPotions: null,
   worlds: null,
+  imageMeta: null,
 });
 
 export const isDataLoaded = writable(false);
@@ -45,6 +46,7 @@ export async function loadData(startPeriodicRefresh = true) {
       secretBountyData,
       specialPotionsData,
       worldsData,
+      imageMetaData,
     ] = await Promise.all([
       fetch("/assets/data/daily-perks.json").then((r) => r.json()),
       fetch("/assets/data/eggs.json").then((r) => r.json()),
@@ -63,7 +65,9 @@ export async function loadData(startPeriodicRefresh = true) {
       fetch("/assets/data/secret-bounty.json").then((r) => r.json()),
       fetch("/assets/data/special-potions.json").then((r) => r.json()),
       fetch("/assets/data/worlds.json").then((r) => r.json()),
+      fetch("/assets/images/.blurhash.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
     ]);
+
 
     const data = {
       dailyPerks: processData(dailyPerksData),
@@ -85,6 +89,7 @@ export async function loadData(startPeriodicRefresh = true) {
       secretBounty: processData(secretBountyData),
       specialPotions: processSpecialPotions(processData(specialPotionsData)),
       worlds: processWorlds(processData(worldsData)),
+      imageMeta: processData(imageMetaData || {}),
     };
 
     dataStore.set(data);

@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.0",
+    "blurhash": "^2.0.5",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",
     "prettier": "^3.6.2",

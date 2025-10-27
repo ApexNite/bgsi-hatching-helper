@@ -8,6 +8,7 @@
   import Checkbox from "../form/Checkbox.svelte";
   import NumberInput from "../form/NumberInput.svelte";
   import WarningBanner from "../warnings/WarningBanner.svelte";
+  import SmartImage from "../media/SmartImage.svelte";
 
   export let stats;
   export let eggsPerHatch;
@@ -447,23 +448,14 @@
       <section class="menu-section">
         <div class="menu-row">
           <span class="menu-label">
-            <picture>
-              <source
-                srcset="assets/images/icons/eggs.avif"
-                type="image/avif"
-              />
-              <source
-                srcset="assets/images/icons/eggs.webp"
-                type="image/webp"
-              />
-              <img
-                src="assets/images/icons/eggs.png"
+            <span class="menu-img">
+              <SmartImage
+                base="assets/images/icons/eggs"
                 alt="Eggs"
-                class="menu-img"
-                loading="lazy"
+                size="32px"
                 decoding="async"
               />
-            </picture>
+            </span>
             Egg:
           </span>
           <div class="menu-control">
@@ -481,23 +473,14 @@
         {#if isInfinityEgg}
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/worlds/the-overworld.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/worlds/the-overworld.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/worlds/the-overworld.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/worlds/the-overworld"
                   alt="World"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               World:
             </span>
             <div class="menu-control">
@@ -516,23 +499,14 @@
         {#if isRiftableEgg}
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/rift.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/rift.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/rift.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/rift"
                   alt="Rift"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Rift:
             </span>
             <div class="menu-control">
@@ -549,23 +523,14 @@
         {#if isWorldEgg && calculationMode != "manual"}
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/index.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/index.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/index.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/index"
                   alt="Index"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Index:
             </span>
             <div class="menu-control world-index-controls">
@@ -574,12 +539,6 @@
                 id="world-normal"
                 checked={currentWorldIndexState.worldNormal}
                 onChange={() => updateWorldIndexToggle("worldNormal")}
-              />
-              <span class="index-label">Shiny:</span>
-              <Checkbox
-                id="world-shiny"
-                checked={currentWorldIndexState.worldShiny}
-                onChange={() => updateWorldIndexToggle("worldShiny")}
               />
             </div>
           </div>
@@ -592,23 +551,14 @@
       <section class="menu-section">
         <div class="menu-row">
           <span class="menu-label">
-            <picture>
-              <source
-                srcset="assets/images/icons/multi-egg.avif"
-                type="image/avif"
-              />
-              <source
-                srcset="assets/images/icons/multi-egg.webp"
-                type="image/webp"
-              />
-              <img
-                src="assets/images/icons/multi-egg.png"
+            <span class="menu-img">
+              <SmartImage
+                base="assets/images/icons/multi-egg"
                 alt="Eggs Per Hatch"
-                class="menu-img"
-                loading="lazy"
+                size="32px"
                 decoding="async"
               />
-            </picture>
+            </span>
             Eggs Per Hatch:
           </span>
           <div class="menu-control">
@@ -629,23 +579,14 @@
         <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/luck.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/luck.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/luck.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/luck"
                   alt="Luck"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Luck (%):
             </span>
             <div class="menu-control">
@@ -659,23 +600,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/secret-luck.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/secret-luck.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/secret-luck.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/secret-luck"
                   alt="Secret Luck"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Secret Luck (x):
             </span>
             <div class="menu-control">
@@ -689,23 +621,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/shiny.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/shiny.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/shiny.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/shiny"
                   alt="Shiny Chance"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Shiny Chance (1 in):
             </span>
             <div class="menu-control">
@@ -719,23 +642,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/mythic.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/mythic.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/mythic.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/mythic"
                   alt="Mythic Chance"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Mythic Chance (1 in):
             </span>
             <div class="menu-control">
@@ -749,23 +663,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/timer.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/timer.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/timer.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/timer"
                   alt="Hatch Speed"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Hatch Speed (%):
             </span>
             <div class="menu-control">
@@ -784,17 +689,14 @@
             <div class="menu-row">
               <span class="menu-label">
                 {#if potion.img}
-                  <picture>
-                    <source srcset="{potion.img}.avif" type="image/avif" />
-                    <source srcset="{potion.img}.webp" type="image/webp" />
-                    <img
-                      src="{potion.img}.png"
+                  <span class="menu-img">
+                    <SmartImage
+                      base={potion.img}
                       alt={potion.name}
-                      class="menu-img"
-                      loading="lazy"
+                      size="32px"
                       decoding="async"
                     />
-                  </picture>
+                  </span>
                 {/if}
                 {potion.name}:
               </span>
@@ -816,17 +718,14 @@
               <div class="menu-row">
                 <span class="menu-label">
                   {#if potion.img}
-                    <picture>
-                      <source srcset="{potion.img}.avif" type="image/avif" />
-                      <source srcset="{potion.img}.webp" type="image/webp" />
-                      <img
-                        src="{potion.img}.png"
+                    <span class="menu-img">
+                      <SmartImage
+                        base={potion.img}
                         alt={potion.name}
-                        class="menu-img"
-                        loading="lazy"
+                        size="32px"
                         decoding="async"
                       />
-                    </picture>
+                    </span>
                   {/if}
                   {potion.name}:
                 </span>
@@ -848,17 +747,14 @@
             <div class="menu-row">
               <span class="menu-label">
                 {#if potion.img}
-                  <picture>
-                    <source srcset="{potion.img}.avif" type="image/avif" />
-                    <source srcset="{potion.img}.webp" type="image/webp" />
-                    <img
-                      src="{potion.img}.png"
+                  <span class="menu-img">
+                    <SmartImage
+                      base={potion.img}
                       alt={potion.name}
-                      class="menu-img"
-                      loading="lazy"
+                      size="32px"
                       decoding="async"
                     />
-                  </picture>
+                  </span>
                 {/if}
                 {potion.name}:
               </span>
@@ -874,34 +770,31 @@
         </section>
 
         {#each $dataStore.eventSpecialPotions || [] as potion (potion.id)}
-            {#if !potion.event || (selectedEgg?.event && potion.event === selectedEgg.event)}
-              <div class="menu-row">
-                <span class="menu-label">
-                  {#if potion.img}
-                    <picture>
-                      <source srcset="{potion.img}.avif" type="image/avif" />
-                      <source srcset="{potion.img}.webp" type="image/webp" />
-                      <img
-                        src="{potion.img}.png"
-                        alt={potion.name}
-                        class="menu-img"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </picture>
-                  {/if}
-                  {potion.name}:
-                </span>
-                <div class="menu-control">
-                  <Checkbox
-                    id={potion.id}
-                    checked={eventSpecialPotionToggles[potion.id]}
-                    onChange={() => updateEventSpecialPotionToggle(potion.id)}
-                  />
-                </div>
+          {#if !potion.event || (selectedEgg?.event && potion.event === selectedEgg.event)}
+            <div class="menu-row">
+              <span class="menu-label">
+                {#if potion.img}
+                  <span class="menu-img">
+                    <SmartImage
+                      base={potion.img}
+                      alt={potion.name}
+                      size="32px"
+                      decoding="async"
+                    />
+                  </span>
+                {/if}
+                {potion.name}:
+              </span>
+              <div class="menu-control">
+                <Checkbox
+                  id={potion.id}
+                  checked={eventSpecialPotionToggles[potion.id]}
+                  onChange={() => updateEventSpecialPotionToggle(potion.id)}
+                />
               </div>
-            {/if}
-          {/each}
+            </div>
+          {/if}
+        {/each}
 
         <div class="section-separator"></div>
 
@@ -911,17 +804,14 @@
             <div class="menu-row">
               <span class="menu-label">
                 {#if milestone.img}
-                  <picture>
-                    <source srcset="{milestone.img}.avif" type="image/avif" />
-                    <source srcset="{milestone.img}.webp" type="image/webp" />
-                    <img
-                      src="{milestone.img}.png"
+                  <span class="menu-img">
+                    <SmartImage
+                      base={milestone.img}
                       alt={milestone.name}
-                      class="menu-img"
-                      loading="lazy"
+                      size="32px"
                       decoding="async"
                     />
-                  </picture>
+                  </span>
                 {/if}
                 {milestone.name}:
               </span>
@@ -945,23 +835,14 @@
         <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/bubble-shrine.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/bubble-shrine.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/bubble-shrine.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/bubble-shrine"
                   alt="Shrine Blessing"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Shrine Blessing:
             </span>
             <div class="menu-control">
@@ -977,23 +858,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/dreamer-blessing.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/dreamer-blessing.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/dreamer-blessing.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/dreamer-blessing"
                   alt="Dreamer Blessing"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Dreamer Blessing:
             </span>
             <div class="menu-control">
@@ -1009,23 +881,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/season-stars.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/season-stars.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/season-stars.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/season-stars"
                   alt="Season Stars"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Season Stars:
             </span>
             <div class="menu-control">
@@ -1048,17 +911,14 @@
               <div class="menu-row">
                 <span class="menu-label">
                   {#if upgrade.img}
-                    <picture>
-                      <source srcset="{upgrade.img}.avif" type="image/avif" />
-                      <source srcset="{upgrade.img}.webp" type="image/webp" />
-                      <img
-                        src="{upgrade.img}.png"
+                    <span class="menu-img">
+                      <SmartImage
+                        base={upgrade.img}
                         alt={upgrade.name}
-                        class="menu-img"
-                        loading="lazy"
+                        size="32px"
                         decoding="async"
                       />
-                    </picture>
+                    </span>
                   {/if}
                   {upgrade.name}:
                 </span>
@@ -1112,23 +972,14 @@
         <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/lucky-streak.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/lucky-streak.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/lucky-streak.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/lucky-streak"
                   alt="Lucky Streak"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Lucky Streak:
             </span>
             <div class="menu-control">
@@ -1148,23 +999,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/luckier-together.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/luckier-together.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/luckier-together.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/luckier-together"
                   alt="Luckier Together"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Luckier Together:
             </span>
             <div class="menu-control">
@@ -1180,23 +1022,14 @@
 
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/eggs.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/eggs.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/eggs.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/eggs"
                   alt="Faster Hatch Mastery"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Faster Hatch Mastery:
             </span>
             <div class="menu-control">
@@ -1217,17 +1050,14 @@
             <div class="menu-row">
               <span class="menu-label">
                 {#if buff.img}
-                  <picture>
-                    <source srcset="{buff.img}.avif" type="image/avif" />
-                    <source srcset="{buff.img}.webp" type="image/webp" />
-                    <img
-                      src="{buff.img}.png"
+                  <span class="menu-img">
+                    <SmartImage
+                      base={buff.img}
                       alt={buff.name}
-                      class="menu-img"
-                      loading="lazy"
+                      size="32px"
                       decoding="async"
                     />
-                  </picture>
+                  </span>
                 {/if}
                 {buff.name}:
               </span>
@@ -1248,23 +1078,14 @@
         <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
-              <picture>
-                <source
-                  srcset="assets/images/icons/daily-perks.avif"
-                  type="image/avif"
-                />
-                <source
-                  srcset="assets/images/icons/daily-perks.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="assets/images/icons/daily-perks.png"
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/daily-perks"
                   alt="Premium Daily Perks"
-                  class="menu-img"
-                  loading="lazy"
+                  size="32px"
                   decoding="async"
                 />
-              </picture>
+              </span>
               Premium Daily Perks:
             </span>
             <div class="menu-control">
@@ -1280,17 +1101,14 @@
             <div class="menu-row">
               <span class="menu-label">
                 {#if gamepass.img}
-                  <picture>
-                    <source srcset="{gamepass.img}.avif" type="image/avif" />
-                    <source srcset="{gamepass.img}.webp" type="image/webp" />
-                    <img
-                      src="{gamepass.img}.png"
+                  <span class="menu-img">
+                    <SmartImage
+                      base={gamepass.img}
                       alt={gamepass.name}
-                      class="menu-img"
-                      loading="lazy"
+                      size="32px"
                       decoding="async"
                     />
-                  </picture>
+                  </span>
                 {/if}
                 {gamepass.name}:
               </span>
@@ -1313,17 +1131,14 @@
             <div class="menu-row">
               <span class="menu-label">
                 {#if event.img}
-                  <picture>
-                    <source srcset="{event.img}.avif" type="image/avif" />
-                    <source srcset="{event.img}.webp" type="image/webp" />
-                    <img
-                      src="{event.img}.png"
+                  <span class="menu-img">
+                    <SmartImage
+                      base={event.img}
                       alt={event.name}
-                      class="menu-img"
-                      loading="lazy"
+                      size="32px"
                       decoding="async"
                     />
-                  </picture>
+                  </span>
                 {/if}
                 {event.name}:
               </span>
@@ -1481,8 +1296,6 @@
 
   .menu-img {
     margin-right: 0.75rem;
-    width: 32px;
-    height: 32px;
     flex-shrink: 0;
   }
 

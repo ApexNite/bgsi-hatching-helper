@@ -3,6 +3,7 @@ import path from "path";
 import sharp from "sharp";
 import chokidar from "chokidar";
 import crypto from "node:crypto";
+import { encode as encodeBlurhash } from "blurhash";
 
 sharp.cache(false);
 
@@ -12,6 +13,7 @@ const SIZE = 96;
 const WEBP_QUALITY = 85;
 const AVIF_QUALITY = 60;
 const CACHE_FILE = path.join(OUTPUT_DIR, ".image-cache.json");
+const MANIFEST_FILE = path.join(OUTPUT_DIR, ".blurhash.json");
 
 function ensureDir(dir) {
     fs.mkdirSync(dir, { recursive: true });
@@ -33,21 +35,58 @@ function saveCache() {
     } catch {}
 }
 
-function relKey(inputPath) {
-    return path.relative(INPUT_DIR, inputPath).split(path.sep).join("/");
+function loadManifest() {
+    try {
+        ensureDir(OUTPUT_DIR);
+        const raw = fs.readFileSync(MANIFEST_FILE, "utf8");
+        return JSON.parse(raw);
+    } catch {
+        return {};
+    }
 }
 
-function hashFile(p) {
+function saveManifest() {
     try {
-        const buf = fs.readFileSync(p);
-        const stats = fs.statSync(p);
-        return crypto.createHash("sha1").update(buf).update(stats.mtime.toString()).digest("hex");
+        fs.writeFileSync(MANIFEST_FILE, JSON.stringify(manifest, null, 2));
+    } catch {}
+}
+
+function manifestKeyForOutPng(outPngPath) {
+    const rel = path.relative(OUTPUT_DIR, outPngPath).split(path.sep).join("/");
+    return `assets/images/${rel}`;
+}
+
+function relKey(inputPath) {
+    const rel = path.relative(INPUT_DIR, inputPath);
+    return rel.split(path.sep).join("/");
+}
+
+function hashFile(filePath) {
+    try {
+        const buf = fs.readFileSync(filePath);
+        return crypto.createHash("sha256").update(buf).digest("hex");
+    } catch {
+        return null;
+    }
+}
+
+async function computeBlurhashFromPng(pngPath) {
+    try {
+        const { data, info } = await sharp(pngPath)
+            .ensureAlpha()
+            .blur(1)
+            .raw()
+            .toBuffer({ resolveWithObject: true });
+
+        const hash = encodeBlurhash(new Uint8ClampedArray(data), info.width, info.height, 5, 4);
+        return { hash, w: info.width, h: info.height };
     } catch {
         return null;
     }
 }
 
 const cache = loadCache();
+const manifest = loadManifest();
 
 function relOutPaths(inputPath) {
     const rel = path.relative(INPUT_DIR, inputPath);
@@ -128,6 +167,14 @@ async function processFile(inputPath) {
     const currentHash = hashFile(inputPath);
     
     if (isUpToDate(inputPath, out, currentHash)) {
+        const key = manifestKeyForOutPng(out.png);
+        if (!manifest[key]) {
+            const meta = await computeBlurhashFromPng(out.png);
+            if (meta) {
+                manifest[key] = meta;
+                saveManifest();
+            }
+        }
         return false;
     }
     
@@ -155,6 +202,13 @@ async function processFile(inputPath) {
             cfg: `${SIZE}|${WEBP_QUALITY}|${AVIF_QUALITY}` 
         };
         saveCache();
+
+        const manifestKey = manifestKeyForOutPng(out.png);
+        const meta = await computeBlurhashFromPng(out.png);
+        if (meta) {
+            manifest[manifestKey] = meta;
+            saveManifest();
+        }
         
         return true;
     } catch {
@@ -182,6 +236,12 @@ function removeOutputs(inputPath) {
         delete cache.files[key];
         saveCache();
     }
+
+    const manifestKey = manifestKeyForOutPng(out.png);
+    if (manifest[manifestKey]) {
+        delete manifest[manifestKey];
+        saveManifest();
+    }
     
     removeEmptyDirs(out.outDir);
 }
@@ -196,7 +256,7 @@ function pruneOrphans() {
     let removedCount = 0;
     
     for (const key of keys) {
-        const absIn = path.join(INPUT_DIR, key);
+        const absIn = path.join(INPUT_DIR, ...key.split("/"));
         
         if (!fs.existsSync(absIn)) {
             const out = relOutPaths(absIn);
@@ -214,6 +274,12 @@ function pruneOrphans() {
             } catch {}
             
             delete cache.files[key];
+
+            const manifestKey = manifestKeyForOutPng(out.png);
+            if (manifest[manifestKey]) {
+                delete manifest[manifestKey];
+            }
+
             removeEmptyDirs(out.outDir);
             removedCount++;
         }
@@ -221,6 +287,7 @@ function pruneOrphans() {
     
     if (removedCount > 0) {
         saveCache();
+        saveManifest();
     }
     
     return removedCount;
@@ -255,6 +322,7 @@ async function optimizeAll() {
     
     if (!fs.existsSync(INPUT_DIR)) {
         const pruned = pruneOrphans();
+        saveManifest();
         return { processed: 0, pruned };
     }
     
@@ -287,6 +355,7 @@ async function optimizeAll() {
     }
     
     const pruned = pruneOrphans();
+    saveManifest();
     return { processed, pruned };
 }
 

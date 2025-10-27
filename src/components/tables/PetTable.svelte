@@ -14,6 +14,7 @@
   import { getCookie, setCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import Checkbox from "../form/Checkbox.svelte";
   import Radio from "../form/Radio.svelte";
+  import SmartImage from "../media/SmartImage.svelte";
 
   export let activeTab = "chances";
   export let stats;
@@ -157,17 +158,12 @@
                     >
                   </div>
                 {:else}
-                  <picture>
-                    <source srcset="{pet.img}.avif" type="image/avif" />
-                    <source srcset="{pet.img}.webp" type="image/webp" />
-                    <img
-                      src="{pet.img}.png"
-                      alt={pet.name || pet.rarity}
-                      class="pet-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
+                  <SmartImage
+                    base={pet.img}
+                    alt={pet.name || pet.rarity}
+                    decoding="async"
+                    size="32px"
+                  />
                   <div class="pet-info">
                     <span class="name">{pet.name || pet.rarity}</span>
                     <span class="rarity-badge rarity-{pet.rarity}"

@@ -1,5 +1,6 @@
 <script>
   import { onMount, onDestroy } from "svelte";
+  import SmartImage from "../media/SmartImage.svelte";
 
   export let id = "";
   export let options = [];
@@ -40,16 +41,15 @@
 <div class="wrapper" bind:this={root}>
   <button class="button-dropdown" type="button" on:click={toggle}>
     {#if selectedOption?.img}
-      <picture>
-        <source srcset="{selectedOption.img}.avif" type="image/avif" />
-        <source srcset="{selectedOption.img}.webp" type="image/webp" />
-        <img
-          src="{selectedOption.img}.png"
-          alt={selectedOption.name}
-          loading="lazy"
-          decoding="async"
-        />
-      </picture>
+    <span class="img-wrapper">
+<SmartImage
+        base={selectedOption.img}
+        alt={selectedOption.name}
+        decoding="async"
+        size="26px"
+      />
+    </span>
+      
     {:else}
       <span class="img-placeholder"></span>
     {/if}
@@ -65,16 +65,14 @@
           on:click={() => select(option)}
         >
           {#if option.img}
-            <picture>
-              <source srcset="{option.img}.avif" type="image/avif" />
-              <source srcset="{option.img}.webp" type="image/webp" />
-              <img
-                src="{option.img}.png"
-                alt={option.name}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
+          <span class="img-wrapper">
+            <SmartImage
+              base={option.img}
+              alt={option.name}
+              decoding="lazy"
+              size="26px"
+            />
+          </span>
           {/if}
           <span>{option.name}</span>
         </button>
@@ -136,9 +134,7 @@
     background: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
   }
 
-  img {
-    width: 26px;
-    height: 26px;
+  .img-wrapper {
     margin-right: 0.5rem;
   }
 
