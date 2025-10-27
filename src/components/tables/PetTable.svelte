@@ -324,6 +324,9 @@
           />
           <span>Show Any Secret</span>
         </label>
+      </div>
+
+      <div class="section">
         <div class="section-title">Pets</div>
         <label class="row">
           <Checkbox
