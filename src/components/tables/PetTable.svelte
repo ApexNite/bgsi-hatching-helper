@@ -22,13 +22,14 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 1;
+  const COOKIE_VERSION = 2;
 
   const defaultSettings = {
     chanceDisplayMode: "auto",
     hideNonSpecial: false,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
+    showOgRadiance: false,
   };
 
   let settings = { ...defaultSettings };
@@ -85,7 +86,7 @@
     settingsOpen = !settingsOpen;
   }
 
-  $: basePets = getPetsToDisplay(selectedEggId, selectedWorldId, stats);
+  $: basePets = getPetsToDisplay(selectedEggId, selectedWorldId, stats, settings.showOgRadiance);
 
   $: petsWithAggregates = insertAggregateRows(basePets, {
     anyLegendary: settings.showAnyLegendary,
@@ -313,6 +314,16 @@
             size="sm"
           />
           <span>Show Any Secret</span>
+        </label>
+        <div class="section-title">Pets</div>
+        <label class="row">
+          <Checkbox
+            id="showOgRadiance"
+            checked={settings.showOgRadiance}
+            onChange={() => toggle("showOgRadiance")}
+            size="sm"
+          />
+          <span>Show OG Radiance</span>
         </label>
       </div>
     </div>
