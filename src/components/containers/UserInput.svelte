@@ -844,36 +844,6 @@
             {/if}
           {/each}
 
-          {#each $dataStore.eventSpecialPotions || [] as potion (potion.id)}
-            {#if !potion.event || (selectedEgg?.event && potion.event === selectedEgg.event)}
-              <div class="menu-row">
-                <span class="menu-label">
-                  {#if potion.img}
-                    <picture>
-                      <source srcset="{potion.img}.avif" type="image/avif" />
-                      <source srcset="{potion.img}.webp" type="image/webp" />
-                      <img
-                        src="{potion.img}.png"
-                        alt={potion.name}
-                        class="menu-img"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </picture>
-                  {/if}
-                  {potion.name}:
-                </span>
-                <div class="menu-control">
-                  <Checkbox
-                    id={potion.id}
-                    checked={eventSpecialPotionToggles[potion.id]}
-                    onChange={() => updateEventSpecialPotionToggle(potion.id)}
-                  />
-                </div>
-              </div>
-            {/if}
-          {/each}
-
           {#each $dataStore.specialPotions || [] as potion (potion.id)}
             <div class="menu-row">
               <span class="menu-label">
@@ -902,6 +872,36 @@
             </div>
           {/each}
         </section>
+
+        {#each $dataStore.eventSpecialPotions || [] as potion (potion.id)}
+            {#if !potion.event || (selectedEgg?.event && potion.event === selectedEgg.event)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if potion.img}
+                    <picture>
+                      <source srcset="{potion.img}.avif" type="image/avif" />
+                      <source srcset="{potion.img}.webp" type="image/webp" />
+                      <img
+                        src="{potion.img}.png"
+                        alt={potion.name}
+                        class="menu-img"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                  {/if}
+                  {potion.name}:
+                </span>
+                <div class="menu-control">
+                  <Checkbox
+                    id={potion.id}
+                    checked={eventSpecialPotionToggles[potion.id]}
+                    onChange={() => updateEventSpecialPotionToggle(potion.id)}
+                  />
+                </div>
+              </div>
+            {/if}
+          {/each}
 
         <div class="section-separator"></div>
 
