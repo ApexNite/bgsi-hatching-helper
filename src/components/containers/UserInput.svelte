@@ -540,6 +540,12 @@
                 checked={currentWorldIndexState.worldNormal}
                 onChange={() => updateWorldIndexToggle("worldNormal")}
               />
+              <span class="index-label">Shiny:</span>
+              <Checkbox
+                id="world-shiny"
+                checked={currentWorldIndexState.worldShiny}
+                onChange={() => updateWorldIndexToggle("worldShiny")}
+              />
             </div>
           </div>
         {/if}
@@ -930,7 +936,7 @@
                       ...Object.keys(upgrade.levels || {}).map((l) => ({
                         id: Number(l),
                         name: `Level ${l}`,
-                      }))
+                      })),
                     ].sort((a, b) => b.id - a.id)}
                     selectedOption={{
                       id: eventUpgradeValues[upgrade.id] || 0,
