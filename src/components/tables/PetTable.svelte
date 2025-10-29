@@ -21,13 +21,14 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 2;
+  const COOKIE_VERSION = 3;
 
   const defaultSettings = {
     chanceDisplayMode: "auto",
-    hideNonSpecial: false,
+    showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
+    hideNonSpecial: false,
     showOgRadiance: false,
   };
 
@@ -191,44 +192,50 @@
             <td>
               <div class="chance-time">
                 <div>{displayChance(pet.finalChance)}</div>
-                <div class="time">
-                  {formatTime(
-                    calculateHatchTime(
-                      pet.finalChance,
-                      stats.hatchSpeed,
-                      eggsPerHatch,
-                    ),
-                  )}
-                </div>
+                {#if settings.showHatchingTimes}
+                  <div class="time">
+                    {formatTime(
+                      calculateHatchTime(
+                        pet.finalChance,
+                        stats.hatchSpeed,
+                        eggsPerHatch,
+                      ),
+                    )}
+                  </div>
+                {/if}
               </div>
             </td>
             <td>
               <div class="chance-time">
                 <div>{displayChance(pet.finalShinyChance)}</div>
-                <div class="time">
-                  {formatTime(
-                    calculateHatchTime(
-                      pet.finalShinyChance,
-                      stats.hatchSpeed,
-                      eggsPerHatch,
-                    ),
-                  )}
-                </div>
+                {#if settings.showHatchingTimes}
+                  <div class="time">
+                    {formatTime(
+                      calculateHatchTime(
+                        pet.finalShinyChance,
+                        stats.hatchSpeed,
+                        eggsPerHatch,
+                      ),
+                    )}
+                  </div>
+                {/if}
               </div>
             </td>
             <td>
               {#if pet.finalMythicChance > 0}
                 <div class="chance-time">
                   <div>{displayChance(pet.finalMythicChance)}</div>
-                  <div class="time">
-                    {formatTime(
-                      calculateHatchTime(
-                        pet.finalMythicChance,
-                        stats.hatchSpeed,
-                        eggsPerHatch,
-                      ),
-                    )}
-                  </div>
+                  {#if settings.showHatchingTimes}
+                    <div class="time">
+                      {formatTime(
+                        calculateHatchTime(
+                          pet.finalMythicChance,
+                          stats.hatchSpeed,
+                          eggsPerHatch,
+                        ),
+                      )}
+                    </div>
+                  {/if}
                 </div>
               {:else}
                 -
@@ -238,15 +245,17 @@
               {#if pet.finalShinyMythicChance > 0}
                 <div class="chance-time">
                   <div>{displayChance(pet.finalShinyMythicChance)}</div>
-                  <div class="time">
-                    {formatTime(
-                      calculateHatchTime(
-                        pet.finalShinyMythicChance,
-                        stats.hatchSpeed,
-                        eggsPerHatch,
-                      ),
-                    )}
-                  </div>
+                  {#if settings.showHatchingTimes}
+                    <div class="time">
+                      {formatTime(
+                        calculateHatchTime(
+                          pet.finalShinyMythicChance,
+                          stats.hatchSpeed,
+                          eggsPerHatch,
+                        ),
+                      )}
+                    </div>
+                  {/if}
                 </div>
               {:else}
                 -
@@ -302,12 +311,12 @@
         <div class="section-title">Rows</div>
         <label class="row">
           <Checkbox
-            id="hideNonSpecial"
-            checked={settings.hideNonSpecial}
-            onChange={() => toggle("hideNonSpecial")}
+            id="showHatchingTimes"
+            checked={settings.showHatchingTimes}
+            onChange={() => toggle("showHatchingTimes")}
             size="sm"
           />
-          <span>Hide Easy Pets</span>
+          <span>Show Hatching Times</span>
         </label>
         <label class="row">
           <Checkbox
@@ -326,6 +335,15 @@
             size="sm"
           />
           <span>Show Any Secret</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="hideNonSpecial"
+            checked={settings.hideNonSpecial}
+            onChange={() => toggle("hideNonSpecial")}
+            size="sm"
+          />
+          <span>Hide Easy Pets</span>
         </label>
       </div>
 
