@@ -1296,7 +1296,7 @@
 
   .section-separator {
     border-bottom: 1.5px solid var(--border);
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     opacity: 0.6;
   }
 
