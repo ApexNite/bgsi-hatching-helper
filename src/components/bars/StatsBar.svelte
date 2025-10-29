@@ -7,7 +7,6 @@
   import { calculateEggsPerSecond } from "../../lib/petUtils.js";
   import SmartImage from "../media/SmartImage.svelte";
 
-  export let activeTab = "chances";
   export let stats = {
     luck: 1,
     secretLuck: 1,
@@ -19,77 +18,73 @@
 </script>
 
 <div class="stats">
-  {#if activeTab === "chances"}
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/luck"
-        alt="Luck"
-        decoding="async"
-        size="24px"
-      />
-      <strong>{formatChancePercent(stats.luck - 1, true, false, true)}</strong>
-    </div>
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/secret-luck"
-        alt="Secret Luck"
-        decoding="async"
-        size="24px"
-      />
-      <strong>{formatMultiplier(stats.secretLuck)}</strong>
-    </div>
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/shiny"
-        alt="Shiny Chance"
-        decoding="async"
-        size="24px"
-      />
-      <strong>{formatChanceFraction(stats.shinyChance)}</strong>
-    </div>
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/mythic"
-        alt="Mythic Chance"
-        decoding="async"
-        size="24px"
-      />
-      <strong>{formatChanceFraction(stats.mythicChance)}</strong>
-    </div>
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/shiny-mythic"
-        alt="Shiny Mythic Chance"
-        decoding="async"
-        size="24px"
-      />
-      <strong
-        >{formatChanceFraction(stats.shinyChance * stats.mythicChance)}</strong
-      >
-    </div>
-  {/if}
-  {#if activeTab === "times"}
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/timer"
-        alt="Hatch Speed"
-        decoding="async"
-        size="24px"
-      />
-      <strong>{formatChancePercent(stats.hatchSpeed, true, true, true)}</strong>
-    </div>
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/multi-egg"
-        alt="Eggs Per Second"
-        decoding="async"
-        size="24px"
-      />
-      <strong
-        >{calculateEggsPerSecond(stats.hatchSpeed, eggsPerHatch).toFixed(2)} / s</strong
-      >
-    </div>
-  {/if}
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/luck"
+      alt="Luck"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatChancePercent(stats.luck - 1, true, false, true)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/secret-luck"
+      alt="Secret Luck"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatMultiplier(stats.secretLuck)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/shiny"
+      alt="Shiny Chance"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatChanceFraction(stats.shinyChance)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/mythic"
+      alt="Mythic Chance"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatChanceFraction(stats.mythicChance)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/shiny-mythic"
+      alt="Shiny Mythic Chance"
+      decoding="async"
+      size="24px"
+    />
+    <strong
+      >{formatChanceFraction(stats.shinyChance * stats.mythicChance)}</strong
+    >
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/timer"
+      alt="Hatch Speed"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatChancePercent(stats.hatchSpeed, true, true, true)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/multi-egg"
+      alt="Eggs Per Second"
+      decoding="async"
+      size="24px"
+    />
+    <strong
+      >{calculateEggsPerSecond(stats.hatchSpeed, eggsPerHatch).toFixed(2)} / s</strong
+    >
+  </div>
 </div>
 
 <style>

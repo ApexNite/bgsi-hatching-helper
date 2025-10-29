@@ -16,7 +16,6 @@
   import Radio from "../form/Radio.svelte";
   import SmartImage from "../media/SmartImage.svelte";
 
-  export let activeTab = "chances";
   export let stats;
   export let eggsPerHatch;
   export let selectedEggId;
@@ -95,7 +94,12 @@
     settingsOpen = !settingsOpen;
   }
 
-  $: basePets = getPetsToDisplay(selectedEggId, selectedWorldId, stats, settings.showOgRadiance);
+  $: basePets = getPetsToDisplay(
+    selectedEggId,
+    selectedWorldId,
+    stats,
+    settings.showOgRadiance,
+  );
 
   $: petsWithAggregates = insertAggregateRows(basePets, {
     anyLegendary: settings.showAnyLegendary,
@@ -184,71 +188,70 @@
               </div>
             </td>
 
-            {#if activeTab === "chances"}
-              <td>{displayChance(pet.finalChance)}</td>
-              <td>{displayChance(pet.finalShinyChance)}</td>
-              <td>
-                {#if pet.finalMythicChance > 0}
-                  {displayChance(pet.finalMythicChance)}
-                {:else}
-                  -
-                {/if}
-              </td>
-              <td>
-                {#if pet.finalShinyMythicChance > 0}
-                  {displayChance(pet.finalShinyMythicChance)}
-                {:else}
-                  -
-                {/if}
-              </td>
-            {/if}
-
-            {#if activeTab === "times"}
-              <td>
-                {formatTime(
-                  calculateHatchTime(
-                    pet.finalChance,
-                    stats.hatchSpeed,
-                    eggsPerHatch,
-                  ),
-                )}
-              </td>
-              <td>
-                {formatTime(
-                  calculateHatchTime(
-                    pet.finalShinyChance,
-                    stats.hatchSpeed,
-                    eggsPerHatch,
-                  ),
-                )}
-              </td>
-              <td>
-                {#if pet.finalMythicChance > 0}
+            <td>
+              <div class="chance-time">
+                <div>{displayChance(pet.finalChance)}</div>
+                <div class="time">
                   {formatTime(
                     calculateHatchTime(
-                      pet.finalMythicChance,
+                      pet.finalChance,
                       stats.hatchSpeed,
                       eggsPerHatch,
                     ),
                   )}
-                {:else}
-                  -
-                {/if}
-              </td>
-              <td>
-                {#if pet.finalShinyMythicChance > 0}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="chance-time">
+                <div>{displayChance(pet.finalShinyChance)}</div>
+                <div class="time">
                   {formatTime(
                     calculateHatchTime(
-                      pet.finalShinyMythicChance,
+                      pet.finalShinyChance,
                       stats.hatchSpeed,
                       eggsPerHatch,
                     ),
                   )}
-                {:else}
-                  -
-                {/if}
-              </td>
-            {/if}
+                </div>
+              </div>
+            </td>
+            <td>
+              {#if pet.finalMythicChance > 0}
+                <div class="chance-time">
+                  <div>{displayChance(pet.finalMythicChance)}</div>
+                  <div class="time">
+                    {formatTime(
+                      calculateHatchTime(
+                        pet.finalMythicChance,
+                        stats.hatchSpeed,
+                        eggsPerHatch,
+                      ),
+                    )}
+                  </div>
+                </div>
+              {:else}
+                -
+              {/if}
+            </td>
+            <td>
+              {#if pet.finalShinyMythicChance > 0}
+                <div class="chance-time">
+                  <div>{displayChance(pet.finalShinyMythicChance)}</div>
+                  <div class="time">
+                    {formatTime(
+                      calculateHatchTime(
+                        pet.finalShinyMythicChance,
+                        stats.hatchSpeed,
+                        eggsPerHatch,
+                      ),
+                    )}
+                  </div>
+                </div>
+              {:else}
+                -
+              {/if}
+            </td>
           </tr>
         {/each}
       </tbody>
@@ -375,6 +378,17 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .pet-table th:first-child,
+  .pet-table td:first-child {
+    width: 25%;
+  }
+
+  .pet-table th:not(:first-child),
+  .pet-table td:not(:first-child) {
+    padding: 0rem 0rem;
+    text-align: center;
+  }
+
   .pet-table th {
     font-size: 1.05rem;
     font-weight: 600;
@@ -395,7 +409,7 @@
   .th-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 0.5rem;
   }
 
@@ -413,6 +427,8 @@
     font-size: 20px;
     line-height: 1;
     transition: background-color 0.2s ease;
+    position: absolute;
+    right: 0.75rem;
   }
 
   .settings-btn:hover {
@@ -490,6 +506,17 @@
     text-transform: capitalize;
     width: fit-content;
     background: transparent;
+  }
+
+  .chance-time {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .time {
+    font-size: 0.85rem;
+    opacity: 0.8;
   }
 
   .rarity-common {

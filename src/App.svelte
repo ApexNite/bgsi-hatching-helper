@@ -2,11 +2,9 @@
   import { onMount } from "svelte";
   import { loadData, isDataLoaded, dataError } from "./lib/dataStore.js";
   import UserInput from "./components/containers/UserInput.svelte";
-  import TabSwitcher from "./components/navigation/TabSwitcher.svelte";
   import StatsBar from "./components/bars/StatsBar.svelte";
   import PetTable from "./components/tables/PetTable.svelte";
 
-  let activeTab = "chances";
   let stats;
   let eggsPerHatch;
   let selectedEggId;
@@ -23,9 +21,7 @@
       <div class="error-icon">⚠️</div>
       <h2>Unable to Load Data</h2>
       <p>{$dataError}</p>
-      <button class="retry-btn" on:click={() => loadData()}>
-        Try Again
-      </button>
+      <button class="retry-btn" on:click={() => loadData()}> Try Again </button>
     </div>
   </div>
 {:else if $isDataLoaded}
@@ -40,17 +36,9 @@
     </div>
 
     <section class="right-pane">
-      <TabSwitcher bind:activeTab />
+      <StatsBar {stats} {eggsPerHatch} />
 
-      <StatsBar {activeTab} {stats} {eggsPerHatch} />
-
-      <PetTable
-        {activeTab}
-        {stats}
-        {eggsPerHatch}
-        {selectedEggId}
-        {selectedWorldId}
-      />
+      <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
     </section>
   </main>
 {:else}
