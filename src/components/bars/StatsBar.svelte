@@ -24,7 +24,6 @@
       <SmartImage
         base="assets/images/icons/luck"
         alt="Luck"
-        loading="eager"
         decoding="async"
         size="24px"
       />
@@ -34,7 +33,6 @@
       <SmartImage
         base="assets/images/icons/secret-luck"
         alt="Secret Luck"
-        loading="eager"
         decoding="async"
         size="24px"
       />
@@ -44,7 +42,6 @@
       <SmartImage
         base="assets/images/icons/shiny"
         alt="Shiny Chance"
-        loading="eager"
         decoding="async"
         size="24px"
       />
@@ -54,7 +51,6 @@
       <SmartImage
         base="assets/images/icons/mythic"
         alt="Mythic Chance"
-        loading="eager"
         decoding="async"
         size="24px"
       />
@@ -64,7 +60,6 @@
       <SmartImage
         base="assets/images/icons/shiny-mythic"
         alt="Shiny Mythic Chance"
-        loading="eager"
         decoding="async"
         size="24px"
       />
@@ -78,7 +73,6 @@
       <SmartImage
         base="assets/images/icons/timer"
         alt="Hatch Speed"
-        loading="eager"
         decoding="async"
         size="24px"
       />
@@ -88,7 +82,6 @@
       <SmartImage
         base="assets/images/icons/multi-egg"
         alt="Eggs Per Second"
-        loading="eager"
         decoding="async"
         size="24px"
       />
