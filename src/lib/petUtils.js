@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, processEggsAndPets } from "./dataStore.js";
 
-const BASE_HATCH_SECONDS = 4.5;
+const BASE_HATCH_SECONDS = 4.2;
 const RARITY_ORDER = Object.freeze({
   common: 0,
   unique: 1,
@@ -51,7 +51,7 @@ export function calculateHatchTime(chance, hatchSpeed, eggsPerHatch) {
 }
 
 export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {
-  return (1 / BASE_HATCH_SECONDS) * hatchSpeed * eggsPerHatch;
+  return (hatchSpeed * eggsPerHatch) / BASE_HATCH_SECONDS;
 }
 
 export function sortByRarity(pets) {
