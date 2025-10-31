@@ -95,17 +95,21 @@
     settingsOpen = !settingsOpen;
   }
 
-  $: basePets = getPetsToDisplay(
-    selectedEggId,
-    selectedWorldId,
-    stats,
-    settings.showOgRadiance,
-  );
+  $: basePets = stats && eggsPerHatch && selectedEggId && selectedWorldId
+    ? getPetsToDisplay(
+        selectedEggId,
+        selectedWorldId,
+        stats,
+        settings.showOgRadiance,
+      )
+    : [];
 
-  $: petsWithAggregates = insertAggregateRows(basePets, {
-    anyLegendary: settings.showAnyLegendary,
-    anySecretInfinity: settings.showAnySecretInfinity,
-  });
+  $: petsWithAggregates = basePets.length > 0
+    ? insertAggregateRows(basePets, {
+        anyLegendary: settings.showAnyLegendary,
+        anySecretInfinity: settings.showAnySecretInfinity,
+      })
+    : [];
 
   $: filteredPets = settings.hideNonSpecial
     ? petsWithAggregates.filter((p) =>

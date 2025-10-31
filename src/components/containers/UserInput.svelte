@@ -64,6 +64,7 @@
 
   let dismissedManualWarning = false;
   let dismissedHalloweenEventWarning = false;
+  let isUserInputReady = false;
 
   $: if ($isDataLoaded) {
     defaultSelectedOptions = {
@@ -150,7 +151,7 @@
   );
 
   $: {
-    if ($isDataLoaded) {
+    if ($isDataLoaded && isUserInputReady) {
       eggsPerHatch = numericValues.eggsPerHatch;
 
       if (calculationMode === "manual") {
@@ -291,6 +292,8 @@
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
     }
+
+    isUserInputReady = true;
   });
 
   function saveToCache() {
@@ -426,7 +429,7 @@
   }
 </script>
 
-{#if $isDataLoaded}
+{#if $isDataLoaded && isUserInputReady}
   <div class="user-input">
     <div class="menu-header">
       <h2 class="menu-title">Hatching Settings</h2>
