@@ -1328,5 +1328,74 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "puppet-egg",
+    "name": "Puppet Egg",
+    "type": "special",
+    "event": "halloween",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "old-dolly",
+        "name": "Old Dolly",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "joy",
+        "name": "Joy",
+        "rarity": "unique",
+        "baseChance": 0.3
+      },
+      {
+        "id": "sorrow",
+        "name": "Sorrow",
+        "rarity": "epic",
+        "baseChance": 0.03
+      },
+      {
+        "id": "ragdoll",
+        "name": "Ragdoll",
+        "rarity": "legendary",
+        "baseChance": 0.00015
+      },
+      {
+        "id": "dual-act",
+        "name": "Dual Act",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "mother-doll",
+        "name": "Mother Doll",
+        "rarity": "legendary",
+        "baseChance": 2e-8
+      },
+      {
+        "id": "harlequin",
+        "name": "Harlequin",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "moonlord",
+        "name": "Moonlord",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "og-luminance",
+        "name": "OG Luminance",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "the-puppeteer",
+        "name": "The Puppeteer",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]
