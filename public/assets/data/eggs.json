@@ -1137,6 +1137,12 @@
         "name": "DUMB PUMPKIN",
         "rarity": "secret",
         "baseChance": 1.5e-8
+      },
+      {
+        "id": "dumb-sinister-lord",
+        "name": "DUMB SINISTER LORD",
+        "rarity": "secret",
+        "baseChance": 1e-8
       }
     ]
   },
