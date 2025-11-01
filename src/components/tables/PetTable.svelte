@@ -95,21 +95,23 @@
     settingsOpen = !settingsOpen;
   }
 
-  $: basePets = stats && eggsPerHatch && selectedEggId && selectedWorldId
-    ? getPetsToDisplay(
-        selectedEggId,
-        selectedWorldId,
-        stats,
-        settings.showOgRadiance,
-      )
-    : [];
+  $: basePets =
+    stats && eggsPerHatch && selectedEggId && selectedWorldId
+      ? getPetsToDisplay(
+          selectedEggId,
+          selectedWorldId,
+          stats,
+          settings.showOgRadiance,
+        )
+      : [];
 
-  $: petsWithAggregates = basePets.length > 0
-    ? insertAggregateRows(basePets, {
-        anyLegendary: settings.showAnyLegendary,
-        anySecretInfinity: settings.showAnySecretInfinity,
-      })
-    : [];
+  $: petsWithAggregates =
+    basePets.length > 0
+      ? insertAggregateRows(basePets, {
+          anyLegendary: settings.showAnyLegendary,
+          anySecretInfinity: settings.showAnySecretInfinity,
+        })
+      : [];
 
   $: filteredPets = settings.hideNonSpecial
     ? petsWithAggregates.filter((p) =>
@@ -194,36 +196,44 @@
             </td>
 
             <td>
-              <div class="chance-time">
-                <div>{displayChance(pet.finalChance)}</div>
-                {#if settings.showHatchingTimes}
-                  <div class="time">
-                    {formatTime(
-                      calculateHatchTime(
-                        pet.finalChance,
-                        stats.hatchSpeed,
-                        eggsPerHatch,
-                      ),
-                    )}
-                  </div>
-                {/if}
-              </div>
+              {#if pet.finalChance > 0}
+                <div class="chance-time">
+                  <div>{displayChance(pet.finalChance)}</div>
+                  {#if settings.showHatchingTimes}
+                    <div class="time">
+                      {formatTime(
+                        calculateHatchTime(
+                          pet.finalChance,
+                          stats.hatchSpeed,
+                          eggsPerHatch,
+                        ),
+                      )}
+                    </div>
+                  {/if}
+                </div>
+              {:else}
+                -
+              {/if}
             </td>
             <td>
-              <div class="chance-time">
-                <div>{displayChance(pet.finalShinyChance)}</div>
-                {#if settings.showHatchingTimes}
-                  <div class="time">
-                    {formatTime(
-                      calculateHatchTime(
-                        pet.finalShinyChance,
-                        stats.hatchSpeed,
-                        eggsPerHatch,
-                      ),
-                    )}
-                  </div>
-                {/if}
-              </div>
+              {#if pet.finalShinyChance > 0}
+                <div class="chance-time">
+                  <div>{displayChance(pet.finalShinyChance)}</div>
+                  {#if settings.showHatchingTimes}
+                    <div class="time">
+                      {formatTime(
+                        calculateHatchTime(
+                          pet.finalShinyChance,
+                          stats.hatchSpeed,
+                          eggsPerHatch,
+                        ),
+                      )}
+                    </div>
+                  {/if}
+                </div>
+              {:else}
+                -
+              {/if}
             </td>
             <td>
               {#if pet.finalMythicChance > 0}
