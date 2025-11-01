@@ -12,7 +12,12 @@ const RARITY_ORDER = Object.freeze({
   infinity: 6,
 });
 
-export function getPetsToDisplay(eggId, worldId, stats, showOGRadiance = false) {
+export function getPetsToDisplay(
+  eggId,
+  worldId,
+  stats,
+  showOGRadiance = false,
+) {
   const eggsWithPets = getEggsWithInjectedPets(showOGRadiance);
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
@@ -123,10 +128,22 @@ export function insertAggregateRows(
     };
   };
 
+  const hasPositiveChance = (pet) => {
+    return (
+      pet.finalChance > 0 ||
+      pet.finalShinyChance > 0 ||
+      pet.finalMythicChance > 0 ||
+      pet.finalShinyMythicChance > 0
+    );
+  };
+
   const aggregates = [];
 
   if (anyLegendary) {
-    const legends = pets.filter((p) => p.rarity === "legendary");
+    const legends = pets.filter(
+      (p) => p.rarity === "legendary" && hasPositiveChance(p),
+    );
+
     if (legends.length > 1) {
       const agg = makeAggregateRow(
         "__agg_legendary",
@@ -134,13 +151,19 @@ export function insertAggregateRows(
         "legendary",
         legends,
       );
-      if (agg) aggregates.push(agg);
+
+      if (agg) {
+        aggregates.push(agg);
+      }
     }
   }
 
   if (anySecretInfinity) {
     const secretsAndInfinity = pets.filter((p) => {
-      return p.rarity === "secret" || p.rarity === "infinity";
+      return (
+        (p.rarity === "secret" || p.rarity === "infinity") &&
+        hasPositiveChance(p)
+      );
     });
 
     if (secretsAndInfinity.length > 1) {
