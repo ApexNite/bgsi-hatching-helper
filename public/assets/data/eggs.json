@@ -1142,7 +1142,7 @@
         "id": "dumb-sinister-lord",
         "name": "DUMB SINISTER LORD",
         "rarity": "secret",
-        "baseChance": 1e-8
+        "baseChance": 1e-10
       }
     ]
   },
