@@ -8,7 +8,15 @@
     "premium": {
       "baseHatchSpeed": 0.3
     },
-    "pets": []
+    "pets": [
+      {
+        "id": "super-hacker-prism",
+        "name": "Super Hacker Prism",
+        "img": "assets/images/pets/perk/super-hacker-prism",
+        "rarity": "secret",
+        "baseChance": -1
+      }
+    ]
   },
   "3": null,
   "4": null,
@@ -20,6 +28,14 @@
     "premium": {
       "luck": 3.5
     },
-    "pets": []
+    "pets": [
+      {
+        "id": "maid-nert-plushie",
+        "name": "Maid Nert Plushie",
+        "img": "assets/images/pets/perk/maid-nert-plushie",
+        "rarity": "secret",
+        "baseChance": -1
+      }
+    ]
   }
 }
