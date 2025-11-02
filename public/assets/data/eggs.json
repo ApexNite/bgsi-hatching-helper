@@ -1391,16 +1391,16 @@
         "baseChance": 0.00015
       },
       {
+        "id": "mother-doll",
+        "name": "Mother Doll",
+        "rarity": "legendary",
+        "baseChance": 2e-7
+      },
+      {
         "id": "dual-act",
         "name": "Dual Act",
         "rarity": "legendary",
         "baseChance": 1e-7
-      },
-      {
-        "id": "mother-doll",
-        "name": "Mother Doll",
-        "rarity": "legendary",
-        "baseChance": 2e-8
       },
       {
         "id": "harlequin",
