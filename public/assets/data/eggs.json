@@ -1394,19 +1394,19 @@
         "id": "mother-doll",
         "name": "Mother Doll",
         "rarity": "legendary",
-        "baseChance": 2e-7
+        "baseChance": 4e-7
       },
       {
         "id": "dual-act",
         "name": "Dual Act",
         "rarity": "legendary",
-        "baseChance": 1e-7
+        "baseChance": 2e-7
       },
       {
         "id": "harlequin",
         "name": "Harlequin",
         "rarity": "secret",
-        "baseChance": 2e-9
+        "baseChance": 1e-9
       },
       {
         "id": "moonlord",
