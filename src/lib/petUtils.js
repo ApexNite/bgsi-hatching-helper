@@ -306,12 +306,14 @@ function normalizeEgg(items, stats) {
         item.rawChance =
           item.baseChance *
           baseLuckMultiplier *
-          secretLuckMultiplier *
+          (item.ignoreSecret ? 1 : secretLuckMultiplier) *
           infinityLuckMultiplier;
         break;
       case "secret":
         item.rawChance =
-          item.baseChance * baseLuckMultiplier * secretLuckMultiplier;
+          item.baseChance *
+          baseLuckMultiplier *
+          (item.ignoreSecret ? 1 : secretLuckMultiplier);
         break;
       case "legendary":
         item.rawChance = item.baseChance * baseLuckMultiplier;
