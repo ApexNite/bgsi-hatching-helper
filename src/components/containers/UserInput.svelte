@@ -15,7 +15,7 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 4;
+  const COOKIE_VERSION = 5;
 
   let calculationMode = "calculated";
 
@@ -48,6 +48,7 @@
   };
   const defaultWorldIndexStates = {};
   const defaultEventUpgradeValues = {};
+  const defaultEggRiftSelections = {};
 
   let selectedOptions = {};
   let specialPotionToggles = {};
@@ -61,6 +62,7 @@
   let manualStats = defaultManualStats;
   let worldIndexStates = defaultWorldIndexStates;
   let eventUpgradeValues = defaultEventUpgradeValues;
+  let eggRiftSelections = defaultEggRiftSelections;
 
   let dismissedManualWarning = false;
   let dismissedHalloweenEventWarning = false;
@@ -283,6 +285,10 @@
           ...defaultEventUpgradeValues,
           ...savedData.eventUpgradeValues,
         };
+        eggRiftSelections = {
+          ...defaultEggRiftSelections,
+          ...savedData.eggRiftSelections,
+        };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedHalloweenEventWarning =
           savedData.dismissedHalloweenEventWarning ?? false;
@@ -312,6 +318,7 @@
       manualStats,
       worldIndexStates,
       eventUpgradeValues,
+      eggRiftSelections,
       dismissedManualWarning,
       dismissedHalloweenEventWarning,
     };
@@ -342,13 +349,25 @@
 
   function handleSelect({ option, id }) {
     if (id === "eggs") {
+      eggRiftSelections = {
+          ...eggRiftSelections,
+          [selectedOptions.eggs]: selectedOptions.rifts,
+      };
+
       selectedOptions = {
         ...selectedOptions,
         [id]: option.id,
-        rifts: $dataStore.rifts?.[0]?.id ?? null,
+        rifts: eggRiftSelections[option.id] || ($dataStore.rifts?.[0]?.id ?? null),
       };
     } else {
       selectedOptions = { ...selectedOptions, [id]: option.id };
+
+      if (id === "rifts") {
+        eggRiftSelections = {
+          ...eggRiftSelections,
+          [selectedOptions.eggs]: option.id,
+        };
+      }
     }
     saveToCache();
   }
