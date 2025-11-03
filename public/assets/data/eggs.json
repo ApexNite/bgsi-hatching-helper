@@ -1388,7 +1388,7 @@
         "id": "ragdoll",
         "name": "Ragdoll",
         "rarity": "legendary",
-        "baseChance": 0.00015
+        "baseChance": 0.00001
       },
       {
         "id": "mother-doll",
@@ -1430,7 +1430,7 @@
         "id": "the-puppeteer",
         "name": "The Puppeteer",
         "rarity": "infinity",
-        "baseChance": 1e-11
+        "baseChance": 2e-11
       }
     ]
   }
