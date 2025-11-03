@@ -41,15 +41,14 @@
 <div class="wrapper" bind:this={root}>
   <button class="button-dropdown" type="button" on:click={toggle}>
     {#if selectedOption?.img}
-    <span class="img-wrapper">
-<SmartImage
-        base={selectedOption.img}
-        alt={selectedOption.name}
-        decoding="async"
-        size="30px"
-      />
-    </span>
-      
+      <span class="img-wrapper">
+        <SmartImage
+          base={selectedOption.img}
+          alt={selectedOption.name}
+          decoding="async"
+          size="26px"
+        />
+      </span>
     {:else}
       <span class="img-placeholder"></span>
     {/if}
@@ -65,14 +64,14 @@
           on:click={() => select(option)}
         >
           {#if option.img}
-          <span class="img-wrapper">
-            <SmartImage
-              base={option.img}
-              alt={option.name}
-              decoding="async"
-              size="30px"
-            />
-          </span>
+            <span class="img-wrapper">
+              <SmartImage
+                base={option.img}
+                alt={option.name}
+                decoding="async"
+                size="26px"
+              />
+            </span>
           {/if}
           <span>{option.name}</span>
         </button>
@@ -139,6 +138,6 @@
   }
 
   .img-placeholder {
-    height: 30px;
+    height: 26px;
   }
 </style>
