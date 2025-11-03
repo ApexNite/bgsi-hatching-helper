@@ -96,7 +96,7 @@
   }
 
   $: basePets =
-    stats && eggsPerHatch && selectedEggId && selectedWorldId
+    stats && selectedEggId && selectedWorldId
       ? getPetsToDisplay(
           selectedEggId,
           selectedWorldId,
