@@ -100,12 +100,12 @@ export function formatChancePercent(
   return `${str}%`;
 }
 
-export function formatChanceFraction(chance, ceil = false) {
+export function formatChanceFraction(chance) {
   if (!Number.isFinite(chance) || chance <= 0) {
     return "1/∞";
   }
 
-  return `1/${Math.max(1, ceil ? Math.ceil(1 / chance) : Math.floor(1 / chance)).toLocaleString()}`;
+  return `1/${Math.max(1, Math.round(1 / chance)).toLocaleString()}`;
 }
 
 export function formatMultiplier(multiplier) {

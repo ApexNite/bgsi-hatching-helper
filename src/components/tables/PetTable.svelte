@@ -125,7 +125,7 @@
     }
 
     if (settings.chanceDisplayMode === "fraction") {
-      return formatChanceFraction(value, true);
+      return formatChanceFraction(value);
     }
 
     return formatChance(value);
