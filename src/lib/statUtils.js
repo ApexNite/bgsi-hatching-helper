@@ -307,8 +307,6 @@ function collectEventBonusMultipliers(sources) {
     result[ev].push(source);
   }
 
-  console.log(result);
-
   return result;
 }
 
