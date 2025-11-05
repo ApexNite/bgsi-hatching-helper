@@ -594,7 +594,7 @@
               id="eggs-per-hatch"
               value={numericValues.eggsPerHatch}
               onInput={({ value }) => updateNumericValue("eggsPerHatch", value)}
-              hoverText="Amount of Eggs Opened Per Hatch"
+              hoverText="Amount of eggs opened per hatch"
             />
           </div>
         </div>
@@ -925,7 +925,7 @@
                 value={numericValues.seasonStars}
                 onInput={({ value }) =>
                   updateNumericValue("seasonStars", value)}
-                hoverText="Infinite Track Season Pass Stars (Max 1500)"
+                hoverText="Season Pass Stars (Max 1500)"
               />
             </div>
           </div>
@@ -987,7 +987,7 @@
                   id={enchant.id}
                   value={enchantValues[enchant.id]}
                   onInput={({ value }) => updateEnchantValue(enchant.id, value)}
-                  hoverText="Amount of Pets Equiped with the {enchant.name} Enchant"
+                  hoverText="Amount of pets equiped with the {enchant.name} enchant"
                 />
               </div>
             </div>
@@ -1043,7 +1043,7 @@
                 value={numericValues.luckierTogether}
                 onInput={({ value }) =>
                   updateNumericValue("luckierTogether", value)}
-                hoverText="Amount of Friends in the server"
+                hoverText="Amount of friends in the server"
               />
             </div>
           </div>
