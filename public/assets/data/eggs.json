@@ -5,31 +5,31 @@
     "type": "infinity",
     "rarities": [
       {
-        "rarity": "common",
+        "id": "common",
         "baseChance": 0.6
       },
       {
-        "rarity": "unique",
+        "id": "unique",
         "baseChance": 0.2
       },
       {
-        "rarity": "rare",
+        "id": "rare",
         "baseChance": 0.13
       },
       {
-        "rarity": "epic",
+        "id": "epic",
         "baseChance": 0.065
       },
       {
-        "rarity": "legendary",
+        "id": "legendary",
         "baseChance": 0.005
       },
       {
-        "rarity": "secret",
+        "id": "secret",
         "baseChance": 2.5e-8
       },
       {
-        "rarity": "infinity",
+        "id": "infinity",
         "baseChance": 2.5e-11
       }
     ]
@@ -78,7 +78,6 @@
     "name": "Spotted Egg",
     "type": "world",
     "world": "the-overworld",
-    "riftable": false,
     "pets": [
       {
         "id": "mouse",
@@ -117,7 +116,6 @@
     "name": "Iceshard Egg",
     "type": "world",
     "world": "the-overworld",
-    "riftable": false,
     "pets": [
       {
         "id": "ice-kitty",

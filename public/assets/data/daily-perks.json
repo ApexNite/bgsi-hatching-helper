@@ -12,7 +12,6 @@
       {
         "id": "super-hacker-prism",
         "name": "Super Hacker Prism",
-        "img": "assets/images/pets/perk/super-hacker-prism",
         "rarity": "secret",
         "baseChance": 2e-9
       }
@@ -32,7 +31,6 @@
       {
         "id": "maid-nert-plushie",
         "name": "Maid Nert Plushie",
-        "img": "assets/images/pets/perk/maid-nert-plushie",
         "rarity": "secret",
         "baseChance": 1e-9
       }

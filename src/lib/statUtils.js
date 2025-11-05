@@ -286,26 +286,28 @@ function clamp(value, min, max) {
 function collectEventBonusMultipliers(sources) {
   const result = {};
 
-  for (const s of sources || []) {
+  for (const source of sources || []) {
     const isProvider =
-      typeof s?.potionLuckMultiplier === "number" ||
-      typeof s?.potionShinyChanceMultiplier === "number" ||
-      typeof s?.potionMythicChanceMultiplier === "number" ||
-      typeof s?.potionSecretLuckMultiplier === "number" ||
-      typeof s?.potionInfinityLuckMultiplier === "number" ||
-      typeof s?.potionHatchSpeedMultiplier === "number";
+      source.potionLuckMultiplier !== 0 ||
+      source.potionHatchSpeedMultiplier !== 0 ||
+      source.potionShinyChanceMultiplier !== 1 ||
+      source.potionMythicChanceMultiplier !== 1 ||
+      source.potionSecretLuckMultiplier !== 1 ||
+      source.potionInfinityLuckMultiplier !== 1;
 
-    if (!isProvider || !s?.event) {
+    if (!isProvider || !source?.event) {
       continue;
     }
 
-    const ev = s.event;
+    const ev = source.event;
     if (!result[ev]) {
       result[ev] = [];
     }
 
-    result[ev].push(s);
+    result[ev].push(source);
   }
+
+  console.log(result);
 
   return result;
 }
@@ -315,15 +317,15 @@ function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
     return source;
   }
 
-  const isSpecialBonusProvider =
-    typeof source.potionLuckMultiplier === "number" ||
-    typeof source.potionShinyChanceMultiplier === "number" ||
-    typeof source.potionMythicChanceMultiplier === "number" ||
-    typeof source.potionSecretLuckMultiplier === "number" ||
-    typeof source.potionInfinityLuckMultiplier === "number" ||
-    typeof source.potionHatchSpeedMultiplier === "number";
+  const isProvider =
+    source.potionLuckMultiplier !== 0 ||
+    source.potionHatchSpeedMultiplier !== 0 ||
+    source.potionShinyChanceMultiplier !== 1 ||
+    source.potionMythicChanceMultiplier !== 1 ||
+    source.potionSecretLuckMultiplier !== 1 ||
+    source.potionInfinityLuckMultiplier !== 1;
 
-  if (isSpecialBonusProvider) {
+  if (isProvider) {
     return source;
   }
 

@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { dataStore, isDataLoaded, processEggsAndPets } from "./dataStore.js";
+import { dataStore, isDataLoaded, processData } from "./dataStore.js";
 
 const BASE_HATCH_SECONDS = 4.2;
 const RARITY_ORDER = Object.freeze({
@@ -262,8 +262,7 @@ function getEggsWithInjectedPets(showOGRadiance = false) {
     }
   }
 
-  processEggsAndPets(eggsCopy);
-  return eggsCopy;
+  return processData(eggsCopy, "egg");
 }
 
 function normalizeData(items) {
