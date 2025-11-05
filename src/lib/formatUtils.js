@@ -68,7 +68,7 @@ export function formatChancePercent(
   correct = false,
 ) {
   const percentChance = chance * 100;
-  const correctedPercent = 
+  const correctedPercent =
     correct && Math.abs(percentChance - Math.round(percentChance)) < 0.000001
       ? Math.round(percentChance)
       : percentChance;
@@ -100,12 +100,12 @@ export function formatChancePercent(
   return `${str}%`;
 }
 
-export function formatChanceFraction(chance) {
+export function formatChanceFraction(chance, ceil = false) {
   if (!Number.isFinite(chance) || chance <= 0) {
     return "1/∞";
   }
 
-  return `1/${Math.max(1, Math.floor(1 / chance)).toLocaleString()}`;
+  return `1/${Math.max(1, ceil ? Math.ceil(1 / chance) : Math.floor(1 / chance)).toLocaleString()}`;
 }
 
 export function formatMultiplier(multiplier) {
