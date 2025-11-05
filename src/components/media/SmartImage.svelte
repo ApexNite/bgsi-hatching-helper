@@ -8,23 +8,49 @@
   export let decoding;
   export let size;
 
+  const PLACEHOLDER_BASE = "assets/images/icons/pet-placeholder";
+
   let blurhash;
   let imageLoaded;
   let canvasElement;
 
+  let currentBase = base;
+  let lastBaseProp = base;
+  let usedPlaceholder = false;
+
+  $: if (base !== lastBaseProp) {
+    lastBaseProp = base;
+    usedPlaceholder = false;
+    currentBase = base;
+    imageLoaded = false;
+  }
+
   $: if ($isDataLoaded) {
-    blurhash = $dataStore.imageMeta[`${base}.png`];
+    blurhash = $dataStore.imageMeta[`${currentBase}.png`];
+  }
+
+  $: if (blurhash && canvasElement && !imageLoaded) {
+    renderBlurhash();
   }
 
   onMount(async () => {
     if (!$isDataLoaded) {
       await loadData();
     }
-
-    if (blurhash && canvasElement) {
+    if (blurhash && canvasElement && !imageLoaded) {
       renderBlurhash();
     }
   });
+
+  function handleImageError() {
+    if (usedPlaceholder) {
+      return;
+    }
+
+    usedPlaceholder = true;
+    currentBase = PLACEHOLDER_BASE;
+    imageLoaded = false;
+  }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
   const getColorIndicesForCoord = (x, y, width) => {
@@ -117,13 +143,14 @@
     ></canvas>
   {/if}
   <picture style={imageLoaded ? "" : "display:none"}>
-    <source srcset={`${base}.avif`} type="image/avif" />
-    <source srcset={`${base}.webp`} type="image/webp" />
+    <source srcset={`${currentBase}.avif`} type="image/avif" />
+    <source srcset={`${currentBase}.webp`} type="image/webp" />
     <img
-      src={`${base}.png`}
+      src={`${currentBase}.png`}
       {alt}
       {decoding}
       on:load={() => (imageLoaded = true)}
+      on:error={handleImageError}
       style="width: {size}; height: {size};"
     />
   </picture>
