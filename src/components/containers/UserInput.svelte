@@ -15,7 +15,7 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 5;
+  const COOKIE_VERSION = 6;
 
   let calculationMode = "calculated";
 
@@ -65,7 +65,6 @@
   let eggRiftSelections = defaultEggRiftSelections;
 
   let dismissedManualWarning = false;
-  let dismissedHalloweenEventWarning = false;
   let isUserInputReady = false;
 
   $: if ($isDataLoaded) {
@@ -131,7 +130,6 @@
   $: isInfinityEgg = selectedEgg?.type === "infinity";
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
-  $: isHalloweenEgg = selectedEgg?.event === "halloween";
 
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
@@ -290,8 +288,6 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-        dismissedHalloweenEventWarning =
-          savedData.dismissedHalloweenEventWarning ?? false;
       } else if (savedData) {
         deleteCookie("hatching-helper-user-input");
       }
@@ -320,7 +316,6 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
-      dismissedHalloweenEventWarning,
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -337,11 +332,6 @@
     saveToCache();
   }
 
-  function dismissHalloweenEventWarning() {
-    dismissedHalloweenEventWarning = true;
-    saveToCache();
-  }
-
   function updateManualStat(key, value) {
     manualStats = { ...manualStats, [key]: value };
     saveToCache();
@@ -350,14 +340,15 @@
   function handleSelect({ option, id }) {
     if (id === "eggs") {
       eggRiftSelections = {
-          ...eggRiftSelections,
-          [selectedOptions.eggs]: selectedOptions.rifts,
+        ...eggRiftSelections,
+        [selectedOptions.eggs]: selectedOptions.rifts,
       };
 
       selectedOptions = {
         ...selectedOptions,
         [id]: option.id,
-        rifts: eggRiftSelections[option.id] || ($dataStore.rifts?.[0]?.id ?? null),
+        rifts:
+          eggRiftSelections[option.id] || ($dataStore.rifts?.[0]?.id ?? null),
       };
     } else {
       selectedOptions = { ...selectedOptions, [id]: option.id };
@@ -1200,29 +1191,6 @@
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissManualWarning}
-      />
-    {/if}
-
-    {#if calculationMode === "manual" && isHalloweenEgg && !dismissedHalloweenEventWarning}
-      <WarningBanner
-        type="error"
-        title="Debug stats are inaccurate!"
-        items={[
-          {
-            label: "Halloween Elixir",
-            description: "Not shown in debug stats",
-          },
-          {
-            label: "Halloween Infinity Elixir",
-            description: "Not shown in debug stats",
-          },
-          {
-            label: "Halloween Upgrades",
-            description: "Not shown in debug stats",
-          },
-        ]}
-        recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissHalloweenEventWarning}
       />
     {/if}
   </div>
