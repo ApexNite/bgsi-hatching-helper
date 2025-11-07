@@ -1106,6 +1106,63 @@
     ]
   },
   {
+    "id": "super-silly-egg",
+    "name": "Super Silly Egg",
+    "type": "special",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "silly-golem",
+        "name": "Silly Golem",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "silly-dragon",
+        "name": "Silly Dragon",
+        "rarity": "rare",
+        "baseChance": 0.25
+      },
+      {
+        "id": "silly-angel",
+        "name": "Silly Angel",
+        "rarity": "epic",
+        "baseChance": 0.05
+      },
+      {
+        "id": "silly-unicorn",
+        "name": "Silly Unicorn",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "silly-hydra",
+        "name": "Silly Hydra",
+        "rarity": "legendary",
+        "baseChance": 0.000001
+      },
+      {
+        "id": "silly-king-doggy",
+        "name": "Silly King Doggy",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      },
+      {
+        "id": "super-silly-doggy",
+        "name": "Super Silly Doggy",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "silly-leviathan",
+        "name": "Silly Leviathan",
+        "rarity": "infinity",
+        "hasMythic": false,
+        "baseChance": 5e-12
+      }
+    ]
+  },
+  {
     "id": "og-egg",
     "name": "OG Egg",
     "type": "special",
