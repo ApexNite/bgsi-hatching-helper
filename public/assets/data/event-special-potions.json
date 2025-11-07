@@ -1,10 +1,1 @@
-[
-  {
-    "id": "halloween-infinity-elixir",
-    "name": "Halloween Infinity Elixir",
-    "event": "halloween",
-    "potionLuckMultiplier": 1.5,
-    "potionShinyChanceMultiplier": 1.5,
-    "potionMythicChanceMultiplier": 1.5
-  }
-]
+[]
