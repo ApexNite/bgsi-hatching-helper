@@ -21,7 +21,7 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 3;
+  const COOKIE_VERSION = 4;
 
   const defaultSettings = {
     chanceDisplayMode: "auto",
@@ -29,7 +29,6 @@
     showAnyLegendary: false,
     showAnySecretInfinity: false,
     hideNonSpecial: false,
-    showOgRadiance: false,
   };
 
   let settings = { ...defaultSettings };
@@ -97,12 +96,7 @@
 
   $: basePets =
     stats && selectedEggId && selectedWorldId
-      ? getPetsToDisplay(
-          selectedEggId,
-          selectedWorldId,
-          stats,
-          settings.showOgRadiance,
-        )
+      ? getPetsToDisplay(selectedEggId, selectedWorldId, stats)
       : [];
 
   $: petsWithAggregates =
@@ -358,19 +352,6 @@
             size="sm"
           />
           <span>Hide Easy Pets</span>
-        </label>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Pets</div>
-        <label class="row">
-          <Checkbox
-            id="showOgRadiance"
-            checked={settings.showOgRadiance}
-            onChange={() => toggle("showOgRadiance")}
-            size="sm"
-          />
-          <span>Show OG Radiance</span>
         </label>
       </div>
     </div>

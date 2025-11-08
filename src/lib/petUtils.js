@@ -12,13 +12,8 @@ const RARITY_ORDER = Object.freeze({
   infinity: 6,
 });
 
-export function getPetsToDisplay(
-  eggId,
-  worldId,
-  stats,
-  showOGRadiance = false,
-) {
-  const eggsWithPets = getEggsWithInjectedPets(showOGRadiance);
+export function getPetsToDisplay(eggId, worldId, stats) {
+  const eggsWithPets = getEggsWithInjectedPets();
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
   if (!egg) {
@@ -208,7 +203,7 @@ function addVariantChances(pets, stats) {
   return pets;
 }
 
-function getEggsWithInjectedPets(showOGRadiance = false) {
+function getEggsWithInjectedPets() {
   const data = get(dataStore);
 
   if (!isDataLoaded || !data.eggs) {
@@ -243,20 +238,6 @@ function getEggsWithInjectedPets(showOGRadiance = false) {
 
         if (!targetEgg.pets.some((p) => p.id === bountyPet.id)) {
           targetEgg.pets.push(bountyPet);
-        }
-      }
-    }
-  }
-
-  if (showOGRadiance) {
-    const ogRadiancePet = data.secretBounty?.pets?.["og-radiance"];
-    if (ogRadiancePet) {
-      for (const egg of eggsCopy) {
-        if (egg.event === "halloween") {
-          egg.pets = egg.pets || [];
-          if (!egg.pets.some((p) => p.id === ogRadiancePet.id)) {
-            egg.pets.push(ogRadiancePet);
-          }
         }
       }
     }
