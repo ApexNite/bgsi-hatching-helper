@@ -1174,7 +1174,7 @@
       {/if}
     </div>
 
-    {#if calculationMode === "manual" && !selectedEgg?.event && !dismissedManualWarning}
+    {#if calculationMode === "manual" && selectedEgg?.event === "none" && !dismissedManualWarning}
       <WarningBanner
         type="warning"
         title="Debug stats may be inaccurate!"
@@ -1187,6 +1187,10 @@
           {
             label: "Secret Pets Milestone",
             description: "Secret luck bonus not shown in debug stats",
+          },
+          {
+            label: "Rounded Values",
+            description: "Shiny and mythic stats are rounded, introducing errors",
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
