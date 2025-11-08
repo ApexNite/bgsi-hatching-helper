@@ -100,12 +100,21 @@ export function formatChancePercent(
   return `${str}%`;
 }
 
-export function formatChanceFraction(chance) {
+export function formatChanceFraction(chance, mode = "round") {
   if (!Number.isFinite(chance) || chance <= 0) {
     return "1/∞";
   }
 
-  return `1/${Math.max(1, Math.ceil(1 / chance)).toLocaleString()}`;
+  let denominator =
+    mode === "round"
+      ? Math.round(1 / chance)
+      : mode === "ceil"
+        ? Math.ceil(1 / chance)
+        : mode === "floor"
+          ? Math.floor(1 / chance)
+          : 1 / chance;
+
+  return `1/${Math.max(1, denominator).toLocaleString()}`;
 }
 
 export function formatMultiplier(multiplier) {

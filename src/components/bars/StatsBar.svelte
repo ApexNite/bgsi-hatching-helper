@@ -43,7 +43,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatChanceFraction(stats.shinyChance)}</strong>
+    <strong>{formatChanceFraction(stats.shinyChance, "ceil")}</strong>
   </div>
   <div class="stat">
     <SmartImage
@@ -52,7 +52,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatChanceFraction(stats.mythicChance)}</strong>
+    <strong>{formatChanceFraction(stats.mythicChance, "floor")}</strong>
   </div>
   <div class="stat">
     <SmartImage
