@@ -105,7 +105,7 @@ export function formatChanceFraction(chance) {
     return "1/∞";
   }
 
-  return `1/${Math.max(1, Math.round(1 / chance)).toLocaleString()}`;
+  return `1/${Math.max(1, Math.ceil(1 / chance)).toLocaleString()}`;
 }
 
 export function formatMultiplier(multiplier) {

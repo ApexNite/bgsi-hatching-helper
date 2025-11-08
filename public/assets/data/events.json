@@ -21,6 +21,6 @@
     "id": "shiny-event",
     "name": "Shiny Event",
     "img": "assets/images/icons/shiny",
-    "shinyChanceMultiplier": 1.2
+    "shinyChanceMultiplier": 1.25
   }
 ]
