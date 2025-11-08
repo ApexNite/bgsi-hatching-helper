@@ -138,6 +138,7 @@ const schemas = {
     },
     baseChance: { type: "number", default: -1 },
     staticMythic: { type: "boolean", default: false },
+    hasMythic: { type: "boolean", default: true },
     ignoreSecret: { type: "boolean", default: false },
   },
   potion: {
