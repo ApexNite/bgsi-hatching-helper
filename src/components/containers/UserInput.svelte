@@ -1190,7 +1190,7 @@
           },
           {
             label: "Rounded Values",
-            description: "Shiny and mythic stats are rounded, introducing errors",
+            description: "Shiny and mythic stats are rounded and not exact",
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
