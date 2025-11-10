@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, processData } from "./dataStore.js";
 
-const BASE_HATCH_SECONDS = 4.2;
+const BASE_HATCH_SECONDS = 4.5;
 const RARITY_ORDER = Object.freeze({
   common: 0,
   unique: 1,
