@@ -51,7 +51,7 @@
   let eggRiftSelections = {};
 
   $: if ($isDataLoaded) {
-    selectedOptions = {
+    const defaultSelectedOptions = {
       eggs: $dataStore.eggs?.[0]?.id,
       worlds: $dataStore.worlds?.[0]?.id,
       rifts: $dataStore.rifts?.[0]?.id,
@@ -78,25 +78,56 @@
         ]),
       ),
     };
+    selectedOptions = { ...defaultSelectedOptions, ...selectedOptions };
 
-    specialPotionToggles = Object.fromEntries(
-      ($dataStore.specialPotions || []).map((p) => [p.id, false]),
-    );
-    eventSpecialPotionToggles = Object.fromEntries(
-      ($dataStore.eventSpecialPotions || []).map((p) => [p.id, false]),
-    );
-    environmentBuffToggles = Object.fromEntries(
-      ($dataStore.environmentBuffs || []).map((b) => [b.id, false]),
-    );
-    gamepassToggles = Object.fromEntries(
-      ($dataStore.gamepasses || []).map((g) => [g.id, false]),
-    );
-    eventToggles = Object.fromEntries(
-      ($dataStore.events || []).map((e) => [e.id, false]),
-    );
-    enchantValues = Object.fromEntries(
-      ($dataStore.enchants || []).map((e) => [e.id, 0]),
-    );
+    specialPotionToggles = {
+      ...Object.fromEntries(
+        ($dataStore.specialPotions || []).map((p) => [
+          p.id,
+          specialPotionToggles[p.id] ?? false,
+        ]),
+      ),
+    };
+    eventSpecialPotionToggles = {
+      ...Object.fromEntries(
+        ($dataStore.eventSpecialPotions || []).map((p) => [
+          p.id,
+          eventSpecialPotionToggles[p.id] ?? false,
+        ]),
+      ),
+    };
+    environmentBuffToggles = {
+      ...Object.fromEntries(
+        ($dataStore.environmentBuffs || []).map((b) => [
+          b.id,
+          environmentBuffToggles[b.id] ?? false,
+        ]),
+      ),
+    };
+    gamepassToggles = {
+      ...Object.fromEntries(
+        ($dataStore.gamepasses || []).map((g) => [
+          g.id,
+          gamepassToggles[g.id] ?? false,
+        ]),
+      ),
+    };
+    eventToggles = {
+      ...Object.fromEntries(
+        ($dataStore.events || []).map((e) => [
+          e.id,
+          eventToggles[e.id] ?? false,
+        ]),
+      ),
+    };
+    enchantValues = {
+      ...Object.fromEntries(
+        ($dataStore.enchants || []).map((e) => [
+          e.id,
+          enchantValues[e.id] ?? 0,
+        ]),
+      ),
+    };
   }
 
   $: selectedEgg = $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs);
@@ -305,11 +336,6 @@
     saveToCache();
   }
 
-  function updateManualStat(key, value) {
-    manualStats = { ...manualStats, [key]: value };
-    saveToCache();
-  }
-
   function handleSelect({ option, id }) {
     if (id === "eggs") {
       eggRiftSelections = {
@@ -333,19 +359,43 @@
         };
       }
     }
+
     saveToCache();
   }
 
   function updateToggle(toggleData, toggleId) {
-    toggleData = {
-      ...toggleData,
-      [toggleId]: !toggleData[toggleId],
-    };
+    const updated = { ...toggleData, [toggleId]: !toggleData[toggleId] };
+
+    if (toggleData === specialPotionToggles) {
+      specialPotionToggles = updated;
+    } else if (toggleData === eventSpecialPotionToggles) {
+      eventSpecialPotionToggles = updated;
+    } else if (toggleData === environmentBuffToggles) {
+      environmentBuffToggles = updated;
+    } else if (toggleData === gamepassToggles) {
+      gamepassToggles = updated;
+    } else if (toggleData === eventToggles) {
+      eventToggles = updated;
+    } else if (toggleData === toggleValues) {
+      toggleValues = updated;
+    }
+
     saveToCache();
   }
 
   function updateNumericValue(numericData, key, value) {
-    numericData = { ...numericData, [key]: value };
+    const updated = { ...numericData, [key]: value };
+
+    if (numericData === numericValues) {
+      numericValues = updated;
+    } else if (numericData === enchantValues) {
+      enchantValues = updated;
+    } else if (numericData === eventUpgradeValues) {
+      eventUpgradeValues = updated;
+    } else if (numericData === manualStats) {
+      manualStats = updated;
+    }
+
     saveToCache();
   }
 
@@ -513,7 +563,8 @@
             <NumberInput
               id="eggs-per-hatch"
               value={numericValues.eggsPerHatch}
-              onInput={({ value }) => updateNumericValue(numericValues, "eggsPerHatch", value)}
+              onInput={({ value }) =>
+                updateNumericValue(numericValues, "eggsPerHatch", value)}
               hoverText="Amount of eggs opened per hatch"
             />
           </div>
@@ -541,7 +592,8 @@
               <NumberInput
                 id="manual-luck"
                 value={manualStats.luck}
-                onInput={({ value }) => updateManualStat("luck", value)}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "luck", value)}
               />
             </div>
           </div>
@@ -562,7 +614,8 @@
               <NumberInput
                 id="manual-secret-luck"
                 value={manualStats.secretLuck}
-                onInput={({ value }) => updateManualStat("secretLuck", value)}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "secretLuck", value)}
               />
             </div>
           </div>
@@ -583,7 +636,8 @@
               <NumberInput
                 id="manual-shiny-chance"
                 value={manualStats.shinyChance}
-                onInput={({ value }) => updateManualStat("shinyChance", value)}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "shinyChance", value)}
               />
             </div>
           </div>
@@ -604,7 +658,8 @@
               <NumberInput
                 id="manual-mythic-chance"
                 value={manualStats.mythicChance}
-                onInput={({ value }) => updateManualStat("mythicChance", value)}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "mythicChance", value)}
               />
             </div>
           </div>
@@ -625,7 +680,8 @@
               <NumberInput
                 id="manual-hatch-speed"
                 value={manualStats.hatchSpeed}
-                onInput={({ value }) => updateManualStat("hatchSpeed", value)}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "hatchSpeed", value)}
               />
             </div>
           </div>
@@ -737,7 +793,8 @@
                 <Checkbox
                   id={potion.id}
                   checked={eventSpecialPotionToggles[potion.id]}
-                  onChange={() => updateToggle(eventSpecialPotionToggles, potion.id)}
+                  onChange={() =>
+                    updateToggle(eventSpecialPotionToggles, potion.id)}
                 />
               </div>
             </div>
@@ -887,7 +944,11 @@
                         : "None",
                     }}
                     onSelect={({ option }) =>
-                      updateNumericValue(eventUpgradeValues, upgrade.id, option.id)}
+                      updateNumericValue(
+                        eventUpgradeValues,
+                        upgrade.id,
+                        option.id,
+                      )}
                   />
                 </div>
               </div>
@@ -906,7 +967,8 @@
                 <NumberInput
                   id={enchant.id}
                   value={enchantValues[enchant.id]}
-                  onInput={({ value }) => updateNumericValue(enchantValues, enchant.id, value)}
+                  onInput={({ value }) =>
+                    updateNumericValue(enchantValues, enchant.id, value)}
                   hoverText="Amount of pets equiped with the {enchant.name} enchant"
                 />
               </div>
@@ -984,7 +1046,8 @@
               <Checkbox
                 id="faster-hatch-mastery"
                 checked={toggleValues.fasterHatchMastery}
-                onChange={() => updateToggle(toggleValues, "fasterHatchMastery")}
+                onChange={() =>
+                  updateToggle(toggleValues, "fasterHatchMastery")}
               />
             </div>
           </div>
