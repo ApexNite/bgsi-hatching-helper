@@ -2,6 +2,7 @@
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
   import { onMount } from "svelte";
   import { decode } from "blurhash";
+  import { inview } from "svelte-inview";
 
   export let base;
   export let alt;
@@ -9,9 +10,14 @@
   export let size;
 
   const PLACEHOLDER_BASE = "assets/images/icons/pet-placeholder";
+  const INVIEW_OPTIONS = {
+    rootMargin: "50px",
+    unobserveOnEnter: true,
+  };
 
   let blurhash;
   let imageLoaded;
+  let isInView;
   let canvasElement;
 
   let currentBase = base;
@@ -50,6 +56,10 @@
     usedPlaceholder = true;
     currentBase = PLACEHOLDER_BASE;
     imageLoaded = false;
+  }
+
+  function handleInviewChange({ detail }) {
+    isInView = detail.inView;
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
@@ -133,7 +143,12 @@
   }
 </script>
 
-<div class="wrapper" style="width: {size}; height: {size};">
+<div
+  class="wrapper"
+  use:inview={INVIEW_OPTIONS}
+  on:inview_change={handleInviewChange}
+  style="width: {size}; height: {size};"
+>
   {#if $isDataLoaded && blurhash && !imageLoaded}
     <canvas
       bind:this={canvasElement}
@@ -142,18 +157,20 @@
       style="width: {size}; height: {size};"
     ></canvas>
   {/if}
-  <picture style={imageLoaded ? "" : "display:none"}>
-    <source srcset={`${currentBase}.avif`} type="image/avif" />
-    <source srcset={`${currentBase}.webp`} type="image/webp" />
-    <img
-      src={`${currentBase}.png`}
-      {alt}
-      {decoding}
-      on:load={() => (imageLoaded = true)}
-      on:error={handleImageError}
-      style="width: {size}; height: {size};"
-    />
-  </picture>
+  {#if isInView}
+    <picture style={imageLoaded ? "" : "display:none"}>
+      <source srcset={`${currentBase}.avif`} type="image/avif" />
+      <source srcset={`${currentBase}.webp`} type="image/webp" />
+      <img
+        src={`${currentBase}.png`}
+        {alt}
+        {decoding}
+        on:load={() => (imageLoaded = true)}
+        on:error={handleImageError}
+        style="width: {size}; height: {size};"
+      />
+    </picture>
+  {/if}
 </div>
 
 <style>
