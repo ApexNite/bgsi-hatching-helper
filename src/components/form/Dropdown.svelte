@@ -116,10 +116,11 @@
     z-index: 40;
     display: flex;
     flex-direction: column;
-    min-width: 100%;
+    width: 100%;
     max-height: 320px;
-    padding: 0.25rem 0;
+    padding: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     background: var(--menu-bg);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
