@@ -57,7 +57,7 @@ export function formatChance(chance) {
     : 0;
 
   return clampedChance < 0.001
-    ? formatChanceFraction(clampedChance)
+    ? formatChanceFraction(clampedChance, "ceil")
     : formatChancePercent(clampedChance);
 }
 
