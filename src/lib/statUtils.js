@@ -241,7 +241,7 @@ function applySource(totals, source) {
 }
 
 function calculateBubbleBlessing(level) {
-  const levelClamped = clamp(level, 0, 50);
+  const levelClamped = Math.floor(clamp(level, 0, 50));
   const luck =
     levelClamped >= 1 ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 : 0;
   const baseHatchSpeed =
@@ -253,7 +253,7 @@ function calculateBubbleBlessing(level) {
 }
 
 function calculateDreamerBlessing(level) {
-  const levelClamped = clamp(level, 0, 50);
+  const levelClamped = Math.floor(clamp(level, 0, 50));
   const secretLuckMultiplier =
     levelClamped > 10 ? 1 + (2 + (levelClamped - 10) * 1.2) / 100 : null;
 
@@ -261,7 +261,7 @@ function calculateDreamerBlessing(level) {
 }
 
 function calculateSeasonPerks(stars) {
-  const starsClamped = clamp(stars, 0, 1500);
+  const starsClamped = Math.floor(clamp(stars, 0, 1500));
 
   return {
     luck: starsClamped / 600,

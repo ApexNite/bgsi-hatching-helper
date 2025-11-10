@@ -1,44 +1,46 @@
 <script>
   export let id = "";
   export let value = 0;
+  export let maxValue = Number.MAX_VALUE;
   export let onInput = null;
   export let hoverText = "";
 
-  function sanitize(str) {
-    let s = String(str ?? "");
-    s = s.replace(/[^0-9.]/g, "");
-    const parts = s.split(".");
-    if (parts.length > 2) {
-      s = parts[0] + "." + parts.slice(1).join("");
+  const MAX_LEN = 12;
+
+  let text = "";
+  let userChanged = false;
+
+  $: {
+    const normalized = Math.min(value ?? 0, maxValue);
+
+    if (!userChanged) {
+      text = sanitize(normalized);
+    } else if (toNumber(text) !== normalized) {
+      text = sanitize(normalized);
     }
-    s = s.slice(0, 12);
-    return s;
   }
 
-  let text = sanitize(value);
+  const toNumber = (s) => (s && s !== "." ? Number(s) : 0);
 
-  $: if (Number(text) !== value) {
-    text = sanitize(value);
+  function sanitize(input) {
+    return String(input ?? "")
+      .replace(/[^\d.]/g, "")
+      .replace(/\.(?=.*\.)/g, "")
+      .slice(0, MAX_LEN);
   }
 
-  function handleInput(event) {
-    const raw = event.target.value;
+  function handleInput(e) {
+    userChanged = true;
+
+    const raw = e.target.value;
     const next = sanitize(raw);
+    const nextValue = Math.min(toNumber(next), maxValue);
 
-    text = next;
+    text = nextValue === toNumber(next) ? next : String(nextValue);
 
-    let numeric = 0;
-    if (next !== "" && next !== ".") {
-      numeric = Number(next);
-    } else {
-      numeric = 0;
-    }
+    e.target.value = text;
 
-    value = numeric;
-
-    if (onInput) {
-      onInput({ value: numeric, text: next, id });
-    }
+    onInput?.({ value: nextValue, text, id });
   }
 </script>
 
@@ -51,7 +53,7 @@
     autocomplete="off"
     inputmode="decimal"
     pattern="[0-9]*[.,]?[0-9]*"
-    maxlength={12}
+    maxlength={MAX_LEN}
     title={hoverText}
   />
 </div>

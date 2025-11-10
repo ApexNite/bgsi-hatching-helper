@@ -854,6 +854,7 @@
               <NumberInput
                 id="shrine-blessing"
                 value={numericValues.shrineBlessing}
+                maxValue={50}
                 onInput={({ value }) =>
                   updateNumericValue(numericValues, "shrineBlessing", value)}
                 hoverText="Bubble Shrine Blessing Level (Max 50)"
@@ -877,6 +878,7 @@
               <NumberInput
                 id="dreamer-blessing"
                 value={numericValues.dreamerBlessing}
+                maxValue={50}
                 onInput={({ value }) =>
                   updateNumericValue(numericValues, "dreamerBlessing", value)}
                 hoverText="Dreamer Shrine Blessing Level (Max 50)"
@@ -900,6 +902,7 @@
               <NumberInput
                 id="season-stars"
                 value={numericValues.seasonStars}
+                maxValue={1500}
                 onInput={({ value }) =>
                   updateNumericValue(numericValues, "seasonStars", value)}
                 hoverText="Season Pass Stars (Max 1500)"
