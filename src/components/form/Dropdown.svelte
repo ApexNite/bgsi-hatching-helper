@@ -7,8 +7,17 @@
   export let selectedOption = null;
   export let onSelect = null;
 
+  const INITIAL_VISIBLE = 4;
+  const BATCH_SIZE = 3;
+  const INCREMENT_DELAY = 15;
+
   let open = false;
   let root;
+
+  let visibleCount = 0;
+  let timerId = null;
+
+  $: visibleOptions = options.slice(0, visibleCount);
 
   $: if (!selectedOption && options.length > 0) {
     selectedOption = options[0];
@@ -16,26 +25,75 @@
 
   function toggle() {
     open = !open;
+
+    if (open) {
+      if (visibleCount === 0) {
+        visibleCount = Math.min(INITIAL_VISIBLE, options.length);
+      }
+
+      startLazyFill();
+    } else {
+      visibleCount = 0;
+      cancelLazyFill();
+    }
   }
 
   function select(option) {
     selectedOption = option;
     onSelect && onSelect({ option, id });
     open = false;
+    visibleCount = 0;
+    cancelLazyFill();
   }
 
   function handleDocClick(e) {
-    if (!open) {
+    if (open && !root.contains(e.target)) {
+      open = false;
+      visibleCount = 0;
+      cancelLazyFill();
+    }
+  }
+
+  function startLazyFill() {
+    cancelLazyFill();
+
+    if (!open || visibleCount >= options.length) {
       return;
     }
 
-    if (!root.contains(e.target)) {
-      open = false;
+    function step() {
+      if (!open || visibleCount >= options.length) {
+        return;
+      }
+
+      visibleCount = Math.min(visibleCount + BATCH_SIZE, options.length);
+      schedule();
+    }
+
+    function schedule() {
+      if (!open || visibleCount >= options.length) {
+        return;
+      }
+
+      timerId = setTimeout(step, INCREMENT_DELAY);
+    }
+
+    schedule();
+  }
+
+  function cancelLazyFill() {
+    if (timerId != null) {
+      clearTimeout(timerId);
+
+      timerId = null;
     }
   }
 
   onMount(() => document.addEventListener("mousedown", handleDocClick));
-  onDestroy(() => document.removeEventListener("mousedown", handleDocClick));
+  onDestroy(() => {
+    document.removeEventListener("mousedown", handleDocClick);
+    cancelLazyFill();
+  });
 </script>
 
 <div class="wrapper" bind:this={root}>
@@ -57,7 +115,7 @@
 
   {#if open}
     <div class="dropdown-menu">
-      {#each options as option}
+      {#each visibleOptions as option}
         <button
           class="dropdown-item"
           type="button"
