@@ -18,37 +18,8 @@
   const COOKIE_VERSION = 6;
 
   let calculationMode = "calculated";
-
-  const defaultManualStats = {
-    luck: 0,
-    secretLuck: 1,
-    shinyChance: 40,
-    mythicChance: 100,
-    hatchSpeed: 100,
-  };
-
-  let defaultSelectedOptions = {};
-  let defaultSpecialPotionToggles = {};
-  let defaultEventSpecialPotionToggles = {};
-  let defaultEnvironmentBuffToggles = {};
-  let defaultGamepassToggles = {};
-  let defaultEventToggles = {};
-  let defaultEnchantValues = {};
-
-  const defaultToggleValues = {
-    fasterHatchMastery: false,
-    dailyPerks: false,
-  };
-  const defaultNumericValues = {
-    shrineBlessing: 0,
-    dreamerBlessing: 0,
-    seasonStars: 0,
-    luckierTogether: 0,
-    eggsPerHatch: 1,
-  };
-  const defaultWorldIndexStates = {};
-  const defaultEventUpgradeValues = {};
-  const defaultEggRiftSelections = {};
+  let dismissedManualWarning = false;
+  let isUserInputReady = false;
 
   let selectedOptions = {};
   let specialPotionToggles = {};
@@ -57,18 +28,30 @@
   let gamepassToggles = {};
   let eventToggles = {};
   let enchantValues = {};
-  let toggleValues = defaultToggleValues;
-  let numericValues = defaultNumericValues;
-  let manualStats = defaultManualStats;
-  let worldIndexStates = defaultWorldIndexStates;
-  let eventUpgradeValues = defaultEventUpgradeValues;
-  let eggRiftSelections = defaultEggRiftSelections;
-
-  let dismissedManualWarning = false;
-  let isUserInputReady = false;
+  let toggleValues = {
+    fasterHatchMastery: false,
+    dailyPerks: false,
+  };
+  let numericValues = {
+    shrineBlessing: 0,
+    dreamerBlessing: 0,
+    seasonStars: 0,
+    luckierTogether: 0,
+    eggsPerHatch: 1,
+  };
+  let manualStats = {
+    luck: 0,
+    secretLuck: 1,
+    shinyChance: 40,
+    mythicChance: 100,
+    hatchSpeed: 100,
+  };
+  let worldIndexStates = {};
+  let eventUpgradeValues = {};
+  let eggRiftSelections = {};
 
   $: if ($isDataLoaded) {
-    defaultSelectedOptions = {
+    selectedOptions = {
       eggs: $dataStore.eggs?.[0]?.id,
       worlds: $dataStore.worlds?.[0]?.id,
       rifts: $dataStore.rifts?.[0]?.id,
@@ -96,34 +79,24 @@
       ),
     };
 
-    defaultSpecialPotionToggles = Object.fromEntries(
+    specialPotionToggles = Object.fromEntries(
       ($dataStore.specialPotions || []).map((p) => [p.id, false]),
     );
-    defaultEventSpecialPotionToggles = Object.fromEntries(
+    eventSpecialPotionToggles = Object.fromEntries(
       ($dataStore.eventSpecialPotions || []).map((p) => [p.id, false]),
     );
-    defaultEnvironmentBuffToggles = Object.fromEntries(
+    environmentBuffToggles = Object.fromEntries(
       ($dataStore.environmentBuffs || []).map((b) => [b.id, false]),
     );
-    defaultGamepassToggles = Object.fromEntries(
+    gamepassToggles = Object.fromEntries(
       ($dataStore.gamepasses || []).map((g) => [g.id, false]),
     );
-    defaultEventToggles = Object.fromEntries(
+    eventToggles = Object.fromEntries(
       ($dataStore.events || []).map((e) => [e.id, false]),
     );
-    defaultEnchantValues = Object.fromEntries(
+    enchantValues = Object.fromEntries(
       ($dataStore.enchants || []).map((e) => [e.id, 0]),
     );
-
-    if (Object.keys(selectedOptions).length === 0) {
-      selectedOptions = { ...defaultSelectedOptions };
-      specialPotionToggles = { ...defaultSpecialPotionToggles };
-      eventSpecialPotionToggles = { ...defaultEventSpecialPotionToggles };
-      environmentBuffToggles = { ...defaultEnvironmentBuffToggles };
-      gamepassToggles = { ...defaultGamepassToggles };
-      eventToggles = { ...defaultEventToggles };
-      enchantValues = { ...defaultEnchantValues };
-    }
   }
 
   $: selectedEgg = $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs);
@@ -251,40 +224,40 @@
       if (savedData && savedData.version === COOKIE_VERSION) {
         calculationMode = savedData.calculationMode || "calculated";
         selectedOptions = {
-          ...defaultSelectedOptions,
+          ...selectedOptions,
           ...savedData.selectedOptions,
         };
         specialPotionToggles = {
-          ...defaultSpecialPotionToggles,
+          ...specialPotionToggles,
           ...savedData.specialPotionToggles,
         };
         eventSpecialPotionToggles = {
-          ...defaultEventSpecialPotionToggles,
+          ...eventSpecialPotionToggles,
           ...savedData.eventSpecialPotionToggles,
         };
         environmentBuffToggles = {
-          ...defaultEnvironmentBuffToggles,
+          ...environmentBuffToggles,
           ...savedData.environmentBuffToggles,
         };
         gamepassToggles = {
-          ...defaultGamepassToggles,
+          ...gamepassToggles,
           ...savedData.gamepassToggles,
         };
-        eventToggles = { ...defaultEventToggles, ...savedData.eventToggles };
-        enchantValues = { ...defaultEnchantValues, ...savedData.enchantValues };
-        toggleValues = { ...defaultToggleValues, ...savedData.toggleValues };
-        numericValues = { ...defaultNumericValues, ...savedData.numericValues };
-        manualStats = { ...defaultManualStats, ...savedData.manualStats };
+        eventToggles = { ...eventToggles, ...savedData.eventToggles };
+        enchantValues = { ...enchantValues, ...savedData.enchantValues };
+        toggleValues = { ...toggleValues, ...savedData.toggleValues };
+        numericValues = { ...numericValues, ...savedData.numericValues };
+        manualStats = { ...manualStats, ...savedData.manualStats };
         worldIndexStates = {
-          ...defaultWorldIndexStates,
+          ...worldIndexStates,
           ...savedData.worldIndexStates,
         };
         eventUpgradeValues = {
-          ...defaultEventUpgradeValues,
+          ...eventUpgradeValues,
           ...savedData.eventUpgradeValues,
         };
         eggRiftSelections = {
-          ...defaultEggRiftSelections,
+          ...eggRiftSelections,
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
@@ -363,55 +336,16 @@
     saveToCache();
   }
 
-  function updateSpecialPotionToggle(potionId) {
-    specialPotionToggles = {
-      ...specialPotionToggles,
-      [potionId]: !specialPotionToggles[potionId],
+  function updateToggle(toggleData, toggleId) {
+    toggleData = {
+      ...toggleData,
+      [toggleId]: !toggleData[toggleId],
     };
     saveToCache();
   }
 
-  function updateEventSpecialPotionToggle(potionId) {
-    eventSpecialPotionToggles = {
-      ...eventSpecialPotionToggles,
-      [potionId]: !eventSpecialPotionToggles[potionId],
-    };
-    saveToCache();
-  }
-
-  function updateEnvironmentBuffToggle(buffId) {
-    environmentBuffToggles = {
-      ...environmentBuffToggles,
-      [buffId]: !environmentBuffToggles[buffId],
-    };
-    saveToCache();
-  }
-
-  function updateGamepassToggle(gamepassId) {
-    gamepassToggles = {
-      ...gamepassToggles,
-      [gamepassId]: !gamepassToggles[gamepassId],
-    };
-    saveToCache();
-  }
-
-  function updateEventToggle(eventId) {
-    eventToggles = { ...eventToggles, [eventId]: !eventToggles[eventId] };
-    saveToCache();
-  }
-
-  function updateGameplayToggle(key) {
-    toggleValues = { ...toggleValues, [key]: !toggleValues[key] };
-    saveToCache();
-  }
-
-  function updateNumericValue(key, value) {
-    numericValues = { ...numericValues, [key]: value };
-    saveToCache();
-  }
-
-  function updateEnchantValue(enchantId, value) {
-    enchantValues = { ...enchantValues, [enchantId]: value };
+  function updateNumericValue(numericData, key, value) {
+    numericData = { ...numericData, [key]: value };
     saveToCache();
   }
 
@@ -430,11 +364,6 @@
       [selectedEgg.world]: newState,
     };
 
-    saveToCache();
-  }
-
-  function updateEventUpgradeValue(upgradeId, value) {
-    eventUpgradeValues = { ...eventUpgradeValues, [upgradeId]: value };
     saveToCache();
   }
 </script>
@@ -584,7 +513,7 @@
             <NumberInput
               id="eggs-per-hatch"
               value={numericValues.eggsPerHatch}
-              onInput={({ value }) => updateNumericValue("eggsPerHatch", value)}
+              onInput={({ value }) => updateNumericValue(numericValues, "eggsPerHatch", value)}
               hoverText="Amount of eggs opened per hatch"
             />
           </div>
@@ -781,7 +710,7 @@
                 <Checkbox
                   id={potion.id}
                   checked={specialPotionToggles[potion.id]}
-                  onChange={() => updateSpecialPotionToggle(potion.id)}
+                  onChange={() => updateToggle(specialPotionToggles, potion.id)}
                 />
               </div>
             </div>
@@ -808,7 +737,7 @@
                 <Checkbox
                   id={potion.id}
                   checked={eventSpecialPotionToggles[potion.id]}
-                  onChange={() => updateEventSpecialPotionToggle(potion.id)}
+                  onChange={() => updateToggle(eventSpecialPotionToggles, potion.id)}
                 />
               </div>
             </div>
@@ -869,7 +798,7 @@
                 id="shrine-blessing"
                 value={numericValues.shrineBlessing}
                 onInput={({ value }) =>
-                  updateNumericValue("shrineBlessing", value)}
+                  updateNumericValue(numericValues, "shrineBlessing", value)}
                 hoverText="Bubble Shrine Blessing Level (Max 50)"
               />
             </div>
@@ -892,7 +821,7 @@
                 id="dreamer-blessing"
                 value={numericValues.dreamerBlessing}
                 onInput={({ value }) =>
-                  updateNumericValue("dreamerBlessing", value)}
+                  updateNumericValue(numericValues, "dreamerBlessing", value)}
                 hoverText="Dreamer Shrine Blessing Level (Max 50)"
               />
             </div>
@@ -915,7 +844,7 @@
                 id="season-stars"
                 value={numericValues.seasonStars}
                 onInput={({ value }) =>
-                  updateNumericValue("seasonStars", value)}
+                  updateNumericValue(numericValues, "seasonStars", value)}
                 hoverText="Season Pass Stars (Max 1500)"
               />
             </div>
@@ -958,7 +887,7 @@
                         : "None",
                     }}
                     onSelect={({ option }) =>
-                      updateEventUpgradeValue(upgrade.id, option.id)}
+                      updateNumericValue(eventUpgradeValues, upgrade.id, option.id)}
                   />
                 </div>
               </div>
@@ -977,7 +906,7 @@
                 <NumberInput
                   id={enchant.id}
                   value={enchantValues[enchant.id]}
-                  onInput={({ value }) => updateEnchantValue(enchant.id, value)}
+                  onInput={({ value }) => updateNumericValue(enchantValues, enchant.id, value)}
                   hoverText="Amount of pets equiped with the {enchant.name} enchant"
                 />
               </div>
@@ -1033,7 +962,7 @@
                 id="luckier-together"
                 value={numericValues.luckierTogether}
                 onInput={({ value }) =>
-                  updateNumericValue("luckierTogether", value)}
+                  updateNumericValue(numericValues, "luckierTogether", value)}
                 hoverText="Amount of friends in the server"
               />
             </div>
@@ -1055,7 +984,7 @@
               <Checkbox
                 id="faster-hatch-mastery"
                 checked={toggleValues.fasterHatchMastery}
-                onChange={() => updateGameplayToggle("fasterHatchMastery")}
+                onChange={() => updateToggle(toggleValues, "fasterHatchMastery")}
               />
             </div>
           </div>
@@ -1084,7 +1013,7 @@
                 <Checkbox
                   id={buff.id}
                   checked={environmentBuffToggles[buff.id]}
-                  onChange={() => updateEnvironmentBuffToggle(buff.id)}
+                  onChange={() => updateToggle(environmentBuffToggles, buff.id)}
                 />
               </div>
             </div>
@@ -1111,7 +1040,7 @@
               <Checkbox
                 id="daily-perks"
                 checked={toggleValues.dailyPerks}
-                onChange={() => updateGameplayToggle("dailyPerks")}
+                onChange={() => updateToggle(toggleValues, "dailyPerks")}
               />
             </div>
           </div>
@@ -1135,7 +1064,7 @@
                 <Checkbox
                   id={gamepass.id}
                   checked={gamepassToggles[gamepass.id]}
-                  onChange={() => updateGamepassToggle(gamepass.id)}
+                  onChange={() => updateToggle(gamepassToggles, gamepass.id)}
                 />
               </div>
             </div>
@@ -1165,7 +1094,7 @@
                 <Checkbox
                   id={event.id}
                   checked={eventToggles[event.id]}
-                  onChange={() => updateEventToggle(event.id)}
+                  onChange={() => updateToggle(eventToggles, event.id)}
                 />
               </div>
             </div>
