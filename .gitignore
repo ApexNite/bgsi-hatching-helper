@@ -12,8 +12,6 @@ dist
 dist-ssr
 *.local
 
-public/assets/images/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +22,7 @@ public/assets/images/
 *.njsproj
 *.sln
 *.sw?
+
+# Optimized image files
+public/assets/images/
+.image-cache.json

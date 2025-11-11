@@ -175,6 +175,7 @@
                 {:else}
                   <SmartImage
                     base={pet.img}
+                    placeholder="pet"
                     alt={pet.name || pet.rarity}
                     decoding="async"
                     size="32px"

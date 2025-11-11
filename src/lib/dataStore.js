@@ -205,7 +205,6 @@ export const dataStore = writable({
   secretBounty: null,
   specialPotions: null,
   worlds: null,
-  imageMeta: null,
 });
 
 export const isDataLoaded = writable(false);
@@ -235,7 +234,6 @@ export async function loadData(startPeriodicRefresh = true) {
       secretBountyData,
       specialPotionsData,
       worldsData,
-      imageMetaData,
     ] = await Promise.all([
       fetchJson("/assets/data/daily-perks.json", cb),
       fetchJson("/assets/data/eggs.json", cb),
@@ -254,7 +252,6 @@ export async function loadData(startPeriodicRefresh = true) {
       fetchJson("/assets/data/secret-bounty.json", cb),
       fetchJson("/assets/data/special-potions.json", cb),
       fetchJson("/assets/data/worlds.json", cb),
-      fetchJson("/assets/images/.blurhash.json", cb),
     ]);
 
     const data = {
@@ -275,7 +272,6 @@ export async function loadData(startPeriodicRefresh = true) {
       secretBounty: processData(secretBountyData, "secretBountyData"),
       specialPotions: processData(specialPotionsData, "potion"),
       worlds: processData(worldsData, "world"),
-      imageMeta: imageMetaData,
     };
 
     dataStore.set(data);
@@ -348,7 +344,7 @@ export function processData(
   };
 
   const resolveSchemaLike = (s) => {
-    if (typeof s === "string") { 
+    if (typeof s === "string") {
       return resolveSchema(s);
     }
 
@@ -426,7 +422,7 @@ export function processData(
 
       if (!typeMatches(cfg.type, value)) {
         applyDefault(item, parent, key, field, cfg, out);
-        
+
         continue;
       }
 
