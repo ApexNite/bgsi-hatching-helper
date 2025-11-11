@@ -7,7 +7,7 @@
   export let selectedOption = null;
   export let onSelect = null;
 
-  const INITIAL_VISIBLE = 4;
+  const INITIAL_VISIBLE = 20;
   const BATCH_SIZE = 3;
   const INCREMENT_DELAY = 15;
 
