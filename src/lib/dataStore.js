@@ -207,10 +207,13 @@ export const dataStore = writable({
   worlds: null,
 });
 
+let consecutiveFailures = 0;
+let refreshIntervalId = null;
+
 export const isDataLoaded = writable(false);
 export const dataError = writable(null);
 
-export async function loadData(startPeriodicRefresh = true) {
+export async function loadData(fromPeriodicRefresh = false) {
   try {
     dataError.set(null);
 
@@ -277,6 +280,8 @@ export async function loadData(startPeriodicRefresh = true) {
     dataStore.set(data);
     isDataLoaded.set(true);
 
+    consecutiveFailures = 0;
+
     return data;
   } catch (error) {
     isDataLoaded.set(false);
@@ -284,10 +289,18 @@ export async function loadData(startPeriodicRefresh = true) {
       "Failed to load data. Please check your internet connection and try again.",
     );
 
+    if (++consecutiveFailures >= 5) {
+      window.location.reload();
+    }
+
     return null;
   } finally {
-    if (startPeriodicRefresh) {
-      setInterval(() => loadData(false), 300000);
+    if (!fromPeriodicRefresh) {
+      if (refreshIntervalId !== null) {
+        clearInterval(refreshIntervalId);
+      }
+
+      refreshIntervalId = setInterval(() => loadData(true), 300000);
     }
   }
 }
