@@ -43,6 +43,13 @@ const schemas = {
       default: (item) => `assets/images/${item.imageDir}/${item.id}`,
     },
   },
+  hatchable: {
+    rarity: { type: "string", required: true },
+    baseChance: { type: "number", default: -1 },
+    staticMythic: { type: "boolean", default: false },
+    hasMythic: { type: "boolean", default: true },
+    ignoreSecret: { type: "boolean", default: false },
+  },
   dailyPerk: {
     imageDir: { type: "string", default: "perk" },
     normal: { type: "object", default: {}, schema: "stats" },
@@ -130,16 +137,11 @@ const schemas = {
     },
   },
   pet: {
-    extends: ["id", "img"],
-    rarity: { type: "string", required: true },
+    extends: ["id", "img", "hatchable"],
     imageDir: {
       type: "string",
       default: (item, parent) => `pets/${parent.id || parent.imageDir}`,
     },
-    baseChance: { type: "number", default: -1 },
-    staticMythic: { type: "boolean", default: false },
-    hasMythic: { type: "boolean", default: true },
-    ignoreSecret: { type: "boolean", default: false },
   },
   potion: {
     extends: ["stats", "id", "img"],
@@ -157,9 +159,8 @@ const schemas = {
     potions: { type: "array", default: [], schema: "potion" },
   },
   rarity: {
-    id: { type: "string", required: true },
+    extends: ["id", "hatchable"],
     rarity: { type: "string", default: (item) => item.id },
-    baseChance: { type: "number", default: -1 },
   },
   secretBountyData: {
     imageDir: { type: "string", default: "bounty" },

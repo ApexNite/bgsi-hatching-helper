@@ -272,13 +272,13 @@ function normalizeData(items) {
   return list;
 }
 
-function normalizeEgg(items, stats) {
+function normalizeEgg(items, stats, isInfinityEgg = false) {
   const list = normalizeData(items);
 
   const baseLuckMultiplier = stats?.luck ?? 1;
   const secretLuckMultiplier = stats?.secretLuck ?? 1;
   const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
-  const epicLuckMultiplier = Math.min(baseLuckMultiplier, 4);
+  const epicLuckMultiplier = isInfinityEgg ? 1 : Math.min(baseLuckMultiplier, 4);
 
   for (const item of list) {
     switch (item.rarity) {
@@ -310,7 +310,7 @@ function normalizeEgg(items, stats) {
     .filter((item) => item.rarity === "epic")
     .reduce((sum, item) => sum + (item.rawChance - item.baseChance), 0);
 
-  if (epicIncrease > 0) {
+  if (epicIncrease > 0 && !isInfinityEgg) {
     redistributeDecrease(
       list,
       epicIncrease,
@@ -358,14 +358,15 @@ function normalizeInfinityEgg(rarities, worldEggs, stats) {
 
   removeDuplicatePetsFromEggs(worldEggs);
 
-  const normalizedRarities = normalizeEgg(rarities, stats);
+  const normalizedRarities = normalizeEgg(rarities, stats, true);
   const petsByRarity = new Map();
 
   for (const egg of worldEggs) {
     for (const pet of egg.pets) {
-      const list = petsByRarity.get(pet.rarity) ?? [];
+      const rarityKey = pet.rarity === 'infinity' ? 'secret' : pet.rarity;
+      const list = petsByRarity.get(rarityKey) ?? [];
       list.push(pet);
-      petsByRarity.set(pet.rarity, list);
+      petsByRarity.set(rarityKey, list);
     }
   }
 

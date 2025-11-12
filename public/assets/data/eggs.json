@@ -26,11 +26,8 @@
       },
       {
         "id": "secret",
-        "baseChance": 2.5e-8
-      },
-      {
-        "id": "infinity",
-        "baseChance": 2.5e-11
+        "baseChance": 2.5e-8,
+        "ignoreSecret": true
       }
     ]
   },
