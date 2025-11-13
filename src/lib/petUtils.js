@@ -29,17 +29,11 @@ export function getPetsToDisplay(eggId, worldId, stats) {
     );
   }
 
-  let pets;
+  let pets = isInfinity
+    ? normalizeInfinityEgg(egg.rarities, worldEggs, stats)
+    : normalizeEgg(egg.pets, stats);
 
-  if (isInfinity) {
-    pets = normalizeInfinityEgg(egg.rarities, worldEggs, stats);
-  } else {
-    pets = normalizeEgg(egg.pets, stats);
-  }
-
-  pets = addVariantChances(sortByRarity(pets), stats);
-
-  return pets;
+  return addVariantChances(sortByRarity(pets), stats);
 }
 
 export function calculateHatchTime(chance, hatchSpeed, eggsPerHatch) {
@@ -246,7 +240,7 @@ function getEggsWithInjectedPets() {
   return processData(eggsCopy, "egg");
 }
 
-function normalizeData(items) {
+function normalizeEgg(items, stats, isInfinityEgg = false) {
   if (!items?.length) {
     return [];
   }
@@ -258,27 +252,12 @@ function normalizeData(items) {
     rawChance: Number(p.baseChance ?? 0),
   }));
 
-  let totalBaseChance = list.reduce((sum, item) => sum + item.baseChance, 0);
-
-  if (!(totalBaseChance > 0)) {
-    totalBaseChance = 1;
-  }
-
-  for (const item of list) {
-    item.baseChance = item.baseChance / totalBaseChance;
-    item.rawChance = item.baseChance;
-  }
-
-  return list;
-}
-
-function normalizeEgg(items, stats, isInfinityEgg = false) {
-  const list = normalizeData(items);
-
   const baseLuckMultiplier = stats?.luck ?? 1;
   const secretLuckMultiplier = stats?.secretLuck ?? 1;
   const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
-  const epicLuckMultiplier = isInfinityEgg ? 1 : Math.min(baseLuckMultiplier, 4);
+  const epicLuckMultiplier = isInfinityEgg
+    ? 1
+    : Math.min(baseLuckMultiplier, 4);
 
   for (const item of list) {
     switch (item.rarity) {
@@ -363,7 +342,7 @@ function normalizeInfinityEgg(rarities, worldEggs, stats) {
 
   for (const egg of worldEggs) {
     for (const pet of egg.pets) {
-      const rarityKey = pet.rarity === 'infinity' ? 'secret' : pet.rarity;
+      const rarityKey = pet.rarity === "infinity" ? "secret" : pet.rarity;
       const list = petsByRarity.get(rarityKey) ?? [];
       list.push(pet);
       petsByRarity.set(rarityKey, list);
@@ -377,7 +356,13 @@ function normalizeInfinityEgg(rarities, worldEggs, stats) {
       continue;
     }
 
-    const normalizedPets = normalizeData(petsInRarity);
+    const normalizedPets = petsInRarity.map((p) => ({
+      ...p,
+      rarity: p.rarity ?? "common",
+      baseChance: Number(p.baseChance ?? 0),
+      rawChance: Number(p.baseChance ?? 0),
+    }));
+
     const totalBaseChance = normalizedPets.reduce(
       (sum, pet) => sum + (pet.baseChance ?? 0),
       0,
