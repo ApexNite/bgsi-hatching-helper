@@ -4,51 +4,71 @@
   import UserInput from "./components/containers/UserInput.svelte";
   import StatsBar from "./components/bars/StatsBar.svelte";
   import PetTable from "./components/tables/PetTable.svelte";
+  import SmartImage from "./components/media/SmartImage.svelte";
+  import InfoOverlay from "./components/overlays/InfoOverlay.svelte";
 
   let stats;
   let eggsPerHatch;
   let selectedEggId;
   let selectedWorldId;
+  let showInfo = false;
 
   onMount(() => {
     loadData();
   });
 </script>
 
-{#if $dataError}
-  <div class="center-container">
-    <div class="error-card">
-      <div class="error-icon">⚠️</div>
-      <h2>Unable to Load Data</h2>
-      <p>{$dataError}</p>
-      <button class="retry-btn" on:click={() => loadData()}> Try Again </button>
+<main>
+  {#if $dataError}
+    <div class="center-container">
+      <div class="error-card">
+        <div class="error-icon">⚠️</div>
+        <h2>Unable to Load Data</h2>
+        <p>{$dataError}</p>
+        <button class="retry-btn" on:click={() => loadData()}>
+          Try Again
+        </button>
+      </div>
     </div>
-  </div>
-{:else if $isDataLoaded}
-  <main class="container">
-    <div class="left-pane">
-      <UserInput
-        bind:stats
-        bind:eggsPerHatch
-        bind:selectedEggId
-        bind:selectedWorldId
-      />
+  {:else if $isDataLoaded}
+    <div class="container">
+      <div class="left-pane">
+        <UserInput
+          bind:stats
+          bind:eggsPerHatch
+          bind:selectedEggId
+          bind:selectedWorldId
+        />
+      </div>
+
+      <section class="right-pane">
+        <StatsBar {stats} {eggsPerHatch} />
+
+        <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
+      </section>
     </div>
 
-    <section class="right-pane">
-      <StatsBar {stats} {eggsPerHatch} />
-
-      <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
-    </section>
-  </main>
-{:else}
-  <div class="center-container">
-    <div class="loading-card">
-      <div class="spinner"></div>
-      <p>Loading data...</p>
+    <div class="info-container">
+      <button class="info-btn" on:click={() => (showInfo = true)}>
+        <SmartImage
+          base="assets/images/icons/info"
+          alt="info"
+          decoding="async"
+          size="32px"
+        />
+      </button>
     </div>
-  </div>
-{/if}
+
+    <InfoOverlay bind:open={showInfo} />
+  {:else}
+    <div class="center-container">
+      <div class="loading-card">
+        <div class="spinner"></div>
+        <p>Loading data...</p>
+      </div>
+    </div>
+  {/if}
+</main>
 
 <style>
   .container {
@@ -69,6 +89,37 @@
     flex-direction: column;
     gap: 1rem;
     min-width: 0;
+  }
+
+  .info-container {
+    background: var(--menu-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100;
+    transition: transform 0.2s ease;
+  }
+
+  .info-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .info-container:hover {
+    transform: scale(1.03);
+  }
+
+  .info-container:active {
+    transform: scale(0.97);
   }
 
   .center-container {
