@@ -1331,5 +1331,67 @@
         "baseChance": 2e-12
       }
     ]
+  },
+  {
+    "id": "food-egg",
+    "name": "Food Egg",
+    "type": "special",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "ketchup",
+        "name": "Ketchup",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "mustard",
+        "name": "Mustard",
+        "rarity": "rare",
+        "baseChance": 0.25
+      },
+      {
+        "id": "apple-bunny",
+        "name": "Apple Bunny",
+        "rarity": "epic",
+        "baseChance": 0.05
+      },
+      {
+        "id": "hothounddog",
+        "name": "HotHoundDog",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "lemonade-master",
+        "name": "Lemonade Master",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "hot-dog-doggy",
+        "name": "Hot Dog Doggy",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      },
+      {
+        "id": "eternal-burger",
+        "name": "Eternal Burger",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "drippy-slice",
+        "name": "Drippy Slice",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "giant-gummy-worm",
+        "name": "Giant Gummy Worm",
+        "rarity": "infinity",
+        "baseChance": 10e-12
+      }
+    ]
   }
 ]
