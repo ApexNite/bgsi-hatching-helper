@@ -1390,7 +1390,7 @@
         "id": "giant-gummy-worm",
         "name": "Giant Gummy Worm",
         "rarity": "infinity",
-        "baseChance": 10e-12
+        "baseChance": 5e-12
       }
     ]
   }
