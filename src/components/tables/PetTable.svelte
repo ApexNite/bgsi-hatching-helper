@@ -450,6 +450,7 @@
     position: static;
     right: auto;
     justify-self: end;
+    margin-right: 0.5rem;
   }
 
   .settings-btn:hover {
