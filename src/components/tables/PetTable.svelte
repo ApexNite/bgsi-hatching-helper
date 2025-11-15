@@ -20,6 +20,7 @@
   export let eggsPerHatch;
   export let selectedEggId;
   export let selectedWorldId;
+  export let onSettingsChange = () => {};
 
   const COOKIE_VERSION = 4;
 
@@ -128,11 +129,13 @@
   function toggle(key) {
     settings = { ...settings, [key]: !settings[key] };
     saveSettings();
+    onSettingsChange();
   }
 
   function setChanceDisplayMode(mode) {
     settings = { ...settings, chanceDisplayMode: mode };
     saveSettings();
+    onSettingsChange();
   }
 </script>
 
@@ -365,17 +368,17 @@
   }
 
   .pet-table-container {
+    max-width: 100%;
+    overflow-x: auto;
     background: var(--menu-bg);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: var(--elevation);
-    overflow-x: auto;
-    max-width: 100%;
   }
 
   .pet-table {
     width: 100%;
-    min-width: 600px;
+    min-width: 850px;
     border-collapse: collapse;
     color: var(--primary-text);
   }
@@ -386,7 +389,7 @@
 
   .pet-table th,
   .pet-table td {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.5rem 0.75rem 0.75rem;
     text-align: left;
     vertical-align: middle;
     border-bottom: 1px solid var(--border);
@@ -399,7 +402,7 @@
 
   .pet-table th:not(:first-child),
   .pet-table td:not(:first-child) {
-    padding: 0.1rem 0.1rem;
+    padding: 0.1rem;
     text-align: center;
   }
 
@@ -421,36 +424,39 @@
   }
 
   .th-content {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    column-gap: 0.5rem;
     position: relative;
+    display: block;
+    min-height: 28px;
   }
 
   .th-title {
-    grid-column: 2;
-    justify-self: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    max-width: calc(100% - 40px);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
   }
 
   .settings-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 28px;
     height: 28px;
     padding: 0;
+    transform: translateY(-50%);
     background: none;
     border: 0;
     border-radius: var(--radius-md);
-    cursor: pointer;
     font-size: 20px;
     line-height: 1;
+    cursor: pointer;
     transition: background-color 0.2s ease;
-    position: static;
-    right: auto;
-    justify-self: end;
-    margin-right: 0.5rem;
   }
 
   .settings-btn:hover {
@@ -458,12 +464,13 @@
   }
 
   .settings-menu {
+    position: fixed;
     z-index: 1000;
     width: 260px;
+    padding: 0.5rem;
     background: var(--menu-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 0.5rem;
     color: var(--primary-text);
     box-shadow: var(--elevation);
   }
@@ -484,9 +491,9 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.25rem 0;
-    cursor: pointer;
     font-size: 0.95rem;
     font-weight: 700;
+    cursor: pointer;
   }
 
   .pet-name {
@@ -502,13 +509,6 @@
     border-radius: 50%;
   }
 
-  .pet-image {
-    width: 32px;
-    height: 32px;
-    display: block;
-    flex-shrink: 0;
-  }
-
   .pet-info {
     display: flex;
     flex-direction: column;
@@ -520,14 +520,14 @@
   }
 
   .rarity-badge {
+    width: fit-content;
     padding: 0.125rem 0.375rem;
+    background: transparent;
     border: 1px solid currentColor;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: capitalize;
-    width: fit-content;
-    background: transparent;
   }
 
   .chance-time {
@@ -544,18 +544,23 @@
   .rarity-common {
     color: var(--rarity-common);
   }
+
   .rarity-unique {
     color: var(--rarity-unique);
   }
+
   .rarity-rare {
     color: var(--rarity-rare);
   }
+
   .rarity-epic {
     color: var(--rarity-epic);
   }
+
   .rarity-secret {
     color: var(--rarity-secret);
   }
+
   .rarity-legendary {
     color: hsl(var(--legendary-hue) 100% 60%);
     animation: legendaryHue 6s linear infinite;
@@ -575,8 +580,8 @@
       #cc4444
     );
     background-size: 400% 100%;
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
     border-color: var(--rarity-infinity-border);
     animation: infinityWave 16s linear infinite;

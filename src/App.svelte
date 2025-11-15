@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, afterUpdate, tick } from "svelte";
   import { loadData, isDataLoaded, dataError } from "./lib/dataStore.js";
   import UserInput from "./components/containers/UserInput.svelte";
   import StatsBar from "./components/bars/StatsBar.svelte";
@@ -13,12 +13,24 @@
   let selectedWorldId;
   let showInfo = false;
 
+  let leftPane;
+  let rightPane;
+  let addBottomSpace = false;
+
+  async function checkPaneHeights() {
+    await tick();
+    addBottomSpace = rightPane?.offsetHeight > leftPane?.offsetHeight;
+  }
+
   onMount(() => {
     loadData();
   });
+
+  // Deprecated but not switching to $effect for now
+  afterUpdate(checkPaneHeights);
 </script>
 
-<main>
+<main class:add-bottom-space={addBottomSpace}>
   {#if $dataError}
     <div class="center-container">
       <div class="error-card">
@@ -32,7 +44,7 @@
     </div>
   {:else if $isDataLoaded}
     <div class="container">
-      <div class="left-pane">
+      <div class="left-pane" bind:this={leftPane}>
         <UserInput
           bind:stats
           bind:eggsPerHatch
@@ -41,10 +53,16 @@
         />
       </div>
 
-      <section class="right-pane">
+      <section class="right-pane" bind:this={rightPane}>
         <StatsBar {stats} {eggsPerHatch} />
 
-        <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
+        <PetTable
+          {stats}
+          {eggsPerHatch}
+          {selectedEggId}
+          {selectedWorldId}
+          onSettingsChange={checkPaneHeights}
+        />
       </section>
     </div>
 
@@ -71,6 +89,10 @@
 </main>
 
 <style>
+  main.add-bottom-space {
+    padding-bottom: 3.5rem;
+  }
+
   .container {
     display: flex;
     gap: 1rem;
