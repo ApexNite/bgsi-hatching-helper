@@ -84,7 +84,7 @@
   }
 
   .right-pane {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -200,10 +200,6 @@
   }
 
   @media (max-width: 600px) {
-    .right-pane {
-      flex: 0 0 auto;
-    }
-
     .center-container {
       padding: 0.5rem;
     }

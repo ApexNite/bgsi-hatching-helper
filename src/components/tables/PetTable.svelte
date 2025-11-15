@@ -147,7 +147,7 @@
           <th>Mythic</th>
           <th>
             <div class="th-content">
-              <span>Shiny Mythic</span>
+              <span class="th-title">Shiny Mythic</span>
               <button
                 class="settings-btn"
                 bind:this={settingsButton}
@@ -399,7 +399,7 @@
 
   .pet-table th:not(:first-child),
   .pet-table td:not(:first-child) {
-    padding: 0rem 0rem;
+    padding: 0.1rem 0.1rem;
     text-align: center;
   }
 
@@ -421,10 +421,16 @@
   }
 
   .th-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    column-gap: 0.5rem;
+    position: relative;
+  }
+
+  .th-title {
+    grid-column: 2;
+    justify-self: center;
   }
 
   .settings-btn {
@@ -441,8 +447,9 @@
     font-size: 20px;
     line-height: 1;
     transition: background-color 0.2s ease;
-    position: absolute;
-    right: 0.75rem;
+    position: static;
+    right: auto;
+    justify-self: end;
   }
 
   .settings-btn:hover {
