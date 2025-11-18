@@ -1169,6 +1169,10 @@
       {/if}
     </div>
 
+    <!-- {
+      label: "Secret Pets Milestone",
+      description: "Secret luck bonus not shown in debug stats",
+    }, -->
     {#if calculationMode === "manual" && selectedEgg?.event === "none" && !dismissedManualWarning}
       <WarningBanner
         type="warning"
@@ -1178,10 +1182,6 @@
             label: "World Index",
             description:
               "Shown in debug stats for all eggs; only affects world eggs",
-          },
-          {
-            label: "Secret Pets Milestone",
-            description: "Secret luck bonus not shown in debug stats",
           },
           {
             label: "Rounded Values",

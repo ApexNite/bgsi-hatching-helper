@@ -96,53 +96,53 @@
         "id": "infinity-i",
         "name": "Infinity I",
         "luck": 2.5,
-        "secretLuck": 0.05,
-        "shinyChance": 0.05,
-        "mythicChance": 0.025
+        "_secretLuck": 0.05,
+        "_shinyChance": 0.05,
+        "_mythicChance": 0.025
       },
       {
         "id": "ultimate-i",
         "name": "Ultimate I",
         "luck": 2,
-        "secretLuck": 0.035,
-        "shinyChance": 0.035,
-        "mythicChance": 0.02
+        "_secretLuck": 0.035,
+        "_shinyChance": 0.035,
+        "_mythicChance": 0.02
       },
       {
         "id": "super-i",
         "name": "Super I",
         "luck": 1.5,
-        "secretLuck": 0.03,
-        "shinyChance": 0.03,
-        "mythicChance": 0.01
+        "_secretLuck": 0.03,
+        "_shinyChance": 0.03,
+        "_mythicChance": 0.01
       },
       {
         "id": "platinum-i",
         "name": "Platinum I",
         "luck": 1.25,
-        "secretLuck": 0.025,
-        "shinyChance": 0.025
+        "_secretLuck": 0.025,
+        "_shinyChance": 0.025
       },
       {
         "id": "gold-i",
         "name": "Gold I",
         "luck": 1,
-        "secretLuck": 0.02,
-        "shinyChance": 0.02
+        "_secretLuck": 0.02,
+        "_shinyChance": 0.02
       },
       {
         "id": "silver-i",
         "name": "Silver I",
         "luck": 0.75,
-        "secretLuck": 0.015,
-        "shinyChance": 0.015
+        "_secretLuck": 0.015,
+        "_shinyChance": 0.015
       },
       {
         "id": "bronze-i",
         "name": "Bronze I",
         "luck": 0.5,
-        "secretLuck": 0.01,
-        "shinyChance": 0.01
+        "_secretLuck": 0.01,
+        "_shinyChance": 0.01
       },
       {
         "id": "none",
