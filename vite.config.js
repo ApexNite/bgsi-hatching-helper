@@ -2,15 +2,17 @@ import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { createHash } from "crypto";
 import { existsSync, readdirSync, readFileSync, lstatSync } from "fs";
-import { join, relative, basename } from "path";
+import { join, relative } from "path";
 
 const ignore = ["dist", "images-originals", "node_modules", "README.md"];
 
 function isIncluded(path) {
   return (
-    !basename(path).startsWith(".") &&
-    !lstatSync(path).isDirectory() &&
-    path.split(/[\\/]/).every((segment) => !ignore.includes(segment))
+    path
+      .split(/[\\/]/)
+      .every(
+        (segment) => !ignore.includes(segment) && !segment.startsWith("."),
+      ) && !lstatSync(path).isDirectory()
   );
 }
 
@@ -24,6 +26,7 @@ function computeBuildHash() {
     .sort();
 
   for (const file of files) {
+    console.log(file);
     hash.update(relative(root, file));
     hash.update(readFileSync(file));
   }
