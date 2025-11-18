@@ -128,3 +128,23 @@ export function formatMultiplier(multiplier) {
 
   return `${multiplier.toFixed(1)}x`;
 }
+
+export function formatString(text, maxLength = 18) {
+  const words = text.split(" ");
+  let result = "";
+  let currentLine = "";
+
+  for (let i = 0; i < words.length; i++) {
+    const testLine = currentLine + (currentLine ? " " : "") + words[i];
+
+    if (testLine.length > maxLength && currentLine.length > 0) {
+      result += currentLine + "\n";
+      currentLine = words[i];
+    } else {
+      currentLine = testLine;
+    }
+  }
+
+  result += currentLine;
+  return result;
+}

@@ -10,6 +10,7 @@
     formatTime,
     formatChancePercent,
     formatChanceFraction,
+    formatString
   } from "../../lib/formatUtils.js";
   import { getCookie, setCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import Checkbox from "../form/Checkbox.svelte";
@@ -170,7 +171,7 @@
                 {#if pet.__aggregate}
                   <div class="aggregate-dot rarity-{pet.rarity}"></div>
                   <div class="pet-info">
-                    <span class="name">{pet.name}</span>
+                    <span class="name">{formatString(pet.name)}</span>
                     <span class="rarity-badge rarity-{pet.rarity}"
                       >{pet.rarity}</span
                     >
@@ -184,7 +185,7 @@
                     size="32px"
                   />
                   <div class="pet-info">
-                    <span class="name">{pet.name || pet.rarity}</span>
+                    <span class="name">{formatString(pet.name || pet.rarity)}</span>
                     <span class="rarity-badge rarity-{pet.rarity}"
                       >{pet.rarity}</span
                     >
@@ -390,6 +391,7 @@
   .pet-table th,
   .pet-table td {
     padding: 0.75rem 0.5rem 0.75rem 0.75rem;
+    min-width: 19.50%;
     text-align: left;
     vertical-align: middle;
     border-bottom: 1px solid var(--border);
@@ -397,7 +399,7 @@
 
   .pet-table th:first-child,
   .pet-table td:first-child {
-    width: 25%;
+    min-width: 22%;
   }
 
   .pet-table th:not(:first-child),
@@ -442,7 +444,7 @@
   .settings-btn {
     position: absolute;
     top: 50%;
-    right: 0.5rem;
+    right: 0.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -516,6 +518,7 @@
   }
 
   .name {
+    white-space: pre;
     font-weight: 600;
   }
 
