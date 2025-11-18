@@ -26,7 +26,6 @@ function computeBuildHash() {
     .sort();
 
   for (const file of files) {
-    console.log(file);
     hash.update(relative(root, file));
     hash.update(readFileSync(file));
   }
