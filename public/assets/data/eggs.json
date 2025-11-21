@@ -996,12 +996,6 @@
         "name": "Classic Overlord",
         "rarity": "secret",
         "baseChance": 1e-8
-      },
-      {
-        "id": "1x1x1x1",
-        "name": "1x1x1x1",
-        "rarity": "secret",
-        "baseChance": 2e-9
       }
     ]
   },
