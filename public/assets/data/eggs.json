@@ -1265,10 +1265,22 @@
         "baseChance": 2e-9
       },
       {
+        "id": "og-godly-shamrock",
+        "name": "OG Godly Shamrock",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
         "id": "og-hellfire",
         "name": "OG Hellfire",
         "rarity": "secret",
         "baseChance": 1e-9
+      },
+      {
+        "id": "og-owolord",
+        "name": "OG OwOlord",
+        "rarity": "secret",
+        "baseChance": 5e-10
       },
       {
         "id": "og-archangel",
@@ -1279,6 +1291,12 @@
       {
         "id": "og-koi",
         "name": "OG Koi",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "og-love-theif",
+        "name": "OG Love Theif",
         "rarity": "secret",
         "baseChance": 2e-10
       },
@@ -1369,10 +1387,16 @@
         "baseChance": 1e-6
       },
       {
-        "id": "hot-dog-doggy",
-        "name": "Hot Dog Doggy",
+        "id": "butter-dawg",
+        "name": "Butter Dawg",
         "rarity": "secret",
         "baseChance": 1e-8
+      },
+      {
+        "id": "watermelon-round",
+        "name": "Watermelon Round",
+        "rarity": "secret",
+        "baseChance": 2e-9
       },
       {
         "id": "eternal-burger",
@@ -1391,6 +1415,67 @@
         "name": "Giant Gummy Worm",
         "rarity": "infinity",
         "baseChance": 5e-12
+      }
+    ]
+  },
+  {
+    "id": "corn-egg",
+    "name": "Corn Egg",
+    "type": "special",
+    "pets": [
+      {
+        "id": "harvest-doggy",
+        "name": "Harvest Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "pumpkin-boi",
+        "name": "Pumpkin Boi",
+        "rarity": "rare",
+        "baseChance": 0.25
+      },
+      {
+        "id": "scarecrow",
+        "name": "Scarecrow",
+        "rarity": "epic",
+        "baseChance": 0.05
+      },
+      {
+        "id": "wheat-angel",
+        "name": "Wheat Angel",
+        "rarity": "legendary",
+        "baseChance": 0.0002
+      },
+      {
+        "id": "corn-dragon",
+        "name": "Corn Dragon",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "aureate-sunflower",
+        "name": "Aureate Sunflower",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "pumpkin-pie",
+        "name": "Pumpkin Pie",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "giant-fall-turkey",
+        "name": "Giant Fall Turkey",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "the-cornucopia",
+        "name": "The Cornucopia",
+        "rarity": "secret",
+        "baseChance": 1e-10
       }
     ]
   }
