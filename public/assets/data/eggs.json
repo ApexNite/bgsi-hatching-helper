@@ -1390,7 +1390,7 @@
         "id": "watermelon-round",
         "name": "Watermelon Round",
         "rarity": "secret",
-        "baseChance": 2e-9
+        "baseChance": 1e-9
       },
       {
         "id": "eternal-burger",
