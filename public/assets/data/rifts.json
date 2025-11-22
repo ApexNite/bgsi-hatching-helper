@@ -70,9 +70,24 @@
     "baseLuck": 500
   },
   {
+    "id": "750x",
+    "name": "750x",
+    "baseLuck": 750
+  },
+  {
     "id": "1000x",
     "name": "1000x",
     "baseLuck": 1000
+  },
+  {
+    "id": "1500x",
+    "name": "1500x",
+    "baseLuck": 1500
+  },
+  {
+    "id": "2000x",
+    "name": "2000x",
+    "baseLuck": 2000
   },
   {
     "id": "2500x",
