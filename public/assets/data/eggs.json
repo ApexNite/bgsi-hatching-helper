@@ -1433,7 +1433,7 @@
         "id": "scarecrow",
         "name": "Scarecrow",
         "rarity": "epic",
-        "baseChance": 0.05
+        "baseChance": 0.04
       },
       {
         "id": "wheat-angel",
