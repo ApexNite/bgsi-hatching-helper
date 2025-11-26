@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade, fly } from "svelte/transition";
+  import { dataStore } from "../../lib/dataStore.js";
   import SmartImage from "../media/SmartImage.svelte";
 
   export let open = false;
@@ -12,6 +13,8 @@
     month: "short",
     year: "numeric",
   });
+
+  $: dataHash = $dataStore.dataHash || "Loading...";
 
   function handleDocClick(e) {
     if (open && root && !root.contains(e.target)) {
@@ -51,8 +54,12 @@
           <h3>Build</h3>
           <div class="meta">
             <div class="meta-row">
-              <span class="label">Version</span>
+              <span class="label">Build Hash</span>
               <span class="badge mono">{__BUILD_HASH__}</span>
+            </div>
+            <div class="meta-row">
+              <span class="label">Data Hash</span>
+              <span class="badge mono">{dataHash}</span>
             </div>
             <div class="meta-row">
               <span class="label">Last Updated</span>
