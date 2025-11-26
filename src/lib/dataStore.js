@@ -309,11 +309,14 @@ export async function loadData() {
     }
 
     hashPollIntervalId = setInterval(async () => {
-      const hash = (await fetchText("/assets/data/.data-hash"))?.trim() || null;
+      try {
+        const hash =
+          (await fetchText("/assets/data/.data-hash"))?.trim() || null;
 
-      if (hash && hash !== currentHash) {
-        await loadData();
-      }
+        if (hash && hash !== currentHash) {
+          await loadData();
+        }
+      } catch {}
     }, 30000);
   }
 }
