@@ -10,7 +10,7 @@
     formatTime,
     formatChancePercent,
     formatChanceFraction,
-    formatString
+    formatString,
   } from "../../lib/formatUtils.js";
   import { getCookie, setCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import Checkbox from "../form/Checkbox.svelte";
@@ -38,6 +38,7 @@
   let settingsButton;
   let settingsMenu;
   let settingsMenuPosition = { top: 0, right: 0 };
+  let windowWidth = window.innerWidth;
 
   onMount(() => {
     try {
@@ -68,14 +69,20 @@
       settingsOpen = false;
     };
 
+    window.addEventListener("resize", handleResize);
     document.addEventListener("click", onDocClick);
     window.addEventListener("scroll", onScroll);
 
     return () => {
+      window.removeEventListener("resize", handleResize);
       document.removeEventListener("click", onDocClick);
       window.removeEventListener("scroll", onScroll);
     };
   });
+
+  function handleResize() {
+    windowWidth = window.innerWidth;
+  }
 
   function saveSettings() {
     setCookie("hatching-helper-pet-table-settings", {
@@ -171,7 +178,12 @@
                 {#if pet.__aggregate}
                   <div class="aggregate-dot rarity-{pet.rarity}"></div>
                   <div class="pet-info">
-                    <span class="name">{formatString(pet.name)}</span>
+                    <span class="name">
+                      {formatString(
+                        pet.name,
+                        Math.floor(Math.max((windowWidth / 100) * 1.3, 18)),
+                      )}
+                    </span>
                     <span class="rarity-badge rarity-{pet.rarity}"
                       >{pet.rarity}</span
                     >
@@ -185,7 +197,12 @@
                     size="32px"
                   />
                   <div class="pet-info">
-                    <span class="name">{formatString(pet.name || pet.rarity)}</span>
+                    <span class="name">
+                      {formatString(
+                        pet.name,
+                        Math.floor(Math.max((windowWidth / 100) * 1.3, 18)),
+                      )}
+                    </span>
                     <span class="rarity-badge rarity-{pet.rarity}"
                       >{pet.rarity}</span
                     >
@@ -391,7 +408,7 @@
   .pet-table th,
   .pet-table td {
     padding: 0.75rem 0.5rem 0.75rem 0.75rem;
-    min-width: 19.50%;
+    min-width: 19.5%;
     text-align: left;
     vertical-align: middle;
     border-bottom: 1px solid var(--border);
