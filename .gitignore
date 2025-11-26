@@ -26,3 +26,7 @@ dist-ssr
 # Optimized image files
 public/assets/images/
 .image-cache.json
+
+# Hash files
+.data-hash
+.project-hash

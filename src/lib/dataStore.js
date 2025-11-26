@@ -206,6 +206,8 @@ export const dataStore = writable({
   secretBounty: null,
   specialPotions: null,
   worlds: null,
+  dataHash: null,
+  projectHash: null,
 });
 
 let consecutiveFailures = 0;
@@ -238,6 +240,8 @@ export async function loadData(fromPeriodicRefresh = false) {
       secretBountyData,
       specialPotionsData,
       worldsData,
+      dataHash,
+      projectHash,
     ] = await Promise.all([
       fetchJson("/assets/data/daily-perks.json", cb),
       fetchJson("/assets/data/eggs.json", cb),
@@ -256,6 +260,8 @@ export async function loadData(fromPeriodicRefresh = false) {
       fetchJson("/assets/data/secret-bounty.json", cb),
       fetchJson("/assets/data/special-potions.json", cb),
       fetchJson("/assets/data/worlds.json", cb),
+      fetchText("/assets/data/.data-hash", cb),
+      fetchText("/.project-hash", cb),
     ]);
 
     const data = {
@@ -276,6 +282,8 @@ export async function loadData(fromPeriodicRefresh = false) {
       secretBounty: processData(secretBountyData, "secretBountyData"),
       specialPotions: processData(specialPotionsData, "potion"),
       worlds: processData(worldsData, "world"),
+      dataHash: dataHash?.trim() || null,
+      projectHash: projectHash?.trim() || null,
     };
 
     dataStore.set(data);
@@ -537,4 +545,10 @@ function fetchJson(url, token) {
   const cacheBustUrl = `${url}${url.includes("?") ? "&" : "?"}cb=${encodeURIComponent(token)}`;
 
   return fetch(cacheBustUrl, { cache: "no-cache" }).then((r) => r.json());
+}
+
+function fetchText(url, token) {
+  const cacheBustUrl = `${url}${url.includes("?") ? "&" : "?"}cb=${encodeURIComponent(token)}`;
+
+  return fetch(cacheBustUrl, { cache: "no-cache" }).then((r) => r.text());
 }
