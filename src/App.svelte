@@ -1,4 +1,5 @@
 <script>
+  import './debug.js';
   import { onMount, afterUpdate, tick } from "svelte";
   import { loadData, isDataLoaded, dataError } from "./lib/dataStore.js";
   import UserInput from "./components/containers/UserInput.svelte";
