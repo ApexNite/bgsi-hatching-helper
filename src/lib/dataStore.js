@@ -211,16 +211,15 @@ export const dataStore = writable({
 });
 
 let consecutiveFailures = 0;
-let refreshIntervalId = null;
+let currentHash = null;
+let hashPollIntervalId = null;
 
 export const isDataLoaded = writable(false);
 export const dataError = writable(null);
 
-export async function loadData(fromPeriodicRefresh = false) {
+export async function loadData() {
   try {
     dataError.set(null);
-
-    const cb = String(Date.now());
 
     const [
       dailyPerksData,
@@ -243,25 +242,25 @@ export async function loadData(fromPeriodicRefresh = false) {
       dataHash,
       projectHash,
     ] = await Promise.all([
-      fetchJson("/assets/data/daily-perks.json", cb),
-      fetchJson("/assets/data/eggs.json", cb),
-      fetchJson("/assets/data/enchants.json", cb),
-      fetchJson("/assets/data/environment-buffs.json", cb),
-      fetchJson("/assets/data/events.json", cb),
-      fetchJson("/assets/data/event-potions.json", cb),
-      fetchJson("/assets/data/event-special-potions.json", cb),
-      fetchJson("/assets/data/event-upgrades.json", cb),
-      fetchJson("/assets/data/gamepasses.json", cb),
-      fetchJson("/assets/data/index.json", cb),
-      fetchJson("/assets/data/mastery.json", cb),
-      fetchJson("/assets/data/milestones.json", cb),
-      fetchJson("/assets/data/potions.json", cb),
-      fetchJson("/assets/data/rifts.json", cb),
-      fetchJson("/assets/data/secret-bounty.json", cb),
-      fetchJson("/assets/data/special-potions.json", cb),
-      fetchJson("/assets/data/worlds.json", cb),
-      fetchText("/assets/data/.data-hash", cb),
-      fetchText("/.project-hash", cb),
+      fetchJson("/assets/data/daily-perks.json"),
+      fetchJson("/assets/data/eggs.json"),
+      fetchJson("/assets/data/enchants.json"),
+      fetchJson("/assets/data/environment-buffs.json"),
+      fetchJson("/assets/data/events.json"),
+      fetchJson("/assets/data/event-potions.json"),
+      fetchJson("/assets/data/event-special-potions.json"),
+      fetchJson("/assets/data/event-upgrades.json"),
+      fetchJson("/assets/data/gamepasses.json"),
+      fetchJson("/assets/data/index.json"),
+      fetchJson("/assets/data/mastery.json"),
+      fetchJson("/assets/data/milestones.json"),
+      fetchJson("/assets/data/potions.json"),
+      fetchJson("/assets/data/rifts.json"),
+      fetchJson("/assets/data/secret-bounty.json"),
+      fetchJson("/assets/data/special-potions.json"),
+      fetchJson("/assets/data/worlds.json"),
+      fetchText("/assets/data/.data-hash"),
+      fetchText("/.project-hash"),
     ]);
 
     const data = {
@@ -290,6 +289,7 @@ export async function loadData(fromPeriodicRefresh = false) {
     isDataLoaded.set(true);
 
     consecutiveFailures = 0;
+    currentHash = data.dataHash;
 
     return data;
   } catch (error) {
@@ -304,13 +304,17 @@ export async function loadData(fromPeriodicRefresh = false) {
 
     return null;
   } finally {
-    if (!fromPeriodicRefresh) {
-      if (refreshIntervalId !== null) {
-        clearInterval(refreshIntervalId);
-      }
-
-      refreshIntervalId = setInterval(() => loadData(true), 300000);
+    if (hashPollIntervalId !== null) {
+      return;
     }
+
+    hashPollIntervalId = setInterval(async () => {
+      const hash = (await fetchText("/assets/data/.data-hash"))?.trim() || null;
+
+      if (hash && hash !== currentHash) {
+        await loadData();
+      }
+    }, 30000);
   }
 }
 
@@ -541,14 +545,17 @@ export function processData(
   return processItem(data, parentItem, itemKey);
 }
 
-function fetchJson(url, token) {
-  const cacheBustUrl = `${url}${url.includes("?") ? "&" : "?"}cb=${encodeURIComponent(token)}`;
-
-  return fetch(cacheBustUrl, { cache: "no-cache" }).then((r) => r.json());
+function fetchJson(url) {
+  return fetchThroughCache(url).then((r) => r.json());
 }
 
-function fetchText(url, token) {
+function fetchText(url) {
+  return fetchThroughCache(url).then((r) => r.text());
+}
+
+function fetchThroughCache(url) {
+  const token = String(Date.now());
   const cacheBustUrl = `${url}${url.includes("?") ? "&" : "?"}cb=${encodeURIComponent(token)}`;
 
-  return fetch(cacheBustUrl, { cache: "no-cache" }).then((r) => r.text());
+  return fetch(cacheBustUrl, { cache: "no-cache" });
 }
