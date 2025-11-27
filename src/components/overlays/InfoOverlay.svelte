@@ -11,7 +11,6 @@
   let root;
 
   $: dataHashObj = $dataStore.dataHash;
-  $: displayDataHash = dataHashObj?.hash || "Loading...";
   $: dataUpdatedDate = dataHashObj?.lastUpdated
     ? new Date(dataHashObj.lastUpdated)
     : null;
@@ -65,12 +64,8 @@
           <h3>Build</h3>
           <div class="meta">
             <div class="meta-row">
-              <span class="label">Build Hash</span>
-              <span class="badge mono">{__BUILD_HASH__}</span>
-            </div>
-            <div class="meta-row">
-              <span class="label">Data Hash</span>
-              <span class="badge mono">{displayDataHash}</span>
+              <span class="label">Version</span>
+              <span class="badge mono">{__PROJECT_HASH__}</span>
             </div>
             <div class="meta-row">
               <span class="label">Last Updated</span>
