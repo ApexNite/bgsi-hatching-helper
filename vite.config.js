@@ -46,7 +46,7 @@ function computeSourceHash() {
 function computeDataHash() {
   const root = process.cwd();
   const dataPath = join(root, "public", "assets", "data");
-  return computeHash(dataPath);
+  return computeHash(dataPath, "data-hash.json");
 }
 
 function computeProjectHash() {
@@ -59,12 +59,19 @@ function computeProjectHash() {
   ]);
 }
 
-function writeHashFile(path, hashValue) {
+function writeHashFile(path, hashValue, lastUpdated) {
   const dir = dirname(path);
+
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true });
   }
-  writeFileSync(path, hashValue, "utf8");
+
+  const obj = {
+    hash: hashValue,
+    lastUpdated: lastUpdated,
+  };
+
+  writeFileSync(path, JSON.stringify(obj, null, 2), "utf8");
 }
 
 // https://vite.dev/config/
@@ -76,16 +83,15 @@ export default defineConfig({
       buildStart() {
         const root = process.cwd();
         const dataHash = computeDataHash();
-        const projectHash = computeProjectHash();
-        const dataPath = join(root, "public", "assets", "data", ".data-hash");
-        const projectPath = join(root, "public", ".project-hash");
+        const dataPath = join(root, "public", "assets", "data", "data-hash.json");
+        const lastUpdated = new Date().toISOString();
 
-        writeHashFile(dataPath, dataHash);
-        writeHashFile(projectPath, projectHash);
+        writeHashFile(dataPath, dataHash, lastUpdated);
       },
     },
   ],
   define: {
+    __PROJECT_HASH__: JSON.stringify(computeProjectHash()),
     __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
     __BUILD_HASH__: JSON.stringify(computeSourceHash()),
   },

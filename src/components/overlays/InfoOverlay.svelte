@@ -6,15 +6,26 @@
 
   export let open = false;
 
+  const buildDate = new Date(__BUILD_DATE__);
+
   let root;
-  let localBuildDate = new Date(__BUILD_DATE__).toLocaleDateString(undefined, {
+
+  $: dataHashObj = $dataStore.dataHash;
+  $: displayDataHash = dataHashObj?.hash || "Loading...";
+  $: dataUpdatedDate = dataHashObj?.lastUpdated
+    ? new Date(dataHashObj.lastUpdated)
+    : null;
+
+  $: mostRecentDate =
+    dataUpdatedDate && dataUpdatedDate > buildDate
+      ? dataUpdatedDate
+      : buildDate;
+  $: lastUpdatedDisplay = mostRecentDate.toLocaleDateString(undefined, {
     weekday: "short",
     day: "numeric",
     month: "short",
     year: "numeric",
   });
-
-  $: dataHash = $dataStore.dataHash || "Loading...";
 
   function handleDocClick(e) {
     if (open && root && !root.contains(e.target)) {
@@ -59,11 +70,11 @@
             </div>
             <div class="meta-row">
               <span class="label">Data Hash</span>
-              <span class="badge mono">{dataHash}</span>
+              <span class="badge mono">{displayDataHash}</span>
             </div>
             <div class="meta-row">
               <span class="label">Last Updated</span>
-              <span class="badge">{localBuildDate}</span>
+              <span class="badge">{lastUpdatedDisplay}</span>
             </div>
           </div>
         </div>

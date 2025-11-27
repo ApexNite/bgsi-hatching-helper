@@ -207,7 +207,6 @@ export const dataStore = writable({
   specialPotions: null,
   worlds: null,
   dataHash: null,
-  projectHash: null,
 });
 
 let consecutiveFailures = 0;
@@ -239,8 +238,7 @@ export async function loadData() {
       secretBountyData,
       specialPotionsData,
       worldsData,
-      dataHash,
-      projectHash,
+      dataHashJson,
     ] = await Promise.all([
       fetchJson("/assets/data/daily-perks.json"),
       fetchJson("/assets/data/eggs.json"),
@@ -259,8 +257,7 @@ export async function loadData() {
       fetchJson("/assets/data/secret-bounty.json"),
       fetchJson("/assets/data/special-potions.json"),
       fetchJson("/assets/data/worlds.json"),
-      fetchText("/assets/data/.data-hash"),
-      fetchText("/.project-hash"),
+      fetchJson("/assets/data/data-hash.json"),
     ]);
 
     const data = {
@@ -281,15 +278,14 @@ export async function loadData() {
       secretBounty: processData(secretBountyData, "secretBountyData"),
       specialPotions: processData(specialPotionsData, "potion"),
       worlds: processData(worldsData, "world"),
-      dataHash: dataHash?.trim() || null,
-      projectHash: projectHash?.trim() || null,
+      dataHash: dataHashJson,
     };
 
     dataStore.set(data);
     isDataLoaded.set(true);
 
     consecutiveFailures = 0;
-    currentHash = data.dataHash;
+    currentHash = data.dataHash.hash;
 
     return data;
   } catch (error) {
@@ -310,10 +306,10 @@ export async function loadData() {
 
     hashPollIntervalId = setInterval(async () => {
       try {
-        const hash =
-          (await fetchText("/assets/data/.data-hash"))?.trim() || null;
+        const json = await fetchJson("/assets/data/data-hash.json");
+        const nextHash = json?.hash;
 
-        if (hash && hash !== currentHash) {
+        if (nextHash && nextHash !== currentHash) {
           await loadData();
         }
       } catch {}
@@ -550,10 +546,6 @@ export function processData(
 
 function fetchJson(url) {
   return fetchThroughCache(url).then((r) => r.json());
-}
-
-function fetchText(url) {
-  return fetchThroughCache(url).then((r) => r.text());
 }
 
 function fetchThroughCache(url) {
