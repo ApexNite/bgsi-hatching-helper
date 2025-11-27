@@ -27,6 +27,5 @@ dist-ssr
 public/assets/images/
 .image-cache.json
 
-# Hash files
-.data-hash
-.project-hash
+# Hash file
+data-hash.json
