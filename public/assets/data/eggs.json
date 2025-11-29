@@ -1095,5 +1095,72 @@
         "baseChance": 5e-11
       }
     ]
+  },
+  {
+    "id": "winter-egg",
+    "name": "Winter Egg",
+    "type": "special",
+    "pets": [
+      {
+        "id": "arctic-fox",
+        "name": "Arctic Fox",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "king-polar-bear",
+        "name": "King Polar Bear",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "flakey",
+        "name": "Flakey",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "snowball",
+        "name": "Snowball",
+        "rarity": "legendary",
+        "baseChance": 0.0002
+      },
+      {
+        "id": "frigid-star",
+        "name": "Frigid Star",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "snowman",
+        "name": "Snowman",
+        "rarity": "legendary",
+        "baseChance": 0.000001
+      },
+      {
+        "id": "og-morning-star",
+        "name": "OG Morning Star",
+        "rarity": "secret",
+        "baseChance": 5e-9
+      },
+      {
+        "id": "flake-spirit",
+        "name": "Flake Spirit",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "og-soulflake",
+        "name": "OG Soulflake",
+        "rarity": "secret",
+        "baseChance": 2.5e-10
+      },
+      {
+        "id": "kuuhenki",
+        "name": "Kuuhenki",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      }
+    ]
   }
 ]
