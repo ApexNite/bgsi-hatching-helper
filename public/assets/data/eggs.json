@@ -1100,6 +1100,7 @@
     "id": "winter-egg",
     "name": "Winter Egg",
     "type": "special",
+    "includeInInfinity": ["the-overworld"],
     "pets": [
       {
         "id": "arctic-fox",
