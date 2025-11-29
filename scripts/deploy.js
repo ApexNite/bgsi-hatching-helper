@@ -93,18 +93,33 @@ async function shouldUpload(client, localFile, remotePath, remoteInfo) {
 
 async function deploy() {
   const errors = [];
-  let uploaded = 0;
+  let newUploaded = 0;
+  let updatedUploaded = 0;
   let skipped = 0;
   let deleted = 0;
 
   if (!host || !username) {
     errors.push("Missing FTP_SERVER or FTP_USERNAME");
-    return { uploaded, deleted, skipped, errors };
+    return {
+      new: newUploaded,
+      updated: updatedUploaded,
+      uploaded: newUploaded + updatedUploaded,
+      deleted,
+      skipped,
+      errors,
+    };
   }
 
   if (!fs.existsSync(localRoot)) {
     errors.push("Local dist folder not found");
-    return { uploaded, deleted, skipped, errors };
+    return {
+      new: newUploaded,
+      updated: updatedUploaded,
+      uploaded: newUploaded + updatedUploaded,
+      deleted,
+      skipped,
+      errors,
+    };
   }
 
   const client = new SFTPClient();
@@ -124,8 +139,18 @@ async function deploy() {
 
     const remoteFiles = await walkRemote(client, remoteRoot);
     const localFiles = walkLocal(localRoot);
-    const localRelSet = new Set(localFiles.map(relLocal));
 
+    const fileEntries = localFiles.map((localFile) => {
+      const rel = relLocal(localFile);
+      const remotePath = toRemote(rel);
+      const existing = remoteFiles.get(remotePath);
+      return { localFile, rel, remotePath, existing };
+    });
+
+    const newFiles = fileEntries.filter((f) => !f.existing);
+    const existingFiles = fileEntries.filter((f) => f.existing);
+
+    const localRelSet = new Set(fileEntries.map((f) => f.rel));
     const cleanRoot = remoteRoot ? remoteRoot.replace(/\/+$/, "") : "";
     const toDelete = [];
     for (const [remotePath] of remoteFiles) {
@@ -139,53 +164,63 @@ async function deploy() {
       }
     }
 
-    const totalUploads = localFiles.length;
-    const totalDeletes = toDelete.length;
-    const total = totalUploads + totalDeletes;
+    const total = newFiles.length + existingFiles.length + toDelete.length;
     let processed = 0;
+    progressBar.start(total, 0, { status: "Deploying..." });
 
-    progressBar.start(total, 0, { status: "Uploading..." });
+    for (const f of newFiles) {
+      progressBar.update(processed, { status: `New: ${f.rel}` });
+      try {
+        await client.mkdir(path.posix.dirname(f.remotePath), true);
+        await client.put(f.localFile, f.remotePath);
+        newUploaded++;
+        processed++;
+        progressBar.update(processed, { status: `Uploaded ${f.rel}` });
+      } catch (e) {
+        errors.push(`Failed to upload new file ${f.rel}: ${e.message}`);
+        processed++;
+        progressBar.update(processed, { status: `Error upload ${f.rel}` });
+      }
+    }
 
-    for (const localFile of localFiles) {
-      const rel = relLocal(localFile);
-      const remotePath = toRemote(rel);
-      const existing = remoteFiles.get(remotePath);
+    for (const f of existingFiles) {
+      progressBar.update(processed, { status: `Update: ${f.rel}` });
+      let needsUpload = false;
 
-      progressBar.update(processed, { status: `Processing ${rel}` });
-
-      const needsUpload = await shouldUpload(
+      needsUpload = await shouldUpload(
         client,
-        localFile,
-        remotePath,
-        existing,
+        f.localFile,
+        f.remotePath,
+        f.existing,
       );
+
       if (!needsUpload) {
         skipped++;
         processed++;
-        progressBar.update(processed, { status: `Skipped ${rel}` });
+        progressBar.update(processed, { status: `Skipped ${f.rel}` });
         continue;
       }
 
       try {
-        await client.mkdir(path.posix.dirname(remotePath), true);
-        await client.put(localFile, remotePath);
-        uploaded++;
+        await client.put(f.localFile, f.remotePath);
+        updatedUploaded++;
         processed++;
-        progressBar.update(processed, { status: `Uploaded ${rel}` });
+        progressBar.update(processed, { status: `Updated ${f.rel}` });
       } catch (e) {
-        errors.push(`Failed to upload ${rel}: ${e.message}`);
+        errors.push(`Failed to update ${f.rel}: ${e.message}`);
         processed++;
-        progressBar.update(processed, { status: `Error ${rel}` });
+        progressBar.update(processed, { status: `Error update ${f.rel}` });
       }
     }
 
     for (const remotePath of toDelete) {
+      progressBar.update(processed, { status: `Delete: ${remotePath}` });
       try {
-        progressBar.update(processed, { status: `Deleting ${remotePath}` });
         await client.delete(remotePath);
         deleted++;
       } catch (e) {
         errors.push(`Failed to delete ${remotePath}: ${e.message}`);
+        progressBar.update(processed, { status: `Error delete ${remotePath}` });
       } finally {
         processed++;
         progressBar.update(processed, { status: `Deleted ${remotePath}` });
@@ -200,13 +235,20 @@ async function deploy() {
     await client.end();
   }
 
-  return { uploaded, deleted, skipped, errors };
+  return {
+    new: newUploaded,
+    updated: updatedUploaded,
+    uploaded: newUploaded + updatedUploaded,
+    deleted,
+    skipped,
+    errors,
+  };
 }
 
 (async () => {
   const result = await deploy();
   console.log(
-    `files uploaded: ${result.uploaded}, deleted: ${result.deleted}, skipped: ${result.skipped}, errors: ${result.errors.length}`,
+    `new: ${result.new}, updated: ${result.updated}, total uploaded: ${result.uploaded}, deleted: ${result.deleted}, skipped: ${result.skipped}, errors: ${result.errors.length}`,
   );
   if (result.errors.length > 0) {
     result.errors.forEach((msg, i) => {
