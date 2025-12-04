@@ -103,7 +103,7 @@ const schemas = {
     extends: ["stats", "id", "img"],
     imageDir: { type: "string", default: "icons" },
   },
-  eventUpgrade: {
+  upgrade: {
     extends: ["id", "img"],
     imageDir: { type: "string", default: "icons" },
     event: { type: "string", default: "none" },
@@ -196,7 +196,7 @@ export const dataStore = writable({
   events: null,
   eventPotions: null,
   eventSpecialPotions: null,
-  eventUpgrades: null,
+  upgrades: null,
   gamepasses: null,
   index: null,
   mastery: null,
@@ -228,7 +228,6 @@ export async function loadData() {
       eventsData,
       eventPotionsData,
       eventSpecialPotionsData,
-      eventUpgradesData,
       gamepassesData,
       indexData,
       masteryData,
@@ -237,6 +236,7 @@ export async function loadData() {
       riftsData,
       secretBountyData,
       specialPotionsData,
+      upgradesData,
       worldsData,
       dataHashJson,
     ] = await Promise.all([
@@ -247,7 +247,6 @@ export async function loadData() {
       fetchJson("/assets/data/events.json"),
       fetchJson("/assets/data/event-potions.json"),
       fetchJson("/assets/data/event-special-potions.json"),
-      fetchJson("/assets/data/event-upgrades.json"),
       fetchJson("/assets/data/gamepasses.json"),
       fetchJson("/assets/data/index.json"),
       fetchJson("/assets/data/mastery.json"),
@@ -256,6 +255,7 @@ export async function loadData() {
       fetchJson("/assets/data/rifts.json"),
       fetchJson("/assets/data/secret-bounty.json"),
       fetchJson("/assets/data/special-potions.json"),
+      fetchJson("/assets/data/upgrades.json"),
       fetchJson("/assets/data/worlds.json"),
       fetchJson("/assets/data/data-hash.json"),
     ]);
@@ -268,7 +268,7 @@ export async function loadData() {
       events: processData(eventsData, "event"),
       eventPotions: processData(eventPotionsData, "potionGroup"),
       eventSpecialPotions: processData(eventSpecialPotionsData, "potion"),
-      eventUpgrades: processData(eventUpgradesData, "eventUpgrade"),
+      upgrades: processData(upgradesData, "upgrade"),
       gamepasses: processData(gamepassesData, "gamepass"),
       index: processData(indexData, "indexData"),
       mastery: processData(masteryData, "masteryData"),

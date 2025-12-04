@@ -150,7 +150,7 @@
         }
       : { worldNormal: false, worldShiny: false };
 
-  $: visibleEventUpgrades = ($dataStore.eventUpgrades || []).filter(
+  $: visibleUpgrades = ($dataStore.upgrades || []).filter(
     (u) => selectedEgg?.event && u.event === selectedEgg.event,
   );
 
@@ -214,7 +214,7 @@
               _value: Number(enchantValues[enchant.id]),
             }))
             .filter((e) => e._value > 0),
-          ...(selectedEgg?.event ? $dataStore.eventUpgrades || [] : [])
+          ...(selectedEgg?.event ? $dataStore.upgrades || [] : [])
             .filter((upgrade) => upgrade.event === selectedEgg.event)
             .map((upgrade) => {
               let level = Number(eventUpgradeValues[upgrade.id]);
@@ -913,9 +913,9 @@
 
         <div class="section-separator"></div>
 
-        {#if visibleEventUpgrades.length > 0}
+        {#if visibleUpgrades.length > 0}
           <section class="menu-section">
-            {#each visibleEventUpgrades as upgrade (upgrade.id)}
+            {#each visibleUpgrades as upgrade (upgrade.id)}
               <div class="menu-row">
                 <span class="menu-label">
                   {#if upgrade.img}
