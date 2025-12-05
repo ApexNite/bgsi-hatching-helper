@@ -1,0 +1,232 @@
+[
+  {
+    "id": "pets-mastery",
+    "name": "Pets Mastery",
+    "img": "assets/images/icons/pets-mastery",
+    "levels": [
+      {
+        "id": "max",
+        "name": "MAX",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-20",
+        "name": "Level 20",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-19",
+        "name": "Level 19",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-18",
+        "name": "Level 18",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-17",
+        "name": "Level 17",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-16",
+        "name": "Level 16",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-15",
+        "name": "Level 15",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-14",
+        "name": "Level 14",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-13",
+        "name": "Level 13",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-12",
+        "name": "Level 12",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-11",
+        "name": "Level 11",
+        "luck": 0.3
+      },
+      {
+        "id": "level-10",
+        "name": "Level 10",
+        "luck": 0.2
+      },
+      {
+        "id": "level-9",
+        "name": "Level 9",
+        "luck": 0.2
+      },
+      {
+        "id": "level-8",
+        "name": "Level 8",
+        "luck": 0.2
+      },
+      {
+        "id": "level-7",
+        "name": "Level 7",
+        "luck": 0.2
+      },
+      {
+        "id": "level-6",
+        "name": "Level 6",
+        "luck": 0.2
+      },
+      {
+        "id": "level-5",
+        "name": "Level 5",
+        "luck": 0.2
+      },
+      {
+        "id": "level-4",
+        "name": "Level 4",
+        "luck": 0.2
+      },
+      {
+        "id": "level-3",
+        "name": "Level 3"
+      },
+      {
+        "id": "level-2",
+        "name": "Level 2"
+      },
+      {
+        "id": "level-1",
+        "name": "Level 1"
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
+  },
+  {
+    "id": "christmas-mastery",
+    "name": "Christmas Mastery",
+    "img": "assets/images/icons/present",
+    "event": "christmas",
+    "levels": [
+      {
+        "id": "max",
+        "name": "MAX",
+        "img": "assets/images/icons/infinity-luck",
+        "luck": 0.3,
+        "secretLuck": 0.05,
+        "infinityLuck": 0.03
+      },
+      {
+        "id": "level-13",
+        "name": "Level 13",
+        "img": "assets/images/icons/infinity-luck",
+        "luck": 0.3,
+        "secretLuck": 0.05,
+        "infinityLuck": 0.02
+      },
+      {
+        "id": "level-12",
+        "name": "Level 12",
+        "img": "assets/images/icons/infinity-luck",
+        "luck": 0.3,
+        "secretLuck": 0.05,
+        "infinityLuck": 0.01
+      },
+      {
+        "id": "level-11",
+        "name": "Level 11",
+        "img": "assets/images/icons/secret-pet-luck",
+        "luck": 0.3,
+        "secretLuck": 0.05
+      },
+      {
+        "id": "level-10",
+        "name": "Level 10",
+        "img": "assets/images/icons/secret-pet-luck",
+        "luck": 0.3,
+        "secretLuck": 0.04
+      },
+      {
+        "id": "level-9",
+        "name": "Level 9",
+        "img": "assets/images/icons/secret-pet-luck",
+        "luck": 0.3,
+        "secretLuck": 0.03
+      },
+      {
+        "id": "level-8",
+        "name": "Level 8",
+        "img": "assets/images/icons/secret-pet-luck",
+        "luck": 0.3,
+        "secretLuck": 0.02
+      },
+      {
+        "id": "level-7",
+        "name": "Level 7",
+        "img": "assets/images/icons/secret-pet-luck",
+        "luck": 0.3,
+        "secretLuck": 0.01
+      },
+      {
+        "id": "level-6",
+        "name": "Level 6",
+        "img": "assets/images/icons/luck",
+        "luck": 0.3
+      },
+      {
+        "id": "level-5",
+        "name": "Level 5",
+        "img": "assets/images/icons/luck",
+        "luck": 0.25
+      },
+      {
+        "id": "level-4",
+        "name": "Level 4",
+        "img": "assets/images/icons/luck",
+        "luck": 0.2
+      },
+      {
+        "id": "level-3",
+        "name": "Level 3",
+        "img": "assets/images/icons/luck",
+        "luck": 0.15
+      },
+      {
+        "id": "level-2",
+        "name": "Level 2",
+        "img": "assets/images/icons/luck",
+        "luck": 0.1
+      },
+      {
+        "id": "level-1",
+        "name": "Level 1",
+        "img": "assets/images/icons/luck",
+        "luck": 0.05
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
+  }
+]

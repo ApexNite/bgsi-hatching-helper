@@ -9,7 +9,6 @@ export function calculateStats(sources, toggles, numbers) {
   const data = get(dataStore);
   const dailyPerksData = data.dailyPerks;
   const indexData = data.index;
-  const masteryData = data.mastery;
 
   const totals = {
     luck: 2,
@@ -58,19 +57,11 @@ export function calculateStats(sources, toggles, numbers) {
     }
   }
 
-  if (toggles.fasterHatchMastery) {
-    if (masteryData?.fasterHatch) {
-      applySource(totals, masteryData.fasterHatch);
-    }
-  }
-
   if (numbers.luckierTogether > 0) {
-    if (masteryData?.luckierTogether) {
-      applySource(totals, {
-        ...masteryData.luckierTogether,
-        _value: Number(numbers.luckierTogether),
-      });
-    }
+    applySource(totals, {
+      ...{ baseLuck: 0.1 },
+      _value: Number(numbers.luckierTogether),
+    });
   }
 
   const today = dailyPerksData

@@ -15,7 +15,7 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 6;
+  const COOKIE_VERSION = 7;
 
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
@@ -29,7 +29,6 @@
   let eventToggles = {};
   let enchantValues = {};
   let toggleValues = {
-    fasterHatchMastery: false,
     dailyPerks: false,
   };
   let numericValues = {
@@ -55,10 +54,6 @@
       eggs: $dataStore.eggs?.[0]?.id,
       worlds: $dataStore.worlds?.[0]?.id,
       rifts: $dataStore.rifts?.[0]?.id,
-      luckyStreak:
-        $dataStore.mastery?.luckyStreak?.[
-          $dataStore.mastery.luckyStreak.length - 1
-        ]?.id,
       ...Object.fromEntries(
         ($dataStore.potions || []).map((potionType) => [
           potionType.id,
@@ -135,6 +130,9 @@
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
 
+  $: visibleMasteries = ($dataStore.masteries || []).filter(
+    (m) => !m.event || m.event === "none" || (selectedEgg?.event && m.event === selectedEgg.event),
+  );
   $: visibleMilestones = ($dataStore.milestones || []).filter(
     (m) => !m.event || m.event === "none" || (selectedEgg?.event && m.event === selectedEgg.event),
   );
@@ -168,9 +166,6 @@
         const sources = [
           selectedEgg,
           selectedRift,
-          $dataStore.mastery?.luckyStreak?.find(
-            (s) => s.id === selectedOptions.luckyStreak,
-          ),
           ...($dataStore.potions || [])
             .map((potionType) =>
               potionType.potions.find(
@@ -197,6 +192,13 @@
                 (selectedEgg?.event && p.event === selectedEgg.event)) &&
               eventSpecialPotionToggles[p.id],
           ),
+          ...(visibleMasteries || [])
+            .map((masteryType) =>
+              masteryType.levels.find(
+                (t) => t.id === selectedOptions[masteryType.id],
+              ),
+            )
+            .filter(Boolean),
           ...(visibleMilestones || [])
             .map((milestoneType) =>
               milestoneType.tiers.find(
@@ -987,32 +989,33 @@
 
         <!-- Mastery -->
         <section class="menu-section">
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/lucky-streak"
-                  alt="Lucky Streak"
-                  size="32px"
-                  decoding="async"
-                />
+          {#each visibleMasteries || [] as mastery (mastery.id)}
+            <div class="menu-row">
+              <span class="menu-label">
+                {#if mastery.img}
+                  <span class="menu-img">
+                    <SmartImage
+                      base={mastery.img}
+                      alt={mastery.name}
+                      size="32px"
+                      decoding="async"
+                    />
+                  </span>
+                {/if}
+                {mastery.name}:
               </span>
-              Lucky Streak:
-            </span>
-            <div class="menu-control">
-              <Dropdown
-                id="luckyStreak"
-                options={$dataStore.mastery?.luckyStreak || []}
-                selectedOption={$dataStore.mastery?.luckyStreak?.find(
-                  (o) => o.id === selectedOptions["luckyStreak"],
-                ) ||
-                  $dataStore.mastery?.luckyStreak?.[
-                    $dataStore.mastery.luckyStreak.length - 1
-                  ]}
-                onSelect={handleSelect}
-              />
+              <div class="menu-control">
+                <Dropdown
+                  id={mastery.id}
+                  options={mastery.levels}
+                  selectedOption={mastery.levels.find(
+                    (o) => o.id === selectedOptions[mastery.id],
+                  ) || mastery.levels[mastery.levels.length - 1]}
+                  onSelect={handleSelect}
+                />
+              </div>
             </div>
-          </div>
+          {/each}
 
           <div class="menu-row">
             <span class="menu-label">
@@ -1033,28 +1036,6 @@
                 onInput={({ value }) =>
                   updateNumericValue(numericValues, "luckierTogether", value)}
                 hoverText="Amount of friends in the server"
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/eggs"
-                  alt="Faster Hatch Mastery"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Faster Hatch Mastery:
-            </span>
-            <div class="menu-control">
-              <Checkbox
-                id="faster-hatch-mastery"
-                checked={toggleValues.fasterHatchMastery}
-                onChange={() =>
-                  updateToggle(toggleValues, "fasterHatchMastery")}
               />
             </div>
           </div>
