@@ -1095,5 +1095,170 @@
         "baseChance": 5e-11
       }
     ]
+  },
+  {
+    "id": "gingerbread-egg",
+    "name": "Gingerbread Egg",
+    "type": "world",
+    "world": "christmas-world",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "gingerbread-doggy",
+        "name": "Gingerbread Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "gingerbread-kitty",
+        "name": "Gingerbread Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "gingerbread-bunny",
+        "name": "Gingerbread Bunny",
+        "rarity": "unique",
+        "baseChance": 0.04
+      },
+      {
+        "id": "gingerbread-shard",
+        "name": "Gingerbread Shard",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      }
+    ]
+  },
+  {
+    "id": "candycane-egg",
+    "name": "Candycane Egg",
+    "type": "world",
+    "world": "christmas-world",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "candycane-kitty",
+        "name": "Candycane Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "candycane-bunny",
+        "name": "Candycane Bunny",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "candycane-dragon",
+        "name": "Candycane Dragon",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "royal-candy-cane",
+        "name": "Royal Candy Cane",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "demonic-peppermint",
+        "name": "Demonic Peppermint",
+        "rarity": "legendary",
+        "baseChance": 0.000025
+      },
+      {
+        "id": "peppermint-heart",
+        "name": "Peppermint Heart",
+        "rarity": "secret",
+        "baseChance": 5e-9
+      },
+      {
+        "id": "velvet-wolflord",
+        "name": "Velvet Wolflord",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      }
+    ]
+  },
+  {
+    "id": "yuletide-egg",
+    "name": "Yuletide Egg",
+    "type": "world",
+    "world": "christmas-world",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "little-ornament",
+        "name": "Little Ornament",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "gumdrop",
+        "name": "Gumdrop",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "peppermint-boi",
+        "name": "Peppermint Boi",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "mistletoe-fiend",
+        "name": "Mistle Toe Fiend",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "jingle-orb",
+        "name": "Jingle Orb",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "illuminated-fawn",
+        "name": "Illuminated Fawn",
+        "rarity": "legendary",
+        "baseChance": 5e-7
+      },
+      {
+        "id": "santas-hat",
+        "name": "Santa's Hat",
+        "rarity": "secret",
+        "baseChance": 2.5e-9
+      },
+      {
+        "id": "holy-bell",
+        "name": "Holy Bell",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "holy-candle",
+        "name": "Holy Candle",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "archangel",
+        "name": "Archangel",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "frosted-dogcat",
+        "name": "Frosted Dogcat",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "morning-star",
+        "name": "Morning Star",
+        "rarity": "infinity",
+        "baseChance": 1.25e-11
+      }
+    ]
   }
 ]
