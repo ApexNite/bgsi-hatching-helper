@@ -130,19 +130,44 @@
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
 
-  $: visibleMasteries = ($dataStore.masteries || []).filter(
-    (m) => !m.event || m.event === "none" || (selectedEgg?.event && m.event === selectedEgg.event),
-  );
-  $: visibleMilestones = ($dataStore.milestones || []).filter(
-    (m) => !m.event || m.event === "none" || (selectedEgg?.event && m.event === selectedEgg.event),
-  );
-
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
     $dataStore.rifts?.[0];
 
-  $: selectedEggId = selectedOptions.eggs;
-  $: selectedWorldId = selectedOptions.worlds;
+  $: selectedWorld =
+    $dataStore.worlds?.find((w) => w.id === selectedOptions.worlds) ||
+    $dataStore.worlds?.[0];
+
+  $: activeEvent = (() => {
+    const eggEvent = selectedEgg?.event;
+    const worldEvent = selectedWorld?.event;
+
+    if (eggEvent && eggEvent !== "none") {
+      return eggEvent;
+    }
+
+    if (worldEvent && worldEvent !== "none") {
+      return worldEvent;
+    }
+
+    return "none";
+  })();
+
+  $: visibleMasteries = ($dataStore.masteries || []).filter(
+    (m) =>
+      !m.event ||
+      m.event === "none" ||
+      (activeEvent && m.event === activeEvent),
+  );
+  $: visibleMilestones = ($dataStore.milestones || []).filter(
+    (m) =>
+      !m.event ||
+      m.event === "none" ||
+      (activeEvent && m.event === activeEvent),
+  );
+
+  $: selectedEggId = selectedEgg.id;
+  $: selectedWorldId = selectedWorld.id;
 
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
@@ -153,7 +178,7 @@
       : { worldNormal: false, worldShiny: false };
 
   $: visibleUpgrades = ($dataStore.upgrades || []).filter(
-    (u) => selectedEgg?.event && u.event === selectedEgg.event,
+    (u) => activeEvent && u.event === activeEvent,
   );
 
   $: {
@@ -177,7 +202,7 @@
             .filter(
               (potionType) =>
                 !potionType.event ||
-                (selectedEgg?.event && potionType.event === selectedEgg.event),
+                (activeEvent && potionType.event === activeEvent),
             )
             .map((potionType) => {
               const selected = potionType.potions.find(
@@ -188,8 +213,7 @@
             .filter(Boolean),
           ...($dataStore.eventSpecialPotions || []).filter(
             (p) =>
-              (!p.event ||
-                (selectedEgg?.event && p.event === selectedEgg.event)) &&
+              (!p.event || (activeEvent && p.event === activeEvent)) &&
               eventSpecialPotionToggles[p.id],
           ),
           ...(visibleMasteries || [])
@@ -220,8 +244,8 @@
               _value: Number(enchantValues[enchant.id]),
             }))
             .filter((e) => e._value > 0),
-          ...(selectedEgg?.event ? $dataStore.upgrades || [] : [])
-            .filter((upgrade) => upgrade.event === selectedEgg.event)
+          ...(activeEvent ? $dataStore.upgrades || [] : [])
+            .filter((upgrade) => upgrade.event === activeEvent)
             .map((upgrade) => {
               let level = Number(eventUpgradeValues[upgrade.id]);
               level = Math.min(level, Object.keys(upgrade.levels).length);
@@ -724,7 +748,7 @@
           {/each}
 
           {#each $dataStore.eventPotions || [] as potion (potion.id)}
-            {#if !potion.event || (selectedEgg?.event && potion.event === selectedEgg.event)}
+            {#if !potion.event || (activeEvent && potion.event === activeEvent)}
               <div class="menu-row">
                 <span class="menu-label">
                   {#if potion.img}
@@ -780,7 +804,7 @@
         </section>
 
         {#each $dataStore.eventSpecialPotions || [] as potion (potion.id)}
-          {#if !potion.event || (selectedEgg?.event && potion.event === selectedEgg.event)}
+          {#if !potion.event || (activeEvent && potion.event === activeEvent)}
             <div class="menu-row">
               <span class="menu-label">
                 {#if potion.img}
@@ -1158,7 +1182,7 @@
       label: "Secret Pets Milestone",
       description: "Secret luck bonus not shown in debug stats",
     }, -->
-    {#if calculationMode === "manual" && selectedEgg?.event === "none" && !dismissedManualWarning}
+    {#if calculationMode === "manual" && !activeEvent && !dismissedManualWarning}
       <WarningBanner
         type="warning"
         title="Debug stats may be inaccurate!"

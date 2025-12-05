@@ -13,6 +13,7 @@
   },
   {
     "id": "christmas-world",
-    "name": "Christmas World"
+    "name": "Christmas World",
+    "event": "christmas"
   }
 ]

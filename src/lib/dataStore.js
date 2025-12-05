@@ -194,6 +194,7 @@ const schemas = {
   world: {
     extends: ["id", "img"],
     imageDir: { type: "string", default: "worlds" },
+    event: { type: "string", default: "none" },
   },
 };
 
