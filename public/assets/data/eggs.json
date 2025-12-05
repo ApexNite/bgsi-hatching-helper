@@ -1101,6 +1101,7 @@
     "name": "Gingerbread Egg",
     "type": "world",
     "world": "christmas-world",
+    "event": "christmas",
     "riftable": true,
     "pets": [
       {
@@ -1134,6 +1135,7 @@
     "name": "Candycane Egg",
     "type": "world",
     "world": "christmas-world",
+    "event": "christmas",
     "riftable": true,
     "pets": [
       {
@@ -1185,6 +1187,7 @@
     "name": "Yuletide Egg",
     "type": "world",
     "world": "christmas-world",
+    "event": "christmas",
     "riftable": true,
     "pets": [
       {
