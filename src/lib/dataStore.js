@@ -125,6 +125,7 @@ const schemas = {
   milestone: {
     extends: ["id", "img"],
     imageDir: { type: "string", default: "icons" },
+    event: { type: "string", default: "none" },
     tiers: { type: "array", default: [], schema: "milestoneTier" },
   },
   milestoneTier: {

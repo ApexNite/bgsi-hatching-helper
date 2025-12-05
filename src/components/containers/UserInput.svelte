@@ -135,6 +135,10 @@
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
 
+  $: visibleMilestones = ($dataStore.milestones || []).filter(
+    (m) => !m.event || m.event === "none" || (selectedEgg?.event && m.event === selectedEgg.event),
+  );
+
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
     $dataStore.rifts?.[0];
@@ -193,7 +197,7 @@
                 (selectedEgg?.event && p.event === selectedEgg.event)) &&
               eventSpecialPotionToggles[p.id],
           ),
-          ...($dataStore.milestones || [])
+          ...(visibleMilestones || [])
             .map((milestoneType) =>
               milestoneType.tiers.find(
                 (t) => t.id === selectedOptions[milestoneType.id],
@@ -805,7 +809,7 @@
 
         <!-- Milestones -->
         <section class="menu-section">
-          {#each $dataStore.milestones || [] as milestone (milestone.id)}
+          {#each visibleMilestones || [] as milestone (milestone.id)}
             <div class="menu-row">
               <span class="menu-label">
                 {#if milestone.img}

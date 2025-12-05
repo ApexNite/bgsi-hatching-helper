@@ -149,5 +149,56 @@
         "name": "None"
       }
     ]
+  },
+  {
+    "id": "christmas-milestone",
+    "name": "Christmas Milestone",
+    "img": "assets/images/icons/present",
+    "event": "christmas",
+    "tiers": [
+      {
+        "id": "infinity-i",
+        "name": "Infinity I",
+        "luck": 2,
+        "secretLuck": 0.05
+      },
+      {
+        "id": "ultimate-i",
+        "name": "Ultimate I",
+        "luck": 1.5,
+        "secretLuck": 0.03
+      },
+      {
+        "id": "super-i",
+        "name": "Super I",
+        "luck": 1,
+        "secretLuck": 0.02
+      },
+      {
+        "id": "platinum-i",
+        "name": "Platinum I",
+        "luck": 0.75,
+        "secretLuck": 0.01
+      },
+      {
+        "id": "gold-i",
+        "name": "Gold I",
+        "luck": 0.5
+      },
+      {
+        "id": "silver-i",
+        "name": "Silver I",
+        "luck": 0.25
+      },
+      {
+        "id": "bronze-i",
+        "name": "Bronze I",
+        "luck": 0.1
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
   }
 ]
