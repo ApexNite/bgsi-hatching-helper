@@ -64,6 +64,11 @@
           {selectedWorldId}
           onSettingsChange={checkPaneHeights}
         />
+
+        <div class="footer-note">
+          <p>*</p>
+          <p>Hatching times assume E/R key spam and represent average time (roughly ~63.2% chance to obtain each pet within that period)</p>
+        </div>
       </section>
     </div>
 
@@ -112,6 +117,14 @@
     flex-direction: column;
     gap: 1rem;
     min-width: 0;
+  }
+
+  .footer-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
   }
 
   .info-container {
