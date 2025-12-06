@@ -15,7 +15,6 @@
   let showInfo = false;
 
   let leftPane;
-  let rightPane;
   let rightMinHeight = null;
 
   async function checkPaneHeights() {
@@ -54,7 +53,7 @@
         />
       </div>
 
-      <section class="right-pane" bind:this={rightPane} style="min-height: {rightMinHeight}">
+      <section class="right-pane" style="min-height: {rightMinHeight}">
         <StatsBar {stats} {eggsPerHatch} />
 
         <PetTable
