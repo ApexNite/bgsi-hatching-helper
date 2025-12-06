@@ -1133,8 +1133,8 @@
         "baseChance": 0.000001
       },
       {
-        "id": "golden-ticket",
-        "name": "Golden Ticket",
+        "id": "the-golden-ticket",
+        "name": "The Golden Ticket",
         "rarity": "secret",
         "baseChance": 1e-8
       },
