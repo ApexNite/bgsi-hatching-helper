@@ -1097,6 +1097,68 @@
     ]
   },
   {
+    "id": "rumblecon-egg",
+    "name": "Rumblecon Egg",
+    "type": "special",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "rumblecon-kitty",
+        "name": "Rumblecon Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "rumblecon-bunny",
+        "name": "Rumblecon Bunny",
+        "rarity": "rare",
+        "baseChance": 0.25
+      },
+      {
+        "id": "rumblecon-dragon",
+        "name": "Rumblecon Dragon",
+        "rarity": "epic",
+        "baseChance": 0.05
+      },
+      {
+        "id": "mvp-rumblecon-doggy",
+        "name": "MVP Rumblecon Doggy",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "rumblecon-ticket-vendor",
+        "name": "Rumblecon Ticket Vendor",
+        "rarity": "legendary",
+        "baseChance": 0.000001
+      },
+      {
+        "id": "golden-ticket",
+        "name": "Golden Ticket",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      },
+      {
+        "id": "rumblecon-trophy",
+        "name": "Rumblecon Trophy",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "rumblecon-halftime-show",
+        "name": "Rumblecon Halftime Show",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "rumblecon-god",
+        "name": "RUMBLECON GOD",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      }
+    ]
+  },
+  {
     "id": "gingerbread-egg",
     "name": "Gingerbread Egg",
     "type": "world",
