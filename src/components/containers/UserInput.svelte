@@ -1201,6 +1201,29 @@
         onDismiss={dismissManualWarning}
       />
     {/if}
+    {#if calculationMode === "manual" && activeEvent === "christmas" && !dismissedManualWarning}
+      <WarningBanner
+        type="error"
+        title="Debug stats are be inaccurate!"
+        items={[
+          {
+            label: "Festive Elixir",
+            description:
+              "Not shown in debug stats",
+          },
+          {
+            label: "Christmas Mastery",
+            description: "Not shown in debug stats",
+          },
+          {
+            label: "Christmas Milestone",
+            description: "Not shown in debug stats",
+          },
+        ]}
+        recommendation="Use Calculated mode for more accurate results"
+        onDismiss={dismissManualWarning}
+      />
+    {/if}
   </div>
 {/if}
 
