@@ -146,7 +146,7 @@
       return eggEvent;
     }
 
-    if (selectedEgg.id === "infinity-egg" && worldEvent && worldEvent !== "none") {
+    if (isInfinityEgg && worldEvent && worldEvent !== "none") {
       return worldEvent;
     }
 
