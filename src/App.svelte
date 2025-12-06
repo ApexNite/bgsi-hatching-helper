@@ -17,10 +17,12 @@
   let leftPane;
   let rightPane;
   let addBottomSpace = false;
+  let rightMinHeight = null;
 
   async function checkPaneHeights() {
     await tick();
     addBottomSpace = rightPane?.offsetHeight > leftPane?.offsetHeight;
+    rightMinHeight = `${leftPane?.offsetHeight}px`;
   }
 
   onMount(() => {
@@ -54,7 +56,7 @@
         />
       </div>
 
-      <section class="right-pane" bind:this={rightPane}>
+      <section class="right-pane" bind:this={rightPane} style="min-height: {rightMinHeight}">
         <StatsBar {stats} {eggsPerHatch} />
 
         <PetTable
@@ -102,7 +104,7 @@
   .container {
     display: flex;
     gap: 1rem;
-    align-items: flex-start;
+    align-items: stretch;
     width: 100%;
     margin: 0.5rem 0 0;
   }

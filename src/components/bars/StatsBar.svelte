@@ -97,6 +97,9 @@
     border-radius: var(--radius-md);
     padding: 0.75rem 1rem;
     width: 100%;
+    position: sticky;
+    top: 0.15rem;
+    z-index: 10;
   }
 
   .stat {
