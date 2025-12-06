@@ -118,7 +118,7 @@
 
   $: filteredPets = settings.hideNonSpecial
     ? petsWithAggregates.filter((p) =>
-        ["legendary", "secret", "infinity"].includes(p.rarity),
+        ["secret", "infinity"].includes(p.rarity),
       )
     : petsWithAggregates;
 
