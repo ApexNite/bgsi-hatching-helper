@@ -98,7 +98,7 @@
   .container {
     display: flex;
     gap: 1rem;
-    align-items: stretch;
+    align-items: flex-start;
     width: 100%;
     margin: 0.5rem 0 0;
   }
