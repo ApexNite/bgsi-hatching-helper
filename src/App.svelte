@@ -16,12 +16,10 @@
 
   let leftPane;
   let rightPane;
-  let addBottomSpace = false;
   let rightMinHeight = null;
 
   async function checkPaneHeights() {
     await tick();
-    addBottomSpace = rightPane?.offsetHeight > leftPane?.offsetHeight;
     rightMinHeight = `${leftPane?.offsetHeight}px`;
   }
 
@@ -33,7 +31,7 @@
   afterUpdate(checkPaneHeights);
 </script>
 
-<main class:add-bottom-space={addBottomSpace}>
+<main>
   {#if $dataError}
     <div class="center-container">
       <div class="error-card">
@@ -97,10 +95,6 @@
 </main>
 
 <style>
-  main.add-bottom-space {
-    padding-bottom: 3.5rem;
-  }
-
   .container {
     display: flex;
     gap: 1rem;
