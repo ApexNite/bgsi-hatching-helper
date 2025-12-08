@@ -100,7 +100,7 @@ export function formatChancePercent(
   return `${str}%`;
 }
 
-export function formatChanceFraction(chance, mode = "round") {
+export function formatChanceFraction(chance, mode = "none") {
   if (!Number.isFinite(chance) || chance <= 0) {
     return "1/∞";
   }
@@ -112,7 +112,7 @@ export function formatChanceFraction(chance, mode = "round") {
         ? Math.ceil(1 / chance)
         : mode === "floor"
           ? Math.floor(1 / chance)
-          : 1 / chance;
+          : Math.round((1 / chance) * 10) / 10;
 
   return `1/${Math.max(1, denominator).toLocaleString()}`;
 }
