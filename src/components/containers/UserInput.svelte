@@ -1207,6 +1207,11 @@
         title="Debug stats are be inaccurate!"
         items={[
           {
+            label: "Christmas World Index",
+            description:
+              "Now shown in debug stats",
+          },
+          {
             label: "Festive Elixir",
             description:
               "Not shown in debug stats",
