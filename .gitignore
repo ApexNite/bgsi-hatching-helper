@@ -25,9 +25,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# Optimized image files
-public/assets/images/
+# Post build files
+public/assets
+src/data
 .image-cache.json
-
-# Hash file
-data-hash.json

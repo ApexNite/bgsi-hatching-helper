@@ -1,15 +1,8 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { createHash } from "crypto";
-import {
-  existsSync,
-  readdirSync,
-  readFileSync,
-  lstatSync,
-  writeFileSync,
-  mkdirSync,
-} from "fs";
-import { join, relative, dirname } from "path";
+import { existsSync, readdirSync, readFileSync, lstatSync } from "fs";
+import { join, relative } from "path";
 
 function isIncluded(path, ignore) {
   return (
@@ -43,56 +36,17 @@ function computeSourceHash() {
   return computeHash(srcPath);
 }
 
-function computeDataHash() {
-  const root = process.cwd();
-  const dataPath = join(root, "public", "assets", "data");
-  return computeHash(dataPath, "data-hash.json");
-}
-
 function computeProjectHash() {
   const root = process.cwd();
-  return computeHash(root, [
-    "dist",
-    "images-originals",
-    "node_modules",
-    "README.md",
-  ]);
-}
-
-function writeHashFile(path, hashValue, lastUpdated) {
-  const dir = dirname(path);
-
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
-  }
-
-  const obj = {
-    hash: hashValue,
-    lastUpdated: lastUpdated,
-  };
-
-  writeFileSync(path, JSON.stringify(obj, null, 2), "utf8");
+  return computeHash(root, ["dist", "assets", "node_modules", "README.md"]);
 }
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    svelte(),
-    {
-      name: "write-hashes",
-      buildStart() {
-        const root = process.cwd();
-        const dataHash = computeDataHash();
-        const dataPath = join(root, "public", "assets", "data", "data-hash.json");
-        const lastUpdated = new Date().toISOString();
-
-        writeHashFile(dataPath, dataHash, lastUpdated);
-      },
-    },
-  ],
+  plugins: [svelte()],
   define: {
-    __PROJECT_HASH__: JSON.stringify(computeProjectHash()),
-    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
     __BUILD_HASH__: JSON.stringify(computeSourceHash()),
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+    __PROJECT_HASH__: JSON.stringify(computeProjectHash()),
   },
 });

@@ -1,4 +1,22 @@
 import { writable } from "svelte/store";
+import dailyPerksCompiled from "../../data/daily-perks.json";
+import eggsCompiled from "../../data/eggs.json";
+import enchantsCompiled from "../../data/enchants.json";
+import environmentBuffsCompiled from "../../data/environment-buffs.json";
+import eventsCompiled from "../../data/events.json";
+import eventPotionsCompiled from "../../data/event-potions.json";
+import eventSpecialPotionsCompiled from "../../data/event-special-potions.json";
+import gamepassesCompiled from "../../data/gamepasses.json";
+import indexCompiled from "../../data/index.json";
+import masteriesCompiled from "../../data/masteries.json";
+import milestonesCompiled from "../../data/milestones.json";
+import potionsCompiled from "../../data/potions.json";
+import riftsCompiled from "../../data/rifts.json";
+import secretBountyCompiled from "../../data/secret-bounty.json";
+import specialPotionsCompiled from "../../data/special-potions.json";
+import upgradesCompiled from "../../data/upgrades.json";
+import worldsCompiled from "../../data/worlds.json";
+import dataHashCompiled from "../data/hash.json";
 
 const schemas = {
   stats: {
@@ -220,15 +238,69 @@ export const dataStore = writable({
 });
 
 let consecutiveFailures = 0;
-let currentHash = null;
+let currentHash = dataHashCompiled.hash;
 let hashPollIntervalId = null;
 
 export const isDataLoaded = writable(false);
 export const dataError = writable(null);
 
+function buildDataFromSources(sources) {
+  return {
+    dailyPerks: processData(sources.dailyPerks, "dailyPerksData"),
+    eggs: processData(sources.eggs, "egg"),
+    enchants: processData(sources.enchants, ["stats", "id"]),
+    environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
+    events: processData(sources.events, "event"),
+    eventPotions: processData(sources.eventPotions, "potionGroup"),
+    eventSpecialPotions: processData(sources.eventSpecialPotions, "potion"),
+    upgrades: processData(sources.upgrades, "upgrade"),
+    gamepasses: processData(sources.gamepasses, "gamepass"),
+    index: processData(sources.index, "indexData"),
+    masteries: processData(sources.masteries, "mastery"),
+    milestones: processData(sources.milestones, "milestone"),
+    potions: processData(sources.potions, "potionGroup"),
+    rifts: processData(sources.rifts, ["stats", "id"]),
+    secretBounty: processData(sources.secretBounty, "secretBountyData"),
+    specialPotions: processData(sources.specialPotions, "potion"),
+    worlds: processData(sources.worlds, "world"),
+    dataHash: sources.dataHash,
+  };
+}
+
+const compiledSources = {
+  dailyPerks: dailyPerksCompiled,
+  eggs: eggsCompiled,
+  enchants: enchantsCompiled,
+  environmentBuffs: environmentBuffsCompiled,
+  events: eventsCompiled,
+  eventPotions: eventPotionsCompiled,
+  eventSpecialPotions: eventSpecialPotionsCompiled,
+  gamepasses: gamepassesCompiled,
+  index: indexCompiled,
+  masteries: masteriesCompiled,
+  milestones: milestonesCompiled,
+  potions: potionsCompiled,
+  rifts: riftsCompiled,
+  secretBounty: secretBountyCompiled,
+  specialPotions: specialPotionsCompiled,
+  upgrades: upgradesCompiled,
+  worlds: worldsCompiled,
+  dataHash: dataHashCompiled,
+};
+
 export async function loadData() {
   try {
     dataError.set(null);
+
+    if (await hashesMatch()) {
+      const data = buildDataFromSources(compiledSources);
+
+      dataStore.set(data);
+      consecutiveFailures = 0;
+      currentHash = data.dataHash?.hash;
+
+      return data;
+    }
 
     const [
       dailyPerksData,
@@ -267,35 +339,33 @@ export async function loadData() {
       fetchJson("/assets/data/special-potions.json"),
       fetchJson("/assets/data/upgrades.json"),
       fetchJson("/assets/data/worlds.json"),
-      fetchJson("/assets/data/data-hash.json"),
+      fetchJson("/assets/data/hash.json"),
     ]);
 
-    const data = {
-      dailyPerks: processData(dailyPerksData, "dailyPerksData"),
-      eggs: processData(eggsData, "egg"),
-      enchants: processData(enchantsData, ["stats", "id"]),
-      environmentBuffs: processData(environmentBuffsData, "environmentBuff"),
-      events: processData(eventsData, "event"),
-      eventPotions: processData(eventPotionsData, "potionGroup"),
-      eventSpecialPotions: processData(eventSpecialPotionsData, "potion"),
-      upgrades: processData(upgradesData, "upgrade"),
-      gamepasses: processData(gamepassesData, "gamepass"),
-      index: processData(indexData, "indexData"),
-      masteries: processData(masteriesData, "mastery"),
-      milestones: processData(milestonesData, "milestone"),
-      potions: processData(potionsData, "potionGroup"),
-      rifts: processData(riftsData, ["stats", "id"]),
-      secretBounty: processData(secretBountyData, "secretBountyData"),
-      specialPotions: processData(specialPotionsData, "potion"),
-      worlds: processData(worldsData, "world"),
+    const data = buildDataFromSources({
+      dailyPerks: dailyPerksData,
+      eggs: eggsData,
+      enchants: enchantsData,
+      environmentBuffs: environmentBuffsData,
+      events: eventsData,
+      eventPotions: eventPotionsData,
+      eventSpecialPotions: eventSpecialPotionsData,
+      gamepasses: gamepassesData,
+      index: indexData,
+      masteries: masteriesData,
+      milestones: milestonesData,
+      potions: potionsData,
+      rifts: riftsData,
+      secretBounty: secretBountyData,
+      specialPotions: specialPotionsData,
+      upgrades: upgradesData,
+      worlds: worldsData,
       dataHash: dataHashJson,
-    };
+    });
 
     dataStore.set(data);
-    isDataLoaded.set(true);
-
     consecutiveFailures = 0;
-    currentHash = data.dataHash.hash;
+    currentHash = data.dataHash?.hash;
 
     return data;
   } catch (error) {
@@ -310,18 +380,15 @@ export async function loadData() {
 
     return null;
   } finally {
+    isDataLoaded.set(true);
+
     if (hashPollIntervalId !== null) {
       return;
     }
 
     hashPollIntervalId = setInterval(async () => {
       try {
-        const json = await fetchJson("/assets/data/data-hash.json");
-        const nextHash = json?.hash;
-
-        if (nextHash && nextHash !== currentHash) {
-          await loadData();
-        }
+        await loadData();
       } catch {}
     }, 30000);
   }
@@ -552,6 +619,13 @@ export function processData(
   }
 
   return processItem(data, parentItem, itemKey);
+}
+
+async function hashesMatch() {
+  const json = await fetchJson("/assets/data/hash.json");
+  const nextHash = json?.hash;
+  
+  return nextHash && nextHash === currentHash;
 }
 
 function fetchJson(url) {
