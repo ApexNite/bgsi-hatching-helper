@@ -7,7 +7,7 @@
     "optimize:once": "node scripts/optimize-images.js",
     "optimize:watch": "node scripts/optimize-images.js --watch",
     "sync": "node scripts/sync-data.js",
-    "predev": "npm run optimize:once",
+    "predev": "npm run optimize:once && npm run sync",
     "dev": "concurrently \"npm:optimize:watch\" \"vite\"",
     "prebuild": "npm run optimize:once && npm run sync",
     "build": "vite build",
