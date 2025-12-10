@@ -36,6 +36,7 @@
     dreamerBlessing: 0,
     seasonStars: 0,
     luckierTogether: 0,
+    riftMultiplier: 0,
     eggsPerHatch: 1,
   };
   let manualStats = {
@@ -259,16 +260,21 @@
             .filter(Boolean),
         ].filter(Boolean);
 
-        const toggleValuesWithWorldIndex = {
+        const toggleValuesModified = {
           ...toggleValues,
           worldNormal: currentWorldIndexState.worldNormal,
           worldShiny: currentWorldIndexState.worldShiny,
         };
 
+        const numericValuesModified = { ...numericValues };
+
+        numericValuesModified.riftMultiplier =
+          selectedRift.id !== "other" ? 0 : numericValues.riftMultiplier;
+
         stats = calculateStats(
           sources,
-          toggleValuesWithWorldIndex,
-          numericValues,
+          toggleValuesModified,
+          numericValuesModified,
         );
       }
     }
@@ -540,6 +546,31 @@
               />
             </div>
           </div>
+
+          {#if selectedRift.id === "other"}
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luck"
+                    alt="Rift"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Multiplier:
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="rift-multiplier"
+                  value={numericValues.riftMultiplier}
+                  onInput={({ value }) =>
+                    updateNumericValue(numericValues, "riftMultiplier", value)}
+                  hoverText="Rift Multiplier"
+                />
+              </div>
+            </div>
+          {/if}
         {/if}
 
         {#if isWorldEgg && calculationMode != "manual"}
@@ -1208,13 +1239,11 @@
         items={[
           {
             label: "Christmas World Index",
-            description:
-              "Now shown in debug stats",
+            description: "Now shown in debug stats",
           },
           {
             label: "Festive Elixir",
-            description:
-              "Not shown in debug stats",
+            description: "Not shown in debug stats",
           },
           {
             label: "Christmas Mastery",

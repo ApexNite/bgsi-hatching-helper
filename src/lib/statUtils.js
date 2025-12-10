@@ -64,6 +64,14 @@ export function calculateStats(sources, toggles, numbers) {
     });
   }
 
+  if (numbers.riftMultiplier > 0) {
+    applySource(totals, {
+      ...{
+        baseLuck: numbers.riftMultiplier === 1 ? 0 : numbers.riftMultiplier,
+      },
+    });
+  }
+
   const today = dailyPerksData
     ? dailyPerksData[new Date().getUTCDay()]
     : undefined;
