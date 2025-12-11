@@ -239,6 +239,7 @@ export const dataStore = writable({
 
 let consecutiveFailures = 0;
 let currentHash = dataHashCompiled.hash;
+let currentLastUpdated = dataHashCompiled.lastUpdated;
 let hashPollIntervalId = null;
 
 export const isDataLoaded = writable(false);
@@ -292,13 +293,14 @@ export async function loadData() {
   try {
     dataError.set(null);
 
-    if (await hashesMatch()) {
+    if (await shouldUpdate()) {
       const data = buildDataFromSources(compiledSources);
 
       dataStore.set(data);
       isDataLoaded.set(true);
       consecutiveFailures = 0;
       currentHash = data.dataHash?.hash;
+      currentLastUpdated = data.dataHash?.lastUpdated;
 
       return data;
     }
@@ -368,6 +370,7 @@ export async function loadData() {
     isDataLoaded.set(true);
     consecutiveFailures = 0;
     currentHash = data.dataHash?.hash;
+    currentLastUpdated = data.dataHash?.lastUpdated;
 
     return data;
   } catch (error) {
@@ -621,11 +624,23 @@ export function processData(
   return processItem(data, parentItem, itemKey);
 }
 
-async function hashesMatch() {
+async function shouldUpdate() {
   const json = await fetchJson("/assets/data/hash.json");
   const nextHash = json?.hash;
-  
-  return nextHash && nextHash === currentHash;
+  const nextLastUpdated = json?.lastUpdated;
+
+  if (nextHash && nextHash === currentHash) {
+    return false;
+  }
+
+  if (!nextLastUpdated) {
+    return true;
+  }
+
+  const nextTime = new Date(nextLastUpdated).getTime();
+  const currentTime = new Date(currentLastUpdated).getTime();
+
+  return nextTime > currentTime;
 }
 
 function fetchJson(url) {
