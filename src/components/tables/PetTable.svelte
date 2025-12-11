@@ -31,6 +31,7 @@
     showAnyLegendary: false,
     showAnySecretInfinity: false,
     hideNonSpecial: false,
+    hideLegendary: false,
   };
 
   let settings = { ...defaultSettings };
@@ -118,9 +119,13 @@
 
   $: filteredPets = settings.hideNonSpecial
     ? petsWithAggregates.filter((p) =>
-        ["secret", "infinity"].includes(p.rarity),
+        ["legendary", "secret", "infinity"].includes(p.rarity),
       )
     : petsWithAggregates;
+
+  $: if (settings.hideLegendary) {
+    filteredPets = filteredPets.filter((p) => p.rarity !== "legendary");
+  }
 
   function displayChance(value) {
     if (settings.chanceDisplayMode === "percent") {
@@ -374,6 +379,15 @@
             size="sm"
           />
           <span>Hide Easy Pets</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="hideLegendary"
+            checked={settings.hideLegendary}
+            onChange={() => toggle("hideLegendary")}
+            size="sm"
+          />
+          <span>Hide Legendary Pets</span>
         </label>
       </div>
     </div>
