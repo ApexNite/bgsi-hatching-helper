@@ -11,7 +11,7 @@ export function calculateStats(sources, toggles, numbers) {
   const indexData = data.index;
 
   const totals = {
-    luck: 2,
+    luck: 1,
     secretLuck: 1,
     infinityLuck: 1,
     shinyChance: 0,
@@ -86,9 +86,6 @@ export function calculateStats(sources, toggles, numbers) {
   }
 
   const stats = calculateStatsFromTotals(totals);
-
-  // just a bandage; need to figure out the real discrepency somehow
-  stats.luck -= totals.luckMultiplier > 0 ? 0 : 1;
 
   return stats;
 }
@@ -242,7 +239,7 @@ function applySource(totals, source) {
 function calculateBubbleBlessing(level) {
   const levelClamped = Math.floor(clamp(level, 0, 50));
   const luck =
-    levelClamped >= 1 ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 : 0;
+    levelClamped >= 1 ? 0.15 + ((1.5 - 0.15) * (levelClamped - 1)) / 49 + 1 : 0;
   const baseHatchSpeed =
     levelClamped >= 20
       ? 0.05 + ((0.25 - 0.05) * (levelClamped - 20)) / 30 + 1
