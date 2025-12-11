@@ -296,6 +296,7 @@ export async function loadData() {
       const data = buildDataFromSources(compiledSources);
 
       dataStore.set(data);
+      isDataLoaded.set(true);
       consecutiveFailures = 0;
       currentHash = data.dataHash?.hash;
 
@@ -364,6 +365,7 @@ export async function loadData() {
     });
 
     dataStore.set(data);
+    isDataLoaded.set(true);
     consecutiveFailures = 0;
     currentHash = data.dataHash?.hash;
 
@@ -380,8 +382,6 @@ export async function loadData() {
 
     return null;
   } finally {
-    isDataLoaded.set(true);
-
     if (hashPollIntervalId !== null) {
       return;
     }
