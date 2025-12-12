@@ -1325,5 +1325,93 @@
         "baseChance": 1.25e-11
       }
     ]
+  },
+  {
+    "id": "northpole-egg",
+    "name": "Northpole Egg",
+    "type": "world",
+    "world": "christmas-world",
+    "event": "christmas",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "cookie-doggy",
+        "name": "Cookie Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "milk-kitty",
+        "name": "Milk Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "festive-flyer",
+        "name": "Festive Flyer",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "guardian-cookie",
+        "name": "Guardian Cookie",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "winter-phantom",
+        "name": "Winter Phantom",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "macaron-king",
+        "name": "Macaron King",
+        "rarity": "legendary",
+        "baseChance": 4e-7
+      },
+      {
+        "id": "big-flakey",
+        "name": "Big Flakey",
+        "rarity": "secret",
+        "baseChance": 2.5e-9
+      },
+      {
+        "id": "hope-candle",
+        "name": "Hope Candle",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "joy-candle",
+        "name": "Joy Candle",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "love-candle",
+        "name": "Love Candle",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "peace-candle",
+        "name": "Peace Candle",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "iridescent-catcher",
+        "name": "Iridescent Catcher",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "christmas-robot",
+        "name": "Christmas Robot",
+        "rarity": "infinity",
+        "baseChance": 1.25e-11
+      }
+    ]
   }
 ]
