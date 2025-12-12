@@ -12,6 +12,7 @@
   let eggsPerHatch;
   let selectedEggId;
   let selectedWorldId;
+  let selectedEventId;
   let showInfo = false;
 
   onMount(() => {
@@ -20,6 +21,7 @@
 
   $: isChristmasInfinity =
     selectedEggId === "infinity-egg" && selectedWorldId === "christmas-world";
+  $: showInfinityLuck = selectedEventId === "christmas";
 </script>
 
 <main>
@@ -42,11 +44,12 @@
           bind:eggsPerHatch
           bind:selectedEggId
           bind:selectedWorldId
+          bind:selectedEventId
         />
       </div>
 
       <section class="right-pane">
-        <StatsBar {stats} {eggsPerHatch} />
+        <StatsBar {stats} {eggsPerHatch} {showInfinityLuck} />
 
         {#if isChristmasInfinity}
           <div

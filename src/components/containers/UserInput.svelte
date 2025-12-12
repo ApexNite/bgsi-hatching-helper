@@ -14,6 +14,7 @@
   export let eggsPerHatch;
   export let selectedEggId;
   export let selectedWorldId;
+  export let selectedEventId;
 
   const COOKIE_VERSION = 7;
 
@@ -169,6 +170,7 @@
 
   $: selectedEggId = selectedEgg.id;
   $: selectedWorldId = selectedWorld.id;
+  $: selectedEventId = activeEvent;
 
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
