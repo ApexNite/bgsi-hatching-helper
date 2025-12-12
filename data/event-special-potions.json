@@ -6,5 +6,11 @@
     "potionLuckMultiplier": 1.5,
     "potionShinyChanceMultiplier": 1.5,
     "potionMythicChanceMultiplier": 1.5
+  },
+  {
+    "id": "ultra-infinity-elixir",
+    "name": "Ultra Infinity Elixir",
+    "event": "christmas",
+    "infinityLuckMultiplier": 1.5
   }
 ]
