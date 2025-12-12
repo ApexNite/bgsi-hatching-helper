@@ -1,6 +1,6 @@
 <script>
   import "./debug.js";
-  import { onMount, afterUpdate, tick } from "svelte";
+  import { onMount } from "svelte";
   import { loadData, isDataLoaded, dataError } from "./lib/dataStore.js";
   import UserInput from "./components/containers/UserInput.svelte";
   import StatsBar from "./components/bars/StatsBar.svelte";
@@ -14,20 +14,12 @@
   let selectedWorldId;
   let showInfo = false;
 
-  let leftPane;
-  let rightMinHeight = null;
-
-  async function checkPaneHeights() {
-    await tick();
-    rightMinHeight = `${leftPane?.offsetHeight}px`;
-  }
-
   onMount(() => {
     loadData();
   });
 
-  // Deprecated but not switching to $effect for now
-  afterUpdate(checkPaneHeights);
+  $: isChristmasInfinity =
+    selectedEggId === "infinity-egg" && selectedWorldId === "christmas-world";
 </script>
 
 <main>
@@ -44,7 +36,7 @@
     </div>
   {:else if $isDataLoaded}
     <div class="container">
-      <div class="left-pane" bind:this={leftPane}>
+      <div class="left-pane">
         <UserInput
           bind:stats
           bind:eggsPerHatch
@@ -53,16 +45,27 @@
         />
       </div>
 
-      <section class="right-pane" style="min-height: {rightMinHeight}">
+      <section class="right-pane">
         <StatsBar {stats} {eggsPerHatch} />
 
-        <PetTable
-          {stats}
-          {eggsPerHatch}
-          {selectedEggId}
-          {selectedWorldId}
-          onSettingsChange={checkPaneHeights}
-        />
+        {#if isChristmasInfinity}
+          <div
+            class="error-card error-card--christmas-disabled"
+            style="margin-bottom: 1rem;"
+          >
+            <div class="error-icon">🚫</div>
+            <h2>Temporarily Unavailable</h2>
+            <p>
+              The Infinity Egg is currently unavailable for the Christmas World
+              while we figure out the new odds. Hatching chances should return
+              tomorrow.
+              <br /><br />
+              Sorry for the inconvenience! 💝
+            </p>
+          </div>
+        {:else}
+          <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
+        {/if}
 
         <div>
           <div class="footer-note">
@@ -119,7 +122,7 @@
   }
 
   .right-pane {
-    flex: 1 0 auto;
+    flex: 1 1 0%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -202,6 +205,13 @@
   .error-card p {
     margin: 0 0 1.5rem 0;
     line-height: 1.5;
+  }
+
+  .error-card--christmas-disabled {
+    align-self: center;
+    max-width: max-content;
+    padding: 2rem 1rem;
+    overflow-wrap: anywhere;
   }
 
   .retry-btn {
