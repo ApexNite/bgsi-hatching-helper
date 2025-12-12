@@ -126,7 +126,17 @@ export function formatMultiplier(multiplier) {
     return `${multiplier}x`;
   }
 
-  return `${multiplier.toFixed(1)}x`;
+  const rounded = Math.round(multiplier * 10) / 10;
+
+  if (rounded === 0) {
+    return "0x";
+  }
+
+  if (Number.isInteger(rounded)) {
+    return `${rounded}x`;
+  }
+
+  return `${rounded.toFixed(1)}x`;
 }
 
 export function formatString(text, maxLength = 18) {

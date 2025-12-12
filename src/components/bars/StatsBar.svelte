@@ -10,6 +10,7 @@
   export let stats = {
     luck: 1,
     secretLuck: 1,
+    infinityLuck: 1,
     shinyChance: 1 / 40,
     mythicChance: 1 / 100,
     hatchSpeed: 1,
@@ -35,6 +36,15 @@
       size="24px"
     />
     <strong>{formatMultiplier(stats.secretLuck)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/infinity-luck"
+      alt="Infinity Luck"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatMultiplier(stats.infinityLuck)}</strong>
   </div>
   <div class="stat">
     <SmartImage
