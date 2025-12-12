@@ -10,8 +10,8 @@
     },
     "pets": [
       {
-        "id": "super-hacker-prism",
-        "name": "Super Hacker Prism",
+        "id": "big-rigby",
+        "name": "Big Rigby",
         "rarity": "secret",
         "baseChance": 2e-9
       }
@@ -29,8 +29,8 @@
     },
     "pets": [
       {
-        "id": "maid-nert-plushie",
-        "name": "Maid Nert Plushie",
+        "id": "santa-nert-plushie",
+        "name": "Santa Nert Plushie",
         "rarity": "secret",
         "baseChance": 1e-9
       }
