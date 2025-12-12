@@ -1413,5 +1413,75 @@
         "baseChance": 1.25e-11
       }
     ]
+  },
+  {
+    "id": "aurora-egg",
+    "name": "Aurora Egg",
+    "type": "world",
+    "world": "christmas-world",
+    "event": "christmas",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "starry-bunny",
+        "name": "Starry Bunny",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "starry-angel",
+        "name": "Starry Angel",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "snowglobe",
+        "name": "Snowglobe",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "aurora-dragon",
+        "name": "Aurora Dragon",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "lunar-fairy",
+        "name": "Lunar Fairy",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "aurora-borealis",
+        "name": "Aurora Borealis",
+        "rarity": "legendary",
+        "baseChance": 2e-7
+      },
+      {
+        "id": "borealis-elk",
+        "name": "Borealis Elk",
+        "rarity": "secret",
+        "baseChance": 2.5e-10
+      },
+      {
+        "id": "northern-star",
+        "name": "Northern Star",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "soulflake",
+        "name": "Soulflake",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "the-leviathan",
+        "name": "The Leviathan",
+        "rarity": "infinity",
+        "baseChance": 1.3333333333333e-12
+      }
+    ]
   }
 ]
