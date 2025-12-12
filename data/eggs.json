@@ -1410,7 +1410,7 @@
         "id": "christmas-robot",
         "name": "Christmas Robot",
         "rarity": "infinity",
-        "baseChance": 1.25e-11
+        "baseChance": 5e-12
       }
     ]
   },
