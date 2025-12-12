@@ -117,7 +117,7 @@ export function formatChanceFraction(chance, mode = "none") {
   return `1/${Math.max(1, denominator).toLocaleString()}`;
 }
 
-export function formatMultiplier(multiplier) {
+export function formatMultiplier(multiplier, decimalPlaces = 1) {
   if (!Number.isFinite(multiplier)) {
     return "∞x";
   }
@@ -126,7 +126,9 @@ export function formatMultiplier(multiplier) {
     return `${multiplier}x`;
   }
 
-  const rounded = Math.round(multiplier * 10) / 10;
+  const places = Math.max(0, decimalPlaces);
+  const factor = Math.pow(10, places);
+  const rounded = Math.round(multiplier * factor) / factor;
 
   if (rounded === 0) {
     return "0x";
@@ -136,7 +138,7 @@ export function formatMultiplier(multiplier) {
     return `${rounded}x`;
   }
 
-  return `${rounded.toFixed(1)}x`;
+  return `${rounded.toFixed(places)}x`;
 }
 
 export function formatString(text, maxLength = 18) {
