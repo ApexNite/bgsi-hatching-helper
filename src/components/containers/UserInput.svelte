@@ -190,7 +190,6 @@
         stats = calculateManualStats(manualStats, [selectedRift]);
       } else if (calculationMode === "calculated") {
         const sources = [
-          selectedEgg,
           selectedRift,
           ...($dataStore.potions || [])
             .map((potionType) =>

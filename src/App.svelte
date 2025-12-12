@@ -1,5 +1,5 @@
 <script>
-  import './debug.js';
+  import "./debug.js";
   import { onMount, afterUpdate, tick } from "svelte";
   import { loadData, isDataLoaded, dataError } from "./lib/dataStore.js";
   import UserInput from "./components/containers/UserInput.svelte";
@@ -64,9 +64,21 @@
           onSettingsChange={checkPaneHeights}
         />
 
-        <div class="footer-note">
-          <p>*</p>
-          <p>Hatching times assume E/R key spam and represent average time (roughly ~63.2% chance to obtain each pet within that period)</p>
+        <div>
+          <div class="footer-note">
+            <p>*</p>
+            <p>
+              Hatching times assume E/R key spam and represent average time
+              (roughly ~63.2% chance to obtain each pet within that period)
+            </p>
+          </div>
+          <div class="footer-note">
+            <p>*&thinsp;*</p>
+            <p>
+              Shiny chance is adjusted to reflect the guaranteed shiny pet every
+              75th egg from the Golden Egg mastery.
+            </p>
+          </div>
         </div>
       </section>
     </div>
@@ -120,6 +132,10 @@
     align-items: center;
     gap: 0.25rem;
     font-size: 0.85rem;
+  }
+
+  .footer-note p {
+    margin: 0.25rem;
   }
 
   .info-container {

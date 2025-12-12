@@ -147,6 +147,30 @@ const schemas = {
       type: "string",
       default: null,
     },
+    masteryId: {
+      type: "string",
+      default: (item, parent) => parent?.id || null,
+    },
+    masteryName: {
+      type: "string",
+      default: (item, parent) => parent?.name || parent?.id || null,
+    },
+    levelNumber: {
+      type: "number",
+      default: (item) => {
+        if (item.id === "none") {
+          return 0;
+        }
+
+        if (item.id === "max") {
+          return 999;
+        }
+
+        const n = item.id.match(/level-(\d+)/);
+
+        return n ? Number(n[1]) : 0;
+      },
+    },
   },
   milestone: {
     extends: ["id", "img"],

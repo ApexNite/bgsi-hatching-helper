@@ -29,6 +29,7 @@ export function calculateStats(sources, toggles, numbers) {
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
     baseHatchSpeed: 0,
+    _applyAdjustedShiny: hasGoldenEggMastery(sources),
   };
 
   const eventBonusMultipliers = collectEventBonusMultipliers(sources);
@@ -104,6 +105,7 @@ export function calculateManualStats(manualStats, sources) {
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
     baseHatchSpeed: manualStats.hatchSpeed / 100,
+    _applyAdjustedShiny: hasGoldenEggMastery(sources),
   };
 
   const eventBonusMultipliers = collectEventBonusMultipliers(sources);
@@ -120,6 +122,11 @@ export function calculateManualStats(manualStats, sources) {
 }
 
 function calculateStatsFromTotals(totals) {
+  const shinyBase =
+    (totals.baseShinyChance || 0) *
+    (1 + (totals.shinyChance || 0)) *
+    (totals.shinyChanceMultiplier || 1);
+
   return {
     luck:
       (totals.baseLuck || 0) +
@@ -130,10 +137,9 @@ function calculateStatsFromTotals(totals) {
     infinityLuck:
       (totals.baseInfinityLuck || 0) +
       (totals.infinityLuck || 0) * (totals.infinityLuckMultiplier || 1),
-    shinyChance:
-      (totals.baseShinyChance || 0) *
-      (1 + (totals.shinyChance || 0)) *
-      (totals.shinyChanceMultiplier || 1),
+    shinyChance: totals._applyAdjustedShiny
+      ? calculateAdjustedShiny(shinyBase)
+      : shinyBase,
     mythicChance:
       (totals.baseMythicChance || 0) *
       (1 + totals.mythicChance) *
@@ -263,6 +269,21 @@ function calculateSeasonPerks(stars) {
     luck: starsClamped / 600,
     hatchSpeed: starsClamped / 7500,
   };
+}
+
+function calculateAdjustedShiny(shinyChance, interval = 75) {
+  const nonGuaranteed = (interval - 1) / interval;
+  const guaranteed = 1 / interval;
+
+  return nonGuaranteed * shinyChance + guaranteed;
+}
+
+function hasGoldenEggMastery(sources) {
+  for (const source of sources) {
+    if (source.masteryId === "pets-mastery") {
+      return source.levelNumber >= 4;
+    }
+  }
 }
 
 function clamp(value, min, max) {
