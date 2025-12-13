@@ -29,7 +29,38 @@
         "baseChance": 2.5e-8,
         "ignoreSecret": true
       }
-    ]
+    ],
+    "raritiesByWorld": {
+      "christmas-world": [
+        {
+          "id": "common",
+          "baseChance": 0.7
+        },
+        {
+          "id": "unique",
+          "baseChance": 0.2
+        },
+        {
+          "id": "rare",
+          "baseChance": 0.065
+        },
+        {
+          "id": "epic",
+          "baseChance": 0.03,
+          "ignoreLuck": true
+        },
+        {
+          "id": "legendary",
+          "baseChance": 0.065,
+          "ignoreLuck": true
+        },
+        {
+          "id": "secret",
+          "baseChance": 4.16666667e-8,
+          "ignoreSecret": true
+        }
+      ]
+    }
   },
   {
     "id": "common-egg",

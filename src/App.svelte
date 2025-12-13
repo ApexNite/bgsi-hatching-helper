@@ -19,8 +19,6 @@
     loadData();
   });
 
-  $: isChristmasInfinity =
-    selectedEggId === "infinity-egg" && selectedWorldId === "christmas-world";
   $: showInfinityLuck = selectedEventId === "christmas";
 </script>
 
@@ -51,24 +49,7 @@
       <section class="right-pane">
         <StatsBar {stats} {eggsPerHatch} {showInfinityLuck} />
 
-        {#if isChristmasInfinity}
-          <div
-            class="error-card error-card--christmas-disabled"
-            style="margin-bottom: 1rem;"
-          >
-            <div class="error-icon">🚫</div>
-            <h2>Temporarily Unavailable</h2>
-            <p>
-              The Infinity Egg is currently unavailable for the Christmas World
-              while we figure out the new odds. Hatching chances should return
-              tomorrow.
-              <br /><br />
-              Sorry for the inconvenience! 💝
-            </p>
-          </div>
-        {:else}
-          <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
-        {/if}
+        <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
 
         <div>
           <div class="footer-note">
@@ -208,13 +189,6 @@
   .error-card p {
     margin: 0 0 1.5rem 0;
     line-height: 1.5;
-  }
-
-  .error-card--christmas-disabled {
-    align-self: center;
-    max-width: max-content;
-    padding: 2rem 1rem;
-    overflow-wrap: anywhere;
   }
 
   .retry-btn {

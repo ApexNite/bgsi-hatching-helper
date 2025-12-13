@@ -29,8 +29,13 @@ export function getPetsToDisplay(eggId, worldId, stats) {
     );
   }
 
+  const selectedRarities =
+    isInfinity && Array.isArray(egg.raritiesByWorld?.[worldId])
+      ? egg.raritiesByWorld[worldId]
+      : egg.rarities;
+
   let pets = isInfinity
-    ? normalizeInfinityEgg(egg.rarities, worldEggs, stats)
+    ? normalizeInfinityEgg(selectedRarities, worldEggs, stats)
     : normalizeEgg(egg.pets, stats);
 
   return addVariantChances(sortByRarity(pets), stats);
@@ -253,32 +258,30 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
   }));
 
   const baseLuckMultiplier = stats?.luck ?? 1;
-  const secretLuckMultiplier = stats?.secretLuck ?? 1;
+  const baseSecretMultiplier = stats?.secretLuck ?? 1;
   const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
-  const epicLuckMultiplier = isInfinityEgg
-    ? 1
-    : Math.min(baseLuckMultiplier, 4);
 
   for (const item of list) {
+    const luckMultiplier = item.ignoreLuck ? 1 : baseLuckMultiplier;
+    const secretMultiplier = item.ignoreSecret ? 1 : baseSecretMultiplier;
+    const epicLuck = Math.min(luckMultiplier, 4);
+
     switch (item.rarity) {
       case "infinity":
         item.rawChance =
           item.baseChance *
-          baseLuckMultiplier *
-          (item.ignoreSecret ? 1 : secretLuckMultiplier) *
+          luckMultiplier *
+          secretMultiplier *
           infinityLuckMultiplier;
         break;
       case "secret":
-        item.rawChance =
-          item.baseChance *
-          baseLuckMultiplier *
-          (item.ignoreSecret ? 1 : secretLuckMultiplier);
+        item.rawChance = item.baseChance * luckMultiplier * secretMultiplier;
         break;
       case "legendary":
-        item.rawChance = item.baseChance * baseLuckMultiplier;
+        item.rawChance = item.baseChance * luckMultiplier;
         break;
       case "epic":
-        item.rawChance = item.baseChance * epicLuckMultiplier;
+        item.rawChance = item.baseChance * epicLuck;
         break;
       default:
         item.rawChance = item.baseChance;
