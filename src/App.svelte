@@ -115,7 +115,7 @@
   .container {
     display: flex;
     gap: 1rem;
-    align-items: flex-start;
+    align-items: stretch;
     width: 100%;
     margin: 0.5rem 0 0;
   }
