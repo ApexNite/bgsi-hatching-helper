@@ -260,6 +260,10 @@
   }
 
   @media (max-width: 600px) {
+    .right-pane {
+      flex: 1 0 auto;
+    }
+
     .center-container {
       padding: 0.5rem;
     }
