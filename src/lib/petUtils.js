@@ -193,10 +193,18 @@ function addVariantChances(pets, stats) {
         : baseMythicMultiplier
       : 0;
 
-    pet.finalShinyChance = pet.finalChance * shinyMultiplier;
-    pet.finalMythicChance = pet.finalChance * mythicMultiplier;
-    pet.finalShinyMythicChance =
-      pet.finalChance * shinyMultiplier * mythicMultiplier;
+    pet.finalShinyChance = Math.min(
+      pet.finalChance * shinyMultiplier,
+      pet.finalChance,
+    );
+    pet.finalMythicChance = Math.min(
+      pet.finalChance * mythicMultiplier,
+      pet.finalChance,
+    );
+    pet.finalShinyMythicChance = Math.min(
+      pet.finalChance * shinyMultiplier * mythicMultiplier,
+      pet.finalChance,
+    );
   }
 
   return pets;
