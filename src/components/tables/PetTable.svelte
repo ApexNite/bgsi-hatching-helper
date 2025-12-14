@@ -233,7 +233,7 @@
             </td>
 
             <td>
-              {#if pet.finalChance > 0}
+              {#if pet.finalChance >= 0}
                 <div class="chance-time">
                   <div>{displayChance(pet.finalChance)}</div>
                   {#if settings.showHatchingTimes}
@@ -247,7 +247,7 @@
               {/if}
             </td>
             <td>
-              {#if pet.finalShinyChance > 0}
+              {#if pet.finalShinyChance >= 0}
                 <div class="chance-time">
                   <div>{displayChance(pet.finalShinyChance)}</div>
                   {#if settings.showHatchingTimes}
@@ -261,7 +261,7 @@
               {/if}
             </td>
             <td>
-              {#if pet.finalMythicChance > 0}
+              {#if pet.finalMythicChance >= 0}
                 <div class="chance-time">
                   <div>{displayChance(pet.finalMythicChance)}</div>
                   {#if settings.showHatchingTimes}
@@ -275,7 +275,7 @@
               {/if}
             </td>
             <td>
-              {#if pet.finalShinyMythicChance > 0}
+              {#if pet.finalShinyMythicChance >= 0}
                 <div class="chance-time">
                   <div>{displayChance(pet.finalShinyMythicChance)}</div>
                   {#if settings.showHatchingTimes}
