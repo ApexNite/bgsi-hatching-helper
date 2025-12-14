@@ -46,6 +46,10 @@ export function calculateMeanHatchTime(chance, hatchSpeed, eggsPerHatch) {
     return Infinity;
   }
 
+  if (chance === Infinity) {
+    return Infinity;
+  }
+
   return 1 / chance / calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
 }
 
@@ -56,6 +60,10 @@ export function calculateHatchTime(
   probability,
 ) {
   if (!chance || !eggsPerHatch || !hatchSpeed) {
+    return Infinity;
+  }
+
+  if (chance === Infinity) {
     return Infinity;
   }
 
