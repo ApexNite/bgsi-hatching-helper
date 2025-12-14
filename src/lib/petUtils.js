@@ -41,12 +41,27 @@ export function getPetsToDisplay(eggId, worldId, stats) {
   return addVariantChances(sortByRarity(pets), stats);
 }
 
-export function calculateHatchTime(chance, hatchSpeed, eggsPerHatch) {
+export function calculateMeanHatchTime(chance, hatchSpeed, eggsPerHatch) {
   if (!chance || !eggsPerHatch || !hatchSpeed) {
     return Infinity;
   }
 
   return 1 / chance / calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
+}
+
+export function calculateHatchTime(
+  chance,
+  hatchSpeed,
+  eggsPerHatch,
+  probability,
+) {
+  if (!chance || !eggsPerHatch || !hatchSpeed) {
+    return Infinity;
+  }
+
+  const eggsNeeded = Math.log(1 - probability) / Math.log(1 - chance);
+
+  return eggsNeeded / calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
 }
 
 export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {

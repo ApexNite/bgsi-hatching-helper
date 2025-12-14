@@ -55,8 +55,8 @@
           <div class="footer-note">
             <p>*</p>
             <p>
-              Hatching times assume E/R key spam and represent average time
-              (roughly ~63.2% chance to obtain each pet within that period)
+              Hatching times assume E/R key spam. In mean mode, there is a 63.2%
+              chance to hatch the pet within each period and 50% for median.
             </p>
           </div>
           <div class="footer-note">

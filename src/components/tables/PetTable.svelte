@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import {
     getPetsToDisplay,
+    calculateMeanHatchTime,
     calculateHatchTime,
     insertAggregateRows,
   } from "../../lib/petUtils.js";
@@ -21,12 +22,12 @@
   export let eggsPerHatch;
   export let selectedEggId;
   export let selectedWorldId;
-  export let onSettingsChange = () => {};
 
   const COOKIE_VERSION = 4;
 
   const defaultSettings = {
     chanceDisplayMode: "auto",
+    timesDisplayMode: "mean",
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
@@ -139,16 +140,31 @@
     return formatChance(value);
   }
 
+  function displayTime(value) {
+    if (settings.timesDisplayMode === "median") {
+      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5);
+    }
+
+    if (settings.timesDisplayMode === "90%") {
+      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9);
+    }
+
+    return calculateMeanHatchTime(value, stats.hatchSpeed, eggsPerHatch);
+  }
+
   function toggle(key) {
     settings = { ...settings, [key]: !settings[key] };
     saveSettings();
-    onSettingsChange();
   }
 
   function setChanceDisplayMode(mode) {
     settings = { ...settings, chanceDisplayMode: mode };
     saveSettings();
-    onSettingsChange();
+  }
+
+  function setTimesDisplayMode(mode) {
+    settings = { ...settings, timesDisplayMode: mode };
+    saveSettings();
   }
 </script>
 
@@ -222,13 +238,7 @@
                   <div>{displayChance(pet.finalChance)}</div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        calculateHatchTime(
-                          pet.finalChance,
-                          stats.hatchSpeed,
-                          eggsPerHatch,
-                        ),
-                      )}
+                      {formatTime(displayTime(pet.finalChance))}
                     </div>
                   {/if}
                 </div>
@@ -242,13 +252,7 @@
                   <div>{displayChance(pet.finalShinyChance)}</div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        calculateHatchTime(
-                          pet.finalShinyChance,
-                          stats.hatchSpeed,
-                          eggsPerHatch,
-                        ),
-                      )}
+                      {formatTime(displayTime(pet.finalShinyChance))}
                     </div>
                   {/if}
                 </div>
@@ -262,13 +266,7 @@
                   <div>{displayChance(pet.finalMythicChance)}</div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        calculateHatchTime(
-                          pet.finalMythicChance,
-                          stats.hatchSpeed,
-                          eggsPerHatch,
-                        ),
-                      )}
+                      {formatTime(displayTime(pet.finalMythicChance))}
                     </div>
                   {/if}
                 </div>
@@ -282,13 +280,7 @@
                   <div>{displayChance(pet.finalShinyMythicChance)}</div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        calculateHatchTime(
-                          pet.finalShinyMythicChance,
-                          stats.hatchSpeed,
-                          eggsPerHatch,
-                        ),
-                      )}
+                      {formatTime(displayTime(pet.finalShinyMythicChance))}
                     </div>
                   {/if}
                 </div>
@@ -339,6 +331,40 @@
             size="sm"
           />
           <span>Fraction</span>
+        </label>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Times display</div>
+        <label class="row">
+          <Radio
+            name="timesMode"
+            value="mean"
+            checked={settings.timesDisplayMode === "mean"}
+            onChange={() => setTimesDisplayMode("mean")}
+            size="sm"
+          />
+          <span>Mean</span>
+        </label>
+        <label class="row">
+          <Radio
+            name="timesMode"
+            value="median"
+            checked={settings.timesDisplayMode === "median"}
+            onChange={() => setTimesDisplayMode("median")}
+            size="sm"
+          />
+          <span>Median</span>
+        </label>
+        <label class="row">
+          <Radio
+            name="timesMode"
+            value="90%"
+            checked={settings.timesDisplayMode === "90%"}
+            onChange={() => setTimesDisplayMode("90%")}
+            size="sm"
+          />
+          <span>90% Chance</span>
         </label>
       </div>
 
