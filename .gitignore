@@ -29,3 +29,4 @@ dist-ssr
 public/assets
 src/data
 .image-cache.json
+.data-cache.json
