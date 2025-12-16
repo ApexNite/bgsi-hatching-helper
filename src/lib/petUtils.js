@@ -219,7 +219,7 @@ function addVariantChances(pets, stats) {
       ? pet.staticMythic
         ? 0.01
         : baseMythicMultiplier
-      : 0;
+      : -1;
 
     pet.finalShinyChance =
       shinyMultiplier !== Infinity
