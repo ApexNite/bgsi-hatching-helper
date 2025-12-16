@@ -23,8 +23,6 @@
   export let selectedEggId;
   export let selectedWorldId;
 
-  const COOKIE_VERSION = 4;
-
   const defaultSettings = {
     chanceDisplayMode: "auto",
     timesDisplayMode: "mean",
@@ -46,10 +44,8 @@
     try {
       const savedData = getCookie("hatching-helper-pet-table-settings");
 
-      if (savedData && savedData.version === COOKIE_VERSION) {
+      if (savedData) {
         settings = { ...defaultSettings, ...savedData.settings };
-      } else if (savedData) {
-        deleteCookie("hatching-helper-pet-table-settings");
       }
     } catch {
       deleteCookie("hatching-helper-pet-table-settings");
@@ -88,7 +84,6 @@
 
   function saveSettings() {
     setCookie("hatching-helper-pet-table-settings", {
-      version: COOKIE_VERSION,
       settings,
     });
   }

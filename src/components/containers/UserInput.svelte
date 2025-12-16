@@ -16,8 +16,6 @@
   export let selectedWorldId;
   export let selectedEventId;
 
-  const COOKIE_VERSION = 7;
-
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let isUserInputReady = false;
@@ -289,7 +287,7 @@
     try {
       const savedData = getCookie("hatching-helper-user-input");
 
-      if (savedData && savedData.version === COOKIE_VERSION) {
+      if (savedData) {
         calculationMode = savedData.calculationMode || "calculated";
         selectedOptions = {
           ...selectedOptions,
@@ -329,8 +327,6 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-      } else if (savedData) {
-        deleteCookie("hatching-helper-user-input");
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -341,7 +337,6 @@
 
   function saveToCache() {
     const dataToSave = {
-      version: COOKIE_VERSION,
       calculationMode,
       selectedOptions,
       specialPotionToggles,
