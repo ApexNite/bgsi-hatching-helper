@@ -18,8 +18,6 @@
   onMount(() => {
     loadData();
   });
-
-  $: showInfinityLuck = selectedEventId === "christmas";
 </script>
 
 <main>
@@ -47,7 +45,7 @@
       </div>
 
       <section class="right-pane">
-        <StatsBar {stats} {eggsPerHatch} {showInfinityLuck} />
+        <StatsBar {stats} {eggsPerHatch} />
 
         <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
 

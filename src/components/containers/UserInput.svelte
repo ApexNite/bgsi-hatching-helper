@@ -41,6 +41,7 @@
   let manualStats = {
     luck: 0,
     secretLuck: 1,
+    infinityLuck: 1,
     shinyChance: 40,
     mythicChance: 100,
     hatchSpeed: 100,
@@ -630,8 +631,8 @@
 
       <div class="section-separator"></div>
 
+      <!-- Manual Stats Input -->
       {#if calculationMode === "manual"}
-        <!-- Manual Stats Input -->
         <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
@@ -673,6 +674,28 @@
                 value={manualStats.secretLuck}
                 onInput={({ value }) =>
                   updateNumericValue(manualStats, "secretLuck", value)}
+              />
+            </div>
+          </div>
+
+          <div class="menu-row">
+            <span class="menu-label">
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/infinity-luck"
+                  alt="Infinity Luck"
+                  size="32px"
+                  decoding="async"
+                />
+              </span>
+              Infinity Luck (x):
+            </span>
+            <div class="menu-control">
+              <NumberInput
+                id="manual-infinity-luck"
+                value={manualStats.infinityLuck}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "infinityLuck", value)}
               />
             </div>
           </div>

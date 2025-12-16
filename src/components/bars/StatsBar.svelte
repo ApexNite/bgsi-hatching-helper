@@ -16,7 +16,6 @@
     hatchSpeed: 1,
   };
   export let eggsPerHatch = 1;
-  export let showInfinityLuck = false;
 </script>
 
 <div class="stats">
@@ -38,17 +37,15 @@
     />
     <strong>{formatMultiplier(stats.secretLuck)}</strong>
   </div>
-  {#if showInfinityLuck}
-    <div class="stat">
-      <SmartImage
-        base="assets/images/icons/infinity-luck"
-        alt="Infinity Luck"
-        decoding="async"
-        size="24px"
-      />
-      <strong>{formatMultiplier(stats.infinityLuck)}</strong>
-    </div>
-  {/if}
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/infinity-luck"
+      alt="Infinity Luck"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatMultiplier(stats.infinityLuck)}</strong>
+  </div>
   <div class="stat">
     <SmartImage
       base="assets/images/icons/shiny"
