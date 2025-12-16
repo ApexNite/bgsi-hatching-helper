@@ -5,7 +5,7 @@
     formatMultiplier,
   } from "../../lib/formatUtils.js";
   import { calculateEggsPerSecond } from "../../lib/petUtils.js";
-  import SmartImage from "../media/SmartImage.svelte";
+  import SmartImage from "../control/SmartImage.svelte";
 
   export let stats = {
     luck: 1,

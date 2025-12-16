@@ -3,9 +3,9 @@
   import { onMount } from "svelte";
   import { loadData, isDataLoaded, dataError } from "./lib/dataStore.js";
   import UserInput from "./components/containers/UserInput.svelte";
-  import StatsBar from "./components/bars/StatsBar.svelte";
-  import PetTable from "./components/tables/PetTable.svelte";
-  import SmartImage from "./components/media/SmartImage.svelte";
+  import StatsBar from "./components/containers/StatsBar.svelte";
+  import PetTable from "./components/containers/PetTable.svelte";
+  import SmartImage from "./components/control/SmartImage.svelte";
   import InfoOverlay from "./components/overlays/InfoOverlay.svelte";
 
   let stats;

@@ -14,9 +14,9 @@
     formatString,
   } from "../../lib/formatUtils.js";
   import { getCookie, setCookie, deleteCookie } from "../../lib/cookieUtils.js";
-  import Checkbox from "../form/Checkbox.svelte";
-  import Radio from "../form/Radio.svelte";
-  import SmartImage from "../media/SmartImage.svelte";
+  import Checkbox from "../control/Checkbox.svelte";
+  import Radio from "../control/Radio.svelte";
+  import SmartImage from "../control/SmartImage.svelte";
 
   export let stats;
   export let eggsPerHatch;

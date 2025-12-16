@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { dataStore } from "../../lib/dataStore.js";
-  import SmartImage from "../media/SmartImage.svelte";
+  import SmartImage from "../control/SmartImage.svelte";
 
   export let open = false;
 

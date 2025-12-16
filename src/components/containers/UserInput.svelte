@@ -4,11 +4,11 @@
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
   import { onMount } from "svelte";
 
-  import Dropdown from "../form/Dropdown.svelte";
-  import Checkbox from "../form/Checkbox.svelte";
-  import NumberInput from "../form/NumberInput.svelte";
-  import WarningBanner from "../warnings/WarningBanner.svelte";
-  import SmartImage from "../media/SmartImage.svelte";
+  import Dropdown from "../control/Dropdown.svelte";
+  import Checkbox from "../control/Checkbox.svelte";
+  import NumberInput from "../control/NumberInput.svelte";
+  import WarningBanner from "../control/WarningBanner.svelte";
+  import SmartImage from "../control/SmartImage.svelte";
 
   export let stats;
   export let eggsPerHatch;

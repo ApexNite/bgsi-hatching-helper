@@ -1,6 +1,6 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import SmartImage from "../media/SmartImage.svelte";
+  import SmartImage from "./SmartImage.svelte";
 
   export let id = "";
   export let options = [];
