@@ -9,6 +9,7 @@
   import NumberInput from "../control/NumberInput.svelte";
   import WarningBanner from "../control/WarningBanner.svelte";
   import SmartImage from "../control/SmartImage.svelte";
+  import TogglePill from "../control/TogglePill.svelte";
 
   export let stats;
   export let eggsPerHatch;
@@ -43,6 +44,7 @@
     infinityLuck: 1,
     shinyChance: 40,
     mythicChance: 100,
+    xlChance: 500,
     hatchSpeed: 100,
   };
   let worldIndexStates = {};
@@ -415,17 +417,15 @@
   <div class="user-input">
     <div class="menu-header">
       <h2 class="menu-title">Hatching Settings</h2>
-      <button class="mode-toggle-pill" on:click={toggleCalculationMode}>
-        <span class="pill-icon">
-          {#if calculationMode === "calculated"}
-            🧮
-          {:else}
-            ✏️
-          {/if}
-        </span>
-        <span>{calculationMode === "calculated" ? "Calculated" : "Manual"}</span
-        >
-      </button>
+      <TogglePill
+        id="calc-mode-toggle"
+        checked={calculationMode === "calculated"}
+        onLabel="Calculated"
+        offLabel="Manual"
+        onIcon="🧮"
+        offIcon="✏️"
+        onChange={toggleCalculationMode}
+      />
     </div>
 
     <div class="menu-container">
@@ -700,6 +700,28 @@
                 value={manualStats.mythicChance}
                 onInput={({ value }) =>
                   updateNumericValue(manualStats, "mythicChance", value)}
+              />
+            </div>
+          </div>
+
+          <div class="menu-row">
+            <span class="menu-label">
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/XL"
+                  alt="XL Chance"
+                  size="32px"
+                  decoding="async"
+                />
+              </span>
+              XL Chance (1 in):
+            </span>
+            <div class="menu-control">
+              <NumberInput
+                id="manual-xl-chance"
+                value={manualStats.xlChance}
+                onInput={({ value }) =>
+                  updateNumericValue(manualStats, "xlChance", value)}
               />
             </div>
           </div>
@@ -1205,30 +1227,6 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--primary-text);
-  }
-
-  .mode-toggle-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--menu-bg);
-    border: 1.5px solid var(--border);
-    border-radius: 16px;
-    padding: 0.5rem 0.75rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--secondary-text);
-  }
-
-  .mode-toggle-pill:hover {
-    background: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
-  }
-
-  .pill-icon {
-    font-size: 1rem;
-    line-height: 1;
   }
 
   .menu-container,

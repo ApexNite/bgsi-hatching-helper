@@ -106,6 +106,16 @@ export function isMythicEligible(pet) {
   return correctRarity && hasMythic;
 }
 
+export function isXLEligible(pet) {
+  const correctRarity =
+    pet.rarity === "legendary" ||
+    pet.rarity === "secret" ||
+    pet.rarity === "infinity";
+  const hasXL = pet.hasXL !== false;
+
+  return correctRarity && hasXL;
+}
+
 export function insertAggregateRows(
   pets,
   { anyLegendary = false, anySecretInfinity = false } = {},
@@ -119,16 +129,24 @@ export function insertAggregateRows(
 
   const makeAggregateRow = (id, name, rarity, items) => {
     const finalChance = sumChance(items, "finalChance");
+    const finalXLChance = sumChance(items, "finalXLChance");
     const finalShinyChance = sumChance(items, "finalShinyChance");
+    const finalShinyXLChance = sumChance(items, "finalShinyXLChance");  
     const finalMythicChance = sumChance(items, "finalMythicChance");
+    const finalMythicXLChance = sumChance(items, "finalMythicXLChance");
     const finalShinyMythicChance = sumChance(items, "finalShinyMythicChance");
+    const finalShinyMythicXLChance = sumChance(items, "finalShinyMythicXLChance");
 
     if (
       !(
         finalChance > 0 ||
+        finalXLChance > 0 ||
         finalShinyChance > 0 ||
+        finalShinyXLChance > 0 ||
         finalMythicChance > 0 ||
-        finalShinyMythicChance > 0
+        finalMythicXLChance > 0 ||
+        finalShinyMythicChance > 0 ||
+        finalShinyMythicXLChance > 0
       )
     ) {
       return null;
@@ -144,9 +162,13 @@ export function insertAggregateRows(
       baseChance: 0,
       rawChance: 0,
       finalChance,
+      finalXLChance,
       finalShinyChance,
+      finalShinyXLChance,
       finalMythicChance,
+      finalMythicXLChance,
       finalShinyMythicChance,
+      finalShinyMythicXLChance,
     };
   };
 
@@ -212,27 +234,27 @@ export function insertAggregateRows(
 function addVariantChances(pets, stats) {
   const shinyMultiplier = stats?.shinyChance ?? 0;
   const baseMythicMultiplier = stats?.mythicChance ?? 0;
+  const baseXLMultiplier = stats?.xlChance ?? 0;
 
   for (const pet of pets) {
     const mythicEligible = isMythicEligible(pet);
+    const xlEligible = isXLEligible(pet);
     const mythicMultiplier = mythicEligible
       ? pet.staticMythic
         ? 0.01
         : baseMythicMultiplier
       : -1;
+    const xlMultiplier = xlEligible
+      ? baseXLMultiplier
+      : -1;
 
-    pet.finalShinyChance =
-      shinyMultiplier !== Infinity
-        ? pet.finalChance * shinyMultiplier
-        : Infinity;
-    pet.finalMythicChance =
-      mythicMultiplier !== Infinity
-        ? pet.finalChance * mythicMultiplier
-        : Infinity;
-    pet.finalShinyMythicChance =
-      shinyMultiplier !== Infinity && mythicMultiplier !== Infinity
-        ? pet.finalChance * shinyMultiplier * mythicMultiplier
-        : Infinity;
+    pet.finalShinyChance = pet.finalChance * shinyMultiplier;
+    pet.finalMythicChance = pet.finalChance * mythicMultiplier;
+    pet.finalXLChance = pet.finalChance * xlMultiplier;
+    pet.finalShinyXLChance = pet.finalChance * shinyMultiplier * xlMultiplier;
+    pet.finalMythicXLChance = pet.finalChance * mythicMultiplier * xlMultiplier;
+    pet.finalShinyMythicChance = pet.finalChance * shinyMultiplier * mythicMultiplier;
+    pet.finalShinyMythicXLChance = pet.finalChance * shinyMultiplier * mythicMultiplier * xlMultiplier;
   }
 
   return pets;

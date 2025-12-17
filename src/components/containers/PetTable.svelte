@@ -5,6 +5,7 @@
     calculateMeanHatchTime,
     calculateHatchTime,
     insertAggregateRows,
+    isXLEligible,
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -30,6 +31,7 @@
     showAnyLegendary: false,
     showAnySecretInfinity: false,
     showHeavenlyPoinsettia: false,
+    showXL: false,
     hideNonSpecial: false,
     hideLegendary: false,
   };
@@ -238,9 +240,12 @@
                         Math.floor(Math.max((windowWidth / 100) * 1.3, 18)),
                       )}
                     </span>
-                    <span class="rarity-badge rarity-{pet.rarity}"
-                      >{pet.rarity}</span
-                    >
+                    <span class="rarity-badge rarity-{pet.rarity}">
+                      {pet.rarity}
+                      {#if settings.showXL && isXLEligible(pet)}
+                        <strong class="rarity-{pet.rarity}">XL</strong>
+                      {/if}
+                    </span>
                   </div>
                 {:else}
                   <SmartImage
@@ -257,9 +262,12 @@
                         Math.floor(Math.max((windowWidth / 100) * 1.3, 18)),
                       )}
                     </span>
-                    <span class="rarity-badge rarity-{pet.rarity}"
-                      >{pet.rarity}</span
-                    >
+                    <span class="rarity-badge rarity-{pet.rarity}">
+                      {pet.rarity}
+                      {#if settings.showXL && isXLEligible(pet)}
+                        <strong class="rarity-{pet.rarity}">XL</strong>
+                      {/if}
+                    </span>
                   </div>
                 {/if}
               </div>
@@ -268,10 +276,18 @@
             <td>
               {#if pet.finalChance >= 0}
                 <div class="chance-time">
-                  <div>{displayChance(pet.finalChance)}</div>
+                  <div>
+                    {displayChance(
+                      settings.showXL && isXLEligible(pet) ? pet.finalXLChance : pet.finalChance,
+                    )}
+                  </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(displayTime(pet.finalChance))}
+                      {formatTime(
+                        displayTime(
+                          settings.showXL && isXLEligible(pet) ? pet.finalXLChance : pet.finalChance,
+                        ),
+                      )}
                     </div>
                   {/if}
                 </div>
@@ -282,10 +298,22 @@
             <td>
               {#if pet.finalShinyChance >= 0}
                 <div class="chance-time">
-                  <div>{displayChance(pet.finalShinyChance)}</div>
+                  <div>
+                    {displayChance(
+                      settings.showXL && isXLEligible(pet)
+                        ? pet.finalShinyXLChance
+                        : pet.finalShinyChance,
+                    )}
+                  </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(displayTime(pet.finalShinyChance))}
+                      {formatTime(
+                        displayTime(
+                          settings.showXL && isXLEligible(pet)
+                            ? pet.finalShinyXLChance
+                            : pet.finalShinyChance,
+                        ),
+                      )}
                     </div>
                   {/if}
                 </div>
@@ -296,10 +324,22 @@
             <td>
               {#if pet.finalMythicChance >= 0}
                 <div class="chance-time">
-                  <div>{displayChance(pet.finalMythicChance)}</div>
+                  <div>
+                    {displayChance(
+                      settings.showXL && isXLEligible(pet)
+                        ? pet.finalMythicXLChance
+                        : pet.finalMythicChance,
+                    )}
+                  </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(displayTime(pet.finalMythicChance))}
+                      {formatTime(
+                        displayTime(
+                          settings.showXL && isXLEligible(pet)
+                            ? pet.finalMythicXLChance
+                            : pet.finalMythicChance,
+                        ),
+                      )}
                     </div>
                   {/if}
                 </div>
@@ -310,10 +350,22 @@
             <td>
               {#if pet.finalShinyMythicChance >= 0}
                 <div class="chance-time">
-                  <div>{displayChance(pet.finalShinyMythicChance)}</div>
+                  <div>
+                    {displayChance(
+                      settings.showXL && isXLEligible(pet)
+                        ? pet.finalShinyMythicXLChance
+                        : pet.finalShinyMythicChance,
+                    )}
+                  </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(displayTime(pet.finalShinyMythicChance))}
+                      {formatTime(
+                        displayTime(
+                          settings.showXL && isXLEligible(pet)
+                            ? pet.finalShinyMythicXLChance
+                            : pet.finalShinyMythicChance,
+                        ),
+                      )}
                     </div>
                   {/if}
                 </div>
@@ -411,6 +463,15 @@
             size="sm"
           />
           <span>Show Hatching Times</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="showXL"
+            checked={settings.showXL}
+            onChange={() => toggle("showXL")}
+            size="sm"
+          />
+          <span>Show XL</span>
         </label>
         <label class="row">
           <Checkbox
@@ -630,6 +691,11 @@
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: capitalize;
+  }
+
+  .rarity-badge strong {
+    font-size: inherit;
+    line-height: 1;
   }
 
   .chance-time {

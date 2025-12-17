@@ -16,18 +16,21 @@ export function calculateStats(sources, toggles, numbers) {
     infinityLuck: 1,
     shinyChance: 0,
     mythicChance: 0,
+    xlChance: 0,
     hatchSpeed: 1,
     luckMultiplier: 0,
     secretLuckMultiplier: 1,
     infinityLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
+    xlChanceMultiplier: 1,
     hatchSpeedMultiplier: 0,
     baseLuck: 0,
     baseSecretLuck: 0,
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
+    baseXLChance: 1 / 500,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
   };
@@ -98,14 +101,15 @@ export function calculateManualStats(manualStats, sources) {
     infinityLuck: 0,
     shinyChance: 0,
     mythicChance: 0,
+    xlChance: 0,
     hatchSpeed: 0,
     baseLuck: 1 + manualStats.luck / 100,
     baseSecretLuck: manualStats.secretLuck,
     baseInfinityLuck: manualStats.infinityLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
+    baseXLChance: 1 / manualStats.xlChance,
     baseHatchSpeed: manualStats.hatchSpeed / 100,
-    _applyAdjustedShiny: hasGoldenEggMastery(sources),
   };
 
   const eventBonusMultipliers = collectEventBonusMultipliers(sources);
@@ -144,6 +148,10 @@ function calculateStatsFromTotals(totals) {
       (totals.baseMythicChance || 0) *
       (1 + totals.mythicChance) *
       (totals.mythicChanceMultiplier || 1),
+    xlChance:
+      (totals.baseXLChance || 0) *
+      (1 + totals.xlChance) *
+      (totals.xlChanceMultiplier || 1),
     hatchSpeed:
       (totals.baseHatchSpeed || 0) +
       (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
@@ -180,6 +188,10 @@ function applySource(totals, source) {
     totals.mythicChance += source.mythicChance * times;
   }
 
+  if (typeof source.xlChance === "number") {
+    totals.xlChance += source.xlChance * times;
+  }
+
   if (typeof source.secretLuck === "number") {
     totals.secretLuck += source.secretLuck * times;
   }
@@ -209,6 +221,10 @@ function applySource(totals, source) {
     }
   }
 
+  if (typeof source.xlChanceMultiplier === "number") {
+    totals.xlChanceMultiplier *= source.xlChanceMultiplier;
+  }
+
   if (typeof source.secretLuckMultiplier === "number") {
     totals.secretLuckMultiplier *= source.secretLuckMultiplier;
   }
@@ -231,6 +247,10 @@ function applySource(totals, source) {
 
   if (typeof source.baseMythicChance === "number") {
     totals.baseMythicChance += source.baseMythicChance * times;
+  }
+
+  if (typeof source.baseXLChance === "number") {
+    totals.baseXLChance += source.baseXLChance * times;
   }
 
   if (typeof source.baseSecretLuck === "number") {
@@ -309,6 +329,7 @@ function collectEventBonusMultipliers(sources) {
       source.potionHatchSpeedMultiplier !== 0 ||
       source.potionShinyChanceMultiplier !== 1 ||
       source.potionMythicChanceMultiplier !== 1 ||
+      source.potionXLChanceMultiplier !== 1 ||
       source.potionSecretLuckMultiplier !== 1 ||
       source.potionInfinityLuckMultiplier !== 1;
 
@@ -337,6 +358,7 @@ function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
     source.potionHatchSpeedMultiplier !== 0 ||
     source.potionShinyChanceMultiplier !== 1 ||
     source.potionMythicChanceMultiplier !== 1 ||
+    source.potionXLChanceMultiplier !== 1 ||
     source.potionSecretLuckMultiplier !== 1 ||
     source.potionInfinityLuckMultiplier !== 1;
 
@@ -372,6 +394,13 @@ function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
       typeof p.potionMythicChanceMultiplier === "number"
     ) {
       adjusted.mythicChance *= p.potionMythicChanceMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.xlChance === "number" &&
+      typeof p.potionXLChanceMultiplier === "number"
+    ) {
+      adjusted.xlChance *= p.potionXLChanceMultiplier;
       changed = true;
     }
     if (

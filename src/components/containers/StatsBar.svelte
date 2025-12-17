@@ -13,6 +13,7 @@
     infinityLuck: 1,
     shinyChance: 1 / 40,
     mythicChance: 1 / 100,
+    xlChance: 1 / 500,
     hatchSpeed: 1,
   };
   export let eggsPerHatch = 1;
@@ -63,6 +64,15 @@
       size="24px"
     />
     <strong>{formatChanceFraction(stats.mythicChance)}</strong>
+  </div>
+  <div class="stat">
+    <SmartImage
+      base="assets/images/icons/XL"
+      alt="XL Chance"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatChanceFraction(stats.xlChance)}</strong>
   </div>
   <div class="stat">
     <SmartImage
