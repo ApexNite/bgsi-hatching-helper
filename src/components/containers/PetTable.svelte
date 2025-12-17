@@ -52,6 +52,14 @@
       deleteCookie("hatching-helper-pet-table-settings");
     }
 
+    const handleResize = () => {
+      windowWidth = window.innerWidth;
+    };
+
+    const onScroll = () => {
+      settingsOpen = false;
+    };
+
     const onDocClick = (e) => {
       if (!settingsButton || settingsButton.contains(e.target)) {
         return;
@@ -64,24 +72,48 @@
       settingsOpen = false;
     };
 
-    const onScroll = () => {
-      settingsOpen = false;
+    // https://stackoverflow.com/a/69612018
+    const onAnimationStart = (event) => {
+      const isLegendaryAnimation = event.animationName.includes("legendaryHue");
+      const isInfinityAnimation = event.animationName.includes("infinityWave");
+
+      if (isLegendaryAnimation || isInfinityAnimation) {
+        const elements = document.querySelectorAll(
+          isLegendaryAnimation ? ".rarity-legendary" : ".rarity-infinity",
+        );
+
+        function getAnimation(element) {
+          return element
+            .getAnimations()
+            .find((a) => a.animationName === event.animationName);
+        }
+
+        const animations = Array.from(elements)
+          .map(getAnimation)
+          .filter(Boolean);
+
+        const maxCurrentTime = Math.max(
+          ...animations.map((a) => a.currentTime ?? 0),
+        );
+
+        animations.forEach((a) => {
+          a.currentTime = maxCurrentTime;
+        });
+      }
     };
 
     window.addEventListener("resize", handleResize);
-    document.addEventListener("click", onDocClick);
     window.addEventListener("scroll", onScroll);
+    document.addEventListener("click", onDocClick);
+    document.addEventListener("animationstart", onAnimationStart);
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      document.removeEventListener("click", onDocClick);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("click", onDocClick);
+      document.removeEventListener("animationstart", onAnimationStart);
     };
   });
-
-  function handleResize() {
-    windowWidth = window.innerWidth;
-  }
 
   function saveSettings() {
     setCookie("hatching-helper-pet-table-settings", {
@@ -103,7 +135,12 @@
 
   $: basePets =
     stats && selectedEggId && selectedWorldId
-      ? getPetsToDisplay(selectedEggId, selectedWorldId, stats, settings.showHeavenlyPoinsettia)
+      ? getPetsToDisplay(
+          selectedEggId,
+          selectedWorldId,
+          stats,
+          settings.showHeavenlyPoinsettia,
+        )
       : [];
 
   $: petsWithAggregates =
