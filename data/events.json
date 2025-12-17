@@ -12,6 +12,12 @@
     "secretLuckMultiplier": 2
   },
   {
+    "id": "infinity-event",
+    "name": "Infinity Event",
+    "img": "assets/images/icons/infinity-luck",
+    "infinityLuckMultiplier": 2
+  },
+  {
     "id": "mythic-event",
     "name": "Mythic Event",
     "img": "assets/images/icons/mythic",
