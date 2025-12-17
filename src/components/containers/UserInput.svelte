@@ -406,7 +406,8 @@
   }
 
   function visibleByEvent(items, eventId) {
-    return items.filter((i) => i.event === "none" || i.event === eventId);
+    const list = Array.isArray(items) ? items : [];
+    return list.filter((i) => i.event === "none" || i.event === eventId);
   }
 </script>
 

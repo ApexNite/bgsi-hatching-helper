@@ -202,7 +202,10 @@ const schemas = {
   },
   potion: {
     extends: ["stats", "id", "img"],
-    event: { type: "string", default: "none" },
+    event: {
+      type: "string",
+      default: (item, parent) => parent?.event || "none",
+    },
     imageDir: { type: "string", default: "potions" },
     img: {
       type: "string",
