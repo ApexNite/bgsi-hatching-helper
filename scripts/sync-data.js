@@ -9,6 +9,14 @@ const PUBLIC_PATH = path.resolve(ROOT, "public", "assets", "data");
 const SRC_PATH = path.resolve(ROOT, "src", "data");
 const CACHE_FILE = path.join(DATA_PATH, ".data-cache.json");
 
+function isCacheFile(p) {
+  try {
+    return path.resolve(p) === path.resolve(CACHE_FILE);
+  } catch {
+    return false;
+  }
+}
+
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
@@ -20,6 +28,7 @@ function computeHash(root) {
     .map((f) => path.join(root, f))
     .filter(fs.existsSync)
     .filter((filePath) => !fs.lstatSync(filePath).isDirectory())
+    .filter((filePath) => !isCacheFile(filePath))
     .sort();
 
   for (const file of files) {
@@ -109,6 +118,9 @@ function outPaths(inputPath) {
 
 function isUpToDate(inputPath, out, currentHash) {
   try {
+    if (isCacheFile(inputPath)) {
+      return true;
+    }
     const key = relKey(inputPath);
     const meta = cache.files ? cache.files[key] : undefined;
 
@@ -131,6 +143,9 @@ function isUpToDate(inputPath, out, currentHash) {
 }
 
 function copyToOutputs(inputPath) {
+  if (isCacheFile(inputPath)) {
+    return;
+  }
   const out = outPaths(inputPath);
   ensureDir(out.publicDir);
   ensureDir(out.srcDir);
@@ -144,6 +159,10 @@ function copyToOutputs(inputPath) {
 }
 
 function removeOutputs(inputPath) {
+  if (isCacheFile(inputPath)) {
+    return;
+  }
+
   const out = outPaths(inputPath);
 
   try {
@@ -173,7 +192,7 @@ function walkDir(dir, list = []) {
       if (e.isDirectory()) {
         walkDir(res, list);
       } else {
-        if (e.isFile()) {
+        if (e.isFile() && !isCacheFile(res)) {
           list.push(res);
         }
       }
@@ -275,9 +294,14 @@ async function startWatch() {
       stabilityThreshold: 300,
       pollInterval: 50,
     },
+    ignored: (p) => isCacheFile(p),
   });
 
   watcher.on("add", async (p) => {
+    if (isCacheFile(p)) {
+      return;
+    }
+
     if (isFile(p)) {
       const out = outPaths(p);
       if (!isUpToDate(p, out)) {
@@ -288,6 +312,10 @@ async function startWatch() {
   });
 
   watcher.on("change", async (p) => {
+    if (isCacheFile(p)) {
+      return;
+    }
+
     if (isFile(p)) {
       const out = outPaths(p);
       if (!isUpToDate(p, out)) {
@@ -298,6 +326,10 @@ async function startWatch() {
   });
 
   watcher.on("unlink", (p) => {
+    if (isCacheFile(p)) {
+      return;
+    }
+
     removeOutputs(p);
     updateHashFiles();
   });
