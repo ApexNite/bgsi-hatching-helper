@@ -1,35 +1,94 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hatching Helper - BGSI Hatching Calculator</title>
-    <meta name="description" content="Interactive BGSI hatching calculator. Instantly see your hatching odds and time for Bubble Gum Simulator Infinity.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://hatchinghelper.com/">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicons/favicon-64x64.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
-    <link rel="preload" as="image" href="/assets/images/placeholders/icon.avif" />
-    <link rel="preload" as="image" href="/assets/images/placeholders/icon.png" />
-    <link rel="preload" as="image" href="/assets/images/placeholders/icon.webp" />
-    <link rel="preload" as="image" href="/assets/images/placeholders/pet.avif" />
-    <link rel="preload" as="image" href="/assets/images/placeholders/pet.png" />
-    <link rel="preload" as="image" href="/assets/images/placeholders/pet.webp" />
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/favicons/mstile-150x150.png">
-    <meta name="msapplication-config" content="/browserconfig.xml">
-    <meta property="og:title" content="Hatching Helper - BGSI Hatching Calculator">
-    <meta property="og:description" content="Interactive BGSI hatching calculator. Instantly see your hatching odds and time for Bubble Gum Simulator Infinity.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hatchinghelper.com/">
-    <meta property="og:image" content="https://hatchinghelper.com/og-image.png">
-    <link rel="stylesheet" href="/src/app.css">
-    <!-- Privacy-friendly analytics by Plausible -->
-    <script async src="https://plausible.io/js/pa-l6DeKcC0PFq1vzDoigjrJ.js"></script>
+    <meta
+      name="description"
+      content="Interactive BGSI hatching calculator. Instantly see your hatching odds and time for Bubble Gum Simulator Infinity."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://hatchinghelper.com/" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="/favicons/favicon-64x64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon-180x180.png"
+    />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/favicons/mstile-150x150.png"
+    />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta
+      property="og:title"
+      content="Hatching Helper - BGSI Hatching Calculator"
+    />
+    <meta
+      property="og:description"
+      content="Interactive BGSI hatching calculator. Instantly see your hatching odds and time for Bubble Gum Simulator Infinity."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hatchinghelper.com/" />
+    <meta
+      property="og:image"
+      content="https://hatchinghelper.com/og-image.png"
+    />
+    <link rel="stylesheet" href="/src/app.css" />
     <script>
-      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-      plausible.init()
+      (function () {
+        const supportsAvif = CSS.supports(
+          "background-image",
+          'image-set(url("x") type("image/avif") 1x)',
+        );
+        const supportsWebp = CSS.supports(
+          "background-image",
+          'image-set(url("x") type("image/webp") 1x)',
+        );
+        const extension = supportsAvif ? "avif" : supportsWebp ? "webp" : "png";
+
+        [
+          "/assets/images/placeholders/icon." + extension,
+          "/assets/images/placeholders/pet." + extension,
+        ].forEach(function (href) {
+          var link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = href;
+          document.head.appendChild(link);
+        });
+      })();
+    </script>
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script
+      async
+      src="https://plausible.io/js/pa-l6DeKcC0PFq1vzDoigjrJ.js"
+    ></script>
+    <script>
+      ((window.plausible =
+        window.plausible ||
+        function () {
+          (plausible.q = plausible.q || []).push(arguments);
+        }),
+        (plausible.init =
+          plausible.init ||
+          function (i) {
+            plausible.o = i || {};
+          }));
+      plausible.init();
     </script>
   </head>
   <body>
