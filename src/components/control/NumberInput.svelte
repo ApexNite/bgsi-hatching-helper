@@ -6,18 +6,34 @@
   export let hoverText = "";
 
   const MAX_LEN = 12;
+  const DISPLAY_MAX_LEN = MAX_LEN + Math.floor(MAX_LEN / 3);
 
   let text = "";
   let userChanged = false;
 
   $: {
     const normalized = Math.min(value ?? 0, maxValue);
+    const formatted = formatWithCommas(sanitize(normalized));
 
     if (!userChanged) {
-      text = sanitize(normalized);
+      text = formatted;
     } else if (toNumber(text) !== normalized) {
-      text = sanitize(normalized);
+      text = formatted;
     }
+  }
+
+  function formatWithCommas(s) {
+    if (!s) {
+      return "";
+    }
+
+    if (s === ".") {
+      return ".";
+    }
+
+    const [i, f] = s.split(".");
+    const intFormatted = i.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return f !== undefined ? `${intFormatted}.${f}` : intFormatted;
   }
 
   const toNumber = (s) => (s && s !== "." ? Number(s) : 0);
@@ -36,7 +52,10 @@
     const next = sanitize(raw);
     const nextValue = Math.min(toNumber(next), maxValue);
 
-    text = nextValue === toNumber(next) ? next : String(nextValue);
+    text =
+      nextValue === toNumber(next)
+        ? formatWithCommas(next)
+        : formatWithCommas(String(nextValue));
 
     e.target.value = text;
 
@@ -53,7 +72,7 @@
     autocomplete="off"
     inputmode="decimal"
     pattern="[0-9]*[.,]?[0-9]*"
-    maxlength={MAX_LEN}
+    maxlength={DISPLAY_MAX_LEN}
     title={hoverText}
   />
 </div>
