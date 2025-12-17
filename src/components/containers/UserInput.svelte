@@ -1134,7 +1134,7 @@
       label: "Secret Pets Milestone",
       description: "Secret luck bonus not shown in debug stats",
     }, -->
-    {#if calculationMode === "manual" && !activeEvent && !dismissedManualWarning}
+    {#if calculationMode === "manual" && activeEvent === "none" && !dismissedManualWarning}
       <WarningBanner
         type="warning"
         title="Debug stats may be inaccurate!"
