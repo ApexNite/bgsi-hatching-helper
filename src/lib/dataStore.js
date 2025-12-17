@@ -4,8 +4,6 @@ import eggsCompiled from "../../data/eggs.json";
 import enchantsCompiled from "../../data/enchants.json";
 import environmentBuffsCompiled from "../../data/environment-buffs.json";
 import eventsCompiled from "../../data/events.json";
-import eventPotionsCompiled from "../../data/event-potions.json";
-import eventSpecialPotionsCompiled from "../../data/event-special-potions.json";
 import gamepassesCompiled from "../../data/gamepasses.json";
 import indexCompiled from "../../data/index.json";
 import masteriesCompiled from "../../data/masteries.json";
@@ -254,8 +252,6 @@ export const dataStore = writable({
   enchants: null,
   environmentBuffs: null,
   events: null,
-  eventPotions: null,
-  eventSpecialPotions: null,
   upgrades: null,
   gamepasses: null,
   index: null,
@@ -284,8 +280,6 @@ function buildDataFromSources(sources) {
     enchants: processData(sources.enchants, ["stats", "id"]),
     environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
     events: processData(sources.events, "event"),
-    eventPotions: processData(sources.eventPotions, "potionGroup"),
-    eventSpecialPotions: processData(sources.eventSpecialPotions, "potion"),
     upgrades: processData(sources.upgrades, "upgrade"),
     gamepasses: processData(sources.gamepasses, "gamepass"),
     index: processData(sources.index, "indexData"),
@@ -306,8 +300,6 @@ const compiledSources = {
   enchants: enchantsCompiled,
   environmentBuffs: environmentBuffsCompiled,
   events: eventsCompiled,
-  eventPotions: eventPotionsCompiled,
-  eventSpecialPotions: eventSpecialPotionsCompiled,
   gamepasses: gamepassesCompiled,
   index: indexCompiled,
   masteries: masteriesCompiled,
@@ -343,8 +335,6 @@ export async function loadData() {
       enchantsData,
       environmentBuffsData,
       eventsData,
-      eventPotionsData,
-      eventSpecialPotionsData,
       gamepassesData,
       indexData,
       masteriesData,
@@ -362,8 +352,6 @@ export async function loadData() {
       fetchJson("/assets/data/enchants.json"),
       fetchJson("/assets/data/environment-buffs.json"),
       fetchJson("/assets/data/events.json"),
-      fetchJson("/assets/data/event-potions.json"),
-      fetchJson("/assets/data/event-special-potions.json"),
       fetchJson("/assets/data/gamepasses.json"),
       fetchJson("/assets/data/index.json"),
       fetchJson("/assets/data/masteries.json"),
@@ -383,8 +371,6 @@ export async function loadData() {
       enchants: enchantsData,
       environmentBuffs: environmentBuffsData,
       events: eventsData,
-      eventPotions: eventPotionsData,
-      eventSpecialPotions: eventSpecialPotionsData,
       gamepasses: gamepassesData,
       index: indexData,
       masteries: masteriesData,

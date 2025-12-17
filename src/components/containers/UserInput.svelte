@@ -22,7 +22,6 @@
 
   let selectedOptions = {};
   let specialPotionToggles = {};
-  let eventSpecialPotionToggles = {};
   let environmentBuffToggles = {};
   let gamepassToggles = {};
   let eventToggles = {};
@@ -62,12 +61,6 @@
         ]),
       ),
       ...Object.fromEntries(
-        ($dataStore.eventPotions || []).map((potionType) => [
-          potionType.id,
-          potionType.potions[potionType.potions.length - 1]?.id || [],
-        ]),
-      ),
-      ...Object.fromEntries(
         ($dataStore.milestones || []).map((milestoneType) => [
           milestoneType.id,
           milestoneType.tiers[milestoneType.tiers.length - 1]?.id || [],
@@ -81,14 +74,6 @@
         ($dataStore.specialPotions || []).map((p) => [
           p.id,
           specialPotionToggles[p.id] ?? false,
-        ]),
-      ),
-    };
-    eventSpecialPotionToggles = {
-      ...Object.fromEntries(
-        ($dataStore.eventSpecialPotions || []).map((p) => [
-          p.id,
-          eventSpecialPotionToggles[p.id] ?? false,
         ]),
       ),
     };
@@ -154,18 +139,13 @@
     return "none";
   })();
 
-  $: visibleMasteries = ($dataStore.masteries || []).filter(
-    (m) =>
-      !m.event ||
-      m.event === "none" ||
-      (activeEvent && m.event === activeEvent),
+  $: visiblePotions = visibleByEvent($dataStore.potions, activeEvent);
+  $: visibleSpecialPotions = visibleByEvent(
+    $dataStore.specialPotions,
+    activeEvent,
   );
-  $: visibleMilestones = ($dataStore.milestones || []).filter(
-    (m) =>
-      !m.event ||
-      m.event === "none" ||
-      (activeEvent && m.event === activeEvent),
-  );
+  $: visibleMasteries = visibleByEvent($dataStore.masteries, activeEvent);
+  $: visibleMilestones = visibleByEvent($dataStore.milestones, activeEvent);
 
   $: selectedEggId = selectedEgg.id;
   $: selectedWorldId = selectedWorld.id;
@@ -192,31 +172,13 @@
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
-          ...($dataStore.potions || [])
-            .map((potionType) =>
-              potionType.potions.find(
-                (p) => p.id === selectedOptions[potionType.id],
+          ...(visiblePotions || [])
+            .map((potionGroup) =>
+              potionGroup.potions.find(
+                (p) => p.id === selectedOptions[potionGroup.id],
               ),
             )
             .filter(Boolean),
-          ...($dataStore.eventPotions || [])
-            .filter(
-              (potionType) =>
-                !potionType.event ||
-                (activeEvent && potionType.event === activeEvent),
-            )
-            .map((potionType) => {
-              const selected = potionType.potions.find(
-                (p) => p.id === selectedOptions[potionType.id],
-              );
-              return selected ? { ...selected, event: potionType.event } : null;
-            })
-            .filter(Boolean),
-          ...($dataStore.eventSpecialPotions || []).filter(
-            (p) =>
-              (!p.event || (activeEvent && p.event === activeEvent)) &&
-              eventSpecialPotionToggles[p.id],
-          ),
           ...(visibleMasteries || [])
             .map((masteryType) =>
               masteryType.levels.find(
@@ -231,7 +193,7 @@
               ),
             )
             .filter(Boolean),
-          ...($dataStore.specialPotions || []).filter(
+          ...(visibleSpecialPotions || []).filter(
             (p) => specialPotionToggles[p.id],
           ),
           ...($dataStore.environmentBuffs || []).filter(
@@ -298,10 +260,6 @@
           ...specialPotionToggles,
           ...savedData.specialPotionToggles,
         };
-        eventSpecialPotionToggles = {
-          ...eventSpecialPotionToggles,
-          ...savedData.eventSpecialPotionToggles,
-        };
         environmentBuffToggles = {
           ...environmentBuffToggles,
           ...savedData.environmentBuffToggles,
@@ -341,7 +299,6 @@
       calculationMode,
       selectedOptions,
       specialPotionToggles,
-      eventSpecialPotionToggles,
       environmentBuffToggles,
       gamepassToggles,
       eventToggles,
@@ -401,8 +358,6 @@
 
     if (toggleData === specialPotionToggles) {
       specialPotionToggles = updated;
-    } else if (toggleData === eventSpecialPotionToggles) {
-      eventSpecialPotionToggles = updated;
     } else if (toggleData === environmentBuffToggles) {
       environmentBuffToggles = updated;
     } else if (toggleData === gamepassToggles) {
@@ -448,6 +403,10 @@
     };
 
     saveToCache();
+  }
+
+  function visibleByEvent(items, eventId) {
+    return items.filter((i) => i.event === "none" || i.event === eventId);
   }
 </script>
 
@@ -769,7 +728,7 @@
       {:else}
         <!-- Potions -->
         <section class="menu-section">
-          {#each $dataStore.potions || [] as potion (potion.id)}
+          {#each visiblePotions || [] as potion (potion.id)}
             <div class="menu-row">
               <span class="menu-label">
                 {#if potion.img}
@@ -797,37 +756,7 @@
             </div>
           {/each}
 
-          {#each $dataStore.eventPotions || [] as potion (potion.id)}
-            {#if !potion.event || (activeEvent && potion.event === activeEvent)}
-              <div class="menu-row">
-                <span class="menu-label">
-                  {#if potion.img}
-                    <span class="menu-img">
-                      <SmartImage
-                        base={potion.img}
-                        alt={potion.name}
-                        size="32px"
-                        decoding="async"
-                      />
-                    </span>
-                  {/if}
-                  {potion.name}:
-                </span>
-                <div class="menu-control">
-                  <Dropdown
-                    id={potion.id}
-                    options={potion.potions}
-                    selectedOption={potion.potions.find(
-                      (o) => o.id === selectedOptions[potion.id],
-                    ) || potion.potions[potion.potions.length - 1]}
-                    onSelect={handleSelect}
-                  />
-                </div>
-              </div>
-            {/if}
-          {/each}
-
-          {#each $dataStore.specialPotions || [] as potion (potion.id)}
+          {#each visibleSpecialPotions || [] as potion (potion.id)}
             <div class="menu-row">
               <span class="menu-label">
                 {#if potion.img}
@@ -852,34 +781,6 @@
             </div>
           {/each}
         </section>
-
-        {#each $dataStore.eventSpecialPotions || [] as potion (potion.id)}
-          {#if !potion.event || (activeEvent && potion.event === activeEvent)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if potion.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={potion.img}
-                      alt={potion.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {potion.name}:
-              </span>
-              <div class="menu-control">
-                <Checkbox
-                  id={potion.id}
-                  checked={eventSpecialPotionToggles[potion.id]}
-                  onChange={() =>
-                    updateToggle(eventSpecialPotionToggles, potion.id)}
-                />
-              </div>
-            </div>
-          {/if}
-        {/each}
 
         <div class="section-separator"></div>
 

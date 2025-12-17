@@ -136,5 +136,45 @@
         "name": "None"
       }
     ]
+  },
+  {
+    "id": "festive-elixir",
+    "name": "Festive Elixir",
+    "img": "assets/images/potions/festive-elixir-iv",
+    "event": "christmas",
+    "potions": [
+      {
+        "id": "festive-elixir-iv",
+        "name": "Festive Elixir IV",
+        "luck": 3,
+        "shinyChance": 2,
+        "mythicChance": 1.5
+      },
+      {
+        "id": "festive-elixir-iii",
+        "name": "Festive Elixir III",
+        "luck": 1.5,
+        "shinyChance": 1,
+        "mythicChance": 0.75
+      },
+      {
+        "id": "festive-elixir-ii",
+        "name": "Festive Elixir II",
+        "luck": 1.25,
+        "shinyChance": 0.75,
+        "mythicChance": 0.5
+      },
+      {
+        "id": "festive-elixir-i",
+        "name": "Festive Elixir I",
+        "luck": 0.5,
+        "shinyChance": 0.5,
+        "mythicChance": 0.25
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
   }
 ]

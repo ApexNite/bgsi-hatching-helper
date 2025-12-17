@@ -14,5 +14,19 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
+  },
+  {
+    "id": "festive-infinity-elixir",
+    "name": "Festive Infinity Elixir",
+    "event": "christmas",
+    "potionLuckMultiplier": 1.5,
+    "potionShinyChanceMultiplier": 1.5,
+    "potionMythicChanceMultiplier": 1.5
+  },
+  {
+    "id": "ultra-infinity-elixir",
+    "name": "Ultra Infinity Elixir",
+    "event": "christmas",
+    "infinityLuckMultiplier": 1.5
   }
 ]
