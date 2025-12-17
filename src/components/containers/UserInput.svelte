@@ -1178,7 +1178,7 @@
     {#if calculationMode === "manual" && activeEvent === "christmas" && !dismissedManualWarning}
       <WarningBanner
         type="error"
-        title="Debug stats are be inaccurate!"
+        title="Debug stats are inaccurate!"
         items={[
           {
             label: "Christmas World Index",
