@@ -93,7 +93,7 @@
 <style>
   .container {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: stretch;
     width: 100%;
     margin: 0.5rem 0 0;
@@ -107,7 +107,7 @@
     flex: 1 1 0%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     min-width: 0;
   }
 
