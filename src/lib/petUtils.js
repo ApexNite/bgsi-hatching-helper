@@ -125,17 +125,20 @@ export function insertAggregateRows(
   }
 
   const sumChance = (items, key) =>
-    items.reduce((acc, p) => acc + (Number(p[key]) || 0), 0);
+    items.reduce((acc, p) => acc + Math.max(Number(p[key]), 0), 0);
 
   const makeAggregateRow = (id, name, rarity, items) => {
     const finalChance = sumChance(items, "finalChance");
     const finalXLChance = sumChance(items, "finalXLChance");
     const finalShinyChance = sumChance(items, "finalShinyChance");
-    const finalShinyXLChance = sumChance(items, "finalShinyXLChance");  
+    const finalShinyXLChance = sumChance(items, "finalShinyXLChance");
     const finalMythicChance = sumChance(items, "finalMythicChance");
     const finalMythicXLChance = sumChance(items, "finalMythicXLChance");
     const finalShinyMythicChance = sumChance(items, "finalShinyMythicChance");
-    const finalShinyMythicXLChance = sumChance(items, "finalShinyMythicXLChance");
+    const finalShinyMythicXLChance = sumChance(
+      items,
+      "finalShinyMythicXLChance",
+    );
 
     if (
       !(
@@ -244,17 +247,17 @@ function addVariantChances(pets, stats) {
         ? 0.01
         : baseMythicMultiplier
       : -1;
-    const xlMultiplier = xlEligible
-      ? baseXLMultiplier
-      : -1;
+    const xlMultiplier = xlEligible ? baseXLMultiplier : -1;
 
     pet.finalShinyChance = pet.finalChance * shinyMultiplier;
     pet.finalMythicChance = pet.finalChance * mythicMultiplier;
     pet.finalXLChance = pet.finalChance * xlMultiplier;
     pet.finalShinyXLChance = pet.finalChance * shinyMultiplier * xlMultiplier;
     pet.finalMythicXLChance = pet.finalChance * mythicMultiplier * xlMultiplier;
-    pet.finalShinyMythicChance = pet.finalChance * shinyMultiplier * mythicMultiplier;
-    pet.finalShinyMythicXLChance = pet.finalChance * shinyMultiplier * mythicMultiplier * xlMultiplier;
+    pet.finalShinyMythicChance =
+      pet.finalChance * shinyMultiplier * mythicMultiplier;
+    pet.finalShinyMythicXLChance =
+      pet.finalChance * shinyMultiplier * mythicMultiplier * xlMultiplier;
   }
 
   return pets;
