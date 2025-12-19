@@ -65,7 +65,7 @@
     />
     <strong>{formatChanceFraction(stats.mythicChance)}</strong>
   </div>
-  <div class="stat">
+  <!-- <div class="stat">
     <SmartImage
       base="assets/images/icons/XL"
       alt="XL Chance"
@@ -73,7 +73,7 @@
       size="24px"
     />
     <strong>{formatChanceFraction(stats.xlChance)}</strong>
-  </div>
+  </div> -->
   <div class="stat">
     <SmartImage
       base="assets/images/icons/shiny-mythic"

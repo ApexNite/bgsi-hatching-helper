@@ -44,7 +44,7 @@
     infinityLuck: 1,
     shinyChance: 40,
     mythicChance: 100,
-    xlChance: 500,
+    // xlChance: 500,
     hatchSpeed: 100,
   };
   let worldIndexStates = {};
@@ -704,7 +704,7 @@
             </div>
           </div>
 
-          <div class="menu-row">
+          <!-- <div class="menu-row">
             <span class="menu-label">
               <span class="menu-img">
                 <SmartImage
@@ -724,7 +724,7 @@
                   updateNumericValue(manualStats, "xlChance", value)}
               />
             </div>
-          </div>
+          </div> -->
 
           <div class="menu-row">
             <span class="menu-label">

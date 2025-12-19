@@ -18,6 +18,7 @@
   import Checkbox from "../control/Checkbox.svelte";
   import Radio from "../control/Radio.svelte";
   import SmartImage from "../control/SmartImage.svelte";
+  import XLWarningOverlay from "../overlays/XLWarningOverlay.svelte";
 
   export let stats;
   export let eggsPerHatch;
@@ -42,6 +43,8 @@
   let settingsMenu;
   let settingsMenuPosition = { top: 0, right: 0 };
   let windowWidth = window.innerWidth;
+  let showWarning = false;
+  let hasShownXLWarning = false;
 
   onMount(() => {
     try {
@@ -49,6 +52,7 @@
 
       if (savedData) {
         settings = { ...defaultSettings, ...savedData.settings };
+        hasShownXLWarning = savedData.hasShownXLWarning || false;
       }
     } catch {
       deleteCookie("hatching-helper-pet-table-settings");
@@ -120,6 +124,7 @@
   function saveSettings() {
     setCookie("hatching-helper-pet-table-settings", {
       settings,
+      hasShownXLWarning,
     });
   }
 
@@ -189,6 +194,12 @@
 
   function toggle(key) {
     settings = { ...settings, [key]: !settings[key] };
+    
+    if (key === "showXL" && settings[key] && !hasShownXLWarning) {
+      showWarning = true;
+      hasShownXLWarning = true;
+    }
+    
     saveSettings();
   }
 
@@ -521,6 +532,8 @@
       </div>
     </div>
   {/if}
+
+  <XLWarningOverlay bind:open={showWarning} />
 </div>
 
 <style>
