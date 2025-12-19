@@ -1499,13 +1499,13 @@
         "id": "aurora-dragon",
         "name": "Aurora Dragon",
         "rarity": "legendary",
-        "baseChance": 0.0001
+        "baseChance": 0.0002
       },
       {
         "id": "lunar-fairy",
         "name": "Lunar Fairy",
         "rarity": "legendary",
-        "baseChance": 0.00001
+        "baseChance": 0.00002
       },
       {
         "id": "aurora-borealis",
