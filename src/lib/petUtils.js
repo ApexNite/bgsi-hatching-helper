@@ -109,6 +109,8 @@ export function isMythicEligible(pet) {
 export function isXLEligible(pet) {
   const correctRarity =
     pet.rarity === "common" ||
+    pet.rarity === "rare" ||
+    pet.rarity === "epic" ||
     pet.rarity === "legendary" ||
     pet.rarity === "secret" ||
     pet.rarity === "infinity";
