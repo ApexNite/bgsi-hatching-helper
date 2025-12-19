@@ -1538,5 +1538,75 @@
         "baseChance": 1.3333333333333e-12
       }
     ]
+  },
+  {
+    "id": "festive-egg",
+    "name": "Festive Egg",
+    "type": "world",
+    "world": "christmas-world",
+    "event": "christmas",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "festive-wolf",
+        "name": "Festive Wolf",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "festive-deer",
+        "name": "Festive Deer",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "sack-o-angel",
+        "name": "Sack O' Angel",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "holiday-spirit",
+        "name": "Holiday Spirit",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "snowglobe-hexarium",
+        "name": "Snowglobe Hexarium",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "demonic-fireplace",
+        "name": "Demonic Fireplace",
+        "rarity": "legendary",
+        "baseChance": 4e-7
+      },
+      {
+        "id": "snowverlord",
+        "name": "Snowverlord",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "christmas-tree",
+        "name": "Christmas Tree",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "mistletoe-fairy",
+        "name": "Mistletoe Fairy",
+        "rarity": "secret",
+        "baseChance": 2.5e-10
+      },
+      {
+        "id": "festive-deity",
+        "name": "Festive Deity",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      }
+    ]
   }
 ]
