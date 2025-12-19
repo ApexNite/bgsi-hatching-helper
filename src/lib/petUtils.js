@@ -249,13 +249,15 @@ function addVariantChances(pets, stats) {
         : baseMythicMultiplier
       : -1;
     // const xlMultiplier = xlEligible ? baseXLMultiplier : -1;
-    
+
     let xlMultiplier = -1;
     if (xlEligible) {
       if (pet.rarity === "secret" || pet.rarity === "infinity") {
         xlMultiplier = 1 / 500;
       } else if (pet.rarity === "legendary") {
         xlMultiplier = 1 / 1000;
+      } else if (pet.rarity === "rare") {
+        xlMultiplier = 1 / 25000;
       } else if (pet.rarity === "common") {
         xlMultiplier = 1 / 100000;
       }
