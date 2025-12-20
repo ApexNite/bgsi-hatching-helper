@@ -244,7 +244,7 @@ function addVariantChances(pets, stats) {
     } else if (pet.rarity === "legendary") {
       xlMultiplier = 1 / 2000;
     } else if (pet.rarity === "epic") {
-      xlMultiplier = 1 / 7500;
+      xlMultiplier = 1 / 10000;
     } else if (pet.rarity === "rare") {
       xlMultiplier = 1 / 25000;
     } else if (pet.rarity === "unique") {
