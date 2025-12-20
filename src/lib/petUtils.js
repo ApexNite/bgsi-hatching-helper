@@ -106,19 +106,6 @@ export function isMythicEligible(pet) {
   return correctRarity && hasMythic;
 }
 
-export function isXLEligible(pet) {
-  const correctRarity =
-    pet.rarity === "common" ||
-    pet.rarity === "rare" ||
-    pet.rarity === "epic" ||
-    pet.rarity === "legendary" ||
-    pet.rarity === "secret" ||
-    pet.rarity === "infinity";
-  const hasXL = pet.hasXL !== false;
-
-  return correctRarity && hasXL;
-}
-
 export function insertAggregateRows(
   pets,
   { anyLegendary = false, anySecretInfinity = false } = {},
@@ -244,7 +231,6 @@ function addVariantChances(pets, stats) {
 
   for (const pet of pets) {
     const mythicEligible = isMythicEligible(pet);
-    const xlEligible = isXLEligible(pet);
     const mythicMultiplier = mythicEligible
       ? pet.staticMythic
         ? 0.01
@@ -253,18 +239,18 @@ function addVariantChances(pets, stats) {
     // const xlMultiplier = xlEligible ? baseXLMultiplier : -1;
 
     let xlMultiplier = -1;
-    if (xlEligible) {
-      if (pet.rarity === "secret" || pet.rarity === "infinity") {
-        xlMultiplier = 1 / 500;
-      } else if (pet.rarity === "legendary") {
-        xlMultiplier = 1 / 2000;
-      } else if (pet.rarity === "epic") {
-        xlMultiplier = 1 / 7500;
-      } else if (pet.rarity === "rare") {
-        xlMultiplier = 1 / 25000;
-      } else if (pet.rarity === "common") {
-        xlMultiplier = 1 / 100000;
-      }
+    if (pet.rarity === "secret" || pet.rarity === "infinity") {
+      xlMultiplier = 1 / 500;
+    } else if (pet.rarity === "legendary") {
+      xlMultiplier = 1 / 2000;
+    } else if (pet.rarity === "epic") {
+      xlMultiplier = 1 / 7500;
+    } else if (pet.rarity === "rare") {
+      xlMultiplier = 1 / 25000;
+    } else if (pet.rarity === "unique") {
+      xlMultiplier = 1 / 75000;
+    } else if (pet.rarity === "common") {
+      xlMultiplier = 1 / 100000;
     }
 
     pet.finalShinyChance = pet.finalChance * shinyMultiplier;

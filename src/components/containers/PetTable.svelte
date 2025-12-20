@@ -5,7 +5,6 @@
     calculateMeanHatchTime,
     calculateHatchTime,
     insertAggregateRows,
-    isXLEligible,
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -242,7 +241,7 @@
                     </span>
                     <span class="rarity-badge rarity-{pet.rarity}">
                       {pet.rarity}
-                      {#if settings.showXL && isXLEligible(pet)}
+                      {#if settings.showXL}
                         <strong class="rarity-{pet.rarity}">XL</strong>
                       {/if}
                     </span>
@@ -264,7 +263,7 @@
                     </span>
                     <span class="rarity-badge rarity-{pet.rarity}">
                       {pet.rarity}
-                      {#if settings.showXL && isXLEligible(pet)}
+                      {#if settings.showXL}
                         <strong class="rarity-{pet.rarity}">XL</strong>
                       {/if}
                     </span>
@@ -278,18 +277,14 @@
                 <div class="chance-time">
                   <div>
                     {displayChance(
-                      settings.showXL && isXLEligible(pet)
-                        ? pet.finalXLChance
-                        : pet.finalChance,
+                      settings.showXL ? pet.finalXLChance : pet.finalChance,
                     )}
                   </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
                       {formatTime(
                         displayTime(
-                          settings.showXL && isXLEligible(pet)
-                            ? pet.finalXLChance
-                            : pet.finalChance,
+                          settings.showXL ? pet.finalXLChance : pet.finalChance,
                         ),
                       )}
                     </div>
@@ -304,7 +299,7 @@
                 <div class="chance-time">
                   <div>
                     {displayChance(
-                      settings.showXL && isXLEligible(pet)
+                      settings.showXL
                         ? pet.finalShinyXLChance
                         : pet.finalShinyChance,
                     )}
@@ -313,7 +308,7 @@
                     <div class="time">
                       {formatTime(
                         displayTime(
-                          settings.showXL && isXLEligible(pet)
+                          settings.showXL
                             ? pet.finalShinyXLChance
                             : pet.finalShinyChance,
                         ),
@@ -330,7 +325,7 @@
                 <div class="chance-time">
                   <div>
                     {displayChance(
-                      settings.showXL && isXLEligible(pet)
+                      settings.showXL
                         ? pet.finalMythicXLChance
                         : pet.finalMythicChance,
                     )}
@@ -339,7 +334,7 @@
                     <div class="time">
                       {formatTime(
                         displayTime(
-                          settings.showXL && isXLEligible(pet)
+                          settings.showXL
                             ? pet.finalMythicXLChance
                             : pet.finalMythicChance,
                         ),
@@ -356,7 +351,7 @@
                 <div class="chance-time">
                   <div>
                     {displayChance(
-                      settings.showXL && isXLEligible(pet)
+                      settings.showXL
                         ? pet.finalShinyMythicXLChance
                         : pet.finalShinyMythicChance,
                     )}
@@ -365,7 +360,7 @@
                     <div class="time">
                       {formatTime(
                         displayTime(
-                          settings.showXL && isXLEligible(pet)
+                          settings.showXL
                             ? pet.finalShinyMythicXLChance
                             : pet.finalShinyMythicChance,
                         ),
