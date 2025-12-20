@@ -418,7 +418,7 @@ export async function loadData() {
       try {
         await loadData();
       } catch {}
-    }, 30000);
+    }, 60000);
   }
 }
 
