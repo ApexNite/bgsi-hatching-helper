@@ -13,6 +13,7 @@ const host = process.env.FTP_SERVER;
 const username = process.env.FTP_USERNAME;
 const password = process.env.FTP_PASSWORD;
 const port = parseInt(process.env.FTP_PORT);
+const ignoreImages = process.argv.includes("--ignore-images");
 
 function calculateHash(data) {
   const hash = crypto.createHash("md5");
@@ -35,6 +36,11 @@ function walkLocal(dir, list = []) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     for (const entry of entries) {
       const full = path.join(dir, entry.name);
+
+      if (ignoreImages && entry.name === "images") {
+        continue;
+      }
+
       if (entry.isDirectory()) {
         walkLocal(full, list);
       } else {
@@ -51,6 +57,11 @@ async function walkRemote(client, base, map = new Map()) {
     const items = await client.list(base);
     for (const item of items) {
       const full = path.posix.join(base, item.name);
+      
+      if (ignoreImages && item.name === "images") {
+        continue;
+      }
+      
       if (item.type === "d") {
         await walkRemote(client, full, map);
       } else {
