@@ -94,7 +94,7 @@ export function calculateStats(sources, toggles, numbers) {
   return stats;
 }
 
-export function calculateManualStats(manualStats, sources) {
+export function calculateManualStats(manualStats, sources, numbers) {
   const totals = {
     luck: 0,
     secretLuck: 0,
@@ -120,6 +120,14 @@ export function calculateManualStats(manualStats, sources) {
       eventBonusMultipliers,
     );
     applySource(totals, adjusted);
+  }
+
+  if (numbers.riftMultiplier > 0) {
+    applySource(totals, {
+      ...{
+        baseLuck: numbers.riftMultiplier === 1 ? 0 : numbers.riftMultiplier,
+      },
+    });
   }
 
   return calculateStatsFromTotals(totals);

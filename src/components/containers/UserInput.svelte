@@ -170,7 +170,12 @@
       eggsPerHatch = numericValues.eggsPerHatch;
 
       if (calculationMode === "manual") {
-        stats = calculateManualStats(manualStats, [selectedRift]);
+        const numericValuesModified = { ...numericValues };
+
+        numericValuesModified.riftMultiplier =
+          selectedRift.id !== "other" ? 0 : numericValues.riftMultiplier;
+
+        stats = calculateManualStats(manualStats, [selectedRift], numericValuesModified);
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
