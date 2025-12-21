@@ -28,5 +28,11 @@
     "name": "Shiny Event",
     "img": "assets/images/icons/shiny",
     "shinyChanceMultiplier": 1.25
+  },
+  {
+    "id": "hatch-speed-event",
+    "name": "Hatch Speed Event",
+    "img": "assets/images/icons/eggs",
+    "baseHatchSpeed": 0.5
   }
 ]
