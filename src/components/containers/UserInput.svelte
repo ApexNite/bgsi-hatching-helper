@@ -20,6 +20,7 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
+  let dismissedChristmasWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -298,6 +299,8 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
+        dismissedChristmasWarning =
+          savedData.dismissedChristmasWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
       }
     } catch (e) {
@@ -323,6 +326,7 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
+      dismissedChristmasWarning,
       dismissedInfinityWarning,
     };
 
@@ -337,6 +341,11 @@
 
   function dismissManualWarning() {
     dismissedManualWarning = true;
+    saveToCache();
+  }
+
+  function dismissChristmasWarning() {
+    dismissedChristmasWarning = true;
     saveToCache();
   }
 
@@ -1192,7 +1201,7 @@
         onDismiss={dismissManualWarning}
       />
     {/if}
-    {#if calculationMode === "manual" && activeEvent === "christmas" && !dismissedManualWarning}
+    {#if calculationMode === "manual" && activeEvent === "christmas" && !dismissedChristmasWarning}
       <WarningBanner
         type="error"
         title="Debug stats are inaccurate!"
@@ -1215,7 +1224,7 @@
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissManualWarning}
+        onDismiss={dismissChristmasWarning}
       />
     {/if}
 
