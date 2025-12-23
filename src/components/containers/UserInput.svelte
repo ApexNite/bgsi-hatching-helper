@@ -19,6 +19,7 @@
 
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
+  let dismissedInfinityWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -175,7 +176,11 @@
         numericValuesModified.riftMultiplier =
           selectedRift.id !== "other" ? 0 : numericValues.riftMultiplier;
 
-        stats = calculateManualStats(manualStats, [selectedRift], numericValuesModified);
+        stats = calculateManualStats(
+          manualStats,
+          [selectedRift],
+          numericValuesModified,
+        );
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
@@ -293,6 +298,7 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
+        dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -317,6 +323,7 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
+      dismissedInfinityWarning,
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -330,6 +337,11 @@
 
   function dismissManualWarning() {
     dismissedManualWarning = true;
+    saveToCache();
+  }
+
+  function dismissInfinityWarning() {
+    dismissedInfinityWarning = true;
     saveToCache();
   }
 
@@ -1204,6 +1216,26 @@
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissManualWarning}
+      />
+    {/if}
+
+    {#if isInfinityEgg && !dismissedInfinityWarning}
+      <WarningBanner
+        type="info"
+        title="Infinity Egg Information"
+        items={[
+          {
+            label: "Luck Bonuses",
+            description:
+              "Secret and Infinity Luck do not affect the Infinity Egg",
+          },
+          {
+            label: "Rarity Based",
+            description:
+              "The Infinity Egg first rolls for a rarity, then selects a random pet from that rarity. More pets in a rarity won't increase your odds of hatching that rarity",
+          },
+        ]}
+        onDismiss={dismissInfinityWarning}
       />
     {/if}
   </div>

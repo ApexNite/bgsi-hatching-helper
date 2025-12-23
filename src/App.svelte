@@ -15,6 +15,8 @@
   let selectedEventId;
   let showInfo = false;
 
+  $: hasIgnoreSecretPets = selectedEggId === "infinity-egg";
+
   onMount(() => {
     loadData();
   });
@@ -45,7 +47,7 @@
       </div>
 
       <section class="right-pane">
-        <StatsBar {stats} {eggsPerHatch} />
+        <StatsBar {stats} {eggsPerHatch} {hasIgnoreSecretPets} />
 
         <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
 

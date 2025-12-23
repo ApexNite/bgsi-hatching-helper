@@ -17,6 +17,7 @@
     hatchSpeed: 1,
   };
   export let eggsPerHatch = 1;
+  export let hasIgnoreSecretPets = false;
 </script>
 
 <div class="stats">
@@ -29,7 +30,7 @@
     />
     <strong>{formatChancePercent(stats.luck - 1, true, false, true)}</strong>
   </div>
-  <div class="stat">
+  <div class="stat" class:dimmed={hasIgnoreSecretPets}>
     <SmartImage
       base="assets/images/icons/secret-luck"
       alt="Secret Luck"
@@ -38,7 +39,7 @@
     />
     <strong>{formatMultiplier(stats.secretLuck)}</strong>
   </div>
-  <div class="stat">
+  <div class="stat" class:dimmed={hasIgnoreSecretPets}>
     <SmartImage
       base="assets/images/icons/infinity-luck"
       alt="Infinity Luck"
@@ -134,5 +135,9 @@
     color: var(--primary-text);
     font-weight: 600;
     font-size: 0.9rem;
+  }
+
+  .stat.dimmed {
+    opacity: 0.4;
   }
 </style>
