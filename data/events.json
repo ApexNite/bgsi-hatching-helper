@@ -1,13 +1,13 @@
 [
   {
-    "id": "luck-event",
-    "name": "Luck Event",
+    "id": "lucky-event",
+    "name": "Lucky Event",
     "img": "assets/images/icons/luck",
     "luckMultiplier": 2
   },
   {
-    "id": "secret-event",
-    "name": "Secret Event",
+    "id": "secret-chance-event",
+    "name": "Secret Chance Event",
     "img": "assets/images/icons/secret-luck",
     "secretLuckMultiplier": 2
   },
