@@ -28,5 +28,13 @@
     "name": "Ultra Infinity Elixir",
     "event": "christmas",
     "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "2026-elixir",
+    "name": "2026 Elixir",
+    "event": "new-years",
+    "luck": 2.5,
+    "shinyChance": 1,
+    "mythicChance": 0.75
   }
 ]
