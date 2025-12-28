@@ -1137,12 +1137,6 @@
         "name": "Gingerbread Shard",
         "rarity": "secret",
         "baseChance": 1e-8
-      },
-      {
-        "id": "frosty-lord-shock",
-        "name": "Frosty Lord Shock",
-        "rarity": "secret",
-        "baseChance": 8e-11
       }
     ]
   },
@@ -1195,12 +1189,6 @@
         "name": "Velvet Wolflord",
         "rarity": "secret",
         "baseChance": 1e-9
-      },
-      {
-        "id": "frosty-lord-shock",
-        "name": "Frosty Lord Shock",
-        "rarity": "secret",
-        "baseChance": 8e-11
       }
     ]
   },
@@ -1277,12 +1265,6 @@
         "name": "Frosted Dogcat",
         "rarity": "secret",
         "baseChance": 1e-10
-      },
-      {
-        "id": "frosty-lord-shock",
-        "name": "Frosty Lord Shock",
-        "rarity": "secret",
-        "baseChance": 8e-11
       },
       {
         "id": "morning-star",
@@ -1373,12 +1355,6 @@
         "baseChance": 2e-10
       },
       {
-        "id": "frosty-lord-shock",
-        "name": "Frosty Lord Shock",
-        "rarity": "secret",
-        "baseChance": 8e-11
-      },
-      {
         "id": "christmas-robot",
         "name": "Christmas Robot",
         "rarity": "infinity",
@@ -1441,12 +1417,6 @@
         "name": "Northern Star",
         "rarity": "secret",
         "baseChance": 1e-10
-      },
-      {
-        "id": "frosty-lord-shock",
-        "name": "Frosty Lord Shock",
-        "rarity": "secret",
-        "baseChance": 8e-11
       },
       {
         "id": "soulflake",
@@ -1523,12 +1493,6 @@
         "name": "Mistletoe Fairy",
         "rarity": "secret",
         "baseChance": 2.5e-10
-      },
-      {
-        "id": "frosty-lord-shock",
-        "name": "Frosty Lord Shock",
-        "rarity": "secret",
-        "baseChance": 8e-11
       },
       {
         "id": "festive-deity",
