@@ -5,6 +5,12 @@
     "img": "assets/images/icons/multi-egg",
     "tiers": [
       {
+        "id": "omega-i",
+        "name": "Omega I",
+        "luck": 3.5,
+        "baseHatchSpeed": 1
+      },
+      {
         "id": "infinity-i",
         "name": "Infinity I",
         "luck": 3,
@@ -93,6 +99,14 @@
     "img": "assets/images/icons/secret-pets",
     "tiers": [
       {
+        "id": "omega-i",
+        "name": "Omega I",
+        "luck": 2.75,
+        "_secretLuck": 0.05,
+        "_shinyChance": 0.06,
+        "_mythicChance": 0.03
+      },
+      {
         "id": "infinity-i",
         "name": "Infinity I",
         "luck": 2.5,
@@ -151,11 +165,69 @@
     ]
   },
   {
+    "id": "world-eggs-milestone",
+    "name": "World Eggs Milestone",
+    "img": "assets/images/eggs/rainbow-egg",
+    "tiers": [
+      {
+        "id": "omega-i",
+        "name": "Omega I",
+        "luck": 1,
+        "xlChance": 0.005
+      },
+      {
+        "id": "infinity-i",
+        "name": "Infinity I",
+        "luck": 0.8
+      },
+      {
+        "id": "ultimate-i",
+        "name": "Ultimate I",
+        "luck": 0.65
+      },
+      {
+        "id": "super-i",
+        "name": "Super I",
+        "luck": 0.5
+      },
+      {
+        "id": "platinum-i",
+        "name": "Platinum I",
+        "luck": 0.4
+      },
+      {
+        "id": "gold-i",
+        "name": "Gold I",
+        "luck": 0.3
+      },
+      {
+        "id": "silver-i",
+        "name": "Silver I",
+        "luck": 0.2
+      },
+      {
+        "id": "bronze-i",
+        "name": "Bronze I",
+        "luck": 0.1
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
+  },
+  {
     "id": "christmas-milestone",
     "name": "Christmas Milestone",
     "img": "assets/images/icons/present",
     "event": "christmas",
     "tiers": [
+      {
+        "id": "omega-i",
+        "name": "Omega I",
+        "luck": 2.5,
+        "secretLuck": 0.05
+      },
       {
         "id": "infinity-i",
         "name": "Infinity I",
