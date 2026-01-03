@@ -1267,6 +1267,12 @@
         "baseChance": 1e-10
       },
       {
+        "id": "starglitcher",
+        "name": "Starglitcher",
+        "rarity": "infinity",
+        "baseChance": 2e-11
+      },
+      {
         "id": "morning-star",
         "name": "Morning Star",
         "rarity": "infinity",
@@ -1355,6 +1361,12 @@
         "baseChance": 2e-10
       },
       {
+        "id": "festive-basket",
+        "name": "Festive Basket",
+        "rarity": "infinity",
+        "baseChance": 2e-11
+      },
+      {
         "id": "christmas-robot",
         "name": "Christmas Robot",
         "rarity": "infinity",
@@ -1423,6 +1435,12 @@
         "name": "Soulflake",
         "rarity": "secret",
         "baseChance": 4e-11
+      },
+      {
+        "id": "aurora-guardian",
+        "name": "Aurora Guardian",
+        "rarity": "infinity",
+        "baseChance": 2e-11
       },
       {
         "id": "the-leviathan",
@@ -1563,10 +1581,22 @@
         "baseChance": 2e-10
       },
       {
+        "id": "og-new-years-champion",
+        "name": "OG New Year's Champion",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
         "id": "new-years-champion",
         "name": "New Year's Champion",
         "rarity": "secret",
         "baseChance": 5e-11
+      },
+      {
+        "id": "og-infinity-gem",
+        "name": "OG Infinity Gem",
+        "rarity": "secret",
+        "baseChance": 2.5e-11
       }
     ]
   }
