@@ -1267,8 +1267,8 @@
         "baseChance": 1e-10
       },
       {
-        "id": "starglitcher",
-        "name": "Starglitcher",
+        "id": "star-glitcher",
+        "name": "Star Glitcher",
         "rarity": "infinity",
         "baseChance": 2e-11
       },
