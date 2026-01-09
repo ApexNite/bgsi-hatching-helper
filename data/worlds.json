@@ -10,10 +10,5 @@
   {
     "id": "seven-seas",
     "name": "Seven Seas"
-  },
-  {
-    "id": "christmas-world",
-    "name": "Christmas World",
-    "event": "christmas"
   }
 ]
