@@ -14,13 +14,5 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
-  },
-  {
-    "id": "2026-elixir",
-    "name": "2026 Elixir",
-    "event": "new-years",
-    "luck": 2.5,
-    "shinyChance": 1,
-    "mythicChance": 0.75
   }
 ]
