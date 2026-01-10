@@ -93,7 +93,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatChancePercent(stats.hatchSpeed, true, true, true)}</strong>
+    <strong>{formatChancePercent(stats.hatchSpeed, true, false, true)}</strong>
   </div>
   <div class="stat">
     <SmartImage
