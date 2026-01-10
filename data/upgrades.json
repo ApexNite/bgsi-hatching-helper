@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "id": "circus-luck",
+    "name": "Circus Luck",
+    "img": "assets/images/icons/luck",
+    "event": "circus",
+    "levels": {
+      "1": {
+        "luck": 0.1
+      },
+      "2": {
+        "luck": 0.15
+      },
+      "3": {
+        "luck": 0.2
+      },
+      "4": {
+        "luck": 0.25
+      }
+    }
+  },
+  {
+    "id": "circus-secret-luck",
+    "name": "Secret Luck",
+    "img": "assets/images/icons/secret-pet-luck",
+    "event": "circus",
+    "levels": {
+      "1": {
+        "secretLuck": 0.01
+      },
+      "2": {
+        "secretLuck": 0.02
+      },
+      "3": {
+        "secretLuck": 0.03
+      },
+      "4": {
+        "secretLuck": 0.05
+      }
+    }
+  },
+  {
+    "id": "circus-infinity-luck",
+    "name": "Infinity Luck",
+    "img": "assets/images/icons/infinity-luck",
+    "event": "circus",
+    "levels": {
+      "1": {
+        "infinityLuck": 0.01
+      },
+      "2": {
+        "infinityLuck": 0.02
+      },
+      "3": {
+        "infinityLuck": 0.03
+      },
+      "4": {
+        "infinityLuck": 0.05
+      }
+    }
+  }
+]
