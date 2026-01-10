@@ -29,7 +29,6 @@
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
-    showHeavenlyPoinsettia: false,
     showXL: false,
     hideNonSpecial: false,
     hideLegendary: false,
@@ -136,12 +135,7 @@
 
   $: basePets =
     stats && selectedEggId && selectedWorldId
-      ? getPetsToDisplay(
-          selectedEggId,
-          selectedWorldId,
-          stats,
-          settings.showHeavenlyPoinsettia,
-        )
+      ? getPetsToDisplay(selectedEggId, selectedWorldId, stats)
       : [];
 
   $: petsWithAggregates =
@@ -489,15 +483,6 @@
             size="sm"
           />
           <span>Show Any Secret</span>
-        </label>
-        <label class="row">
-          <Checkbox
-            id="showHeavenlyPoinsettia"
-            checked={settings.showHeavenlyPoinsettia}
-            onChange={() => toggle("showHeavenlyPoinsettia")}
-            size="sm"
-          />
-          <span>Show Heavenly Poinsettia</span>
         </label>
         <label class="row">
           <Checkbox

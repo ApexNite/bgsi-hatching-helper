@@ -12,13 +12,8 @@ const RARITY_ORDER = Object.freeze({
   infinity: 6,
 });
 
-export function getPetsToDisplay(
-  eggId,
-  worldId,
-  stats,
-  showHeavenlyPoinsettia = false,
-) {
-  const eggsWithPets = getEggsWithInjectedPets(showHeavenlyPoinsettia);
+export function getPetsToDisplay(eggId, worldId, stats) {
+  const eggsWithPets = getEggsWithInjectedPets();
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
   if (!egg) {
@@ -255,7 +250,7 @@ function addVariantChances(pets, stats) {
   return pets;
 }
 
-function getEggsWithInjectedPets(showHeavenlyPoinsettia = false) {
+function getEggsWithInjectedPets() {
   const data = get(dataStore);
 
   if (!isDataLoaded || !data.eggs) {
@@ -290,22 +285,6 @@ function getEggsWithInjectedPets(showHeavenlyPoinsettia = false) {
 
         if (!targetEgg.pets.some((p) => p.id === bountyPet.id)) {
           targetEgg.pets.push(bountyPet);
-        }
-      }
-    }
-  }
-
-  if (showHeavenlyPoinsettia) {
-    const heavenlyPoinsettia = data.secretBounty?.pets?.["heavenly-poinsettia"];
-
-    if (heavenlyPoinsettia) {
-      for (const egg of eggsCopy) {
-        if (egg.event === "christmas") {
-          egg.pets = egg.pets || [];
-
-          if (!egg.pets.some((p) => p.id === heavenlyPoinsettia.id)) {
-            egg.pets.push(heavenlyPoinsettia);
-          }
         }
       }
     }
