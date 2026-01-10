@@ -1075,5 +1075,203 @@
         "baseChance": 5e-12
       }
     ]
+  },
+  {
+    "id": "clown-egg",
+    "name": "Clown Egg",
+    "type": "special",
+    "event": "circus",
+    "pets": [
+      {
+        "id": "clown-doggy",
+        "name": "Clown Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "clown-kitty",
+        "name": "Clown Kitty",
+        "rarity": "unique",
+        "baseChance": 0.3
+      },
+      {
+        "id": "clown-bunny",
+        "name": "Clown Bunny",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "lol",
+        "name": "LOL",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      }
+    ]
+  },
+  {
+    "id": "cannon-egg",
+    "name": "Cannon Egg",
+    "type": "special",
+    "event": "circus",
+    "pets": [
+      {
+        "id": "drum-golem",
+        "name": "Drum Golem",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "cannon-bomb",
+        "name": "Cannon Bomb",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "lion",
+        "name": "Lion",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "cotton-candy",
+        "name": "Cotton Candy",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "golden-ballon",
+        "name": "Golden Ballon",
+        "rarity": "legendary",
+        "baseChance": 0.000025
+      },
+      {
+        "id": "royal-lion",
+        "name": "Royal Lion",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      }
+    ]
+  },
+  {
+    "id": "magic-egg",
+    "name": "Magic Egg",
+    "type": "special",
+    "event": "circus",
+    "pets": [
+      {
+        "id": "magic-doggy",
+        "name": "Magic Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "magic-bunny",
+        "name": "Magic Bunny",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "dice",
+        "name": "Dice",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "golden-lion",
+        "name": "Golden Lion",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "circus-stack",
+        "name": "Circus Stack",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "the-jester",
+        "name": "The Jester",
+        "rarity": "legendary",
+        "baseChance": 2e-7
+      },
+      {
+        "id": "dark-omen",
+        "name": "Dark Omen",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "dinosaur-tophat",
+        "name": "Dinosaur Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "deer-tophat",
+        "name": "Deer Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "pig-tophat",
+        "name": "Pig Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "bruh-tophat",
+        "name": "Bruh Tophat",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "seraph-tophat",
+        "name": "Seraph Tophat",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "pufferfish-tophat",
+        "name": "Pufferfish Tophat",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "azure-fate",
+        "name": "Azure Fate",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "giant-chocolate-chicken-tophat",
+        "name": "Giant Chocolate Chicken Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "leviathan-tophat",
+        "name": "Leviathan Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "avernus-tophat",
+        "name": "Avernus Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "silly-doggy-tophat",
+        "name": "Silly Doggy Tophat",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "bubble-circus-show",
+        "name": "Bubble Circus Show",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]
