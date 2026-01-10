@@ -20,7 +20,7 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
-  let dismissedChristmasWarning = false;
+  let dismissedCircusWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -299,8 +299,8 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-        dismissedChristmasWarning =
-          savedData.dismissedChristmasWarning ?? false;
+        dismissedCircusWarning =
+          savedData.dismissedCircusWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
       }
     } catch (e) {
@@ -326,7 +326,7 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
-      dismissedChristmasWarning,
+      dismissedCircusWarning,
       dismissedInfinityWarning,
     };
 
@@ -344,8 +344,8 @@
     saveToCache();
   }
 
-  function dismissChristmasWarning() {
-    dismissedChristmasWarning = true;
+  function dismissCircusWarning() {
+    dismissedCircusWarning = true;
     saveToCache();
   }
 
@@ -1201,30 +1201,18 @@
         onDismiss={dismissManualWarning}
       />
     {/if}
-    {#if calculationMode === "manual" && activeEvent === "christmas" && !dismissedChristmasWarning}
+    {#if calculationMode === "manual" && activeEvent === "circus" && !dismissedCircusWarning}
       <WarningBanner
         type="error"
         title="Debug stats are inaccurate!"
         items={[
           {
-            label: "Christmas World Index",
-            description: "Now shown in debug stats",
-          },
-          {
-            label: "Festive Elixir",
-            description: "Not shown in debug stats",
-          },
-          {
-            label: "Christmas Mastery",
-            description: "Not shown in debug stats",
-          },
-          {
-            label: "Christmas Milestone",
+            label: "Circus Elixir",
             description: "Not shown in debug stats",
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissChristmasWarning}
+        onDismiss={dismissCircusWarning}
       />
     {/if}
 
