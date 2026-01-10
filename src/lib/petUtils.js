@@ -227,7 +227,6 @@ export function insertAggregateRows(
 function addVariantChances(pets, stats) {
   const shinyMultiplier = stats?.shinyChance ?? 0;
   const baseMythicMultiplier = stats?.mythicChance ?? 0;
-  // const baseXLMultiplier = stats?.xlChance ?? 0;
 
   for (const pet of pets) {
     const mythicEligible = isMythicEligible(pet);
@@ -236,22 +235,11 @@ function addVariantChances(pets, stats) {
         ? 0.01
         : baseMythicMultiplier
       : -1;
-    // const xlMultiplier = xlEligible ? baseXLMultiplier : -1;
 
-    let xlMultiplier = -1;
-    if (pet.rarity === "secret" || pet.rarity === "infinity") {
-      xlMultiplier = 1 / 500;
-    } else if (pet.rarity === "legendary") {
-      xlMultiplier = 1 / 2000;
-    } else if (pet.rarity === "epic") {
-      xlMultiplier = 1 / 10000;
-    } else if (pet.rarity === "rare") {
-      xlMultiplier = 1 / 25000;
-    } else if (pet.rarity === "unique") {
-      xlMultiplier = 1 / 75000;
-    } else if (pet.rarity === "common") {
-      xlMultiplier = 1 / 100000;
-    }
+    const xlMultiplier =
+      typeof stats?.getXlChanceForRarity === "function"
+        ? stats.getXlChanceForRarity(pet.rarity)
+        : 0;
 
     pet.finalShinyChance = pet.finalChance * shinyMultiplier;
     pet.finalMythicChance = pet.finalChance * mythicMultiplier;
