@@ -6,6 +6,7 @@
   export let alt;
   export let decoding;
   export let size;
+  export let zoom = 1;
 
   const INVIEW_OPTIONS = {
     rootMargin: "35%",
@@ -18,6 +19,7 @@
   let placeholderBase = `assets/images/placeholders/${placeholder}`;
 
   $: currentBase = isInView && !imageError ? base : placeholderBase;
+  $: safeZoom = typeof zoom === "number" && zoom > 0 ? zoom : 1;
 
   function handleImageError() {
     if (imageError) {
@@ -37,9 +39,9 @@
   class="wrapper"
   use:inview={INVIEW_OPTIONS}
   on:inview_change={handleInviewChange}
-  style="width: {size}; height: {size};"
+  style="width: {size}; height: {size}; --zoom: {safeZoom};"
 >
-  <picture style={imageLoaded ? "" : "display:none"}>
+  <picture class:hidden={!imageLoaded}>
     <source srcset={`${currentBase}.avif`} type="image/avif" />
     <source srcset={`${currentBase}.webp`} type="image/webp" />
     <img
@@ -48,10 +50,32 @@
       {decoding}
       on:load={() => (imageLoaded = true)}
       on:error={handleImageError}
-      style="width: {size}; height: {size};"
     />
   </picture>
 </div>
 
 <style>
+  .wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: scale(var(--zoom, 1));
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
 </style>

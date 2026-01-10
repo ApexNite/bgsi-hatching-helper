@@ -247,6 +247,7 @@
                     alt={pet.name || pet.rarity}
                     decoding="async"
                     size="32px"
+                    zoom={settings.showXL ? 1.75 : 1}
                   />
                   <div class="pet-info">
                     <span class="name">
