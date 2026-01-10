@@ -11,6 +11,18 @@
         "hatchSpeed": 0.1
       },
       {
+        "id": "level-22",
+        "name": "Level 22",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
+        "id": "level-21",
+        "name": "Level 21",
+        "luck": 0.3,
+        "hatchSpeed": 0.1
+      },
+      {
         "id": "level-20",
         "name": "Level 20",
         "luck": 0.3,
