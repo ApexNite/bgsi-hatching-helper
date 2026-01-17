@@ -140,6 +140,22 @@ export function insertAggregateRows(
       items,
       "finalShinyMythicSuperLegendaryChance",
     );
+    const finalXLSuperLegendaryChance = sumChance(
+      items,
+      "finalXLSuperLegendaryChance",
+    );
+    const finalShinyXLSuperLegendaryChance = sumChance(
+      items,
+      "finalShinyXLSuperLegendaryChance",
+    );
+    const finalMythicXLSuperLegendaryChance = sumChance(
+      items,
+      "finalMythicXLSuperLegendaryChance",
+    );
+    const finalShinyMythicXLSuperLegendaryChance = sumChance(
+      items,
+      "finalShinyMythicXLSuperLegendaryChance",
+    );
 
     if (
       !(
@@ -154,7 +170,11 @@ export function insertAggregateRows(
         finalSuperLegendaryChance > 0 ||
         finalShinySuperLegendaryChance > 0 ||
         finalMythicSuperLegendaryChance > 0 ||
-        finalShinyMythicSuperLegendaryChance > 0
+        finalShinyMythicSuperLegendaryChance > 0 ||
+        finalXLSuperLegendaryChance > 0 ||
+        finalShinyXLSuperLegendaryChance > 0 ||
+        finalMythicXLSuperLegendaryChance > 0 ||
+        finalShinyMythicXLSuperLegendaryChance > 0
       )
     ) {
       return null;
@@ -181,6 +201,10 @@ export function insertAggregateRows(
       finalShinySuperLegendaryChance,
       finalMythicSuperLegendaryChance,
       finalShinyMythicSuperLegendaryChance,
+      finalXLSuperLegendaryChance,
+      finalShinyXLSuperLegendaryChance,
+      finalMythicXLSuperLegendaryChance,
+      finalShinyMythicXLSuperLegendaryChance
     };
   };
 
