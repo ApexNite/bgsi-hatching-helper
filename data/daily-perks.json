@@ -10,10 +10,10 @@
     },
     "pets": [
       {
-        "id": "big-rigby",
-        "name": "Big Rigby",
+        "id": "super-tophat-stack",
+        "name": "Super Tophat Stack",
         "rarity": "secret",
-        "baseChance": 2e-9
+        "baseChance": 1e-9
       }
     ]
   },
@@ -29,10 +29,10 @@
     },
     "pets": [
       {
-        "id": "santa-nert-plushie",
-        "name": "Santa Nert Plushie",
+        "id": "robot-tophat",
+        "name": "Robot Tophat",
         "rarity": "secret",
-        "baseChance": 1e-9
+        "baseChance": 1e-10
       }
     ]
   }
