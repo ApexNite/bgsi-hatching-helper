@@ -32,6 +32,7 @@
     showXL: false,
     hideNonSpecial: false,
     hideLegendary: false,
+    showSuperLegendary: false,
   };
 
   let settings = { ...defaultSettings };
@@ -194,6 +195,70 @@
     settings = { ...settings, timesDisplayMode: mode };
     saveSettings();
   }
+
+  const pickNormal = (pet) => {
+    if (settings.showSuperLegendary && settings.showXL) {
+      return pet.finalXLSuperLegendaryChance;
+    }
+
+    if (settings.showSuperLegendary) {
+      return pet.finalSuperLegendaryChance;
+    }
+
+    if (settings.showXL) {
+      return pet.finalXLChance;
+    }
+
+    return pet.finalChance;
+  };
+
+  const pickShiny = (pet) => {
+    if (settings.showSuperLegendary && settings.showXL) {
+      return pet.finalShinyXLSuperLegendaryChance;
+    }
+
+    if (settings.showSuperLegendary) {
+      return pet.finalShinySuperLegendaryChance;
+    }
+
+    if (settings.showXL) {
+      return pet.finalShinyXLChance;
+    }
+
+    return pet.finalShinyChance;
+  };
+
+  const pickMythic = (pet) => {
+    if (settings.showSuperLegendary && settings.showXL) {
+      return pet.finalMythicXLSuperLegendaryChance;
+    }
+
+    if (settings.showSuperLegendary) {
+      return pet.finalMythicSuperLegendaryChance;
+    }
+
+    if (settings.showXL) {
+      return pet.finalMythicXLChance;
+    }
+
+    return pet.finalMythicChance;
+  };
+
+  const pickShinyMythic = (pet) => {
+    if (settings.showSuperLegendary && settings.showXL) {
+      return pet.finalShinyMythicXLSuperLegendaryChance;
+    }
+
+    if (settings.showSuperLegendary) {
+      return pet.finalShinyMythicSuperLegendaryChance;
+    }
+
+    if (settings.showXL) {
+      return pet.finalShinyMythicXLChance;
+    }
+
+    return pet.finalShinyMythicChance;
+  };
 </script>
 
 <div class="pet-table-wrapper">
@@ -234,10 +299,13 @@
                       )}
                     </span>
                     <span class="rarity-badge rarity-{pet.rarity}">
-                      {pet.rarity}
+                      {#if settings.showSuperLegendary && pet.rarity === "legendary" && pet.baseChance < 0.000001}
+                        <strong class="rarity-{pet.rarity}">Super</strong>
+                      {/if}
                       {#if settings.showXL}
                         <strong class="rarity-{pet.rarity}">XL</strong>
                       {/if}
+                      {pet.rarity}
                     </span>
                   </div>
                 {:else}
@@ -257,10 +325,13 @@
                       )}
                     </span>
                     <span class="rarity-badge rarity-{pet.rarity}">
-                      {pet.rarity}
+                      {#if settings.showSuperLegendary && pet.rarity === "legendary" && pet.baseChance < 0.000001}
+                        Super
+                      {/if}
                       {#if settings.showXL}
                         <strong class="rarity-{pet.rarity}">XL</strong>
                       {/if}
+                      {pet.rarity}
                     </span>
                   </div>
                 {/if}
@@ -268,20 +339,14 @@
             </td>
 
             <td>
-              {#if pet.finalChance >= 0}
+              {#if pickNormal(pet) >= 0}
                 <div class="chance-time">
                   <div>
-                    {displayChance(
-                      settings.showXL ? pet.finalXLChance : pet.finalChance,
-                    )}
+                    {displayChance(pickNormal(pet))}
                   </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        displayTime(
-                          settings.showXL ? pet.finalXLChance : pet.finalChance,
-                        ),
-                      )}
+                      {formatTime(displayTime(pickNormal(pet)))}
                     </div>
                   {/if}
                 </div>
@@ -290,24 +355,14 @@
               {/if}
             </td>
             <td>
-              {#if pet.finalShinyChance >= 0}
+              {#if pickShiny(pet) >= 0}
                 <div class="chance-time">
                   <div>
-                    {displayChance(
-                      settings.showXL
-                        ? pet.finalShinyXLChance
-                        : pet.finalShinyChance,
-                    )}
+                    {displayChance(pickShiny(pet))}
                   </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        displayTime(
-                          settings.showXL
-                            ? pet.finalShinyXLChance
-                            : pet.finalShinyChance,
-                        ),
-                      )}
+                      {formatTime(displayTime(pickShiny(pet)))}
                     </div>
                   {/if}
                 </div>
@@ -316,24 +371,14 @@
               {/if}
             </td>
             <td>
-              {#if pet.finalMythicChance >= 0}
+              {#if pickMythic(pet) >= 0}
                 <div class="chance-time">
                   <div>
-                    {displayChance(
-                      settings.showXL
-                        ? pet.finalMythicXLChance
-                        : pet.finalMythicChance,
-                    )}
+                    {displayChance(pickMythic(pet))}
                   </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        displayTime(
-                          settings.showXL
-                            ? pet.finalMythicXLChance
-                            : pet.finalMythicChance,
-                        ),
-                      )}
+                      {formatTime(displayTime(pickMythic(pet)))}
                     </div>
                   {/if}
                 </div>
@@ -342,24 +387,14 @@
               {/if}
             </td>
             <td>
-              {#if pet.finalShinyMythicChance >= 0}
+              {#if pickShinyMythic(pet) >= 0}
                 <div class="chance-time">
                   <div>
-                    {displayChance(
-                      settings.showXL
-                        ? pet.finalShinyMythicXLChance
-                        : pet.finalShinyMythicChance,
-                    )}
+                    {displayChance(pickShinyMythic(pet))}
                   </div>
                   {#if settings.showHatchingTimes}
                     <div class="time">
-                      {formatTime(
-                        displayTime(
-                          settings.showXL
-                            ? pet.finalShinyMythicXLChance
-                            : pet.finalShinyMythicChance,
-                        ),
-                      )}
+                      {formatTime(displayTime(pickShinyMythic(pet)))}
                     </div>
                   {/if}
                 </div>
@@ -466,6 +501,15 @@
             size="sm"
           />
           <span>Show XL</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="showSuperLegendary"
+            checked={settings.showSuperLegendary}
+            onChange={() => toggle("showSuperLegendary")}
+            size="sm"
+          />
+          <span>Show Super Legendary</span>
         </label>
         <label class="row">
           <Checkbox

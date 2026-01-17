@@ -66,6 +66,12 @@
               75th egg from the Golden Egg mastery.
             </p>
           </div>
+          <div class="footer-note">
+            <p>*&thinsp;*&thinsp;*</p>
+            <p>
+              Luck may be adjusted to reflect the average from burst blessing.
+            </p>
+          </div>
         </div>
       </section>
     </div>

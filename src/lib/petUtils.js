@@ -124,6 +124,22 @@ export function insertAggregateRows(
       items,
       "finalShinyMythicXLChance",
     );
+    const finalSuperLegendaryChance = sumChance(
+      items,
+      "finalSuperLegendaryChance",
+    );
+    const finalShinySuperLegendaryChance = sumChance(
+      items,
+      "finalShinySuperLegendaryChance",
+    );
+    const finalMythicSuperLegendaryChance = sumChance(
+      items,
+      "finalMythicSuperLegendaryChance",
+    );
+    const finalShinyMythicSuperLegendaryChance = sumChance(
+      items,
+      "finalShinyMythicSuperLegendaryChance",
+    );
 
     if (
       !(
@@ -134,7 +150,11 @@ export function insertAggregateRows(
         finalMythicChance > 0 ||
         finalMythicXLChance > 0 ||
         finalShinyMythicChance > 0 ||
-        finalShinyMythicXLChance > 0
+        finalShinyMythicXLChance > 0 ||
+        finalSuperLegendaryChance > 0 ||
+        finalShinySuperLegendaryChance > 0 ||
+        finalMythicSuperLegendaryChance > 0 ||
+        finalShinyMythicSuperLegendaryChance > 0
       )
     ) {
       return null;
@@ -157,6 +177,10 @@ export function insertAggregateRows(
       finalMythicXLChance,
       finalShinyMythicChance,
       finalShinyMythicXLChance,
+      finalSuperLegendaryChance,
+      finalShinySuperLegendaryChance,
+      finalMythicSuperLegendaryChance,
+      finalShinyMythicSuperLegendaryChance,
     };
   };
 
@@ -222,6 +246,10 @@ export function insertAggregateRows(
 function addVariantChances(pets, stats) {
   const shinyMultiplier = stats?.shinyChance ?? 0;
   const baseMythicMultiplier = stats?.mythicChance ?? 0;
+  const baseSuperLegendaryChance =
+    typeof stats?.getSuperLegendaryChance === "function"
+      ? stats.getSuperLegendaryChance()
+      : 0;
 
   for (const pet of pets) {
     const mythicEligible = isMythicEligible(pet);
@@ -236,6 +264,10 @@ function addVariantChances(pets, stats) {
         ? stats.getXlChanceForRarity(pet.rarity)
         : 0;
 
+    const superLegendaryEligible =
+      pet.rarity === "legendary" && pet.baseChance < 0.000001;
+    const slMultiplier = superLegendaryEligible ? baseSuperLegendaryChance : 0;
+
     pet.finalShinyChance = pet.finalChance * shinyMultiplier;
     pet.finalMythicChance = pet.finalChance * mythicMultiplier;
     pet.finalXLChance = pet.finalChance * xlMultiplier;
@@ -245,6 +277,30 @@ function addVariantChances(pets, stats) {
       pet.finalChance * shinyMultiplier * mythicMultiplier;
     pet.finalShinyMythicXLChance =
       pet.finalChance * shinyMultiplier * mythicMultiplier * xlMultiplier;
+    pet.finalSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalChance * slMultiplier
+      : pet.finalChance;
+    pet.finalShinySuperLegendaryChance = superLegendaryEligible
+      ? pet.finalShinyChance * slMultiplier
+      : pet.finalShinyChance;
+    pet.finalMythicSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalMythicChance * slMultiplier
+      : pet.finalMythicChance;
+    pet.finalShinyMythicSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalShinyMythicChance * mythicMultiplier * slMultiplier
+      : pet.finalShinyMythicChance;
+    pet.finalXLSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalXLChance * slMultiplier
+      : pet.finalXLChance;
+    pet.finalShinyXLSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalShinyXLChance * slMultiplier
+      : pet.finalShinyXLChance;
+    pet.finalMythicXLSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalMythicXLChance * slMultiplier
+      : pet.finalMythicXLChance;
+    pet.finalShinyMythicXLSuperLegendaryChance = superLegendaryEligible
+      ? pet.finalShinyMythicXLChance * slMultiplier
+      : pet.finalShinyMythicXLChance;
   }
 
   return pets;

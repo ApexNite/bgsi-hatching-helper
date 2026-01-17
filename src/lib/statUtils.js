@@ -27,6 +27,7 @@ export function calculateStats(sources, toggles, numbers) {
     shinyChance: 0,
     mythicChance: 0,
     xlChance: 0,
+    superLegendaryChance: 0,
     hatchSpeed: 1,
     luckMultiplier: 0,
     secretLuckMultiplier: 1,
@@ -34,12 +35,14 @@ export function calculateStats(sources, toggles, numbers) {
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
     xlChanceMultiplier: 1,
+    superLegendaryChanceMultiplier: 1,
     hatchSpeedMultiplier: 0,
     baseLuck: 0,
     baseSecretLuck: 0,
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
+    baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
     _burstBlessingLevel: getBurstBlessingLevel(sources),
@@ -151,13 +154,19 @@ function calculateStatsFromTotals(totals) {
   const luckBase =
     (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1);
 
-  console.log(calculateAdjustedLuck(calculateAdjustedLuck(luckBase, totals._burstBlessingLevel || 0)))
-
   const getXlChanceForRarity = (rarity) => {
     const base =
       DEFAULT_XL_CHANCE_BY_RARITY[rarity] ?? DEFAULT_XL_CHANCE_BY_RARITY.common;
     return (
       base * (1 + (totals.xlChance || 0)) * (totals.xlChanceMultiplier || 1)
+    );
+  };
+
+  const getSuperLegendaryChance = (pet) => {
+    return (
+      totals.baseSuperLegendaryChance *
+      (1 + (totals.superLegendaryChance || 0)) *
+      (totals.superLegendaryChanceMultiplier || 1)
     );
   };
 
@@ -181,6 +190,7 @@ function calculateStatsFromTotals(totals) {
       (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
 
     getXlChanceForRarity,
+    getSuperLegendaryChance,
   };
 }
 
@@ -282,6 +292,15 @@ function applySource(totals, source) {
   if (typeof source.baseInfinityLuck === "number") {
     totals.baseInfinityLuck += source.baseInfinityLuck * times;
   }
+
+  if (typeof source.superLegendaryChance === "number") {
+    totals.superLegendaryChance += source.superLegendaryChance * times;
+  }
+
+  if (typeof source.superLegendaryChanceMultiplier === "number") {
+    totals.superLegendaryChanceMultiplier *=
+      source.superLegendaryChanceMultiplier;
+  }
 }
 
 function calculateBubbleBlessing(level) {
@@ -321,7 +340,7 @@ function calculateAdjustedLuck(luck, burstBlessingLevel, interval = 1000) {
   const level = Math.max(0, Number(burstBlessingLevel) || 0);
   const burstEggMultiplier = level > 0 ? level * 10 : 1;
 
-  return luck * (((interval - 1) + burstEggMultiplier) / interval);
+  return luck * ((interval - 1 + burstEggMultiplier) / interval);
 }
 
 function getBurstBlessingLevel(sources) {
