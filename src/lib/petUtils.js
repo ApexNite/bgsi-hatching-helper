@@ -101,9 +101,13 @@ export function isMythicEligible(pet) {
   return correctRarity && hasMythic;
 }
 
+export function isSuperLegendaryEligible(pet) {
+  return pet.rarity === "legendary" && pet.baseChance < 0.000001;
+}
+
 export function insertAggregateRows(
   pets,
-  { anyLegendary = false, anySecretInfinity = false } = {},
+  { anyLegendary = false, anySecretInfinity = false, superLegendaryOnly = false } = {},
 ) {
   if (!Array.isArray(pets) || (!anyLegendary && !anySecretInfinity)) {
     return pets;
@@ -221,7 +225,10 @@ export function insertAggregateRows(
 
   if (anyLegendary) {
     const legends = pets.filter(
-      (p) => p.rarity === "legendary" && hasPositiveChance(p),
+      (p) =>
+        p.rarity === "legendary" &&
+        (!superLegendaryOnly || isSuperLegendaryEligible(p)) &&
+        hasPositiveChance(p),
     );
 
     if (legends.length > 1) {
@@ -288,8 +295,7 @@ function addVariantChances(pets, stats) {
         ? stats.getXlChanceForRarity(pet.rarity)
         : 0;
 
-    const superLegendaryEligible =
-      pet.rarity === "legendary" && pet.baseChance < 0.000001;
+    const superLegendaryEligible = isSuperLegendaryEligible(pet);
     const slMultiplier = superLegendaryEligible ? baseSuperLegendaryChance : 0;
 
     pet.finalShinyChance = pet.finalChance * shinyMultiplier;

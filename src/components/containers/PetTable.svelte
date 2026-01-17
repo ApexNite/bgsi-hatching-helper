@@ -5,6 +5,7 @@
     calculateMeanHatchTime,
     calculateHatchTime,
     insertAggregateRows,
+    isSuperLegendaryEligible
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -144,6 +145,7 @@
       ? insertAggregateRows(basePets, {
           anyLegendary: settings.showAnyLegendary,
           anySecretInfinity: settings.showAnySecretInfinity,
+          superLegendaryOnly: settings.showSuperLegendary
         })
       : [];
 
@@ -299,7 +301,7 @@
                       )}
                     </span>
                     <span class="rarity-badge rarity-{pet.rarity}">
-                      {#if settings.showSuperLegendary && pet.rarity === "legendary" && pet.baseChance < 0.000001}
+                      {#if settings.showSuperLegendary && isSuperLegendaryEligible(pet)}
                         <strong class="rarity-{pet.rarity}">Super</strong>
                       {/if}
                       {#if settings.showXL}
@@ -325,7 +327,7 @@
                       )}
                     </span>
                     <span class="rarity-badge rarity-{pet.rarity}">
-                      {#if settings.showSuperLegendary && pet.rarity === "legendary" && pet.baseChance < 0.000001}
+                      {#if settings.showSuperLegendary && isSuperLegendaryEligible(pet)}
                         Super
                       {/if}
                       {#if settings.showXL}
