@@ -20,11 +20,6 @@
     "shinyChance": 0.01
   },
   {
-    "id": "hatch-blessing",
-    "name": "⚡ Hatch Blessing",
-    "hatchSpeedMultiplier": 0.25
-  },
-  {
     "id": "burst-blessing",
     "name": "🥚 Burst Blessing"
   },
@@ -32,5 +27,15 @@
     "id": "luck-boost",
     "name": "🍀 Luck Boost",
     "luckMultiplier": 0.5
+  },
+  {
+    "id": "hatch-blessing",
+    "name": "⚡ Hatch Blessing",
+    "hatchSpeedMultiplier": 0.25
+  },
+  {
+    "id": "infinity-blessing",
+    "name": "♾️ Infinity Blessing",
+    "infinityLuck": 0.01
   }
 ]
