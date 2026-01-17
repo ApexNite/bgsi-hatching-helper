@@ -372,11 +372,11 @@ function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
   }
 
   const isProvider =
-    source.potionLuckMultiplier !== 0 ||
-    source.potionHatchSpeedMultiplier !== 0 ||
+    source.potionLuckMultiplier !== 1 ||
+    source.potionHatchSpeedMultiplier !== 1 ||
     source.potionShinyChanceMultiplier !== 1 ||
     source.potionMythicChanceMultiplier !== 1 ||
-    source.potionXLChanceMultiplier !== 1 ||
+    source.potionXlChanceMultiplier !== 1 ||
     source.potionSecretLuckMultiplier !== 1 ||
     source.potionInfinityLuckMultiplier !== 1;
 
