@@ -1267,5 +1267,67 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "circus-jester-egg",
+    "name": "Circus Jester Egg",
+    "type": "special",
+    "event": "circus",
+    "pets": [
+      {
+        "id": "jester-doggy",
+        "name": "Magic Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "jester-kitty",
+        "name": "Magic Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "jester-bunny",
+        "name": "Jester Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "juggler",
+        "name": "Juggler",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "dark-trickster",
+        "name": "Dark Trickster",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "dark-force",
+        "name": "Dark Force",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "stellar-acheron",
+        "name": "Stellar Acheron",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "secret-circus-stack",
+        "name": "Secret Circus Stack",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "circus-monster",
+        "name": "Circus Monster",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      }
+    ]
   }
 ]
