@@ -237,11 +237,15 @@ function applySource(totals, source) {
   }
 
   if (typeof source.luckMultiplier === "number") {
-    totals.luckMultiplier += source.luckMultiplier;
+    for (let i = 0; i < times; i++) {
+      totals.luckMultiplier += source.luckMultiplier;
+    }
   }
 
   if (typeof source.hatchSpeedMultiplier === "number") {
-    totals.hatchSpeedMultiplier += source.hatchSpeedMultiplier;
+    for (let i = 0; i < times; i++) {
+      totals.hatchSpeedMultiplier += source.hatchSpeedMultiplier;
+    }
   }
 
   if (typeof source.shinyChanceMultiplier === "number") {
@@ -262,11 +266,15 @@ function applySource(totals, source) {
   }
 
   if (typeof source.secretLuckMultiplier === "number") {
-    totals.secretLuckMultiplier *= source.secretLuckMultiplier;
+    for (let i = 0; i < times; i++) {
+      totals.secretLuckMultiplier *= source.secretLuckMultiplier;
+    }
   }
 
   if (typeof source.infinityLuckMultiplier === "number") {
-    totals.infinityLuckMultiplier *= source.infinityLuckMultiplier;
+    for (let i = 0; i < times; i++) {
+      totals.infinityLuckMultiplier *= source.infinityLuckMultiplier;
+    }
   }
 
   if (typeof source.baseLuck === "number") {
