@@ -7,7 +7,7 @@
   {
     "id": "ultra-roller",
     "name": "🎲 Ultra Roller",
-    "luck": 0.20
+    "luck": 0.2
   },
   {
     "id": "secret-hunter",
@@ -18,5 +18,19 @@
     "id": "shiny-seeker",
     "name": "🌟 Shiny seeker",
     "shinyChance": 0.01
+  },
+  {
+    "id": "hatch-blessing",
+    "name": "⚡ Hatch Blessing",
+    "hatchSpeed": 0.25
+  },
+  {
+    "id": "burst-blessing",
+    "name": "🥚 Burst Blessing"
+  },
+  {
+    "id": "luck-boost",
+    "name": "🍀 Luck Boost",
+    "luck": 0.5
   }
 ]

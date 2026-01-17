@@ -42,6 +42,7 @@ export function calculateStats(sources, toggles, numbers) {
     baseMythicChance: 1 / 100,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
+    _burstBlessingLevel: getBurstBlessingLevel(sources),
   };
 
   const eventBonusMultipliers = collectEventBonusMultipliers(sources);
@@ -147,6 +148,11 @@ function calculateStatsFromTotals(totals) {
     (1 + (totals.shinyChance || 0)) *
     (totals.shinyChanceMultiplier || 1);
 
+  const luckBase =
+    (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1);
+
+  console.log(calculateAdjustedLuck(calculateAdjustedLuck(luckBase, totals._burstBlessingLevel || 0)))
+
   const getXlChanceForRarity = (rarity) => {
     const base =
       DEFAULT_XL_CHANCE_BY_RARITY[rarity] ?? DEFAULT_XL_CHANCE_BY_RARITY.common;
@@ -156,9 +162,7 @@ function calculateStatsFromTotals(totals) {
   };
 
   return {
-    luck:
-      (totals.baseLuck || 0) +
-      (totals.luck || 0) * (totals.luckMultiplier || 1),
+    luck: calculateAdjustedLuck(luckBase, totals._burstBlessingLevel || 0),
     secretLuck:
       (totals.baseSecretLuck || 0) +
       (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
@@ -307,6 +311,29 @@ function calculateSeasonPerks(stars) {
     luck: starsClamped / 600,
     hatchSpeed: starsClamped / 7500,
   };
+}
+
+function calculateAdjustedLuck(luck, burstBlessingLevel, interval = 1000) {
+  if (!luck || luck <= 0) {
+    return 0;
+  }
+
+  const level = Math.max(0, Number(burstBlessingLevel) || 0);
+  const burstEggMultiplier = level > 0 ? level * 10 : 1;
+
+  return luck * (((interval - 1) + burstEggMultiplier) / interval);
+}
+
+function getBurstBlessingLevel(sources) {
+  let totalLevel = 0;
+
+  for (const source of sources) {
+    if (source.id === "burst-blessing") {
+      totalLevel += source._value != null ? Number(source._value) : 1;
+    }
+  }
+
+  return totalLevel;
 }
 
 function calculateAdjustedShiny(shinyChance, interval = 75) {
