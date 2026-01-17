@@ -1063,6 +1063,24 @@
         "baseChance": 1e-9
       },
       {
+        "id": "cyber-pyramidium",
+        "name": "Cyber Pyramidium",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "rockstar-leviathan",
+        "name": "Rock Leviathan",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "futurewebsiteowner-plushie",
+        "name": "FutureWebsiteOwner Plushie",
+        "rarity": "secret",
+        "baseChance": 1e-11
+      },
+      {
         "id": "symphonic-hieromphant",
         "name": "Symphonic Hieromphant",
         "rarity": "infinity",
