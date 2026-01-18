@@ -31,7 +31,7 @@
   {
     "id": "hatch-blessing",
     "name": "⚡ Hatch Blessing",
-    "hatchSpeedMultiplier": 0.25
+    "hatchSpeed": 0.25
   },
   {
     "id": "infinity-blessing",
