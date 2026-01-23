@@ -26,12 +26,12 @@
   {
     "id": "luck-boost",
     "name": "🍀 Luck Boost",
-    "luckMultiplier": 0.5
+    "luckMultiplier": 1
   },
   {
     "id": "hatch-blessing",
     "name": "⚡ Hatch Blessing",
-    "baseHatchSpeed": 0.25
+    "baseHatchSpeed": 0.75
   },
   {
     "id": "infinity-blessing",
