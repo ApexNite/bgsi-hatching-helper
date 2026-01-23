@@ -342,7 +342,7 @@ function calculateSeasonPerks(stars) {
 
 function calculateAdjustedLuck(luck, burstBlessingLevel, interval = 1000) {
   if (!luck || luck <= 0) {
-    return 0;
+    return 1;
   }
 
   const level = Math.max(0, Number(burstBlessingLevel) || 0);
