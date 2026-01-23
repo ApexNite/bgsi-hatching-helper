@@ -1021,68 +1021,56 @@
     ]
   },
   {
-    "id": "instrumental-egg",
-    "name": "Instrumental Egg",
+    "id": "retro-egg",
+    "name": "Retro Egg",
     "type": "special",
     "riftable": true,
     "pets": [
       {
-        "id": "cliffy",
-        "name": "Cliffy",
+        "id": "retro-doggy",
+        "name": "Retro Doggy",
         "rarity": "common",
         "baseChance": 0.65
       },
       {
-        "id": "boxboi",
-        "name": "Boxboi",
+        "id": "retro-kitty",
+        "name": "Retro Kitty",
         "rarity": "rare",
         "baseChance": 0.3
       },
       {
-        "id": "key-performer",
-        "name": "Key Performer",
+        "id": "retro-dominus",
+        "name": "Retro Dominus",
         "rarity": "legendary",
         "baseChance": 0.00001
       },
       {
-        "id": "music-elemental",
-        "name": "Music Elemental",
+        "id": "retro-hexarium",
+        "name": "Retro Hexarium",
         "rarity": "legendary",
         "baseChance": 0.000001
       },
       {
-        "id": "giant-bongo-kitty",
-        "name": "Giant Bongo Kitty",
+        "id": "retro-pyramidium",
+        "name": "Retro Pyramidium",
         "rarity": "secret",
         "baseChance": 5e-9
       },
       {
-        "id": "encore",
-        "name": "Encore",
+        "id": "retro-kraken",
+        "name": "Retro Kraken",
         "rarity": "secret",
         "baseChance": 1e-9
       },
       {
-        "id": "cyber-pyramidium",
-        "name": "Cyber Pyramidium",
+        "id": "retro-face-god",
+        "name": "Retro Face God",
         "rarity": "secret",
         "baseChance": 1e-10
       },
       {
-        "id": "rockstar-leviathan",
-        "name": "Rock Leviathan",
-        "rarity": "secret",
-        "baseChance": 2e-11
-      },
-      {
-        "id": "futurewebsiteowner-plushie",
-        "name": "FutureWebsiteOwner Plushie",
-        "rarity": "secret",
-        "baseChance": 1e-11
-      },
-      {
-        "id": "symphonic-hieromphant",
-        "name": "Symphonic Hieromphant",
+        "id": "pc-bot",
+        "name": "PC-Bot",
         "rarity": "infinity",
         "baseChance": 5e-12
       }
