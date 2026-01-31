@@ -20,7 +20,6 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
-  let dismissedCircusWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -299,8 +298,6 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-        dismissedCircusWarning =
-          savedData.dismissedCircusWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
       }
     } catch (e) {
@@ -326,7 +323,6 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
-      dismissedCircusWarning,
       dismissedInfinityWarning,
     };
 
@@ -341,11 +337,6 @@
 
   function dismissManualWarning() {
     dismissedManualWarning = true;
-    saveToCache();
-  }
-
-  function dismissCircusWarning() {
-    dismissedCircusWarning = true;
     saveToCache();
   }
 
@@ -1201,20 +1192,7 @@
         onDismiss={dismissManualWarning}
       />
     {/if}
-    {#if calculationMode === "manual" && activeEvent === "circus" && !dismissedCircusWarning}
-      <WarningBanner
-        type="error"
-        title="Debug stats are inaccurate!"
-        items={[
-          {
-            label: "Circus Elixir",
-            description: "Not shown in debug stats",
-          },
-        ]}
-        recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissCircusWarning}
-      />
-    {/if}
+    
 
     {#if isInfinityEgg && !dismissedInfinityWarning}
       <WarningBanner

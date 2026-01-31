@@ -136,45 +136,5 @@
         "name": "None"
       }
     ]
-  },
-  {
-    "id": "circus-elixir",
-    "name": "Circus Elixir",
-    "img": "assets/images/potions/circus-elixir-iv",
-    "event": "circus",
-    "potions": [
-      {
-        "id": "circus-elixir-iv",
-        "name": "Circus Elixir IV",
-        "luck": 2.5,
-        "shinyChance": 1.75,
-        "mythicChance": 1.25
-      },
-      {
-        "id": "circus-elixir-iii",
-        "name": "Circus Elixir III",
-        "luck": 1.5,
-        "shinyChance": 1.5,
-        "mythicChance": 1
-      },
-      {
-        "id": "circus-elixir-ii",
-        "name": "Circus Elixir II",
-        "luck": 1,
-        "shinyChance": 1,
-        "mythicChance": 0.75
-      },
-      {
-        "id": "circus-elixir-i",
-        "name": "Circus Elixir I",
-        "luck": 0.5,
-        "shinyChance": 0.5,
-        "mythicChance": 0.25
-      },
-      {
-        "id": "none",
-        "name": "None"
-      }
-    ]
   }
 ]

@@ -14,13 +14,5 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
-  },
-  {
-    "id": "circus-infinity-elixir",
-    "name": "Circus Infinity Elixir",
-    "event": "circus",
-    "potionLuckMultiplier": 1.5,
-    "potionShinyChanceMultiplier": 1.5,
-    "potionMythicChanceMultiplier": 1.5
   }
 ]
