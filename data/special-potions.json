@@ -14,5 +14,21 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
+  },
+  {
+    "id": "hell-elixir-iv",
+    "name": "Hell Elixir IV",
+    "event": "hell",
+    "luck": 2.5,
+    "shinyChance": 1.75,
+    "mythicChance": 1.25
+  },
+  {
+    "id": "heaven-elixir-iv",
+    "name": "Heaven Elixir IV",
+    "event": "azure",
+    "luck": 2.5,
+    "shinyChance": 1.75,
+    "mythicChance": 1.25
   }
 ]

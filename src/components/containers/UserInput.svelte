@@ -20,6 +20,8 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
+  let dismissedHellWarning = false;
+  let dismissedAzureWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -51,6 +53,7 @@
   let worldIndexStates = {};
   let eventUpgradeValues = {};
   let eggRiftSelections = {};
+  let selectedShrineBuffId = "none";
 
   $: if ($isDataLoaded) {
     const defaultSelectedOptions = {
@@ -149,6 +152,8 @@
   );
   $: visibleMasteries = visibleByEvent($dataStore.masteries, activeEvent);
   $: visibleMilestones = visibleByEvent($dataStore.milestones, activeEvent);
+  $: visibleShrineBuffs = visibleByEvent($dataStore.shrineBuffs, activeEvent);
+  $: hasShrineBuffs = (visibleShrineBuffs || []).some((sb) => sb.id !== "none");
 
   $: selectedEggId = selectedEgg.id;
   $: selectedWorldId = selectedWorld.id;
@@ -184,6 +189,11 @@
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
+          ...(selectedShrineBuffId !== "none"
+            ? (visibleShrineBuffs || []).filter(
+                (sb) => sb.id === selectedShrineBuffId,
+              )
+            : []),
           ...(visiblePotions || [])
             .map((potionGroup) =>
               potionGroup.potions.find(
@@ -298,7 +308,10 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
+        dismissedHellWarning = savedData.dismissedHellWarning ?? false;
+        dismissedAzureWarning = savedData.dismissedAzureWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
+        selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -323,7 +336,10 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
+      dismissedHellWarning,
+      dismissedAzureWarning,
       dismissedInfinityWarning,
+      selectedShrineBuffId,
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -337,6 +353,16 @@
 
   function dismissManualWarning() {
     dismissedManualWarning = true;
+    saveToCache();
+  }
+
+  function dismissHellWarning() {
+    dismissedHellWarning = true;
+    saveToCache();
+  }
+
+  function dismissAzureWarning() {
+    dismissedAzureWarning = true;
     saveToCache();
   }
 
@@ -982,6 +1008,42 @@
           <div class="section-separator"></div>
         {/if}
 
+        {#if hasShrineBuffs}
+          <section class="menu-section">
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/lucky-egg"
+                    alt="Shrine Buff"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Shrine Buff:
+              </span>
+              <div class="menu-control">
+                <Dropdown
+                  id="shrine-buff"
+                  options={[
+                    ...visibleShrineBuffs.filter((sb) => sb.id !== "none"),
+                    ...visibleShrineBuffs.filter((sb) => sb.id === "none"),
+                  ]}
+                  selectedOption={visibleShrineBuffs.find(
+                    (sb) => sb.id === selectedShrineBuffId,
+                  ) || visibleShrineBuffs.find((sb) => sb.id === "none")}
+                  onSelect={({ option }) => {
+                    selectedShrineBuffId = option.id;
+                    saveToCache();
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+
+          <div class="section-separator"></div>
+        {/if}
+
         <!-- Enchants -->
         <section class="menu-section">
           {#each $dataStore.enchants || [] as enchant (enchant.id)}
@@ -1192,7 +1254,42 @@
         onDismiss={dismissManualWarning}
       />
     {/if}
-    
+    {#if calculationMode === "manual" && activeEvent === "hell" && !dismissedHellWarning}
+      <WarningBanner
+        type="error"
+        title="Debug stats are inaccurate!"
+        items={[
+          {
+            label: "Hell Elixir",
+            description: "Not shown in debug stats",
+          },
+          {
+            label: "Shrine Buff",
+            description: "Not shown in debug stats",
+          },
+        ]}
+        recommendation="Use Calculated mode for more accurate results"
+        onDismiss={dismissHellWarning}
+      />
+    {/if}
+    {#if calculationMode === "manual" && activeEvent === "azure" && !dismissedAzureWarning}
+      <WarningBanner
+        type="error"
+        title="Debug stats are inaccurate!"
+        items={[
+          {
+            label: "Heaven Elixir",
+            description: "Not shown in debug stats",
+          },
+          {
+            label: "Shrine Buff",
+            description: "Not shown in debug stats",
+          },
+        ]}
+        recommendation="Use Calculated mode for more accurate results"
+        onDismiss={dismissAzureWarning}
+      />
+    {/if}
 
     {#if isInfinityEgg && !dismissedInfinityWarning}
       <WarningBanner

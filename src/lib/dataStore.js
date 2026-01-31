@@ -11,6 +11,7 @@ import milestonesCompiled from "../../data/milestones.json";
 import potionsCompiled from "../../data/potions.json";
 import riftsCompiled from "../../data/rifts.json";
 import secretBountyCompiled from "../../data/secret-bounty.json";
+import shrineBuffsCompiled from "../../data/shrine-buffs.json";
 import specialPotionsCompiled from "../../data/special-potions.json";
 import upgradesCompiled from "../../data/upgrades.json";
 import worldsCompiled from "../../data/worlds.json";
@@ -246,6 +247,15 @@ const schemas = {
     egg: { type: "string", required: true },
     date: { type: "string", default: (item, parent, key) => String(key) },
   },
+  shrineBuff: {
+    extends: ["stats", "id", "img"],
+    event: { type: "string", default: "none" },
+    img: {
+      type: "string",
+      default: (item) => `assets/images/icons/lucky-egg`,
+      condition: (item) => item.id !== "none",
+    },
+  },
   world: {
     extends: ["id", "img"],
     imageDir: { type: "string", default: "worlds" },
@@ -267,6 +277,7 @@ export const dataStore = writable({
   potions: null,
   rifts: null,
   secretBounty: null,
+  shrineBuffs: null,
   specialPotions: null,
   worlds: null,
   dataHash: null,
@@ -295,6 +306,7 @@ function buildDataFromSources(sources) {
     potions: processData(sources.potions, "potionGroup"),
     rifts: processData(sources.rifts, ["stats", "id"]),
     secretBounty: processData(sources.secretBounty, "secretBountyData"),
+    shrineBuffs: processData(sources.shrineBuffs, "shrineBuff"),
     specialPotions: processData(sources.specialPotions, "potion"),
     worlds: processData(sources.worlds, "world"),
     dataHash: sources.dataHash,
@@ -314,6 +326,7 @@ const compiledSources = {
   potions: potionsCompiled,
   rifts: riftsCompiled,
   secretBounty: secretBountyCompiled,
+  shrineBuffs: shrineBuffsCompiled,
   specialPotions: specialPotionsCompiled,
   upgrades: upgradesCompiled,
   worlds: worldsCompiled,
@@ -349,6 +362,7 @@ export async function loadData() {
       potionsData,
       riftsData,
       secretBountyData,
+      shrineBuffsData,
       specialPotionsData,
       upgradesData,
       worldsData,
@@ -366,6 +380,7 @@ export async function loadData() {
       fetchJson("/assets/data/potions.json"),
       fetchJson("/assets/data/rifts.json"),
       fetchJson("/assets/data/secret-bounty.json"),
+      fetchJson("/assets/data/shrine-buffs.json"),
       fetchJson("/assets/data/special-potions.json"),
       fetchJson("/assets/data/upgrades.json"),
       fetchJson("/assets/data/worlds.json"),
@@ -385,6 +400,7 @@ export async function loadData() {
       potions: potionsData,
       rifts: riftsData,
       secretBounty: secretBountyData,
+      shrineBuffs: shrineBuffsData,
       specialPotions: specialPotionsData,
       upgrades: upgradesData,
       worlds: worldsData,
