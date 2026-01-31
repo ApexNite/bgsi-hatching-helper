@@ -1024,6 +1024,7 @@
     "id": "hellish-egg",
     "name": "Hellish Egg",
     "type": "special",
+    "includeInInfinity": ["the-overworld"],
     "event": "hell",
     "pets": [
       {
@@ -1080,6 +1081,7 @@
     "id": "azure-egg",
     "name": "Azure Egg",
     "type": "special",
+    "includeInInfinity": ["the-overworld"],
     "event": "azure",
     "pets": [
       {
