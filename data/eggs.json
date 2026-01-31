@@ -1021,62 +1021,6 @@
     ]
   },
   {
-    "id": "azure-egg",
-    "name": "Azure Egg",
-    "type": "special",
-    "event": "azure",
-    "pets": [
-      {
-        "id": "neon-angel",
-        "name": "Neon Angel",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "azure-judgement",
-        "name": "Azure Judgement",
-        "rarity": "rare",
-        "baseChance": 0.34
-      },
-      {
-        "id": "azure-angel",
-        "name": "Azure Angel",
-        "rarity": "legendary",
-        "baseChance": 0.0001
-      },
-      {
-        "id": "azure-hexarium",
-        "name": "Azure Hexarium",
-        "rarity": "legendary",
-        "baseChance": 0.00001
-      },
-      {
-        "id": "azure-gaze",
-        "name": "Azure Gaze",
-        "rarity": "legendary",
-        "baseChance": 1e-7
-      },
-      {
-        "id": "reincarnation",
-        "name": "Reincarnation",
-        "rarity": "secret",
-        "baseChance": 1.5e-10
-      },
-      {
-        "id": "supreme-seraphim",
-        "name": "Supreme Seraphim",
-        "rarity": "secret",
-        "baseChance": 4e-11
-      },
-      {
-        "id": "equipoise",
-        "name": "Equipoise",
-        "rarity": "infinity",
-        "baseChance": 1e-11
-      }
-    ]
-  },
-  {
     "id": "hellish-egg",
     "name": "Hellish Egg",
     "type": "special",
@@ -1121,6 +1065,62 @@
       {
         "id": "inferno-gem",
         "name": "Inferno Gem",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "equipoise",
+        "name": "Equipoise",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
+  },
+  {
+    "id": "azure-egg",
+    "name": "Azure Egg",
+    "type": "special",
+    "event": "azure",
+    "pets": [
+      {
+        "id": "neon-angel",
+        "name": "Neon Angel",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "azure-judgement",
+        "name": "Azure Judgement",
+        "rarity": "rare",
+        "baseChance": 0.34
+      },
+      {
+        "id": "azure-angel",
+        "name": "Azure Angel",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "azure-hexarium",
+        "name": "Azure Hexarium",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "azure-gaze",
+        "name": "Azure Gaze",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "reincarnation",
+        "name": "Reincarnation",
+        "rarity": "secret",
+        "baseChance": 1.5e-10
+      },
+      {
+        "id": "supreme-seraphim",
+        "name": "Supreme Seraphim",
         "rarity": "secret",
         "baseChance": 4e-11
       },
