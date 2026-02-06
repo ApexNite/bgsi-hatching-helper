@@ -46,7 +46,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatMultiplier(stats.infinityLuck)}</strong>
+    <strong>{formatMultiplier(stats.infinityLuck, 2)}</strong>
   </div>
   <div class="stat">
     <SmartImage
