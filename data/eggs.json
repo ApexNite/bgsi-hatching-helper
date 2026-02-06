@@ -1189,5 +1189,68 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "valentines-egg",
+    "name": "Valentine's Egg",
+    "type": "special",
+    "includeInInfinity": ["the-overworld"],
+    "event": "valentines",
+    "pets": [
+      {
+        "id": "letter-kitty",
+        "name": "Letter Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "lovely-doggy",
+        "name": "Lovely Doggy",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "lovely-ribbon",
+        "name": "Lovely Ribbon",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "love-birds",
+        "name": "Love Birds",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "chocolate-bond",
+        "name": "Chocolate Bond",
+        "rarity": "legendary",
+        "baseChance": 0.000015
+      },
+      {
+        "id": "chocolate-gift",
+        "name": "Chocolate Gift",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "pure-of-heart",
+        "name": "Pure of Heart",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "amour-archer",
+        "name": "Amour Archer",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "rose-koi",
+        "name": "Rose Koi",
+        "rarity": "infinity",
+        "baseChance": 1.8e-11
+      }
+    ]
   }
 ]
