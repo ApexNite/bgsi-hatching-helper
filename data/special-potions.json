@@ -46,5 +46,13 @@
     "luck": 1.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
+  },
+  {
+    "id": "valentines-elixir",
+    "name": "Valentine's Elixir",
+    "event": "valentines",
+    "luck": 2.5,
+    "shinyChance": 2,
+    "mythicChance": 2
   }
 ]
