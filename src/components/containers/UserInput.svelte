@@ -22,6 +22,7 @@
   let dismissedInfinityWarning = false;
   let dismissedHellWarning = false;
   let dismissedAzureWarning = false;
+  let dismissedValentinesWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -310,6 +311,7 @@
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedHellWarning = savedData.dismissedHellWarning ?? false;
         dismissedAzureWarning = savedData.dismissedAzureWarning ?? false;
+        dismissedValentinesWarning = savedData.dismissedAzureWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
       }
@@ -338,6 +340,7 @@
       dismissedManualWarning,
       dismissedHellWarning,
       dismissedAzureWarning,
+      dismissedValentinesWarning,
       dismissedInfinityWarning,
       selectedShrineBuffId,
     };
@@ -363,6 +366,11 @@
 
   function dismissAzureWarning() {
     dismissedAzureWarning = true;
+    saveToCache();
+  }
+
+  function dismissValentinesWarning() {
+    dismissedValentinesWarning = true;
     saveToCache();
   }
 
@@ -1285,6 +1293,20 @@
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissAzureWarning}
+      />
+    {/if}
+    {#if calculationMode === "manual" && activeEvent === "valentines" && !dismissedValentinesWarning}
+      <WarningBanner
+        type="error"
+        title="Debug stats are inaccurate!"
+        items={[
+          {
+            label: "Valentine's Elixir",
+            description: "Not shown in debug stats",
+          }
+        ]}
+        recommendation="Use Calculated mode for more accurate results"
+        onDismiss={dismissValentinesWarning}
       />
     {/if}
 
