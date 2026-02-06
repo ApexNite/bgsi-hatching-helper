@@ -398,6 +398,11 @@
     saveToCache();
   }
 
+  function handleShrineBuffSelect({ option }) {
+    selectedShrineBuffId = option.id;
+    saveToCache();
+  }
+
   function updateToggle(toggleData, toggleId) {
     const updated = { ...toggleData, [toggleId]: !toggleData[toggleId] };
 
@@ -1025,17 +1030,9 @@
               <div class="menu-control">
                 <Dropdown
                   id="shrine-buff"
-                  options={[
-                    ...visibleShrineBuffs.filter((sb) => sb.id !== "none"),
-                    ...visibleShrineBuffs.filter((sb) => sb.id === "none"),
-                  ]}
-                  selectedOption={visibleShrineBuffs.find(
-                    (sb) => sb.id === selectedShrineBuffId,
-                  ) || visibleShrineBuffs.find((sb) => sb.id === "none")}
-                  onSelect={({ option }) => {
-                    selectedShrineBuffId = option.id;
-                    saveToCache();
-                  }}
+                  options={visibleShrineBuffs || []}
+                  selectedOption={visibleShrineBuffs?.find((sb) => sb.id === selectedShrineBuffId)}
+                  onSelect={handleShrineBuffSelect}
                 />
               </div>
             </div>
