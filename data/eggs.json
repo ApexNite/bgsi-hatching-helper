@@ -1130,6 +1130,12 @@
         "name": "Equipoise",
         "rarity": "infinity",
         "baseChance": 1e-11
+      },
+      {
+        "id": "que-fofo-face-god",
+        "name": "QUE FOFO FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 1e-12
       }
     ]
   },
@@ -1187,6 +1193,12 @@
         "name": "Equipoise",
         "rarity": "infinity",
         "baseChance": 1e-11
+      },
+      {
+        "id": "que-fofo-face-god",
+        "name": "QUE FOFO FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 1e-12
       }
     ]
   },
@@ -1250,6 +1262,12 @@
         "name": "Rose Koi",
         "rarity": "infinity",
         "baseChance": 1.8e-11
+      },
+      {
+        "id": "que-fofo-face-god",
+        "name": "QUE FOFO FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 1e-12
       }
     ]
   }
