@@ -18,7 +18,8 @@
       },
       {
         "id": "epic",
-        "baseChance": 0.065
+        "baseChance": 0.065,
+        "ignoreLuck": true
       },
       {
         "id": "legendary",
@@ -30,7 +31,32 @@
         "ignoreSecret": true
       }
     ],
-    "raritiesByWorld": {}
+    "raritiesByWorld": {
+      "seven-seas": [
+        {
+          "id": "common",
+          "baseChance": 0.6
+        },
+        {
+          "id": "rare",
+          "baseChance": 0.13
+        },
+        {
+          "id": "epic",
+          "baseChance": 0.065,
+          "ignoreLuck": true
+        },
+        {
+          "id": "legendary",
+          "baseChance": 0.005
+        },
+        {
+          "id": "secret",
+          "baseChance": 2.5e-8,
+          "ignoreSecret": true
+        }
+      ]
+    }
   },
   {
     "id": "common-egg",
