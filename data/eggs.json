@@ -1231,7 +1231,7 @@
         "id": "love-birds",
         "name": "Love Birds",
         "rarity": "legendary",
-        "baseChance": 0.00001
+        "baseChance": 0.0001
       },
       {
         "id": "chocolate-bond",
