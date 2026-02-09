@@ -132,6 +132,12 @@
         "name": "Panda",
         "rarity": "epic",
         "baseChance": 0.05
+      },
+      {
+        "id": "que-fofo-face-god",
+        "name": "QUE FOFO FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 1e-12
       }
     ]
   },
