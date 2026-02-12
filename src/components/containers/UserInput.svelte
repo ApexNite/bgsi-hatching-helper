@@ -311,7 +311,7 @@
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedHellWarning = savedData.dismissedHellWarning ?? false;
         dismissedAzureWarning = savedData.dismissedAzureWarning ?? false;
-        dismissedValentinesWarning = savedData.dismissedAzureWarning ?? false;
+        dismissedValentinesWarning = savedData.dismissedValentinesWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
       }
