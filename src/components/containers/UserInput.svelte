@@ -20,8 +20,6 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
-  let dismissedHellWarning = false;
-  let dismissedAzureWarning = false;
   let dismissedValentinesWarning = false;
   let isUserInputReady = false;
 
@@ -309,8 +307,6 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-        dismissedHellWarning = savedData.dismissedHellWarning ?? false;
-        dismissedAzureWarning = savedData.dismissedAzureWarning ?? false;
         dismissedValentinesWarning = savedData.dismissedValentinesWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
@@ -338,8 +334,6 @@
       eventUpgradeValues,
       eggRiftSelections,
       dismissedManualWarning,
-      dismissedHellWarning,
-      dismissedAzureWarning,
       dismissedValentinesWarning,
       dismissedInfinityWarning,
       selectedShrineBuffId,
@@ -358,17 +352,7 @@
     dismissedManualWarning = true;
     saveToCache();
   }
-
-  function dismissHellWarning() {
-    dismissedHellWarning = true;
-    saveToCache();
-  }
-
-  function dismissAzureWarning() {
-    dismissedAzureWarning = true;
-    saveToCache();
-  }
-
+  
   function dismissValentinesWarning() {
     dismissedValentinesWarning = true;
     saveToCache();
@@ -1257,42 +1241,6 @@
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissManualWarning}
-      />
-    {/if}
-    {#if calculationMode === "manual" && activeEvent === "hell" && !dismissedHellWarning}
-      <WarningBanner
-        type="error"
-        title="Debug stats are inaccurate!"
-        items={[
-          {
-            label: "Hell Elixir",
-            description: "Not shown in debug stats",
-          },
-          {
-            label: "Shrine Buff",
-            description: "Not shown in debug stats",
-          },
-        ]}
-        recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissHellWarning}
-      />
-    {/if}
-    {#if calculationMode === "manual" && activeEvent === "azure" && !dismissedAzureWarning}
-      <WarningBanner
-        type="error"
-        title="Debug stats are inaccurate!"
-        items={[
-          {
-            label: "Heaven Elixir",
-            description: "Not shown in debug stats",
-          },
-          {
-            label: "Shrine Buff",
-            description: "Not shown in debug stats",
-          },
-        ]}
-        recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissAzureWarning}
       />
     {/if}
     {#if calculationMode === "manual" && activeEvent === "valentines" && !dismissedValentinesWarning}

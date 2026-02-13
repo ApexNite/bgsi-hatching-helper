@@ -16,38 +16,6 @@
     "overwriteMythicChanceMultiplier": true
   },
   {
-    "id": "hell-elixir-iv",
-    "name": "Hell Elixir IV",
-    "event": "hell",
-    "luck": 2.5,
-    "shinyChance": 1.75,
-    "mythicChance": 1.25
-  },
-  {
-    "id": "heaven-elixir-iv",
-    "name": "Heaven Elixir IV",
-    "event": "azure",
-    "luck": 2.5,
-    "shinyChance": 1.75,
-    "mythicChance": 1.25
-  },
-  {
-    "id": "azure-duality-elixir",
-    "name": "Duality Elixir",
-    "event": "azure",
-    "luck": 1.5,
-    "shinyChance": 1.5,
-    "mythicChance": 1.5
-  },
-  {
-    "id": "hell-duality-elixir",
-    "name": "Duality Elixir",
-    "event": "hell",
-    "luck": 1.5,
-    "shinyChance": 1.5,
-    "mythicChance": 1.5
-  },
-  {
     "id": "valentines-elixir",
     "name": "Valentine's Elixir",
     "event": "valentines",
