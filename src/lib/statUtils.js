@@ -340,7 +340,7 @@ function calculateSeasonPerks(stars) {
   };
 }
 
-function calculateAdjustedLuck(luck, burstBlessingLevel, interval = 250) {
+function calculateAdjustedLuck(luck, burstBlessingLevel, interval = 100) {
   if (!luck || luck <= 0) {
     return 1;
   }
