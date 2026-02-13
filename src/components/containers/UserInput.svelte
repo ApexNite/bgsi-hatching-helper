@@ -21,6 +21,7 @@
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
   let dismissedValentinesWarning = false;
+  let dismissedHeartbrokenWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -326,6 +327,8 @@
         dismissedValentinesWarning =
           savedData.dismissedValentinesWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
+        dismissedHeartbrokenWarning =
+          savedData.dismissedHeartbrokenWarning ?? false;
         selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
       }
     } catch (e) {
@@ -353,6 +356,7 @@
       eggRiftSelections,
       dismissedManualWarning,
       dismissedValentinesWarning,
+      dismissedHeartbrokenWarning,
       dismissedInfinityWarning,
       selectedShrineBuffId,
     };
@@ -373,6 +377,11 @@
 
   function dismissValentinesWarning() {
     dismissedValentinesWarning = true;
+    saveToCache();
+  }
+
+  function dismissHeartbrokenWarning() {
+    dismissedHeartbrokenWarning = true;
     saveToCache();
   }
 
@@ -1310,6 +1319,21 @@
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissValentinesWarning}
+      />
+    {/if}
+
+    {#if calculationMode === "manual" && activeEvent === "heartbroken" && !dismissedHeartbrokenWarning}
+      <WarningBanner
+        type="error"
+        title="Debug stats are inaccurate!"
+        items={[
+          {
+            label: "Heartbroken Elixir",
+            description: "Not shown in debug stats",
+          },
+        ]}
+        recommendation="Use Calculated mode for more accurate results"
+        onDismiss={dismissHeartbrokenWarning}
       />
     {/if}
 
