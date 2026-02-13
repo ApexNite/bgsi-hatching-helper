@@ -1,5 +1,75 @@
 [
   {
+    "id": "valentines-2.5x-luck",
+    "name": "+2.5x Luck",
+    "event": "valentines",
+    "img": "assets/images/icons/lucky-egg",
+    "luckMultiplier": 2.5
+  },
+  {
+    "id": "valentines-1.5x-shiny-luck",
+    "name": "+1.5x Shiny",
+    "event": "valentines",
+    "img": "assets/images/icons/shiny",
+    "shinyChanceMultiplier": 1.5
+  },
+  {
+    "id": "valentines-1.5x-mythic-luck",
+    "name": "+1.5x Mythic",
+    "event": "valentines",
+    "img": "assets/images/icons/mythic",
+    "mythicChanceMultiplier": 1.5
+  },
+  {
+    "id": "valentines-1.2x-secret-luck",
+    "name": "+1.2x Secret",
+    "event": "valentines",
+    "img": "assets/images/icons/secret-pet-luck",
+    "secretLuckMultiplier": 1.2
+  },
+  {
+    "id": "valentines-1.1x-infinity-luck",
+    "name": "+1.1x Infinity",
+    "event": "valentines",
+    "img": "assets/images/icons/infinity-luck",
+    "infinityLuckMultiplier": 1.1
+  },
+  {
+    "id": "heartbreak-2.5x-luck",
+    "name": "+2.5x Luck",
+    "event": "heartbreak",
+    "img": "assets/images/icons/lucky-egg",
+    "luckMultiplier": 2.5
+  },
+  {
+    "id": "heartbreak-1.5x-shiny-luck",
+    "name": "+1.5x Shiny",
+    "event": "heartbreak",
+    "img": "assets/images/icons/shiny",
+    "shinyChanceMultiplier": 1.5
+  },
+  {
+    "id": "heartbreak-1.5x-mythic-luck",
+    "name": "+1.5x Mythic",
+    "event": "heartbreak",
+    "img": "assets/images/icons/mythic",
+    "mythicChanceMultiplier": 1.5
+  },
+  {
+    "id": "heartbreak-1.2x-secret-luck",
+    "name": "+1.2x Secret",
+    "event": "heartbreak",
+    "img": "assets/images/icons/secret-pet-luck",
+    "secretLuckMultiplier": 1.2
+  },
+  {
+    "id": "heartbreak-1.1x-infinity-luck",
+    "name": "+1.1x Infinity",
+    "event": "heartbreak",
+    "img": "assets/images/icons/infinity-luck",
+    "infinityLuckMultiplier": 1.1
+  },
+  {
     "id": "none",
     "name": "None"
   }
