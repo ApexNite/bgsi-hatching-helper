@@ -1053,6 +1053,62 @@
     ]
   },
   {
+    "id": "super-egg",
+    "name": "Super Egg",
+    "type": "special",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "super-doggy",
+        "name": "Super Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "super-kitty",
+        "name": "Super Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "super-unicorn",
+        "name": "Super Unicorn",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "super-crescent-empress",
+        "name": "Super Crescent Empress",
+        "rarity": "legendary",
+        "baseChance": 0.000001
+      },
+      {
+        "id": "the-superlord",
+        "name": "The Superlord",
+        "rarity": "secret",
+        "baseChance": 5e-9
+      },
+      {
+        "id": "super-big-round",
+        "name": "Super Big Round",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "super-radiant-one",
+        "name": "Super Radiant One",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "super-leviathan",
+        "name": "Super Leviathan",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      }
+    ]
+  },
+  {
     "id": "valentines-egg",
     "name": "Valentine's Egg",
     "type": "special",
