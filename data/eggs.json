@@ -1176,5 +1176,68 @@
         "baseChance": 1e-12
       }
     ]
+  },
+  {
+    "id": "heartbreak-egg",
+    "name": "Heartbreak Egg",
+    "type": "special",
+    "includeInInfinity": ["the-overworld"],
+    "event": "heartbreak",
+    "pets": [
+      {
+        "id": "broken-unicorn",
+        "name": "Broken Unicorn",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "broken-heart",
+        "name": "Broken Heart",
+        "rarity": "rare",
+        "baseChance": 0.34
+      },
+      {
+        "id": "love-soul",
+        "name": "Love Soul",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "lovely-marshmallow",
+        "name": "Lovely Marshmallow",
+        "rarity": "legendary",
+        "baseChance": 0.000015
+      },
+      {
+        "id": "darkness-rose",
+        "name": "Darkness Rose",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "lonely-rose",
+        "name": "Lonely Rose",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "queen-of-thorns",
+        "name": "Queen of Thorns",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "the-love-thief",
+        "name": "The Love Thief",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      },
+      {
+        "id": "que-fofo-face-god",
+        "name": "QUE FOFO FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 1e-12
+      }
+    ]
   }
 ]
