@@ -1053,62 +1053,6 @@
     ]
   },
   {
-    "id": "retro-egg",
-    "name": "Retro Egg",
-    "type": "special",
-    "riftable": true,
-    "pets": [
-      {
-        "id": "retro-doggy",
-        "name": "Retro Doggy",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "retro-kitty",
-        "name": "Retro Kitty",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "retro-dominus",
-        "name": "Retro Dominus",
-        "rarity": "legendary",
-        "baseChance": 0.00001
-      },
-      {
-        "id": "retro-hexarium",
-        "name": "Retro Hexarium",
-        "rarity": "legendary",
-        "baseChance": 0.000001
-      },
-      {
-        "id": "retro-pyramidium",
-        "name": "Retro Pyramidium",
-        "rarity": "secret",
-        "baseChance": 5e-9
-      },
-      {
-        "id": "retro-kraken",
-        "name": "Retro Kraken",
-        "rarity": "secret",
-        "baseChance": 1e-9
-      },
-      {
-        "id": "retro-face-god",
-        "name": "Retro Face God",
-        "rarity": "secret",
-        "baseChance": 1e-10
-      },
-      {
-        "id": "pc-bot",
-        "name": "PC-Bot",
-        "rarity": "infinity",
-        "baseChance": 5e-12
-      }
-    ]
-  },
-  {
     "id": "valentines-egg",
     "name": "Valentine's Egg",
     "type": "special",
