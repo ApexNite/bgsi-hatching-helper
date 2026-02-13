@@ -854,7 +854,7 @@
         "id": "lovely-lotus",
         "name": "Lovely Lotus",
         "rarity": "legendary",
-        "baseChance": 0.000001
+        "baseChance": 5e-7
       },
       {
         "id": "earth-champion",
