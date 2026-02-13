@@ -4,6 +4,7 @@ import eggsCompiled from "../../data/eggs.json";
 import enchantsCompiled from "../../data/enchants.json";
 import environmentBuffsCompiled from "../../data/environment-buffs.json";
 import eventsCompiled from "../../data/events.json";
+import fragmentsCompiled from "../../data/fragments.json";
 import gamepassesCompiled from "../../data/gamepasses.json";
 import indexCompiled from "../../data/index.json";
 import masteriesCompiled from "../../data/masteries.json";
@@ -131,6 +132,10 @@ const schemas = {
   event: {
     extends: ["stats", "id", "img"],
     imageDir: { type: "string", default: "icons" },
+  },
+  fragment: {
+    extends: ["stats", "id", "img"],
+    imageDir: { type: "string", default: "fragments" },
   },
   upgrade: {
     extends: ["id", "img"],
@@ -269,6 +274,7 @@ export const dataStore = writable({
   enchants: null,
   environmentBuffs: null,
   events: null,
+  fragments: null,
   upgrades: null,
   gamepasses: null,
   index: null,
@@ -298,6 +304,7 @@ function buildDataFromSources(sources) {
     enchants: processData(sources.enchants, ["stats", "id"]),
     environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
     events: processData(sources.events, "event"),
+    fragments: processData(sources.fragments, "fragment"),
     upgrades: processData(sources.upgrades, "upgrade"),
     gamepasses: processData(sources.gamepasses, "gamepass"),
     index: processData(sources.index, "indexData"),
@@ -319,6 +326,7 @@ const compiledSources = {
   enchants: enchantsCompiled,
   environmentBuffs: environmentBuffsCompiled,
   events: eventsCompiled,
+  fragments: fragmentsCompiled,
   gamepasses: gamepassesCompiled,
   index: indexCompiled,
   masteries: masteriesCompiled,
@@ -355,6 +363,7 @@ export async function loadData() {
       enchantsData,
       environmentBuffsData,
       eventsData,
+      fragmentsData,
       gamepassesData,
       indexData,
       masteriesData,
@@ -373,6 +382,7 @@ export async function loadData() {
       fetchJson("/assets/data/enchants.json"),
       fetchJson("/assets/data/environment-buffs.json"),
       fetchJson("/assets/data/events.json"),
+      fetchJson("/assets/data/fragments.json"),
       fetchJson("/assets/data/gamepasses.json"),
       fetchJson("/assets/data/index.json"),
       fetchJson("/assets/data/masteries.json"),
@@ -393,6 +403,7 @@ export async function loadData() {
       enchants: enchantsData,
       environmentBuffs: environmentBuffsData,
       events: eventsData,
+      fragments: fragmentsData,
       gamepasses: gamepassesData,
       index: indexData,
       masteries: masteriesData,

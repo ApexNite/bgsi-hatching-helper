@@ -1,0 +1,22 @@
+[
+  {
+    "id": "green-fragment",
+    "name": "Green Fragment",
+    "luck": 0.04
+  },
+  {
+    "id": "blue-fragment",
+    "name": "Blue Fragment",
+    "hatchSpeed": 0.0075
+  },
+  {
+    "id": "purple-fragment",
+    "name": "Purple Fragment",
+    "secretLuck": 0.0005
+  },
+  {
+    "id": "rainbow-fragment",
+    "name": "Rainbow Fragment",
+    "infinityLuck": 0.0001
+  }
+]

@@ -48,6 +48,12 @@ export function calculateStats(sources, toggles, numbers) {
     _burstBlessingLevel: getBurstBlessingLevel(sources),
   };
 
+  let fragmentFlag =
+    sources.some((s) => s.id === "green-fragment") &&
+    sources.some((s) => s.id === "blue-fragment") &&
+    sources.some((s) => s.id === "purple-fragment") &&
+    sources.some((s) => s.id === "rainbow-fragment");
+
   const eventBonusMultipliers = collectEventBonusMultipliers(sources);
 
   for (const source of sources) {
@@ -56,6 +62,10 @@ export function calculateStats(sources, toggles, numbers) {
       eventBonusMultipliers,
     );
     applySource(totals, adjusted);
+
+    if (source.id.includes("fragment") && source._value !== 250) {
+      fragmentFlag = false;
+    }
   }
 
   applySource(totals, calculateBubbleBlessing(numbers.shrineBlessing));
@@ -100,6 +110,12 @@ export function calculateStats(sources, toggles, numbers) {
 
   if (selectedPerks) {
     applySource(totals, selectedPerks);
+  }
+
+  if (fragmentFlag) {
+    applySource(totals, {
+      luckMultiplier: 1.25,
+    });
   }
 
   const stats = calculateStatsFromTotals(totals);

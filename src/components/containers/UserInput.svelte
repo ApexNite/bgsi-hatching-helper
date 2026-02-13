@@ -29,6 +29,7 @@
   let gamepassToggles = {};
   let eventToggles = {};
   let enchantValues = {};
+  let fragmentValues = {};
   let toggleValues = {
     dailyPerks: false,
   };
@@ -111,6 +112,14 @@
         ($dataStore.enchants || []).map((e) => [
           e.id,
           enchantValues[e.id] ?? 0,
+        ]),
+      ),
+    };
+    fragmentValues = {
+      ...Object.fromEntries(
+        ($dataStore.fragments || []).map((e) => [
+          e.id,
+          fragmentValues[e.id] ?? 0,
         ]),
       ),
     };
@@ -228,6 +237,12 @@
               _value: Number(enchantValues[enchant.id]),
             }))
             .filter((e) => e._value > 0),
+          ...($dataStore.fragments || [])
+            .map((fragment) => ({
+              ...fragment,
+              _value: Number(fragmentValues[fragment.id]),
+            }))
+            .filter((e) => e._value > 0),
           ...(activeEvent ? $dataStore.upgrades || [] : [])
             .filter((upgrade) => upgrade.event === activeEvent)
             .map((upgrade) => {
@@ -291,6 +306,7 @@
         };
         eventToggles = { ...eventToggles, ...savedData.eventToggles };
         enchantValues = { ...enchantValues, ...savedData.enchantValues };
+        fragmentValues = { ...fragmentValues, ...savedData.fragmentValues };
         toggleValues = { ...toggleValues, ...savedData.toggleValues };
         numericValues = { ...numericValues, ...savedData.numericValues };
         manualStats = { ...manualStats, ...savedData.manualStats };
@@ -307,7 +323,8 @@
           ...savedData.eggRiftSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-        dismissedValentinesWarning = savedData.dismissedValentinesWarning ?? false;
+        dismissedValentinesWarning =
+          savedData.dismissedValentinesWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
       }
@@ -327,6 +344,7 @@
       gamepassToggles,
       eventToggles,
       enchantValues,
+      fragmentValues,
       toggleValues,
       numericValues,
       manualStats,
@@ -352,7 +370,7 @@
     dismissedManualWarning = true;
     saveToCache();
   }
-  
+
   function dismissValentinesWarning() {
     dismissedValentinesWarning = true;
     saveToCache();
@@ -420,6 +438,8 @@
       numericValues = updated;
     } else if (numericData === enchantValues) {
       enchantValues = updated;
+    } else if (numericData === fragmentValues) {
+      fragmentValues = updated;
     } else if (numericData === eventUpgradeValues) {
       eventUpgradeValues = updated;
     } else if (numericData === manualStats) {
@@ -1023,7 +1043,9 @@
                 <Dropdown
                   id="shrine-buff"
                   options={visibleShrineBuffs || []}
-                  selectedOption={visibleShrineBuffs?.find((sb) => sb.id === selectedShrineBuffId)}
+                  selectedOption={visibleShrineBuffs?.find(
+                    (sb) => sb.id === selectedShrineBuffId,
+                  )}
                   onSelect={handleShrineBuffSelect}
                 />
               </div>
@@ -1045,6 +1067,39 @@
                   onInput={({ value }) =>
                     updateNumericValue(enchantValues, enchant.id, value)}
                   hoverText="Amount of pets equiped with the {enchant.name} enchant"
+                />
+              </div>
+            </div>
+          {/each}
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- Fragments -->
+        <section class="menu-section">
+          {#each $dataStore.fragments || [] as fragment (fragment.id)}
+            <div class="menu-row">
+              <span class="menu-label">
+                {#if fragment.img}
+                  <span class="menu-img">
+                    <SmartImage
+                      base={fragment.img}
+                      alt={fragment.name}
+                      size="32px"
+                      decoding="async"
+                    />
+                  </span>
+                {/if}
+                {fragment.name}s:
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id={fragment.id}
+                  maxValue={250}
+                  value={fragmentValues[fragment.id]}
+                  onInput={({ value }) =>
+                    updateNumericValue(fragmentValues, fragment.id, value)}
+                  hoverText="Amount of {fragment.name}'s consumed"
                 />
               </div>
             </div>
@@ -1251,7 +1306,7 @@
           {
             label: "Valentine's Elixir",
             description: "Not shown in debug stats",
-          }
+          },
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissValentinesWarning}
