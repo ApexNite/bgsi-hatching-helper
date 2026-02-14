@@ -1322,13 +1322,13 @@
       />
     {/if}
 
-    {#if calculationMode === "manual" && activeEvent === "heartbroken" && !dismissedHeartbrokenWarning}
+    {#if calculationMode === "manual" && activeEvent === "heartbreak" && !dismissedHeartbrokenWarning}
       <WarningBanner
         type="error"
         title="Debug stats are inaccurate!"
         items={[
           {
-            label: "Heartbroken Elixir",
+            label: "Heartbreak Elixir",
             description: "Not shown in debug stats",
           },
         ]}
