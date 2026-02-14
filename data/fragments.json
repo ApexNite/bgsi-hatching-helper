@@ -12,11 +12,11 @@
   {
     "id": "purple-fragment",
     "name": "Purple Fragment",
-    "secretLuck": 0.0005
+    "secretLuck": 0.0008
   },
   {
     "id": "rainbow-fragment",
     "name": "Rainbow Fragment",
-    "infinityLuck": 0.0001
+    "infinityLuck": 0.0004
   }
 ]
