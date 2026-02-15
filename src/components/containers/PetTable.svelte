@@ -5,7 +5,7 @@
     calculateMeanHatchTime,
     calculateHatchTime,
     insertAggregateRows,
-    isSuperLegendaryEligible
+    isSuperLegendaryEligible,
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -145,7 +145,7 @@
       ? insertAggregateRows(basePets, {
           anyLegendary: settings.showAnyLegendary,
           anySecretInfinity: settings.showAnySecretInfinity,
-          superLegendaryOnly: settings.showSuperLegendary
+          superLegendaryOnly: settings.showSuperLegendary,
         })
       : [];
 
@@ -176,8 +176,11 @@
       return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5);
     }
 
-    if (settings.timesDisplayMode === "90%") {
-      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9);
+    if (settings.timesDisplayMode === "range") {
+      return [
+        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5),
+        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9),
+      ];
     }
 
     return calculateMeanHatchTime(value, stats.hatchSpeed, eggsPerHatch);
@@ -475,12 +478,12 @@
         <label class="row">
           <Radio
             name="timesMode"
-            value="90%"
-            checked={settings.timesDisplayMode === "90%"}
-            onChange={() => setTimesDisplayMode("90%")}
+            value="range"
+            checked={settings.timesDisplayMode === "range"}
+            onChange={() => setTimesDisplayMode("range")}
             size="sm"
           />
-          <span>90% Chance</span>
+          <span>Range</span>
         </label>
       </div>
 

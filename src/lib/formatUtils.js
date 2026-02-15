@@ -4,51 +4,14 @@ const SECONDS_PER_DAY = 86400;
 const DAYS_PER_YEAR = 365.25;
 const SECONDS_PER_YEAR = SECONDS_PER_DAY * DAYS_PER_YEAR;
 
-export function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) {
-    return "∞";
+export function formatTime(time) {
+  if (!Array.isArray(time)) {
+    return formatSeconds(time);
   }
 
-  if (seconds < 0) {
-    seconds = 0;
-  }
+  let [lowerSeconds, upperSeconds] = time;
 
-  if (seconds < SECONDS_PER_MINUTE) {
-    return `${seconds.toFixed(1)}s`;
-  }
-
-  const minutes = Math.floor(seconds / SECONDS_PER_MINUTE);
-  const hours = Math.floor(seconds / SECONDS_PER_HOUR);
-  const days = Math.floor(seconds / SECONDS_PER_DAY);
-  const years = Math.floor(seconds / SECONDS_PER_YEAR);
-
-  if (years >= 1) {
-    const remainingDays = Math.floor(
-      (seconds - years * SECONDS_PER_YEAR) / SECONDS_PER_DAY,
-    );
-    return remainingDays > 0 ? `${years}y ${remainingDays}d` : `${years}y`;
-  }
-
-  if (days >= 1) {
-    const remainingHours = Math.floor(
-      (seconds - days * SECONDS_PER_DAY) / SECONDS_PER_HOUR,
-    );
-    return remainingHours > 0 ? `${days}d ${remainingHours}h` : `${days}d`;
-  }
-
-  if (hours >= 1) {
-    const remainingMinutes = Math.floor(
-      (seconds - hours * SECONDS_PER_HOUR) / SECONDS_PER_MINUTE,
-    );
-    return remainingMinutes > 0
-      ? `${hours}h ${remainingMinutes}m`
-      : `${hours}h`;
-  }
-
-  const remainingSeconds = Math.floor(seconds - minutes * SECONDS_PER_MINUTE);
-  return remainingSeconds > 0
-    ? `${minutes}m ${remainingSeconds}s`
-    : `${minutes}m`;
+  return `${formatSeconds(lowerSeconds)} - ${formatSeconds(upperSeconds)}`;
 }
 
 export function formatChance(chance) {
@@ -159,4 +122,51 @@ export function formatString(text, maxLength = 18) {
 
   result += currentLine;
   return result;
+}
+
+function formatSeconds(seconds) {
+  if (!Number.isFinite(seconds)) {
+    return "∞";
+  }
+
+  if (seconds < 0) {
+    seconds = 0;
+  }
+
+  if (seconds < SECONDS_PER_MINUTE) {
+    return `${seconds.toFixed(1)}s`;
+  }
+
+  const minutes = Math.floor(seconds / SECONDS_PER_MINUTE);
+  const hours = Math.floor(seconds / SECONDS_PER_HOUR);
+  const days = Math.floor(seconds / SECONDS_PER_DAY);
+  const years = Math.floor(seconds / SECONDS_PER_YEAR);
+
+  if (years >= 1) {
+    const remainingDays = Math.floor(
+      (seconds - years * SECONDS_PER_YEAR) / SECONDS_PER_DAY,
+    );
+    return remainingDays > 0 ? `${years}y ${remainingDays}d` : `${years}y`;
+  }
+
+  if (days >= 1) {
+    const remainingHours = Math.floor(
+      (seconds - days * SECONDS_PER_DAY) / SECONDS_PER_HOUR,
+    );
+    return remainingHours > 0 ? `${days}d ${remainingHours}h` : `${days}d`;
+  }
+
+  if (hours >= 1) {
+    const remainingMinutes = Math.floor(
+      (seconds - hours * SECONDS_PER_HOUR) / SECONDS_PER_MINUTE,
+    );
+    return remainingMinutes > 0
+      ? `${hours}h ${remainingMinutes}m`
+      : `${hours}h`;
+  }
+
+  const remainingSeconds = Math.floor(seconds - minutes * SECONDS_PER_MINUTE);
+  return remainingSeconds > 0
+    ? `${minutes}m ${remainingSeconds}s`
+    : `${minutes}m`;
 }
