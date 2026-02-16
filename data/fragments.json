@@ -2,7 +2,7 @@
   {
     "id": "green-fragment",
     "name": "Green Fragment",
-    "luck": 0.05
+    "luckMultiplier": 0.05
   },
   {
     "id": "blue-fragment",
