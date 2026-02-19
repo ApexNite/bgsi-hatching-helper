@@ -54,7 +54,7 @@
   let worldIndexStates = {};
   let eventUpgradeValues = {};
   let eggRiftSelections = {};
-  let selectedShrineBuffId = "none";
+  let shrineBuffSelections = {};
 
   $: if ($isDataLoaded) {
     const defaultSelectedOptions = {
@@ -164,10 +164,12 @@
   $: visibleShrineBuffs = visibleByEvent($dataStore.shrineBuffs, activeEvent);
   $: hasShrineBuffs = (visibleShrineBuffs || []).some((sb) => sb.id !== "none");
 
+  $: selectedShrineBuffId = shrineBuffSelections[activeEvent] ?? "none";
+  
   $: selectedEggId = selectedEgg.id;
   $: selectedWorldId = selectedWorld.id;
   $: selectedEventId = activeEvent;
-
+  
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
       ? worldIndexStates[selectedEgg.world] || {
@@ -323,13 +325,16 @@
           ...eggRiftSelections,
           ...savedData.eggRiftSelections,
         };
+        shrineBuffSelections = {
+          ...shrineBuffSelections,
+          ...savedData.shrineBuffSelections,
+        };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedValentinesWarning =
           savedData.dismissedValentinesWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         dismissedHeartbrokenWarning =
           savedData.dismissedHeartbrokenWarning ?? false;
-        selectedShrineBuffId = savedData.selectedShrineBuffId || "none";
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -354,11 +359,11 @@
       worldIndexStates,
       eventUpgradeValues,
       eggRiftSelections,
+      shrineBuffSelections,
       dismissedManualWarning,
       dismissedValentinesWarning,
       dismissedHeartbrokenWarning,
       dismissedInfinityWarning,
-      selectedShrineBuffId,
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -403,24 +408,24 @@
         rifts:
           eggRiftSelections[option.id] || ($dataStore.rifts?.[0]?.id ?? null),
       };
-    } else {
-      selectedOptions = { ...selectedOptions, [id]: option.id };
+    } else if (id === "shrine-buff") {
+      shrineBuffSelections = {
+        ...shrineBuffSelections,
+        [activeEvent]: option.id,
+      };
+     } else {
+       selectedOptions = { ...selectedOptions, [id]: option.id };
 
-      if (id === "rifts") {
-        eggRiftSelections = {
-          ...eggRiftSelections,
-          [selectedOptions.eggs]: option.id,
-        };
-      }
-    }
+       if (id === "rifts") {
+         eggRiftSelections = {
+           ...eggRiftSelections,
+           [selectedOptions.eggs]: option.id,
+         };
+       }
+     }
 
-    saveToCache();
-  }
-
-  function handleShrineBuffSelect({ option }) {
-    selectedShrineBuffId = option.id;
-    saveToCache();
-  }
+     saveToCache();
+   }
 
   function updateToggle(toggleData, toggleId) {
     const updated = { ...toggleData, [toggleId]: !toggleData[toggleId] };
@@ -1052,10 +1057,12 @@
                 <Dropdown
                   id="shrine-buff"
                   options={visibleShrineBuffs || []}
-                  selectedOption={visibleShrineBuffs?.find(
-                    (sb) => sb.id === selectedShrineBuffId,
-                  )}
-                  onSelect={handleShrineBuffSelect}
+                  selectedOption={
+                    (visibleShrineBuffs || []).find(
+                      (sb) => sb.id === selectedShrineBuffId,
+                    ) || (visibleShrineBuffs || [])[0]
+                  }
+                  onSelect={handleSelect}
                 />
               </div>
             </div>
