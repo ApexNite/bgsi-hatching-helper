@@ -20,8 +20,6 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
-  let dismissedValentinesWarning = false;
-  let dismissedHeartbrokenWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -330,11 +328,7 @@
           ...savedData.shrineBuffSelections,
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
-        dismissedValentinesWarning =
-          savedData.dismissedValentinesWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
-        dismissedHeartbrokenWarning =
-          savedData.dismissedHeartbrokenWarning ?? false;
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -361,8 +355,6 @@
       eggRiftSelections,
       shrineBuffSelections,
       dismissedManualWarning,
-      dismissedValentinesWarning,
-      dismissedHeartbrokenWarning,
       dismissedInfinityWarning,
     };
 
@@ -379,17 +371,7 @@
     dismissedManualWarning = true;
     saveToCache();
   }
-
-  function dismissValentinesWarning() {
-    dismissedValentinesWarning = true;
-    saveToCache();
-  }
-
-  function dismissHeartbrokenWarning() {
-    dismissedHeartbrokenWarning = true;
-    saveToCache();
-  }
-
+  
   function dismissInfinityWarning() {
     dismissedInfinityWarning = true;
     saveToCache();
@@ -1312,35 +1294,6 @@
         ]}
         recommendation="Use Calculated mode for more accurate results"
         onDismiss={dismissManualWarning}
-      />
-    {/if}
-    {#if calculationMode === "manual" && activeEvent === "valentines" && !dismissedValentinesWarning}
-      <WarningBanner
-        type="error"
-        title="Debug stats are inaccurate!"
-        items={[
-          {
-            label: "Valentine's Elixir",
-            description: "Not shown in debug stats",
-          },
-        ]}
-        recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissValentinesWarning}
-      />
-    {/if}
-
-    {#if calculationMode === "manual" && activeEvent === "heartbreak" && !dismissedHeartbrokenWarning}
-      <WarningBanner
-        type="error"
-        title="Debug stats are inaccurate!"
-        items={[
-          {
-            label: "Heartbreak Elixir",
-            description: "Not shown in debug stats",
-          },
-        ]}
-        recommendation="Use Calculated mode for more accurate results"
-        onDismiss={dismissHeartbrokenWarning}
       />
     {/if}
 

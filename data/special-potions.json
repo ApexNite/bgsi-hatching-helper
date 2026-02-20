@@ -14,21 +14,5 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
-  },
-  {
-    "id": "valentines-elixir",
-    "name": "Valentine's Elixir",
-    "event": "valentines",
-    "luck": 2.5,
-    "shinyChance": 2,
-    "mythicChance": 2
-  },
-  {
-    "id": "heartbreak-elixir",
-    "name": "Heartbreak Elixir",
-    "event": "heartbreak",
-    "luck": 2.5,
-    "shinyChance": 2,
-    "mythicChance": 2
   }
 ]
