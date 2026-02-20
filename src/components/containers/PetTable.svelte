@@ -26,7 +26,7 @@
 
   const defaultSettings = {
     chanceDisplayMode: "auto",
-    timesDisplayMode: "mean",
+    timesDisplayMode: "range",
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
