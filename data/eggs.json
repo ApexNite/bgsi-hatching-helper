@@ -1245,6 +1245,7 @@
     "name": "Lunar New Years Egg",
     "type": "special",
     "event": "lunar-new-years",
+    "riftable": true,
     "pets": [
       {
         "id": "lantern-doggy",
