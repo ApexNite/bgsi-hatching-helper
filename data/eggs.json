@@ -1185,7 +1185,7 @@
   },
   {
     "id": "moon-egg",
-    "name": "Moon",
+    "name": "Moon Egg",
     "type": "special",
     "event": "moon",
     "riftable": true,
