@@ -1277,7 +1277,7 @@
       label: "Secret Pets Milestone",
       description: "Secret luck bonus not shown in debug stats",
     }, -->
-    {#if calculationMode === "manual" && activeEvent === "none" && !dismissedManualWarning}
+    {#if calculationMode === "manual" && !dismissedManualWarning}
       <WarningBanner
         type="warning"
         title="Debug stats may be inaccurate!"
@@ -1290,6 +1290,15 @@
           {
             label: "Rounded Values",
             description: "Shiny and mythic stats are rounded and not exact",
+          },
+          {
+            label: "Golden Egg Mastery",
+            description: "Debug stats do not factor in the shiny every 75th egg",
+          },
+          {
+            label: "Event Buffs",
+            description:
+              "Event specific bonuses do not show in the debug menu",
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
