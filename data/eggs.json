@@ -1107,5 +1107,199 @@
         "baseChance": 5e-12
       }
     ]
+  },
+  {
+    "id": "og-rift-egg",
+    "name": "OG Rift Egg",
+    "type": "special",
+    "event": "og-rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "og-cartoon-doggy",
+        "name": "OG Cartoon Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "og-cartoon-kitty",
+        "name": "OG Cartoon Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "og-sky-imp",
+        "name": "OG Sky Imp",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "og-advocate",
+        "name": "OG Advocate",
+        "rarity": "legendary",
+        "baseChance": 0.000001
+      },
+      {
+        "id": "og-glitch",
+        "name": "OG Glitch",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "og-easter-spirit",
+        "name": "OG Easter Spirit",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "og-sinister-skull",
+        "name": "OG Sinister Skull",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "og-angelic-skull",
+        "name": "OG Angelic Skull",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "og-wolf-skull",
+        "name": "OG Wolf Skull",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "og-king-skull",
+        "name": "OG King Skull",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "og-guardian-skull",
+        "name": "OG Guardian Skull",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      }
+    ]
+  },
+  {
+    "id": "moon-egg",
+    "name": "Moon",
+    "type": "special",
+    "event": "moon",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "lunar-deer",
+        "name": "Lunar Deer",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "gilded-kitty",
+        "name": "Gilded Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "moonglow-serpent",
+        "name": "Moonglow Serpent",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "moonglow-axolotl",
+        "name": "Moonglow Axolotl",
+        "rarity": "legendary",
+        "baseChance": 0.000001
+      },
+      {
+        "id": "moonglow-elemental",
+        "name": "Moonglow Elemental",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "moon-goddess",
+        "name": "Moon Goddess",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "everlasting-moonglow",
+        "name": "Everlasting Moonglow",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "selenic-paladin",
+        "name": "Selenic Paladin",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      }
+    ]
+  },
+  {
+    "id": "lunar-new-years-egg",
+    "name": "Lunar New Years Egg",
+    "type": "special",
+    "event": "lunar-new-years",
+    "pets": [
+      {
+        "id": "lantern-doggy",
+        "name": "Lantern Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "lantern-kitty",
+        "name": "Lantern Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "ardent-lantern",
+        "name": "Ardent Lantern",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "silly-wushi",
+        "name": "Silly Wushi",
+        "rarity": "legendary",
+        "baseChance": 0.000015
+      },
+      {
+        "id": "crimson-blossom",
+        "name": "Crimson Blossom",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "fortuitous-overlord",
+        "name": "Fortuitous Overlord",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "golden-tokage",
+        "name": "Golden Tokage",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "fortune-star",
+        "name": "Fortune Star",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "chinese-dragon",
+        "name": "Chinese Dragon",
+        "rarity": "infinity",
+        "baseChance": 1.5e-11
+      }
+    ]
   }
 ]

@@ -14,5 +14,13 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
+  },
+  {
+    "id": "lunar-new-years-lantern",
+    "name": "Lunar New Years Lantern",
+    "event": "lunar-new-years",
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
   }
 ]
