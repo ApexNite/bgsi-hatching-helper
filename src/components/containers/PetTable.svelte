@@ -19,11 +19,6 @@
   import Radio from "../control/Radio.svelte";
   import SmartImage from "../control/SmartImage.svelte";
 
-  export let stats;
-  export let eggsPerHatch;
-  export let selectedEggId;
-  export let selectedWorldId;
-
   const defaultSettings = {
     chanceDisplayMode: "auto",
     timesDisplayMode: "range",
@@ -36,7 +31,13 @@
     showSuperLegendary: false,
   };
 
-  let settings = { ...defaultSettings };
+  export let stats;
+  export let eggsPerHatch;
+  export let selectedEggId;
+  export let selectedWorldId;
+
+  export let settings = { ...defaultSettings };
+
   let settingsOpen = false;
   let settingsButton;
   let settingsMenu;

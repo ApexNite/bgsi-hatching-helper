@@ -14,6 +14,7 @@
   let selectedWorldId;
   let selectedEventId;
   let showInfo = false;
+  let settings;
 
   $: hasIgnoreSecretPets = selectedEggId === "infinity-egg";
 
@@ -49,21 +50,45 @@
       <section class="right-pane">
         <StatsBar {stats} {eggsPerHatch} {hasIgnoreSecretPets} />
 
-        <PetTable {stats} {eggsPerHatch} {selectedEggId} {selectedWorldId} />
+        <PetTable
+          {stats}
+          {eggsPerHatch}
+          {selectedEggId}
+          {selectedWorldId}
+          bind:settings
+        />
 
         <div>
-          <div class="footer-note">
-            <p>*</p>
-            <p>
-              Hatching times assume E/R key spam. In mean mode, there is a 63.2%
-              chance to hatch each pet within the period and 50% for median.
-            </p>
-          </div>
+          {#if settings.timesDisplayMode === "range"}
+            <div class="footer-note">
+              <p>*</p>
+              <p>
+                Hatching times assume E/R key spam. There is a 50% chance to
+                hatch the pet before the range starts and 90% before it ends.
+              </p>
+            </div>
+          {:else if settings.timesDisplayMode === "median"}
+            <div class="footer-note">
+              <p>*</p>
+              <p>
+                Hatching times assume E/R key spam. There is a 50% chance to
+                hatch the pet before or by the listed median time.
+              </p>
+            </div>
+          {:else}
+            <div class="footer-note">
+              <p>*</p>
+              <p>
+                Hatching times assume E/R key spam. There is a 63.2% chance to
+                hatch the pet before or by the listed average (mean) time.
+              </p>
+            </div>
+          {/if}
           <div class="footer-note">
             <p>*&thinsp;*</p>
             <p>
               Shiny chance is adjusted to reflect the guaranteed shiny pet every
-              75th egg from the Golden Egg mastery.
+              75th egg from Golden Egg mastery.
             </p>
           </div>
           <div class="footer-note">
