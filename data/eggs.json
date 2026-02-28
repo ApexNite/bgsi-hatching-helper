@@ -1428,7 +1428,7 @@
       {
         "id": "blossom-dementor",
         "name": "Blossom Dementor",
-        "rarity": "secret",
+        "rarity": "infinity",
         "baseChance": 1e-11
       }
     ]
