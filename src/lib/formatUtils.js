@@ -27,37 +27,44 @@ export function formatChance(chance) {
 export function formatChancePercent(
   chance,
   forceRound = false,
-  roundUp = false,
+  roundMode = "none",
   correct = false,
 ) {
-  const percentChance = chance * 100;
-  const correctedPercent =
-    correct && Math.abs(percentChance - Math.round(percentChance)) < 0.000001
-      ? Math.round(percentChance)
-      : percentChance;
+  let percentChance = cleanFloat(chance * 100);
 
-  if (correctedPercent >= 100 || forceRound) {
-    return roundUp
-      ? `${Math.ceil(correctedPercent)}%`
-      : `${Math.floor(correctedPercent)}%`;
+  if (
+    correct &&
+    Math.abs(percentChance - Math.round(percentChance)) < 0.000001
+  ) {
+    percentChance = Math.round(percentChance);
   }
 
-  if (correctedPercent < 0.01) {
+  if (percentChance >= 100 || forceRound) {
+    if (roundMode === "ceil") {
+      return `${Math.ceil(percentChance)}%`;
+    }
+    if (roundMode === "round") {
+      return `${Math.round(percentChance)}%`;
+    }
+    return `${Math.floor(percentChance)}%`;
+  }
+
+  if (percentChance < 0.01) {
     let decimalPlaces = 2;
-    let testValue = correctedPercent;
+    let testValue = percentChance;
 
     while (testValue < 1 && testValue > 0 && decimalPlaces < 20) {
       testValue *= 10;
       decimalPlaces++;
     }
 
-    let str = correctedPercent.toFixed(decimalPlaces);
+    let str = percentChance.toFixed(decimalPlaces);
     str = str.replace(/\.?0+$/, "");
 
     return `${str}%`;
   }
 
-  let str = correctedPercent.toFixed(correctedPercent >= 10 ? 1 : 2);
+  let str = percentChance.toFixed(percentChance >= 10 ? 1 : 2);
   str = str.replace(/\.?0+$/, "");
 
   return `${str}%`;
@@ -80,7 +87,11 @@ export function formatChanceFraction(chance, mode = "none") {
   return `1/${Math.max(1, denominator).toLocaleString()}`;
 }
 
-export function formatMultiplier(multiplier, decimalPlaces = 1) {
+export function formatMultiplier(
+  multiplier,
+  decimalPlaces = 1,
+  mode = "round",
+) {
   if (!Number.isFinite(multiplier)) {
     return "∞x";
   }
@@ -89,9 +100,19 @@ export function formatMultiplier(multiplier, decimalPlaces = 1) {
     return `${multiplier}x`;
   }
 
+  const cleanMultiplier = cleanFloat(multiplier);
+
   const places = Math.max(0, decimalPlaces);
   const factor = Math.pow(10, places);
-  const rounded = Math.round(multiplier * factor) / factor;
+
+  let rounded;
+  if (mode === "ceil") {
+    rounded = Math.ceil(cleanMultiplier * factor) / factor;
+  } else if (mode === "floor") {
+    rounded = Math.floor(cleanMultiplier * factor) / factor;
+  } else {
+    rounded = Math.round(cleanMultiplier * factor) / factor;
+  }
 
   if (rounded === 0) {
     return "0x";
@@ -101,7 +122,10 @@ export function formatMultiplier(multiplier, decimalPlaces = 1) {
     return `${rounded}x`;
   }
 
-  return `${rounded.toFixed(places)}x`;
+  let str = rounded.toFixed(places);
+  str = str.replace(/\.?0+$/, "");
+
+  return `${str}x`;
 }
 
 export function formatString(text, maxLength = 18) {
@@ -169,4 +193,8 @@ function formatSeconds(seconds) {
   return remainingSeconds > 0
     ? `${minutes}m ${remainingSeconds}s`
     : `${minutes}m`;
+}
+
+function cleanFloat(num, precision = 12) {
+  return parseFloat(Number(num).toPrecision(precision));
 }

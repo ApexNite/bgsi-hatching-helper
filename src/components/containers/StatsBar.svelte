@@ -28,7 +28,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatChancePercent(stats.luck - 1, true, false, true)}</strong>
+    <strong>{formatChancePercent(stats.luck - 1, true, "floor", true)}</strong>
   </div>
   <div class="stat" class:dimmed={hasIgnoreSecretPets}>
     <SmartImage
@@ -37,7 +37,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatMultiplier(stats.secretLuck)}</strong>
+    <strong>{formatMultiplier(stats.secretLuck, 1, "floor")}</strong>
   </div>
   <div class="stat" class:dimmed={hasIgnoreSecretPets}>
     <SmartImage
@@ -93,7 +93,8 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatChancePercent(stats.hatchSpeed, true, false, true)}</strong>
+    <strong>{formatChancePercent(stats.hatchSpeed, true, "floor", true)}</strong
+    >
   </div>
   <div class="stat">
     <SmartImage
