@@ -17,6 +17,7 @@ import specialPotionsCompiled from "../../data/special-potions.json";
 import upgradesCompiled from "../../data/upgrades.json";
 import worldsCompiled from "../../data/worlds.json";
 import dataHashCompiled from "../data/hash.json";
+import runesCompiled from "../../data/runes.json";
 
 const schemas = {
   stats: {
@@ -32,7 +33,7 @@ const schemas = {
     baseInfinityLuck: { type: "number", default: 0 },
     baseShinyChance: { type: "number", default: 0 },
     baseMythicChance: { type: "number", default: 0 },
-    baseXLChance:  { type: "number", default: 0 },
+    baseXLChance: { type: "number", default: 0 },
     baseHatchSpeed: { type: "number", default: 0 },
     luckMultiplier: { type: "number", default: 0 },
     secretLuckMultiplier: { type: "number", default: 1 },
@@ -228,6 +229,20 @@ const schemas = {
     event: { type: "string", default: "none" },
     potions: { type: "array", default: [], schema: "potion" },
   },
+  rune: {
+    extends: ["stats", "id", "img"],
+    imageDir: { type: "string", default: "runes" },
+    img: {
+      type: "string",
+      default: (item) => `assets/images/${item.imageDir}/${item.id}`,
+      condition: (item) => item.id !== "none",
+    },
+  },
+  runeGroup: {
+    extends: ["id", "img"],
+    event: { type: "string", default: "none" },
+    runes: { type: "array", default: [], schema: "rune" },
+  },
   rarity: {
     extends: ["id", "hatchable"],
     rarity: { type: "string", default: (item) => item.id },
@@ -281,6 +296,7 @@ export const dataStore = writable({
   masteries: null,
   milestones: null,
   potions: null,
+  runes: null,
   rifts: null,
   secretBounty: null,
   shrineBuffs: null,
@@ -311,6 +327,7 @@ function buildDataFromSources(sources) {
     masteries: processData(sources.masteries, "mastery"),
     milestones: processData(sources.milestones, "milestone"),
     potions: processData(sources.potions, "potionGroup"),
+    runes: processData(sources.runes, "runeGroup"),
     rifts: processData(sources.rifts, ["stats", "id"]),
     secretBounty: processData(sources.secretBounty, "secretBountyData"),
     shrineBuffs: processData(sources.shrineBuffs, "shrineBuff"),
@@ -332,6 +349,7 @@ const compiledSources = {
   masteries: masteriesCompiled,
   milestones: milestonesCompiled,
   potions: potionsCompiled,
+  runes: runesCompiled,
   rifts: riftsCompiled,
   secretBounty: secretBountyCompiled,
   shrineBuffs: shrineBuffsCompiled,
@@ -369,6 +387,7 @@ export async function loadData() {
       masteriesData,
       milestonesData,
       potionsData,
+      runesData,
       riftsData,
       secretBountyData,
       shrineBuffsData,
@@ -388,6 +407,7 @@ export async function loadData() {
       fetchJson("/assets/data/masteries.json"),
       fetchJson("/assets/data/milestones.json"),
       fetchJson("/assets/data/potions.json"),
+      fetchJson("/assets/data/runes.json"),
       fetchJson("/assets/data/rifts.json"),
       fetchJson("/assets/data/secret-bounty.json"),
       fetchJson("/assets/data/shrine-buffs.json"),
@@ -409,6 +429,7 @@ export async function loadData() {
       masteries: masteriesData,
       milestones: milestonesData,
       potions: potionsData,
+      runes: runesData,
       rifts: riftsData,
       secretBounty: secretBountyData,
       shrineBuffs: shrineBuffsData,

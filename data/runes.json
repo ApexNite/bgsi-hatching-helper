@@ -1,0 +1,34 @@
+[
+  {
+    "id": "luck-rune",
+    "name": "Luck Rune",
+    "img": "assets/images/runes/luck-i",
+    "runes": [
+      {
+        "id": "luck-i",
+        "name": "Luck I",
+        "luck": 0.1
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
+  },
+  {
+    "id": "secret-rune",
+    "name": "Secret Rune",
+    "img": "assets/images/runes/secret-i",
+    "runes": [
+      {
+        "id": "secret-i",
+        "name": "Secret I",
+        "secretLuckMultiplier": 1.02
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
+  }
+]

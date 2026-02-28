@@ -60,6 +60,12 @@
       worlds: $dataStore.worlds?.[0]?.id,
       rifts: $dataStore.rifts?.[0]?.id,
       ...Object.fromEntries(
+        ($dataStore.runes || []).map((runeGroup) => [
+          runeGroup.id,
+          runeGroup.runes[runeGroup.runes.length - 1]?.id || [],
+        ]),
+      ),
+      ...Object.fromEntries(
         ($dataStore.potions || []).map((potionType) => [
           potionType.id,
           potionType.potions[potionType.potions.length - 1]?.id || [],
@@ -153,6 +159,7 @@
   })();
 
   $: visiblePotions = visibleByEvent($dataStore.potions, activeEvent);
+  $: visibleRunes = visibleByEvent($dataStore.runes, activeEvent);
   $: visibleSpecialPotions = visibleByEvent(
     $dataStore.specialPotions,
     activeEvent,
@@ -163,11 +170,11 @@
   $: hasShrineBuffs = (visibleShrineBuffs || []).some((sb) => sb.id !== "none");
 
   $: selectedShrineBuffId = shrineBuffSelections[activeEvent] ?? "none";
-  
+
   $: selectedEggId = selectedEgg.id;
   $: selectedWorldId = selectedWorld.id;
   $: selectedEventId = activeEvent;
-  
+
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
       ? worldIndexStates[selectedEgg.world] || {
@@ -207,6 +214,13 @@
             .map((potionGroup) =>
               potionGroup.potions.find(
                 (p) => p.id === selectedOptions[potionGroup.id],
+              ),
+            )
+            .filter(Boolean),
+          ...(visibleRunes || [])
+            .map((runeGroup) =>
+              runeGroup.runes.find(
+                (p) => p.id === selectedOptions[runeGroup.id],
               ),
             )
             .filter(Boolean),
@@ -371,7 +385,7 @@
     dismissedManualWarning = true;
     saveToCache();
   }
-  
+
   function dismissInfinityWarning() {
     dismissedInfinityWarning = true;
     saveToCache();
@@ -395,19 +409,19 @@
         ...shrineBuffSelections,
         [activeEvent]: option.id,
       };
-     } else {
-       selectedOptions = { ...selectedOptions, [id]: option.id };
+    } else {
+      selectedOptions = { ...selectedOptions, [id]: option.id };
 
-       if (id === "rifts") {
-         eggRiftSelections = {
-           ...eggRiftSelections,
-           [selectedOptions.eggs]: option.id,
-         };
-       }
-     }
+      if (id === "rifts") {
+        eggRiftSelections = {
+          ...eggRiftSelections,
+          [selectedOptions.eggs]: option.id,
+        };
+      }
+    }
 
-     saveToCache();
-   }
+    saveToCache();
+  }
 
   function updateToggle(toggleData, toggleId) {
     const updated = { ...toggleData, [toggleId]: !toggleData[toggleId] };
@@ -863,6 +877,36 @@
 
         <div class="section-separator"></div>
 
+        {#each visibleRunes || [] as runeGroup (runeGroup.id)}
+          <div class="menu-row">
+            <span class="menu-label">
+              {#if runeGroup.img}
+                <span class="menu-img">
+                  <SmartImage
+                    base={runeGroup.img}
+                    alt={runeGroup.name}
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+              {/if}
+              {runeGroup.name}:
+            </span>
+            <div class="menu-control">
+              <Dropdown
+                id={runeGroup.id}
+                options={runeGroup.runes}
+                selectedOption={runeGroup.runes.find(
+                  (o) => o.id === selectedOptions[runeGroup.id],
+                ) || runeGroup.runes[runeGroup.runes.length - 1]}
+                onSelect={handleSelect}
+              />
+            </div>
+          </div>
+        {/each}
+
+        <div class="section-separator"></div>
+
         <!-- Milestones -->
         <section class="menu-section">
           {#each visibleMilestones || [] as milestone (milestone.id)}
@@ -1039,11 +1083,9 @@
                 <Dropdown
                   id="shrine-buff"
                   options={visibleShrineBuffs || []}
-                  selectedOption={
-                    (visibleShrineBuffs || []).find(
-                      (sb) => sb.id === selectedShrineBuffId,
-                    ) || (visibleShrineBuffs || [])[0]
-                  }
+                  selectedOption={(visibleShrineBuffs || []).find(
+                    (sb) => sb.id === selectedShrineBuffId,
+                  ) || (visibleShrineBuffs || [])[0]}
                   onSelect={handleSelect}
                 />
               </div>
@@ -1293,12 +1335,12 @@
           },
           {
             label: "Golden Egg Mastery",
-            description: "Debug stats do not factor in the shiny every 75th egg",
+            description:
+              "Debug stats do not factor in the shiny every 75th egg",
           },
           {
             label: "Event Buffs",
-            description:
-              "Event specific bonuses do not show in the debug menu",
+            description: "Event specific bonuses do not show in the debug menu",
           },
         ]}
         recommendation="Use Calculated mode for more accurate results"
