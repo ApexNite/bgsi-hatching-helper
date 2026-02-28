@@ -1180,6 +1180,18 @@
         "name": "OG Guardian Skull",
         "rarity": "secret",
         "baseChance": 5e-10
+      },
+      {
+        "id": "og-almighty-pumpkin",
+        "name": "OG Almighty Pumpkin",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "og-king-doggy",
+        "name": "OG King Doggy",
+        "rarity": "infinity",
+        "baseChance": 1e-11
       }
     ]
   },
