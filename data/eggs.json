@@ -1302,5 +1302,123 @@
         "baseChance": 1.5e-11
       }
     ]
+  },
+  {
+    "id": "petal-egg",
+    "name": "Petal Egg",
+    "type": "special",
+    "event": "spring",
+    "pets": [
+      {
+        "id": "ladybug",
+        "name": "Ladybug",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "grasshopper",
+        "name": "Grasshopper",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "ant",
+        "name": "Ant",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "fire-ant",
+        "name": "Fire Ant",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "flower-queen",
+        "name": "Flower Queen",
+        "rarity": "legendary",
+        "baseChance": 0.0000025
+      },
+      {
+        "id": "spring-shard",
+        "name": "Spring Shard",
+        "rarity": "secret",
+        "baseChance": 5e-9
+      },
+      {
+        "id": "spring-duality",
+        "name": "Spring Duality",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      }
+    ]
+  },
+  {
+    "id": "spring-egg",
+    "name": "Spring Egg",
+    "type": "special",
+    "event": "spring",
+    "pets": [
+      {
+        "id": "petal-kitty",
+        "name": "Petal Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "petal-bunny",
+        "name": "Petal Bunny",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "flower-girl",
+        "name": "Flower Girl",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "windblume",
+        "name": "Windblume",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "spring-critter",
+        "name": "Spring Critter",
+        "rarity": "legendary",
+        "baseChance": 0.000002
+      },
+      {
+        "id": "sunshine",
+        "name": "Sunshine",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "sunmallow",
+        "name": "Sunmallow",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "foliar-ascension",
+        "name": "Foliar Ascension",
+        "rarity": "secret",
+        "baseChance": 1.25e-10
+      },
+      {
+        "id": "queen-butterfly",
+        "name": "Queen Butterfly",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "blossom-dementor",
+        "name": "Blossom Dementor",
+        "rarity": "secret",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]
