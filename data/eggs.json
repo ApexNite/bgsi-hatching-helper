@@ -1190,8 +1190,8 @@
       {
         "id": "og-king-doggy",
         "name": "OG King Doggy",
-        "rarity": "infinity",
-        "baseChance": 1e-11
+        "rarity": "secret",
+        "baseChance": 2.5e-9
       }
     ]
   },
