@@ -397,7 +397,7 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
 
   for (const item of list) {
     const luckMultiplier = item.ignoreLuck ? 1 : baseLuckMultiplier;
-    const secretMultiplier = item.ignoreSecret ? 1 : baseSecretMultiplier / 2;
+    const secretMultiplier = item.ignoreSecret ? 1 : Math.max(baseSecretMultiplier / 2, 1);
     const epicLuck = Math.min(luckMultiplier, 4);
 
     switch (item.rarity) {
