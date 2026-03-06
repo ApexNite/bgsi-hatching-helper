@@ -1191,7 +1191,7 @@
         "id": "og-king-doggy",
         "name": "OG King Doggy",
         "rarity": "secret",
-        "baseChance": 2.5e-9
+        "baseChance": 2.5e-11
       }
     ]
   },
