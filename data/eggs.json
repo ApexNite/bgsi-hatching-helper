@@ -1312,5 +1312,67 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "forest-egg",
+    "name": "Forest Egg",
+    "type": "special",
+    "event": "spring",
+    "pets": [
+      {
+        "id": "cryptid-deer",
+        "name": "Cryptid Deer",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "cryptid-nightcrawler",
+        "name": "Cryptid Nightcrawler",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "wooden-horse",
+        "name": "Wooden Horse",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "shrubbery",
+        "name": "Shrubbery",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "forest-wyvern",
+        "name": "Forest Wyvern",
+        "rarity": "legendary",
+        "baseChance": 0.0000025
+      },
+      {
+        "id": "forest-fae",
+        "name": "Forest Fae",
+        "rarity": "legendary",
+        "baseChance": 1.5e-7
+      },
+      {
+        "id": "forest-bloom",
+        "name": "Forest Bloom",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "queen-wasp",
+        "name": "Queen Wasp",
+        "rarity": "secret",
+        "baseChance": 8e-11
+      },
+      {
+        "id": "eversource",
+        "name": "Eversource",
+        "rarity": "infinity",
+        "baseChance": 2.2e-11
+      }
+    ]
   }
 ]
