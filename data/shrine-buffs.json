@@ -1,5 +1,40 @@
 [
   {
+    "id": "spring-2.5x-luck",
+    "name": "+2.5x Luck",
+    "event": "spring",
+    "img": "assets/images/icons/lucky-egg",
+    "luckMultiplier": 2.5
+  },
+  {
+    "id": "spring-1.5x-shiny-luck",
+    "name": "+1.5x Shiny",
+    "event": "spring",
+    "img": "assets/images/icons/shiny",
+    "shinyChanceMultiplier": 1.5
+  },
+  {
+    "id": "spring-1.5x-mythic-luck",
+    "name": "+1.5x Mythic",
+    "event": "spring",
+    "img": "assets/images/icons/mythic",
+    "mythicChanceMultiplier": 1.5
+  },
+  {
+    "id": "spring-1.2x-secret-luck",
+    "name": "+1.2x Secret",
+    "event": "spring",
+    "img": "assets/images/icons/secret-pet-luck",
+    "secretLuckMultiplier": 1.2
+  },
+  {
+    "id": "spring-1.25x-infinity-luck",
+    "name": "+1.25x Infinity",
+    "event": "spring",
+    "img": "assets/images/icons/infinity-luck",
+    "infinityLuckMultiplier": 1.25
+  },
+  {
     "id": "none",
     "name": "None"
   }
