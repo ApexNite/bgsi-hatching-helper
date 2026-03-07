@@ -107,7 +107,11 @@ export function isSuperLegendaryEligible(pet) {
 
 export function insertAggregateRows(
   pets,
-  { anyLegendary = false, anySecretInfinity = false, superLegendaryOnly = false } = {},
+  {
+    anyLegendary = false,
+    anySecretInfinity = false,
+    superLegendaryOnly = false,
+  } = {},
 ) {
   if (!Array.isArray(pets) || (!anyLegendary && !anySecretInfinity)) {
     return pets;
@@ -208,7 +212,7 @@ export function insertAggregateRows(
       finalXLSuperLegendaryChance,
       finalShinyXLSuperLegendaryChance,
       finalMythicXLSuperLegendaryChance,
-      finalShinyMythicXLSuperLegendaryChance
+      finalShinyMythicXLSuperLegendaryChance,
     };
   };
 
@@ -397,9 +401,13 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
 
   for (const item of list) {
     const luckMultiplier = item.ignoreLuck ? 1 : baseLuckMultiplier;
-    const secretMultiplier = item.ignoreSecret ? 1 : 1 + ((baseSecretMultiplier - 1) / 2);
+    const secretMultiplier = item.ignoreSecret
+      ? 1
+      : baseSecretMultiplier === 0
+        ? 0
+        : baseSecretMultiplier / 2 +
+          0.5 * Math.exp(-(baseSecretMultiplier - 1) / 10);
     const epicLuck = Math.min(luckMultiplier, 4);
-
     switch (item.rarity) {
       case "infinity":
         item.rawChance =
