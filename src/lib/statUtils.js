@@ -2,8 +2,10 @@ import { get } from "svelte/store";
 import { dataStore, isDataLoaded } from "./dataStore.js";
 
 const DEFAULT_XL_CHANCE_BY_RARITY = Object.freeze({
-  infinity: 1 / 500,
-  secret: 1 / 500,
+  // infinity: 1 / 500,
+  // secret: 1 / 500,
+  infinity: (1 / 500) * 1.2,
+  secret: (1 / 500) * 1.2,
   legendary: 1 / 2000,
   epic: 1 / 10000,
   rare: 1 / 25000,
@@ -43,7 +45,8 @@ export function calculateStats(sources, toggles, numbers) {
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
-    baseSuperLegendaryChance: 1 / 2500,
+    // baseSuperLegendaryChance: 1 / 2500,
+    baseSuperLegendaryChance: (1 / 2500) * 1.2,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
     _burstBlessingLevel: getBurstBlessingLevel(sources),
