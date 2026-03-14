@@ -10,10 +10,10 @@
     },
     "pets": [
       {
-        "id": "super-tophat-stack",
-        "name": "Super Tophat Stack",
+        "id": "black-sparkletime",
+        "name": "Black Sparkletime",
         "rarity": "secret",
-        "baseChance": 1e-9
+        "baseChance": 4e-11
       }
     ]
   },
@@ -27,13 +27,6 @@
     "premium": {
       "luck": 3.5
     },
-    "pets": [
-      {
-        "id": "robot-tophat",
-        "name": "Robot Tophat",
-        "rarity": "secret",
-        "baseChance": 1e-10
-      }
-    ]
+    "pets": []
   }
 }
