@@ -1374,5 +1374,133 @@
         "baseChance": 2.2e-11
       }
     ]
+  },
+  {
+    "id": "lucky-egg",
+    "name": "Lucky Egg",
+    "type": "special",
+    "event": "patricks",
+    "trueLuck": true,
+    "riftable": true,
+    "pets": [
+      {
+        "id": "coin-doggy",
+        "name": "Coin Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "coin-kitty",
+        "name": "Coin Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "money-bag",
+        "name": "Money Bag",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "flying-coin",
+        "name": "Flying Coin",
+        "rarity": "legendary",
+        "baseChance": 0.0005
+      },
+      {
+        "id": "lucky-butterfly",
+        "name": "Lucky Butterfly",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "money-mouth",
+        "name": "Money Mouth",
+        "rarity": "secret",
+        "baseChance": 5e-9
+      },
+      {
+        "id": "pot-o-doggy",
+        "name": "Pot O' Doggy",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      }
+    ]
+  },
+  {
+    "id": "fortune-egg",
+    "name": "Fortune Egg",
+    "type": "special",
+    "event": "patricks",
+    "trueLuck": true,
+    "riftable": true,
+    "pets": [
+      {
+        "id": "leprechaun-doggy",
+        "name": "Leprechaun Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "leprechaun-kitty",
+        "name": "Leprechaun Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "leprechaun-bunny",
+        "name": "Leprechaun Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "lucky-marshmallow",
+        "name": "Lucky Marshmallow",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "lucky-jester",
+        "name": "Lucky Jester",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "lucky-overlord",
+        "name": "Lucky Overlord",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "lucky-catcher",
+        "name": "Lucky Catcher",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "the-keeper",
+        "name": "The Keeper",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "lucky-horseshoe",
+        "name": "Lucky Horseshoe",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "godly-shamrock",
+        "name": "Godly Shamrock",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "robot-2-0",
+        "name": "Robot 2.0",
+        "rarity": "infinity",
+        "baseChance": 3e-12
+      }
+    ]
   }
 ]
