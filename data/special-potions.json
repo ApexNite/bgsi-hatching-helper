@@ -14,5 +14,11 @@
     "secretLuckMultiplier": 2,
     "mythicChanceMultiplier": 0.2,
     "overwriteMythicChanceMultiplier": true
+  },
+  {
+    "id": "ultra-infinity-elixir",
+    "name": "Ultra Infinity Elixir",
+    "event": "patricks",
+    "infinityLuckMultiplier": 1.5
   }
 ]
