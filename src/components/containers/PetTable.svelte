@@ -790,33 +790,23 @@
 
   /* https://stackoverflow.com/a/54702294 */
   .rarity-infinity {
-    background: linear-gradient(
-      to right,
-      #cc4444,
-      #cc7744,
-      #cccc44,
-      #44cc44,
-      #4444cc,
-      #6644aa,
-      #aa44cc,
-      #cc4444
-    );
+    background: linear-gradient(90deg, red 0%, #6401ff 50%, red 100%);
     background-size: 400% 100%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     border-color: var(--rarity-infinity-border);
-    animation: infinityWave 16s linear infinite;
+    animation: infinityWave 8s linear infinite;
   }
 
   .rarity-celestial {
-    background: linear-gradient(to right, #e2aff9, #99e2fd);
+    background: linear-gradient(90deg, #9ddffd 0%, #ff9bf7 50%, #9ddffd 100%);
     background-size: 400% 100%;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     border-color: var(--rarity-infinity-border);
-    animation: infinityWave 16s linear infinite;
+    animation: infinityWave 8s linear infinite;
   }
 
   @property --legendary-hue {
