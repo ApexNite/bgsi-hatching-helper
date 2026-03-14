@@ -34,6 +34,16 @@
     "baseHatchSpeed": 0.75
   },
   {
+    "id": "shiny-blessing",
+    "name": "🌟 Shiny Blessing",
+    "shinyChance": 0.05
+  },
+  {
+    "id": "mythic-blessing",
+    "name": "🔮 Mythic Blessing",
+    "mythicChance": 0.05
+  },
+  {
     "id": "infinity-blessing",
     "name": "♾️ Infinity Blessing",
     "infinityLuck": 0.025
