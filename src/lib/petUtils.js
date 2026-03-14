@@ -388,8 +388,6 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     return [];
   }
 
-  console.log(stats);
-
   const parsedTrueLuck = Number(stats?.trueLuck ?? 1);
   const trueLuckMultiplier =
     Number.isFinite(parsedTrueLuck) && parsedTrueLuck > 0
@@ -404,12 +402,11 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
         ? originalBaseChance * trueLuckMultiplier
         : originalBaseChance;
 
-    console.log(trueLuckMultiplier);
-
     return {
       ...p,
       rarity,
-      baseChance: boostedBaseChance,
+      boostedBaseChance,
+      baseChance: originalBaseChance,
       rawChance: boostedBaseChance,
     };
   });
@@ -430,22 +427,22 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     switch (item.rarity) {
       case "infinity":
         item.rawChance =
-          item.baseChance *
+          item.boostedBaseChance *
           luckMultiplier *
           secretMultiplier *
           infinityLuckMultiplier;
         break;
       case "secret":
-        item.rawChance = item.baseChance * luckMultiplier * secretMultiplier;
+        item.rawChance = item.boostedBaseChance * luckMultiplier * secretMultiplier;
         break;
       case "legendary":
-        item.rawChance = item.baseChance * luckMultiplier;
+        item.rawChance = item.boostedBaseChance * luckMultiplier;
         break;
       case "epic":
-        item.rawChance = item.baseChance * epicLuck;
+        item.rawChance = item.boostedBaseChance * epicLuck;
         break;
       default:
-        item.rawChance = item.baseChance;
+        item.rawChance = item.boostedBaseChance;
     }
   }
 
