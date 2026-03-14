@@ -44,6 +44,8 @@
   let settingsMenuPosition = { top: 0, right: 0 };
   let windowWidth = window.innerWidth;
 
+  const CELESTIAL_BASE_CHANCE_THRESHOLD = 1 / 25_000_000_000;
+
   onMount(() => {
     try {
       const savedData = getCookie("hatching-helper-pet-table-settings");
@@ -82,7 +84,9 @@
 
       if (isLegendaryAnimation || isInfinityAnimation) {
         const elements = document.querySelectorAll(
-          isLegendaryAnimation ? ".rarity-legendary" : ".rarity-infinity",
+          isLegendaryAnimation
+            ? ".rarity-legendary"
+            : ".rarity-infinity, .rarity-celestial",
         );
 
         function getAnimation(element) {
@@ -265,6 +269,19 @@
 
     return pet.finalShinyMythicChance;
   };
+
+  function isCelestialPet(pet) {
+    return (
+      !pet?.__aggregate &&
+      pet?.rarity === "secret" &&
+      typeof pet?.baseChance === "number" &&
+      pet.baseChance <= CELESTIAL_BASE_CHANCE_THRESHOLD
+    );
+  }
+
+  function getRarityLabel(pet) {
+    return isCelestialPet(pet) ? "celestial" : pet.rarity;
+  }
 </script>
 
 <div class="pet-table-wrapper">
@@ -296,7 +313,7 @@
             <td>
               <div class="pet-name">
                 {#if pet.__aggregate}
-                  <div class="aggregate-dot rarity-{pet.rarity}"></div>
+                  <div class="aggregate-dot rarity-{getRarityLabel(pet)}"></div>
                   <div class="pet-info">
                     <span class="name">
                       {formatString(
@@ -304,14 +321,16 @@
                         Math.floor(Math.max((windowWidth / 100) * 1.3, 18)),
                       )}
                     </span>
-                    <span class="rarity-badge rarity-{pet.rarity}">
+                    <span class="rarity-badge rarity-{getRarityLabel(pet)}">
                       {#if settings.showSuperLegendary && isSuperLegendaryEligible(pet)}
-                        <strong class="rarity-{pet.rarity}">Super</strong>
+                        <strong class="rarity-{getRarityLabel(pet)}"
+                          >Super</strong
+                        >
                       {/if}
                       {#if settings.showXL}
-                        <strong class="rarity-{pet.rarity}">XL</strong>
+                        <strong class="rarity-{getRarityLabel(pet)}">XL</strong>
                       {/if}
-                      {pet.rarity}
+                      {getRarityLabel(pet)}
                     </span>
                   </div>
                 {:else}
@@ -330,14 +349,14 @@
                         Math.floor(Math.max((windowWidth / 100) * 1.3, 18)),
                       )}
                     </span>
-                    <span class="rarity-badge rarity-{pet.rarity}">
+                    <span class="rarity-badge rarity-{getRarityLabel(pet)}">
                       {#if settings.showSuperLegendary && isSuperLegendaryEligible(pet)}
                         Super
                       {/if}
                       {#if settings.showXL}
-                        <strong class="rarity-{pet.rarity}">XL</strong>
+                        <strong class="rarity-{getRarityLabel(pet)}">XL</strong>
                       {/if}
-                      {pet.rarity}
+                      {getRarityLabel(pet)}
                     </span>
                   </div>
                 {/if}
@@ -782,6 +801,16 @@
       #aa44cc,
       #cc4444
     );
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    border-color: var(--rarity-infinity-border);
+    animation: infinityWave 16s linear infinite;
+  }
+
+  .rarity-celestial {
+    background: linear-gradient(to right, #e2aff9, #99e2fd);
     background-size: 400% 100%;
     background-clip: text;
     -webkit-background-clip: text;
