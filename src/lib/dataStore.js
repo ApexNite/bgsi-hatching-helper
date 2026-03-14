@@ -22,6 +22,7 @@ import runesCompiled from "../../data/runes.json";
 const schemas = {
   stats: {
     luck: { type: "number", default: 0 },
+    trueLuck: { type: "number", default: 0 },
     secretLuck: { type: "number", default: 0 },
     infinityLuck: { type: "number", default: 0 },
     shinyChance: { type: "number", default: 0 },
@@ -106,6 +107,7 @@ const schemas = {
     },
     event: { type: "string", default: "none" },
     riftable: { type: "boolean", default: false },
+    trueLuck: { type: "boolean", default: false },
     pets: {
       type: "array",
       default: [],

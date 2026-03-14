@@ -38,6 +38,7 @@
     seasonStars: 0,
     luckierTogether: 0,
     riftMultiplier: 0,
+    trueLuckMultiplier: 1,
     eggsPerHatch: 1,
   };
   let manualStats = {
@@ -134,6 +135,7 @@
   $: isInfinityEgg = selectedEgg?.type === "infinity";
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
+  $: isTrueLuckEgg = !!selectedEgg && selectedEgg.trueLuck === true;
 
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
@@ -598,6 +600,35 @@
               </div>
             </div>
           {/if}
+        {/if}
+
+        {#if isTrueLuckEgg}
+          <div class="menu-row">
+            <span class="menu-label">
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/luck"
+                  alt="True Luck Multiplier"
+                  size="32px"
+                  decoding="async"
+                />
+              </span>
+              True Luck Multiplier:
+            </span>
+            <div class="menu-control">
+              <NumberInput
+                id="true-luck-multiplier"
+                value={numericValues.trueLuckMultiplier}
+                onInput={({ value }) =>
+                  updateNumericValue(
+                    numericValues,
+                    "trueLuckMultiplier",
+                    value,
+                  )}
+                hoverText="True Luck Multiplier"
+              />
+            </div>
+          </div>
         {/if}
 
         {#if isWorldEgg && calculationMode != "manual"}

@@ -22,6 +22,7 @@ export function calculateStats(sources, toggles, numbers) {
 
   const totals = {
     luck: 1,
+    trueLuck: 0,
     secretLuck: 1,
     infinityLuck: 1,
     shinyChance: 0,
@@ -99,6 +100,10 @@ export function calculateStats(sources, toggles, numbers) {
     });
   }
 
+  if (numbers.trueLuckMultiplier > 0) {
+    applySource(totals, { ...{ trueLuck: numbers.trueLuckMultiplier } });
+  }
+
   const today = dailyPerksData
     ? dailyPerksData[new Date().getUTCDay()]
     : undefined;
@@ -126,6 +131,7 @@ export function calculateStats(sources, toggles, numbers) {
 export function calculateManualStats(manualStats, sources, numbers) {
   const totals = {
     luck: 0,
+    trueLuck: 0,
     secretLuck: 0,
     infinityLuck: 0,
     shinyChance: 0,
@@ -158,6 +164,10 @@ export function calculateManualStats(manualStats, sources, numbers) {
     });
   }
 
+  if (numbers.trueLuckMultiplier > 0) {
+    applySource(totals, { ...{ trueLuck: numbers.trueLuckMultiplier } });
+  }
+
   return calculateStatsFromTotals(totals);
 }
 
@@ -188,6 +198,7 @@ function calculateStatsFromTotals(totals) {
 
   return {
     luck: calculateAdjustedLuck(luckBase, totals._burstBlessingLevel || 0),
+    trueLuck: totals.trueLuck || 0,
     secretLuck:
       (totals.baseSecretLuck || 0) +
       (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
@@ -222,6 +233,10 @@ function applySource(totals, source) {
   const times = source._value != null ? Number(source._value) : 1;
   if (!times) {
     return;
+  }
+
+  if (typeof source.trueLuck === "number") {
+    totals.trueLuck += source.trueLuck * times;
   }
 
   if (typeof source.luck === "number") {

@@ -388,12 +388,31 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     return [];
   }
 
-  const list = items.map((p) => ({
-    ...p,
-    rarity: p.rarity ?? "common",
-    baseChance: Number(p.baseChance ?? 0),
-    rawChance: Number(p.baseChance ?? 0),
-  }));
+  console.log(stats);
+
+  const parsedTrueLuck = Number(stats?.trueLuck ?? 1);
+  const trueLuckMultiplier =
+    Number.isFinite(parsedTrueLuck) && parsedTrueLuck > 0
+      ? Math.max(1, parsedTrueLuck)
+      : 1;
+
+  const list = items.map((p) => {
+    const rarity = p.rarity ?? "common";
+    const originalBaseChance = Number(p.baseChance ?? 0);
+    const boostedBaseChance =
+      rarity === "legendary" || rarity === "secret" || rarity === "infinity"
+        ? originalBaseChance * trueLuckMultiplier
+        : originalBaseChance;
+
+    console.log(trueLuckMultiplier);
+
+    return {
+      ...p,
+      rarity,
+      baseChance: boostedBaseChance,
+      rawChance: boostedBaseChance,
+    };
+  });
 
   const baseLuckMultiplier = stats?.luck ?? 1;
   const baseSecretMultiplier = stats?.secretLuck ?? 1;
