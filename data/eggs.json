@@ -1188,10 +1188,22 @@
         "baseChance": 5e-11
       },
       {
+        "id": "og-angelic-spirit",
+        "name": "OG Angelic Spirit",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
         "id": "og-king-doggy",
         "name": "OG King Doggy",
         "rarity": "secret",
         "baseChance": 2.5e-11
+      },
+      {
+        "id": "og-leviathan",
+        "name": "OG Leviathan",
+        "rarity": "infinity",
+        "baseChance": 1e-11
       }
     ]
   },
