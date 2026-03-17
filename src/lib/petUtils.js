@@ -424,6 +424,7 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
         : baseSecretMultiplier / 2 +
           0.5 * Math.exp(-(baseSecretMultiplier - 1) / 10);
     const epicLuck = Math.min(luckMultiplier, 4);
+
     switch (item.rarity) {
       case "infinity":
         item.rawChance =
