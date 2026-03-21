@@ -272,10 +272,11 @@
 
   function isCelestialPet(pet) {
     return (
-      !pet?.__aggregate &&
-      pet?.rarity === "secret" &&
-      typeof pet?.baseChance === "number" &&
-      pet.baseChance <= CELESTIAL_BASE_CHANCE_THRESHOLD
+      pet.celestial ||
+      (!pet?.__aggregate &&
+        pet?.rarity === "secret" &&
+        typeof pet?.baseChance === "number" &&
+        pet.baseChance <= CELESTIAL_BASE_CHANCE_THRESHOLD)
     );
   }
 

@@ -74,6 +74,7 @@ const schemas = {
     hasMythic: { type: "boolean", default: true },
     ignoreLuck: { type: "boolean", default: false },
     ignoreSecret: { type: "boolean", default: false },
+    celestial: { type: "boolean", default: false },
   },
   dailyPerk: {
     imageDir: { type: "string", default: "perk" },
