@@ -161,7 +161,17 @@
     : petsWithAggregates;
 
   $: if (settings.hideLegendary) {
-    filteredPets = filteredPets.filter((p) => p.rarity !== "legendary");
+    filteredPets = filteredPets.filter((p) => {
+      if (p.rarity !== "legendary") {
+        return true;
+      }
+
+      if (settings.showSuperLegendary && isSuperLegendaryEligible(p)) {
+        return true;
+      }
+
+      return false;
+    });
   }
 
   function displayChance(value) {
