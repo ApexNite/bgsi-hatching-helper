@@ -1334,5 +1334,81 @@
         "baseChance": 3e-12
       }
     ]
+  },
+  {
+    "id": "gaelic-egg",
+    "name": "Gaelic Egg",
+    "type": "special",
+    "event": "patricks",
+    "trueLuck": true,
+    "riftable": true,
+    "pets": [
+      {
+        "id": "lucky-rabbit",
+        "name": "Lucky Rabbit",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "lucky-penguin",
+        "name": "Lucky Penguin",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "lucky-cube",
+        "name": "Lucky Cube",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "lucky-squid",
+        "name": "Lucky Squid",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "lucky-magician",
+        "name": "Lucky Magician",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "unlimited-dollar",
+        "name": "Unlimited Dollar",
+        "rarity": "legendary",
+        "baseChance": 1.25e-7
+      },
+      {
+        "id": "celtic-shard",
+        "name": "Celtic Shard",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "the-prophecy",
+        "name": "The Prophecy",
+        "rarity": "secret",
+        "baseChance": 4e-10
+      },
+      {
+        "id": "spirit-of-fortune",
+        "name": "Spirit of Fortune",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "unlucky-clover",
+        "name": "Unlucky Clover",
+        "rarity": "secret",
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "jackpot-gem",
+        "name": "Jackpot Gem",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      }
+    ]
   }
 ]
