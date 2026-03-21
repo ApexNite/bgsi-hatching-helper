@@ -20,5 +20,13 @@
     "name": "Ultra Infinity Elixir",
     "event": "patricks",
     "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "st-patricks-infinity-elixir",
+    "name": "St Patricks Infinity Elixir",
+    "event": "patricks",
+    "potionLuckMultiplier": 1.5,
+    "potionShinyChanceMultiplier": 1.5,
+    "potionMythicChanceMultiplier": 1.5
   }
 ]
