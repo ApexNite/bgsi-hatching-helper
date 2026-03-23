@@ -180,9 +180,6 @@ function calculateStatsFromTotals(totals) {
     (1 + (totals.shinyChance || 0)) *
     (totals.shinyChanceMultiplier || 1);
 
-  const luckBase =
-    (totals.baseLuck || 0) + (totals.luck || 0) * (totals.luckMultiplier || 1);
-
   const getXlChanceForRarity = (rarity) => {
     const base =
       DEFAULT_XL_CHANCE_BY_RARITY[rarity] ?? DEFAULT_XL_CHANCE_BY_RARITY.common;
@@ -200,7 +197,7 @@ function calculateStatsFromTotals(totals) {
   };
 
   return {
-    luck: calculateAdjustedLuck(luckBase, totals._burstBlessingLevel || 0),
+    luck: calculateAdjustedLuck(totals),
     trueLuck: totals.trueLuck || 0,
     secretLuck:
       (totals.baseSecretLuck || 0) +
@@ -374,15 +371,23 @@ function calculateSeasonPerks(stars) {
   };
 }
 
-function calculateAdjustedLuck(luck, burstBlessingLevel, interval = 100) {
-  if (!luck || luck <= 0) {
-    return 1;
+function calculateAdjustedLuck(totals, interval = 100) {
+  const baseLuck = Number(totals.baseLuck) || 0;
+  const luck = Number(totals.luck) || 0;
+  const luckMultiplier = Number(totals.luckMultiplier) || 1;
+
+  const level = Math.max(0, Number(totals._burstBlessingLevel) || 0);
+  const burstBonus = level * 10;
+
+  const normalLuck = baseLuck + luck * luckMultiplier;
+
+  if (burstBonus <= 0 || interval === 1) {
+    return normalLuck;
   }
 
-  const level = Math.max(0, Number(burstBlessingLevel) || 0);
-  const burstEggMultiplier = level > 0 ? level * 10 : 1;
+  const burstLuck = baseLuck + luck * (luckMultiplier + burstBonus);
 
-  return luck * ((interval - 1 + burstEggMultiplier) / interval);
+  return ((interval - 1) * normalLuck + burstLuck) / interval;
 }
 
 function getBurstBlessingLevel(sources) {
