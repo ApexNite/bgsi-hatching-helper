@@ -214,6 +214,10 @@ const schemas = {
       default: (item, parent) => `pets/${parent.id || parent.imageDir}`,
     },
   },
+  enchant: {
+    extends: ["id", "stats"],
+    super: { type: "boolean", default: false },
+  },
   potion: {
     extends: ["stats", "id", "img"],
     event: {
@@ -320,7 +324,7 @@ function buildDataFromSources(sources) {
   return {
     dailyPerks: processData(sources.dailyPerks, "dailyPerksData"),
     eggs: processData(sources.eggs, "egg"),
-    enchants: processData(sources.enchants, ["stats", "id"]),
+    enchants: processData(sources.enchants, "enchant"),
     environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
     events: processData(sources.events, "event"),
     fragments: processData(sources.fragments, "fragment"),

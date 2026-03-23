@@ -1129,18 +1129,42 @@
         <!-- Enchants -->
         <section class="menu-section">
           {#each $dataStore.enchants || [] as enchant (enchant.id)}
-            <div class="menu-row">
-              <span class="menu-label">{enchant.name}:</span>
-              <div class="menu-control">
-                <NumberInput
-                  id={enchant.id}
-                  value={enchantValues[enchant.id]}
-                  onInput={({ value }) =>
-                    updateNumericValue(enchantValues, enchant.id, value)}
-                  hoverText="Amount of pets equiped with the {enchant.name} enchant"
-                />
+            {#if !enchant.super}
+              <div class="menu-row">
+                <span class="menu-label">{enchant.name}:</span>
+                <div class="menu-control">
+                  <NumberInput
+                    id={enchant.id}
+                    value={enchantValues[enchant.id]}
+                    onInput={({ value }) =>
+                      updateNumericValue(enchantValues, enchant.id, value)}
+                    hoverText="Amount of pets equiped with the {enchant.name} enchant"
+                  />
+                </div>
               </div>
-            </div>
+            {/if}
+          {/each}
+        </section>
+
+        <div class="section-separator"></div>
+
+        <!-- Super Enchants -->
+        <section class="menu-section">
+          {#each $dataStore.enchants || [] as enchant (enchant.id)}
+            {#if enchant.super}
+              <div class="menu-row">
+                <span class="menu-label">{enchant.name}:</span>
+                <div class="menu-control">
+                  <NumberInput
+                    id={enchant.id}
+                    value={enchantValues[enchant.id]}
+                    onInput={({ value }) =>
+                      updateNumericValue(enchantValues, enchant.id, value)}
+                    hoverText="Amount of pets equiped with the {enchant.name} enchant"
+                  />
+                </div>
+              </div>
+            {/if}
           {/each}
         </section>
 
