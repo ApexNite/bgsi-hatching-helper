@@ -12,8 +12,13 @@ const RARITY_ORDER = Object.freeze({
   infinity: 6,
 });
 
-export function getPetsToDisplay(eggId, worldId, stats) {
-  const eggsWithPets = getEggsWithInjectedPets();
+export function getPetsToDisplay(
+  eggId,
+  worldId,
+  stats,
+  showLuckyPyramidium = false,
+) {
+  const eggsWithPets = getEggsWithInjectedPets(showLuckyPyramidium);
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
   if (!egg) {
@@ -340,7 +345,7 @@ function addVariantChances(pets, stats) {
   return pets;
 }
 
-function getEggsWithInjectedPets() {
+function getEggsWithInjectedPets(showLuckyPyramidium = false) {
   const data = get(dataStore);
 
   if (!isDataLoaded || !data.eggs) {
@@ -375,6 +380,22 @@ function getEggsWithInjectedPets() {
 
         if (!targetEgg.pets.some((p) => p.id === bountyPet.id)) {
           targetEgg.pets.push(bountyPet);
+        }
+      }
+    }
+  }
+
+  if (showLuckyPyramidium) {
+    const luckyPyramidium = data.secretBounty?.pets?.["lucky-pyramidium"];
+
+    if (luckyPyramidium) {
+      for (const egg of eggsCopy) {
+        if (egg.event === "patricks") {
+          egg.pets = egg.pets || [];
+
+          if (!egg.pets.some((p) => p.id === luckyPyramidium.id)) {
+            egg.pets.push(luckyPyramidium);
+          }
         }
       }
     }
@@ -434,7 +455,8 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
           infinityLuckMultiplier;
         break;
       case "secret":
-        item.rawChance = item.boostedBaseChance * luckMultiplier * secretMultiplier;
+        item.rawChance =
+          item.boostedBaseChance * luckMultiplier * secretMultiplier;
         break;
       case "legendary":
         item.rawChance = item.boostedBaseChance * luckMultiplier;
