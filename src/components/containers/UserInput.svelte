@@ -1157,7 +1157,7 @@
                 <span class="menu-label">{enchant.name}:</span>
                 {#if enchant.id == "burst-blessing"}
                   <TooltipWarning
-                    text="It's unclear whether Burst Blessing gives a flat 10x multiplier or boosts luck like green fragments. Earlier calculations assumed the best-case 10x bonus; this now uses the worst-case scenario. If you think this is incorrect, contact me on Discord."
+                    text="It's unclear whether Burst Blessing gives a flat 10x multiplier or boosts luck like green fragments. Earlier calculations assumed the best-case flat 10x; this now uses the worst-case 10x boost. If you think this is incorrect, contact me on Discord."
                   />
                 {/if}
                 <div class="menu-control">
