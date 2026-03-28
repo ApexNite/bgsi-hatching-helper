@@ -136,5 +136,45 @@
         "name": "None"
       }
     ]
+  },
+  {
+    "id": "easter-elixir",
+    "name": "Easter Elixir",
+    "img": "assets/images/potions/easter-elixir-iv",
+    "event": "easter",
+    "potions": [
+      {
+        "id": "easter-elixir-iv",
+        "name": "Easter Elixir IV",
+        "luck": 2.5,
+        "shinyChance": 1,
+        "mythicChance": 1.25
+      },
+      {
+        "id": "easter-elixir-iii",
+        "name": "Easter Elixir III",
+        "luck": 1.75,
+        "shinyChance": 0.75,
+        "mythicChance": 0.75
+      },
+      {
+        "id": "easter-elixir-ii",
+        "name": "Easter Elixir II",
+        "luck": 1.5,
+        "shinyChance": 0.5,
+        "mythicChance": 0.5
+      },
+      {
+        "id": "easter-elixir-i",
+        "name": "Easter Elixir I",
+        "luck": 0.75,
+        "shinyChance": 0.25,
+        "mythicChance": 0.25
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
   }
 ]

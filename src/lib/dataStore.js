@@ -73,6 +73,7 @@ const schemas = {
     staticMythic: { type: "boolean", default: false },
     hasMythic: { type: "boolean", default: true },
     ignoreLuck: { type: "boolean", default: false },
+    ignoreTrueLuck: { type: "boolean", default: false },
     ignoreSecret: { type: "boolean", default: false },
     celestial: { type: "boolean", default: false },
   },

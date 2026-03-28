@@ -398,7 +398,10 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     const rarity = p.rarity ?? "common";
     const originalBaseChance = Number(p.baseChance ?? 0);
     const boostedBaseChance =
-      rarity === "legendary" || rarity === "secret" || rarity === "infinity"
+      (rarity === "legendary" ||
+        rarity === "secret" ||
+        rarity === "infinity") &&
+      !p.ignoreTrueLuck
         ? originalBaseChance * trueLuckMultiplier
         : originalBaseChance;
 

@@ -1206,5 +1206,134 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "basket-egg",
+    "name": "Basket Egg",
+    "type": "world",
+    "world": "easter-paradise",
+    "event": "easter",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "bow-kitty",
+        "name": "Bow Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "bow-egg-bunny",
+        "name": "Bow Egg Bunny",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "egged",
+        "name": "Egged",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "easter-dragon",
+        "name": "Easter Dragon",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "easter-hydra",
+        "name": "Classic Dominus",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "big-egg-bunny",
+        "name": "Big Egg Bunny",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      },
+      {
+        "id": "easter-defender",
+        "name": "Easter Defender",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      }
+    ]
+  },
+  {
+    "id": "easter-bunny-egg",
+    "name": "Easter Bunny Egg",
+    "type": "world",
+    "world": "easter-paradise",
+    "event": "easter",
+    "riftable": true,
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "pocket-bunny",
+        "name": "Pocket Bunny",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "bunny-bunny",
+        "name": "Bunny Bunny",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "roung-egg-bunny",
+        "name": "Round Egg Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "demonic-bunny",
+        "name": "Demonic Bunny",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "chroma-bunny",
+        "name": "Chroma Bunny",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "galactic-bunny",
+        "name": "Galactic Bunny",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "easter-spirit",
+        "name": "Easter Spirit",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "prestige-carrot",
+        "name": "Prestige Carrot",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "bonbun",
+        "name": "Bonbun",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "dual-dreamers",
+        "name": "Dual Dreamers",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "bunny-basket",
+        "name": "Bunny Basket",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]
