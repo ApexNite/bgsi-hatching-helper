@@ -47,7 +47,8 @@
     secretLuck: 1,
     infinityLuck: 1,
     shinyChance: 40,
-    mythicChance: 100,
+    // mythicChance: 100,
+    mythicChance: 90,
     // xlChance: 500,
     hatchSpeed: 100,
   };

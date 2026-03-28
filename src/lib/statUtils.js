@@ -42,7 +42,8 @@ export function calculateStats(sources, toggles, numbers) {
     baseSecretLuck: 0,
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
-    baseMythicChance: 1 / 100,
+    // baseMythicChance: 1 / 100,
+    baseMythicChance: 1 / 90,
     baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
@@ -281,7 +282,10 @@ function applySource(totals, source) {
   }
 
   if (typeof source.shinyChanceMultiplier === "number") {
-    totals.shinyChanceMultiplier *= Math.pow(source.shinyChanceMultiplier, times);
+    totals.shinyChanceMultiplier *= Math.pow(
+      source.shinyChanceMultiplier,
+      times,
+    );
   }
 
   if (typeof source.mythicChanceMultiplier === "number") {
@@ -289,7 +293,10 @@ function applySource(totals, source) {
       totals.mythicChanceMultiplier = source.mythicChanceMultiplier;
       totals._mythicChanceMultiplierOverwritten = true;
     } else if (!totals._mythicChanceMultiplierOverwritten) {
-      totals.mythicChanceMultiplier *= Math.pow(source.mythicChanceMultiplier, times);
+      totals.mythicChanceMultiplier *= Math.pow(
+        source.mythicChanceMultiplier,
+        times,
+      );
     }
   }
 
@@ -302,7 +309,10 @@ function applySource(totals, source) {
   }
 
   if (typeof source.infinityLuckMultiplier === "number") {
-    totals.infinityLuckMultiplier *= Math.pow(source.infinityLuckMultiplier, times);
+    totals.infinityLuckMultiplier *= Math.pow(
+      source.infinityLuckMultiplier,
+      times,
+    );
   }
 
   if (typeof source.baseLuck === "number") {
@@ -334,7 +344,10 @@ function applySource(totals, source) {
   }
 
   if (typeof source.superLegendaryChanceMultiplier === "number") {
-    totals.superLegendaryChanceMultiplier *= Math.pow(source.superLegendaryChanceMultiplier, times);
+    totals.superLegendaryChanceMultiplier *= Math.pow(
+      source.superLegendaryChanceMultiplier,
+      times,
+    );
   }
 }
 
