@@ -366,11 +366,11 @@ const compiledSources = {
   dataHash: dataHashCompiled,
 };
 
-export async function loadData() {
+export async function loadData(forceFetch = false) {
   try {
     dataError.set(null);
 
-    if (await shouldUpdate()) {
+    if (!forceFetch && !await shouldUpdate()) {
       const data = buildDataFromSources(compiledSources);
 
       dataStore.set(data);
@@ -471,9 +471,11 @@ export async function loadData() {
 
     hashPollIntervalId = setInterval(async () => {
       try {
-        await loadData();
+        if (!document.hidden && await shouldUpdate()) {
+          await loadData(true);
+        }
       } catch {}
-    }, 60000);
+    }, 45000);
   }
 }
 
