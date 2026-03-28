@@ -13,7 +13,7 @@ const RARITY_ORDER = Object.freeze({
 });
 
 export function getPetsToDisplay(eggId, worldId, stats) {
-  const eggsWithPets = getEggsWithInjectedPets();
+  const eggsWithPets = getEggsWithInjectedPets(Number(stats?.trueLuck ?? 1) <= 1);
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
   if (!egg) {
@@ -340,7 +340,7 @@ function addVariantChances(pets, stats) {
   return pets;
 }
 
-function getEggsWithInjectedPets() {
+function getEggsWithInjectedPets(trueLuckEgg) {
   const data = get(dataStore);
 
   if (!isDataLoaded || !data.eggs) {
@@ -368,7 +368,7 @@ function getEggsWithInjectedPets() {
   const bounty = data.secretBounty?.eggs?.[utcDate];
   if (bounty) {
     const bountyPet = data.secretBounty?.pets?.[bounty.pet];
-    if (bountyPet) {
+    if (bountyPet && (!bountyPet.ignoreTrueLuck || trueLuckEgg)) {
       const targetEgg = eggsCopy.find((e) => e.id === bounty.egg);
       if (targetEgg) {
         targetEgg.pets = targetEgg.pets || [];
@@ -398,10 +398,7 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     const rarity = p.rarity ?? "common";
     const originalBaseChance = Number(p.baseChance ?? 0);
     const boostedBaseChance =
-      (rarity === "legendary" ||
-        rarity === "secret" ||
-        rarity === "infinity") &&
-      !p.ignoreTrueLuck
+      rarity === "legendary" || rarity === "secret" || rarity === "infinity"
         ? originalBaseChance * trueLuckMultiplier
         : originalBaseChance;
 

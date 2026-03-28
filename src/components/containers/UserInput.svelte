@@ -21,6 +21,7 @@
   let calculationMode = "calculated";
   let dismissedManualWarning = false;
   let dismissedInfinityWarning = false;
+  let dismissedTrueLuckWarning = false;
   let isUserInputReady = false;
 
   let selectedOptions = {};
@@ -139,6 +140,7 @@
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
   $: isTrueLuckEgg = !!selectedEgg && selectedEgg.trueLuck === true;
+  $: isTrueLuckActive = numericValues.trueLuckMultiplier > 1;
 
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
@@ -172,7 +174,9 @@
   $: visibleMasteries = visibleByEvent($dataStore.masteries, activeEvent);
   $: visibleMilestones = visibleByEvent($dataStore.milestones, activeEvent);
   $: visibleShrineBuffs = visibleByEvent($dataStore.shrineBuffs, activeEvent);
-  $: hasShrineBuffs = (visibleShrineBuffs || []).some((sb) => sb.id !== "none");
+  $: hasShrineBuffs = (visibleShrineBuffs || []).some(
+    (sb) => sb.id !== "none" && !isTrueLuckActive,
+  );
 
   $: selectedShrineBuffId = shrineBuffSelections[activeEvent] ?? "none";
 
@@ -210,7 +214,7 @@
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
-          ...(selectedShrineBuffId !== "none"
+          ...(selectedShrineBuffId !== "none" && !isTrueLuckActive
             ? (visibleShrineBuffs || []).filter(
                 (sb) => sb.id === selectedShrineBuffId,
               )
@@ -352,6 +356,7 @@
         };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
+        dismissedTrueLuckWarning = savedData.dismissedTrueLuckWarning ?? false;
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -380,6 +385,7 @@
       collapsedSections,
       dismissedManualWarning,
       dismissedInfinityWarning,
+      dismissTrueLuckWarning,
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -398,6 +404,11 @@
 
   function dismissInfinityWarning() {
     dismissedInfinityWarning = true;
+    saveToCache();
+  }
+
+  function dismissTrueLuckWarning() {
+    dismissedTrueLuckWarning = true;
     saveToCache();
   }
 
@@ -1591,10 +1602,28 @@
           {
             label: "Rarity Based",
             description:
-              "The Infinity Egg first rolls for a rarity, then selects a random pet from that rarity. More pets in a rarity won't increase your odds of hatching that rarity",
+              "The Infinity Egg first rolls for a rarity, then selects a random pet from that rarity. More secret pets in the egg won't increase your odds of hatching one",
           },
         ]}
         onDismiss={dismissInfinityWarning}
+      />
+    {/if}
+
+    {#if isTrueLuckActive && !dismissedTrueLuckWarning}
+      <WarningBanner
+        type="info"
+        title="True Luck Egg Information"
+        items={[
+          {
+            label: "Bounty",
+            description: "Bounty pets are never in true luck eggs",
+          },
+          {
+            label: "Shrine Buff",
+            description: "Shrine buff does not affect the true luck eggs",
+          },
+        ]}
+        onDismiss={dismissTrueLuckWarning}
       />
     {/if}
   </div>
