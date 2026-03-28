@@ -276,19 +276,15 @@ function applySource(totals, source) {
   }
 
   if (typeof source.luckMultiplier === "number") {
-    for (let i = 0; i < times; i++) {
-      totals.luckMultiplier += source.luckMultiplier;
-    }
+    totals.luckMultiplier += source.luckMultiplier * times;
   }
 
   if (typeof source.hatchSpeedMultiplier === "number") {
-    for (let i = 0; i < times; i++) {
-      totals.hatchSpeedMultiplier += source.hatchSpeedMultiplier;
-    }
+    totals.hatchSpeedMultiplier += source.hatchSpeedMultiplier * times;
   }
 
   if (typeof source.shinyChanceMultiplier === "number") {
-    totals.shinyChanceMultiplier *= source.shinyChanceMultiplier;
+    totals.shinyChanceMultiplier *= Math.pow(source.shinyChanceMultiplier, times);
   }
 
   if (typeof source.mythicChanceMultiplier === "number") {
@@ -296,7 +292,7 @@ function applySource(totals, source) {
       totals.mythicChanceMultiplier = source.mythicChanceMultiplier;
       totals._mythicChanceMultiplierOverwritten = true;
     } else if (!totals._mythicChanceMultiplierOverwritten) {
-      totals.mythicChanceMultiplier *= source.mythicChanceMultiplier;
+      totals.mythicChanceMultiplier *= Math.pow(source.mythicChanceMultiplier, times);
     }
   }
 
@@ -305,15 +301,11 @@ function applySource(totals, source) {
   }
 
   if (typeof source.secretLuckMultiplier === "number") {
-    for (let i = 0; i < times; i++) {
-      totals.secretLuckMultiplier *= source.secretLuckMultiplier;
-    }
+    totals.secretLuckMultiplier *= Math.pow(source.secretLuckMultiplier, times);
   }
 
   if (typeof source.infinityLuckMultiplier === "number") {
-    for (let i = 0; i < times; i++) {
-      totals.infinityLuckMultiplier *= source.infinityLuckMultiplier;
-    }
+    totals.infinityLuckMultiplier *= Math.pow(source.infinityLuckMultiplier, times);
   }
 
   if (typeof source.baseLuck === "number") {
@@ -345,8 +337,7 @@ function applySource(totals, source) {
   }
 
   if (typeof source.superLegendaryChanceMultiplier === "number") {
-    totals.superLegendaryChanceMultiplier *=
-      source.superLegendaryChanceMultiplier;
+    totals.superLegendaryChanceMultiplier *= Math.pow(source.superLegendaryChanceMultiplier, times);
   }
 }
 
