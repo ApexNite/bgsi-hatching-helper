@@ -55,6 +55,7 @@
   let eventUpgradeValues = {};
   let eggRiftSelections = {};
   let shrineBuffSelections = {};
+  let collapsedSections = {};
 
   $: if ($isDataLoaded) {
     const defaultSelectedOptions = {
@@ -344,6 +345,10 @@
           ...shrineBuffSelections,
           ...savedData.shrineBuffSelections,
         };
+        collapsedSections = {
+          ...collapsedSections,
+          ...savedData.collapsedSections,
+        };
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
       }
@@ -371,6 +376,7 @@
       eventUpgradeValues,
       eggRiftSelections,
       shrineBuffSelections,
+      collapsedSections,
       dismissedManualWarning,
       dismissedInfinityWarning,
     };
@@ -480,6 +486,17 @@
     saveToCache();
   }
 
+  function toggleSection(sectionId) {
+    const currentlyOpen = collapsedSections[sectionId] ?? true;
+
+    collapsedSections = {
+      ...collapsedSections,
+      [sectionId]: !currentlyOpen,
+    };
+
+    saveToCache();
+  }
+
   function visibleByEvent(items, eventId) {
     const list = Array.isArray(items) ? items : [];
     return list.filter((i) => i.event === "none" || i.event === eventId);
@@ -502,879 +519,1028 @@
     </div>
 
     <div class="menu-container">
-      <!-- Egg Selection -->
-      <section class="menu-section">
-        <div class="menu-row">
-          <span class="menu-label">
-            <span class="menu-img">
-              <SmartImage
-                base="assets/images/icons/eggs"
-                alt="Eggs"
-                size="32px"
-                decoding="async"
-              />
-            </span>
-            Egg:
-          </span>
-          <div class="menu-control">
-            <Dropdown
-              id="eggs"
-              options={$dataStore.eggs || []}
-              selectedOption={$dataStore.eggs?.find(
-                (e) => e.id === selectedOptions.eggs,
-              )}
-              onSelect={handleSelect}
-            />
-          </div>
-        </div>
+      <button
+        class="section-separator"
+        type="button"
+        on:click={() => toggleSection("egg-selection")}
+      >
+        <span>Egg Selection</span>
+        <strong
+          >{(collapsedSections["egg-selection"] ?? true) ? "−" : "+"}</strong
+        >
+      </button>
 
-        {#if isInfinityEgg}
+      {#if collapsedSections["egg-selection"] ?? true}
+        <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
               <span class="menu-img">
                 <SmartImage
-                  base="assets/images/worlds/the-overworld"
-                  alt="World"
+                  base="assets/images/icons/eggs"
+                  alt="Eggs"
                   size="32px"
                   decoding="async"
                 />
               </span>
-              World:
+              Egg:
             </span>
             <div class="menu-control">
               <Dropdown
-                id="worlds"
-                options={$dataStore.worlds || []}
-                selectedOption={$dataStore.worlds?.find(
-                  (e) => e.id === selectedOptions.worlds,
+                id="eggs"
+                options={$dataStore.eggs || []}
+                selectedOption={$dataStore.eggs?.find(
+                  (e) => e.id === selectedOptions.eggs,
                 )}
                 onSelect={handleSelect}
               />
             </div>
           </div>
-        {/if}
 
-        {#if isRiftableEgg}
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/rift"
-                  alt="Rift"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Rift:
-            </span>
-            <div class="menu-control">
-              <Dropdown
-                id="rifts"
-                options={$dataStore.rifts || []}
-                selectedOption={selectedRift}
-                onSelect={handleSelect}
-              />
-            </div>
-          </div>
-
-          {#if selectedRift.id === "other"}
+          {#if isInfinityEgg}
             <div class="menu-row">
               <span class="menu-label">
                 <span class="menu-img">
                   <SmartImage
-                    base="assets/images/icons/luck"
+                    base="assets/images/worlds/the-overworld"
+                    alt="World"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                World:
+              </span>
+              <div class="menu-control">
+                <Dropdown
+                  id="worlds"
+                  options={$dataStore.worlds || []}
+                  selectedOption={$dataStore.worlds?.find(
+                    (e) => e.id === selectedOptions.worlds,
+                  )}
+                  onSelect={handleSelect}
+                />
+              </div>
+            </div>
+          {/if}
+
+          {#if isRiftableEgg}
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/rift"
                     alt="Rift"
                     size="32px"
                     decoding="async"
                   />
                 </span>
-                Multiplier:
-              </span>
-              <div class="menu-control">
-                <NumberInput
-                  id="rift-multiplier"
-                  value={numericValues.riftMultiplier}
-                  onInput={({ value }) =>
-                    updateNumericValue(numericValues, "riftMultiplier", value)}
-                  hoverText="Rift Multiplier"
-                />
-              </div>
-            </div>
-          {/if}
-        {/if}
-
-        {#if isTrueLuckEgg}
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/luck"
-                  alt="True Luck Multiplier"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              True Luck Multiplier:
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="true-luck-multiplier"
-                value={numericValues.trueLuckMultiplier}
-                onInput={({ value }) =>
-                  updateNumericValue(
-                    numericValues,
-                    "trueLuckMultiplier",
-                    value,
-                  )}
-                hoverText="True Luck Multiplier"
-              />
-            </div>
-          </div>
-        {/if}
-
-        {#if isWorldEgg && calculationMode != "manual"}
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/index"
-                  alt="Index"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Index:
-            </span>
-            <div class="menu-control world-index-controls">
-              <span class="index-label">Normal:</span>
-              <Checkbox
-                id="world-normal"
-                checked={currentWorldIndexState.worldNormal}
-                onChange={() => updateWorldIndexToggle("worldNormal")}
-              />
-              <span class="index-label">Shiny:</span>
-              <Checkbox
-                id="world-shiny"
-                checked={currentWorldIndexState.worldShiny}
-                onChange={() => updateWorldIndexToggle("worldShiny")}
-              />
-            </div>
-          </div>
-        {/if}
-      </section>
-
-      <div class="section-separator"></div>
-
-      <!-- Eggs Per Hatch -->
-      <section class="menu-section">
-        <div class="menu-row">
-          <span class="menu-label">
-            <span class="menu-img">
-              <SmartImage
-                base="assets/images/icons/multi-egg"
-                alt="Eggs Per Hatch"
-                size="32px"
-                decoding="async"
-              />
-            </span>
-            Eggs Per Hatch:
-          </span>
-          <div class="menu-control">
-            <NumberInput
-              id="eggs-per-hatch"
-              value={numericValues.eggsPerHatch}
-              onInput={({ value }) =>
-                updateNumericValue(numericValues, "eggsPerHatch", value)}
-              hoverText="Amount of eggs opened per hatch"
-            />
-          </div>
-        </div>
-      </section>
-
-      <div class="section-separator"></div>
-
-      <!-- Manual Stats Input -->
-      {#if calculationMode === "manual"}
-        <section class="menu-section">
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/luck"
-                  alt="Luck"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Luck (%):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-luck"
-                value={manualStats.luck}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "luck", value)}
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/secret-luck"
-                  alt="Secret Luck"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Secret Luck (x):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-secret-luck"
-                value={manualStats.secretLuck}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "secretLuck", value)}
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/infinity-luck"
-                  alt="Infinity Luck"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Infinity Luck (x):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-infinity-luck"
-                value={manualStats.infinityLuck}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "infinityLuck", value)}
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/shiny"
-                  alt="Shiny Chance"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Shiny Chance (1 in):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-shiny-chance"
-                value={manualStats.shinyChance}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "shinyChance", value)}
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/mythic"
-                  alt="Mythic Chance"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Mythic Chance (1 in):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-mythic-chance"
-                value={manualStats.mythicChance}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "mythicChance", value)}
-              />
-            </div>
-          </div>
-
-          <!-- <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/XL"
-                  alt="XL Chance"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              XL Chance (1 in):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-xl-chance"
-                value={manualStats.xlChance}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "xlChance", value)}
-              />
-            </div>
-          </div> -->
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/timer"
-                  alt="Hatch Speed"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Hatch Speed (%):
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="manual-hatch-speed"
-                value={manualStats.hatchSpeed}
-                onInput={({ value }) =>
-                  updateNumericValue(manualStats, "hatchSpeed", value)}
-              />
-            </div>
-          </div>
-        </section>
-      {:else}
-        <!-- Potions -->
-        <section class="menu-section">
-          {#each visiblePotions || [] as potion (potion.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if potion.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={potion.img}
-                      alt={potion.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {potion.name}:
+                Rift:
               </span>
               <div class="menu-control">
                 <Dropdown
-                  id={potion.id}
-                  options={potion.potions}
-                  selectedOption={potion.potions.find(
-                    (o) => o.id === selectedOptions[potion.id],
-                  ) || potion.potions[potion.potions.length - 1]}
+                  id="rifts"
+                  options={$dataStore.rifts || []}
+                  selectedOption={selectedRift}
                   onSelect={handleSelect}
                 />
               </div>
             </div>
-          {/each}
 
-          {#each visibleSpecialPotions || [] as potion (potion.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if potion.img}
+            {#if selectedRift.id === "other"}
+              <div class="menu-row">
+                <span class="menu-label">
                   <span class="menu-img">
                     <SmartImage
-                      base={potion.img}
-                      alt={potion.name}
+                      base="assets/images/icons/luck"
+                      alt="Rift"
                       size="32px"
                       decoding="async"
                     />
                   </span>
-                {/if}
-                {potion.name}:
-              </span>
-              <div class="menu-control">
-                <Checkbox
-                  id={potion.id}
-                  checked={specialPotionToggles[potion.id]}
-                  onChange={() => updateToggle(specialPotionToggles, potion.id)}
-                />
+                  Multiplier:
+                </span>
+                <div class="menu-control">
+                  <NumberInput
+                    id="rift-multiplier"
+                    value={numericValues.riftMultiplier}
+                    onInput={({ value }) =>
+                      updateNumericValue(
+                        numericValues,
+                        "riftMultiplier",
+                        value,
+                      )}
+                    hoverText="Rift Multiplier"
+                  />
+                </div>
               </div>
-            </div>
-          {/each}
-        </section>
+            {/if}
+          {/if}
 
-        <div class="section-separator"></div>
-
-        {#each visibleRunes || [] as runeGroup (runeGroup.id)}
-          <div class="menu-row">
-            <span class="menu-label">
-              {#if runeGroup.img}
+          {#if isTrueLuckEgg}
+            <div class="menu-row">
+              <span class="menu-label">
                 <span class="menu-img">
                   <SmartImage
-                    base={runeGroup.img}
-                    alt={runeGroup.name}
+                    base="assets/images/icons/luck"
+                    alt="True Luck Multiplier"
                     size="32px"
                     decoding="async"
                   />
                 </span>
-              {/if}
-              {runeGroup.name}:
-            </span>
-            <div class="menu-control">
-              <Dropdown
-                id={runeGroup.id}
-                options={runeGroup.runes}
-                selectedOption={runeGroup.runes.find(
-                  (o) => o.id === selectedOptions[runeGroup.id],
-                ) || runeGroup.runes[runeGroup.runes.length - 1]}
-                onSelect={handleSelect}
-              />
-            </div>
-          </div>
-        {/each}
-
-        <div class="section-separator"></div>
-
-        <!-- Milestones -->
-        <section class="menu-section">
-          {#each visibleMilestones || [] as milestone (milestone.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if milestone.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={milestone.img}
-                      alt={milestone.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {milestone.name}:
+                True Luck Multiplier:
               </span>
               <div class="menu-control">
-                <Dropdown
-                  id={milestone.id}
-                  options={milestone.tiers}
-                  selectedOption={milestone.tiers.find(
-                    (o) => o.id === selectedOptions[milestone.id],
-                  ) || milestone.tiers[milestone.tiers.length - 1]}
-                  onSelect={handleSelect}
+                <NumberInput
+                  id="true-luck-multiplier"
+                  value={numericValues.trueLuckMultiplier}
+                  onInput={({ value }) =>
+                    updateNumericValue(
+                      numericValues,
+                      "trueLuckMultiplier",
+                      value,
+                    )}
+                  hoverText="True Luck Multiplier"
                 />
               </div>
             </div>
-          {/each}
+          {/if}
+
+          {#if isWorldEgg && calculationMode != "manual"}
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/index"
+                    alt="Index"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Index:
+              </span>
+              <div class="menu-control world-index-controls">
+                <span class="index-label">Normal:</span>
+                <Checkbox
+                  id="world-normal"
+                  checked={currentWorldIndexState.worldNormal}
+                  onChange={() => updateWorldIndexToggle("worldNormal")}
+                />
+                <span class="index-label">Shiny:</span>
+                <Checkbox
+                  id="world-shiny"
+                  checked={currentWorldIndexState.worldShiny}
+                  onChange={() => updateWorldIndexToggle("worldShiny")}
+                />
+              </div>
+            </div>
+          {/if}
         </section>
+      {/if}
 
-        <div class="section-separator"></div>
-
-        <!-- Leveled Buffs -->
+      <button
+        class="section-separator"
+        type="button"
+        on:click={() => toggleSection("eggs-per-hatch")}
+      >
+        <span>Eggs Per Hatch</span>
+        <strong
+          >{(collapsedSections["eggs-per-hatch"] ?? true) ? "−" : "+"}</strong
+        >
+      </button>
+      {#if collapsedSections["eggs-per-hatch"] ?? true}
         <section class="menu-section">
           <div class="menu-row">
             <span class="menu-label">
               <span class="menu-img">
                 <SmartImage
-                  base="assets/images/icons/bubble-shrine"
-                  alt="Shrine Blessing"
+                  base="assets/images/icons/multi-egg"
+                  alt="Eggs Per Hatch"
                   size="32px"
                   decoding="async"
                 />
               </span>
-              Shrine Blessing:
+              Eggs Per Hatch:
             </span>
             <div class="menu-control">
               <NumberInput
-                id="shrine-blessing"
-                value={numericValues.shrineBlessing}
-                maxValue={50}
+                id="eggs-per-hatch"
+                value={numericValues.eggsPerHatch}
                 onInput={({ value }) =>
-                  updateNumericValue(numericValues, "shrineBlessing", value)}
-                hoverText="Bubble Shrine Blessing Level (Max 50)"
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/dreamer-blessing"
-                  alt="Dreamer Blessing"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Dreamer Blessing:
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="dreamer-blessing"
-                value={numericValues.dreamerBlessing}
-                maxValue={50}
-                onInput={({ value }) =>
-                  updateNumericValue(numericValues, "dreamerBlessing", value)}
-                hoverText="Dreamer Shrine Blessing Level (Max 50)"
-              />
-            </div>
-          </div>
-
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/season-stars"
-                  alt="Season Stars"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Season Stars:
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="season-stars"
-                value={numericValues.seasonStars}
-                maxValue={1500}
-                onInput={({ value }) =>
-                  updateNumericValue(numericValues, "seasonStars", value)}
-                hoverText="Season Pass Stars (Max 1500)"
+                  updateNumericValue(numericValues, "eggsPerHatch", value)}
+                hoverText="Amount of eggs opened per hatch"
               />
             </div>
           </div>
         </section>
+      {/if}
 
-        <div class="section-separator"></div>
-
-        {#if visibleUpgrades.length > 0}
+      {#if calculationMode === "manual"}
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("manual-stats")}
+        >
+          <span>Manual Stats</span>
+          <strong
+            >{(collapsedSections["manual-stats"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["manual-stats"] ?? true}
           <section class="menu-section">
-            {#each visibleUpgrades as upgrade (upgrade.id)}
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luck"
+                    alt="Luck"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Luck (%):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-luck"
+                  value={manualStats.luck}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "luck", value)}
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/secret-luck"
+                    alt="Secret Luck"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Secret Luck (x):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-secret-luck"
+                  value={manualStats.secretLuck}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "secretLuck", value)}
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/infinity-luck"
+                    alt="Infinity Luck"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Infinity Luck (x):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-infinity-luck"
+                  value={manualStats.infinityLuck}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "infinityLuck", value)}
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/shiny"
+                    alt="Shiny Chance"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Shiny Chance (1 in):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-shiny-chance"
+                  value={manualStats.shinyChance}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "shinyChance", value)}
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/mythic"
+                    alt="Mythic Chance"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Mythic Chance (1 in):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-mythic-chance"
+                  value={manualStats.mythicChance}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "mythicChance", value)}
+                />
+              </div>
+            </div>
+
+            <!-- <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/XL"
+                    alt="XL Chance"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                XL Chance (1 in):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-xl-chance"
+                  value={manualStats.xlChance}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "xlChance", value)}
+                />
+              </div>
+            </div> -->
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/timer"
+                    alt="Hatch Speed"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Hatch Speed (%):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-hatch-speed"
+                  value={manualStats.hatchSpeed}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "hatchSpeed", value)}
+                />
+              </div>
+            </div>
+          </section>
+        {/if}
+      {:else}
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("potions")}
+        >
+          <span>Potions</span>
+          <strong>{(collapsedSections["potions"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["potions"] ?? true}
+          <section class="menu-section">
+            {#each visiblePotions || [] as potion (potion.id)}
               <div class="menu-row">
                 <span class="menu-label">
-                  {#if upgrade.img}
+                  {#if potion.img}
                     <span class="menu-img">
                       <SmartImage
-                        base={upgrade.img}
-                        alt={upgrade.name}
+                        base={potion.img}
+                        alt={potion.name}
                         size="32px"
                         decoding="async"
                       />
                     </span>
                   {/if}
-                  {upgrade.name}:
+                  {potion.name}:
                 </span>
                 <div class="menu-control">
                   <Dropdown
-                    id={upgrade.id}
-                    options={[
-                      { id: 0, name: "None" },
-                      ...Object.keys(upgrade.levels || {}).map((l) => ({
-                        id: Number(l),
-                        name: `Level ${l}`,
-                      })),
-                    ].sort((a, b) => b.id - a.id)}
-                    selectedOption={{
-                      id: eventUpgradeValues[upgrade.id] || 0,
-                      name: eventUpgradeValues[upgrade.id]
-                        ? `Level ${eventUpgradeValues[upgrade.id]}`
-                        : "None",
-                    }}
-                    onSelect={({ option }) =>
-                      updateNumericValue(
-                        eventUpgradeValues,
-                        upgrade.id,
-                        option.id,
-                      )}
+                    id={potion.id}
+                    options={potion.potions}
+                    selectedOption={potion.potions.find(
+                      (o) => o.id === selectedOptions[potion.id],
+                    ) || potion.potions[potion.potions.length - 1]}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              </div>
+            {/each}
+
+            {#each visibleSpecialPotions || [] as potion (potion.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if potion.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={potion.img}
+                        alt={potion.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {potion.name}:
+                </span>
+                <div class="menu-control">
+                  <Checkbox
+                    id={potion.id}
+                    checked={specialPotionToggles[potion.id]}
+                    onChange={() =>
+                      updateToggle(specialPotionToggles, potion.id)}
                   />
                 </div>
               </div>
             {/each}
           </section>
-
-          <div class="section-separator"></div>
         {/if}
 
-        {#if hasShrineBuffs}
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("runes")}
+        >
+          <span>Runes</span>
+          <strong>{(collapsedSections["runes"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["runes"] ?? true}
+          <section class="menu-section">
+            {#each visibleRunes || [] as runeGroup (runeGroup.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if runeGroup.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={runeGroup.img}
+                        alt={runeGroup.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {runeGroup.name}:
+                </span>
+                <div class="menu-control">
+                  <Dropdown
+                    id={runeGroup.id}
+                    options={runeGroup.runes}
+                    selectedOption={runeGroup.runes.find(
+                      (o) => o.id === selectedOptions[runeGroup.id],
+                    ) || runeGroup.runes[runeGroup.runes.length - 1]}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              </div>
+            {/each}
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("milestones")}
+        >
+          <span>Milestones</span>
+          <strong
+            >{(collapsedSections["milestones"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["milestones"] ?? true}
+          <section class="menu-section">
+            {#each visibleMilestones || [] as milestone (milestone.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if milestone.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={milestone.img}
+                        alt={milestone.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {milestone.name}:
+                </span>
+                <div class="menu-control">
+                  <Dropdown
+                    id={milestone.id}
+                    options={milestone.tiers}
+                    selectedOption={milestone.tiers.find(
+                      (o) => o.id === selectedOptions[milestone.id],
+                    ) || milestone.tiers[milestone.tiers.length - 1]}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              </div>
+            {/each}
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("leveled-buffs")}
+        >
+          <span>Leveled Buffs</span>
+          <strong
+            >{(collapsedSections["leveled-buffs"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["leveled-buffs"] ?? true}
           <section class="menu-section">
             <div class="menu-row">
               <span class="menu-label">
                 <span class="menu-img">
                   <SmartImage
-                    base={selectedEgg.event === "easter"
-                      ? "assets/images/icons/easter-shrine"
-                      : "assets/images/icons/lucky-egg"}
-                    alt="Shrine Buff"
+                    base="assets/images/icons/bubble-shrine"
+                    alt="Shrine Blessing"
                     size="32px"
                     decoding="async"
                   />
                 </span>
-                Shrine Buff:
+                Shrine Blessing:
               </span>
               <div class="menu-control">
-                <Dropdown
-                  id="shrine-buff"
-                  options={visibleShrineBuffs || []}
-                  selectedOption={(visibleShrineBuffs || []).find(
-                    (sb) => sb.id === selectedShrineBuffId,
-                  ) || (visibleShrineBuffs || [])[0]}
-                  onSelect={handleSelect}
+                <NumberInput
+                  id="shrine-blessing"
+                  value={numericValues.shrineBlessing}
+                  maxValue={50}
+                  onInput={({ value }) =>
+                    updateNumericValue(numericValues, "shrineBlessing", value)}
+                  hoverText="Bubble Shrine Blessing Level (Max 50)"
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/dreamer-blessing"
+                    alt="Dreamer Blessing"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Dreamer Blessing:
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="dreamer-blessing"
+                  value={numericValues.dreamerBlessing}
+                  maxValue={50}
+                  onInput={({ value }) =>
+                    updateNumericValue(numericValues, "dreamerBlessing", value)}
+                  hoverText="Dreamer Shrine Blessing Level (Max 50)"
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/season-stars"
+                    alt="Season Stars"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Season Stars:
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="season-stars"
+                  value={numericValues.seasonStars}
+                  maxValue={1500}
+                  onInput={({ value }) =>
+                    updateNumericValue(numericValues, "seasonStars", value)}
+                  hoverText="Season Pass Stars (Max 1500)"
                 />
               </div>
             </div>
           </section>
-
-          <div class="section-separator"></div>
         {/if}
 
-        <!-- Enchants -->
-        <section class="menu-section">
-          {#each $dataStore.enchants || [] as enchant (enchant.id)}
-            {#if !enchant.super}
-              <div class="menu-row">
-                <span class="menu-label">{enchant.name}:</span>
-                <div class="menu-control">
-                  <NumberInput
-                    id={enchant.id}
-                    value={enchantValues[enchant.id]}
-                    onInput={({ value }) =>
-                      updateNumericValue(enchantValues, enchant.id, value)}
-                    hoverText="Amount of pets equiped with the {enchant.name} enchant"
-                  />
+        {#if visibleUpgrades.length > 0}
+          <button
+            class="section-separator"
+            type="button"
+            on:click={() => toggleSection("event-upgrades")}
+          >
+            <span>Event Upgrades</span>
+            <strong
+              >{(collapsedSections["event-upgrades"] ?? true)
+                ? "−"
+                : "+"}</strong
+            >
+          </button>
+          {#if collapsedSections["event-upgrades"] ?? true}
+            <section class="menu-section">
+              {#each visibleUpgrades as upgrade (upgrade.id)}
+                <div class="menu-row">
+                  <span class="menu-label">
+                    {#if upgrade.img}
+                      <span class="menu-img">
+                        <SmartImage
+                          base={upgrade.img}
+                          alt={upgrade.name}
+                          size="32px"
+                          decoding="async"
+                        />
+                      </span>
+                    {/if}
+                    {upgrade.name}:
+                  </span>
+                  <div class="menu-control">
+                    <Dropdown
+                      id={upgrade.id}
+                      options={[
+                        { id: 0, name: "None" },
+                        ...Object.keys(upgrade.levels || {}).map((l) => ({
+                          id: Number(l),
+                          name: `Level ${l}`,
+                        })),
+                      ].sort((a, b) => b.id - a.id)}
+                      selectedOption={{
+                        id: eventUpgradeValues[upgrade.id] || 0,
+                        name: eventUpgradeValues[upgrade.id]
+                          ? `Level ${eventUpgradeValues[upgrade.id]}`
+                          : "None",
+                      }}
+                      onSelect={({ option }) =>
+                        updateNumericValue(
+                          eventUpgradeValues,
+                          upgrade.id,
+                          option.id,
+                        )}
+                    />
+                  </div>
                 </div>
-              </div>
-            {/if}
-          {/each}
-        </section>
+              {/each}
+            </section>
+          {/if}
+        {/if}
 
-        <div class="section-separator"></div>
-
-        <!-- Super Enchants -->
-        <section class="menu-section">
-          {#each $dataStore.enchants || [] as enchant (enchant.id)}
-            {#if enchant.super}
+        {#if hasShrineBuffs}
+          <button
+            class="section-separator"
+            type="button"
+            on:click={() => toggleSection("shrine-buff")}
+          >
+            <span>Shrine Buff</span>
+            <strong
+              >{(collapsedSections["shrine-buff"] ?? true) ? "−" : "+"}</strong
+            >
+          </button>
+          {#if collapsedSections["shrine-buff"] ?? true}
+            <section class="menu-section">
               <div class="menu-row">
-                <span class="menu-label">{enchant.name}:</span>
-                {#if enchant.id == "burst-blessing"}
-                  <TooltipWarning
-                    text="It's unclear whether Burst Blessing gives a flat 10x multiplier or boosts luck like green fragments. Earlier calculations assumed the best-case flat 10x; this now uses the worst-case 10x boost. If you think this is incorrect, contact me on Discord."
-                  />
-                {/if}
-                <div class="menu-control">
-                  <NumberInput
-                    id={enchant.id}
-                    value={enchantValues[enchant.id]}
-                    onInput={({ value }) =>
-                      updateNumericValue(enchantValues, enchant.id, value)}
-                    hoverText="Amount of pets equiped with the {enchant.name} enchant"
-                  />
-                </div>
-              </div>
-            {/if}
-          {/each}
-        </section>
-
-        <div class="section-separator"></div>
-
-        <!-- Fragments -->
-        <section class="menu-section">
-          {#each $dataStore.fragments || [] as fragment (fragment.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if fragment.img}
+                <span class="menu-label">
                   <span class="menu-img">
                     <SmartImage
-                      base={fragment.img}
-                      alt={fragment.name}
+                      base={selectedEgg.event === "easter"
+                        ? "assets/images/icons/easter-shrine"
+                        : "assets/images/icons/lucky-egg"}
+                      alt="Shrine Buff"
                       size="32px"
                       decoding="async"
                     />
                   </span>
-                {/if}
-                {fragment.name}s:
+                  Shrine Buff:
+                </span>
+                <div class="menu-control">
+                  <Dropdown
+                    id="shrine-buff"
+                    options={visibleShrineBuffs || []}
+                    selectedOption={(visibleShrineBuffs || []).find(
+                      (sb) => sb.id === selectedShrineBuffId,
+                    ) || (visibleShrineBuffs || [])[0]}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              </div>
+            </section>
+          {/if}
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("enchants")}
+        >
+          <span>Enchants</span>
+          <strong>{(collapsedSections["enchants"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["enchants"] ?? true}
+          <section class="menu-section">
+            {#each $dataStore.enchants || [] as enchant (enchant.id)}
+              {#if !enchant.super}
+                <div class="menu-row">
+                  <span class="menu-label">{enchant.name}:</span>
+                  <div class="menu-control">
+                    <NumberInput
+                      id={enchant.id}
+                      value={enchantValues[enchant.id]}
+                      onInput={({ value }) =>
+                        updateNumericValue(enchantValues, enchant.id, value)}
+                      hoverText="Amount of pets equiped with the {enchant.name} enchant"
+                    />
+                  </div>
+                </div>
+              {/if}
+            {/each}
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("super-enchants")}
+        >
+          <span>Super Enchants</span>
+          <strong
+            >{(collapsedSections["super-enchants"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["super-enchants"] ?? true}
+          <section class="menu-section">
+            {#each $dataStore.enchants || [] as enchant (enchant.id)}
+              {#if enchant.super}
+                <div class="menu-row">
+                  <span class="menu-label">{enchant.name}:</span>
+                  {#if enchant.id == "burst-blessing"}
+                    <TooltipWarning
+                      text="It's unclear whether Burst Blessing gives a flat 10x multiplier or boosts luck like green fragments. Earlier calculations assumed the best-case flat 10x; this now uses the worst-case 10x boost. If you think this is incorrect, contact me on Discord."
+                    />
+                  {/if}
+                  <div class="menu-control">
+                    <NumberInput
+                      id={enchant.id}
+                      value={enchantValues[enchant.id]}
+                      onInput={({ value }) =>
+                        updateNumericValue(enchantValues, enchant.id, value)}
+                      hoverText="Amount of pets equiped with the {enchant.name} enchant"
+                    />
+                  </div>
+                </div>
+              {/if}
+            {/each}
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("fragments")}
+        >
+          <span>Fragments</span>
+          <strong>{(collapsedSections["fragments"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["fragments"] ?? true}
+          <section class="menu-section">
+            {#each $dataStore.fragments || [] as fragment (fragment.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if fragment.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={fragment.img}
+                        alt={fragment.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {fragment.name}s:
+                </span>
+                <div class="menu-control">
+                  <NumberInput
+                    id={fragment.id}
+                    maxValue={250}
+                    value={fragmentValues[fragment.id]}
+                    onInput={({ value }) =>
+                      updateNumericValue(fragmentValues, fragment.id, value)}
+                    hoverText="Amount of {fragment.name}'s consumed"
+                  />
+                </div>
+              </div>
+            {/each}
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("mastery")}
+        >
+          <span>Mastery</span>
+          <strong>{(collapsedSections["mastery"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["mastery"] ?? true}
+          <section class="menu-section">
+            {#each visibleMasteries || [] as mastery (mastery.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if mastery.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={mastery.img}
+                        alt={mastery.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {mastery.name}:
+                </span>
+                <div class="menu-control">
+                  <Dropdown
+                    id={mastery.id}
+                    options={mastery.levels}
+                    selectedOption={mastery.levels.find(
+                      (o) => o.id === selectedOptions[mastery.id],
+                    ) || mastery.levels[mastery.levels.length - 1]}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              </div>
+            {/each}
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luckier-together"
+                    alt="Luckier Together"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Luckier Together:
               </span>
               <div class="menu-control">
                 <NumberInput
-                  id={fragment.id}
-                  maxValue={250}
-                  value={fragmentValues[fragment.id]}
+                  id="luckier-together"
+                  value={numericValues.luckierTogether}
                   onInput={({ value }) =>
-                    updateNumericValue(fragmentValues, fragment.id, value)}
-                  hoverText="Amount of {fragment.name}'s consumed"
+                    updateNumericValue(numericValues, "luckierTogether", value)}
+                  hoverText="Amount of friends in the server"
                 />
               </div>
             </div>
-          {/each}
-        </section>
+          </section>
+        {/if}
 
-        <div class="section-separator"></div>
-
-        <!-- Mastery -->
-        <section class="menu-section">
-          {#each visibleMasteries || [] as mastery (mastery.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if mastery.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={mastery.img}
-                      alt={mastery.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {mastery.name}:
-              </span>
-              <div class="menu-control">
-                <Dropdown
-                  id={mastery.id}
-                  options={mastery.levels}
-                  selectedOption={mastery.levels.find(
-                    (o) => o.id === selectedOptions[mastery.id],
-                  ) || mastery.levels[mastery.levels.length - 1]}
-                  onSelect={handleSelect}
-                />
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("environment")}
+        >
+          <span>Environment</span>
+          <strong
+            >{(collapsedSections["environment"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["environment"] ?? true}
+          <section class="menu-section">
+            {#each $dataStore.environmentBuffs || [] as buff (buff.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if buff.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={buff.img}
+                        alt={buff.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {buff.name}:
+                </span>
+                <div class="menu-control">
+                  <Checkbox
+                    id={buff.id}
+                    checked={environmentBuffToggles[buff.id]}
+                    onChange={() =>
+                      updateToggle(environmentBuffToggles, buff.id)}
+                  />
+                </div>
               </div>
-            </div>
-          {/each}
+            {/each}
+          </section>
+        {/if}
 
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/luckier-together"
-                  alt="Luckier Together"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Luckier Together:
-            </span>
-            <div class="menu-control">
-              <NumberInput
-                id="luckier-together"
-                value={numericValues.luckierTogether}
-                onInput={({ value }) =>
-                  updateNumericValue(numericValues, "luckierTogether", value)}
-                hoverText="Amount of friends in the server"
-              />
-            </div>
-          </div>
-        </section>
-
-        <div class="section-separator"></div>
-
-        <!-- Environment -->
-        <section class="menu-section">
-          {#each $dataStore.environmentBuffs || [] as buff (buff.id)}
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("paid")}
+        >
+          <span>Paid</span>
+          <strong>{(collapsedSections["paid"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["paid"] ?? true}
+          <section class="menu-section">
             <div class="menu-row">
               <span class="menu-label">
-                {#if buff.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={buff.img}
-                      alt={buff.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {buff.name}:
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/daily-perks"
+                    alt="Premium Daily Perks"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Premium Daily Perks:
               </span>
               <div class="menu-control">
                 <Checkbox
-                  id={buff.id}
-                  checked={environmentBuffToggles[buff.id]}
-                  onChange={() => updateToggle(environmentBuffToggles, buff.id)}
+                  id="daily-perks"
+                  checked={toggleValues.dailyPerks}
+                  onChange={() => updateToggle(toggleValues, "dailyPerks")}
                 />
               </div>
             </div>
-          {/each}
-        </section>
 
-        <div class="section-separator"></div>
-
-        <!-- Paid -->
-        <section class="menu-section">
-          <div class="menu-row">
-            <span class="menu-label">
-              <span class="menu-img">
-                <SmartImage
-                  base="assets/images/icons/daily-perks"
-                  alt="Premium Daily Perks"
-                  size="32px"
-                  decoding="async"
-                />
-              </span>
-              Premium Daily Perks:
-            </span>
-            <div class="menu-control">
-              <Checkbox
-                id="daily-perks"
-                checked={toggleValues.dailyPerks}
-                onChange={() => updateToggle(toggleValues, "dailyPerks")}
-              />
-            </div>
-          </div>
-
-          {#each $dataStore.gamepasses || [] as gamepass (gamepass.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if gamepass.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={gamepass.img}
-                      alt={gamepass.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {gamepass.name}:
-              </span>
-              <div class="menu-control">
-                <Checkbox
-                  id={gamepass.id}
-                  checked={gamepassToggles[gamepass.id]}
-                  onChange={() => updateToggle(gamepassToggles, gamepass.id)}
-                />
+            {#each $dataStore.gamepasses || [] as gamepass (gamepass.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if gamepass.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={gamepass.img}
+                        alt={gamepass.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {gamepass.name}:
+                </span>
+                <div class="menu-control">
+                  <Checkbox
+                    id={gamepass.id}
+                    checked={gamepassToggles[gamepass.id]}
+                    onChange={() => updateToggle(gamepassToggles, gamepass.id)}
+                  />
+                </div>
               </div>
-            </div>
-          {/each}
-        </section>
+            {/each}
+          </section>
+        {/if}
 
-        <div class="section-separator"></div>
-
-        <!-- Events -->
-        <section class="menu-section">
-          {#each $dataStore.events || [] as event (event.id)}
-            <div class="menu-row">
-              <span class="menu-label">
-                {#if event.img}
-                  <span class="menu-img">
-                    <SmartImage
-                      base={event.img}
-                      alt={event.name}
-                      size="32px"
-                      decoding="async"
-                    />
-                  </span>
-                {/if}
-                {event.name}:
-              </span>
-              <div class="menu-control">
-                <Checkbox
-                  id={event.id}
-                  checked={eventToggles[event.id]}
-                  onChange={() => updateToggle(eventToggles, event.id)}
-                />
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("events")}
+        >
+          <span>Events</span>
+          <strong>{(collapsedSections["events"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["events"] ?? true}
+          <section class="menu-section">
+            {#each $dataStore.events || [] as event (event.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if event.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={event.img}
+                        alt={event.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {event.name}:
+                </span>
+                <div class="menu-control">
+                  <Checkbox
+                    id={event.id}
+                    checked={eventToggles[event.id]}
+                    onChange={() => updateToggle(eventToggles, event.id)}
+                  />
+                </div>
               </div>
-            </div>
-          {/each}
-        </section>
+            {/each}
+          </section>
+        {/if}
       {/if}
     </div>
 
@@ -1449,6 +1615,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    gap: 1.25rem;
   }
 
   .menu-title {
@@ -1456,6 +1623,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--primary-text);
+    text-wrap-mode: nowrap;
   }
 
   .menu-container,
@@ -1498,9 +1666,43 @@
   }
 
   .section-separator {
-    border-bottom: 1.5px solid var(--border);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin: 0.5rem 0;
+    padding: 0.15rem 0;
+    background: none;
+    border: 0;
+    color: var(--primary-text);
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .section-separator::before,
+  .section-separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1.5px solid var(--border);
     opacity: 0.6;
+  }
+
+  .section-separator > span {
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .section-separator > strong {
+    font-size: 1rem;
+    line-height: 1;
+    opacity: 0.8;
+    min-width: 1rem;
+  }
+
+  .section-separator:hover > span,
+  .section-separator:hover > strong {
+    opacity: 1;
   }
 
   .menu-img {

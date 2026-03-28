@@ -1,7 +1,7 @@
 [
   {
     "id": "hatching-milestone",
-    "name": "Hatching Milestone",
+    "name": "Hatching",
     "img": "assets/images/icons/multi-egg",
     "tiers": [
       {
@@ -95,7 +95,7 @@
   },
   {
     "id": "secret-pets-milestone",
-    "name": "Secret Pets Milestone",
+    "name": "Secret Pets",
     "img": "assets/images/icons/secret-pets",
     "tiers": [
       {
@@ -166,7 +166,7 @@
   },
   {
     "id": "world-eggs-milestone",
-    "name": "World Eggs Milestone",
+    "name": "World Eggs",
     "img": "assets/images/eggs/rainbow-egg",
     "tiers": [
       {
@@ -218,7 +218,7 @@
   },
   {
     "id": "easter-milestone",
-    "name": "Easter Milestone",
+    "name": "Easter",
     "img": "assets/images/icons/easter-milestone",
     "event": "easter",
     "tiers": [
