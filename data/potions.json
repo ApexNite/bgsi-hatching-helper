@@ -136,45 +136,5 @@
         "name": "None"
       }
     ]
-  },
-  {
-    "id": "st-patricks-elixir",
-    "name": "St Patricks Elixir",
-    "img": "assets/images/potions/st-patricks-elixir-iv",
-    "event": "patricks",
-    "potions": [
-      {
-        "id": "st-patricks-elixir-iv",
-        "name": "St Patricks Elixir IV",
-        "luck": 4,
-        "shinyChance": 2.5,
-        "mythicChance": 1
-      },
-      {
-        "id": "st-patricks-elixir-iii",
-        "name": "St Patricks Elixir III",
-        "luck": 2,
-        "shinyChance": 0.75,
-        "mythicChance": 0.75
-      },
-      {
-        "id": "st-patricks-elixir-ii",
-        "name": "St Patricks Elixir II",
-        "luck": 1.5,
-        "shinyChance": 0.5,
-        "mythicChance": 0.5
-      },
-      {
-        "id": "st-patricks-elixir-i",
-        "name": "St Patricks Elixir I",
-        "luck": 0.75,
-        "shinyChance": 0.25,
-        "mythicChance": 0.25
-      },
-      {
-        "id": "none",
-        "name": "None"
-      }
-    ]
   }
 ]
