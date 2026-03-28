@@ -259,4 +259,10 @@
     background: color-mix(in srgb, var(--accent) 10%, transparent);
     border-color: color-mix(in srgb, var(--accent) 35%, transparent);
   }
+
+  @media (max-width: 600px) {
+    .meta-row {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
