@@ -25,7 +25,6 @@
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
-    showLuckyPyramidium: false,
     showXL: false,
     hideNonSpecial: false,
     hideLegendary: false,
@@ -143,12 +142,7 @@
 
   $: basePets =
     stats && selectedEggId && selectedWorldId
-      ? getPetsToDisplay(
-          selectedEggId,
-          selectedWorldId,
-          stats,
-          settings.showLuckyPyramidium,
-        )
+      ? getPetsToDisplay(selectedEggId, selectedWorldId, stats)
       : [];
 
   $: petsWithAggregates =
@@ -570,15 +564,6 @@
             size="sm"
           />
           <span>Show Any Secret</span>
-        </label>
-        <label class="row">
-          <Checkbox
-            id="showLuckyPyramidium"
-            checked={settings.showLuckyPyramidium}
-            onChange={() => toggle("showLuckyPyramidium")}
-            size="sm"
-          />
-          <span>Show Lucky Pyramidium</span>
         </label>
         <label class="row">
           <Checkbox

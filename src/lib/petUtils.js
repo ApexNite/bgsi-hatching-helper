@@ -12,13 +12,8 @@ const RARITY_ORDER = Object.freeze({
   infinity: 6,
 });
 
-export function getPetsToDisplay(
-  eggId,
-  worldId,
-  stats,
-  showLuckyPyramidium = false,
-) {
-  const eggsWithPets = getEggsWithInjectedPets(showLuckyPyramidium);
+export function getPetsToDisplay(eggId, worldId, stats) {
+  const eggsWithPets = getEggsWithInjectedPets();
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
   if (!egg) {
@@ -345,7 +340,7 @@ function addVariantChances(pets, stats) {
   return pets;
 }
 
-function getEggsWithInjectedPets(showLuckyPyramidium = false) {
+function getEggsWithInjectedPets() {
   const data = get(dataStore);
 
   if (!isDataLoaded || !data.eggs) {
@@ -380,22 +375,6 @@ function getEggsWithInjectedPets(showLuckyPyramidium = false) {
 
         if (!targetEgg.pets.some((p) => p.id === bountyPet.id)) {
           targetEgg.pets.push(bountyPet);
-        }
-      }
-    }
-  }
-
-  if (showLuckyPyramidium) {
-    const luckyPyramidium = data.secretBounty?.pets?.["lucky-pyramidium"];
-
-    if (luckyPyramidium) {
-      for (const egg of eggsCopy) {
-        if (egg.event === "patricks") {
-          egg.pets = egg.pets || [];
-
-          if (!egg.pets.some((p) => p.id === luckyPyramidium.id)) {
-            egg.pets.push(luckyPyramidium);
-          }
         }
       }
     }
