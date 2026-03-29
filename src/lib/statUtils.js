@@ -394,7 +394,8 @@ function calculateAdjustedLuck(totals, interval = 100) {
     return normalLuck;
   }
 
-  const burstLuck = baseLuck + luck * (luckMultiplier + burstBonus);
+  // const burstLuck = baseLuck + luck * (luckMultiplier + burstBonus);
+  const burstLuck = normalLuck * burstBonus;
 
   return ((interval - 1) * normalLuck + burstLuck) / interval;
 }
