@@ -39,19 +39,19 @@
   {
     "id": "shiny-blessing",
     "name": "🌟 Shiny Blessing",
-    "shinyChance": 0.05,
+    "shinyChance": 0.1,
     "super": true
   },
   {
     "id": "mythic-blessing",
     "name": "🔮 Mythic Blessing",
-    "mythicChance": 0.05,
+    "mythicChance": 0.1,
     "super": true
   },
   {
     "id": "infinity-blessing",
     "name": "♾️ Infinity Blessing",
-    "infinityLuck": 0.025,
+    "infinityLuck": 0.075,
     "super": true
   }
 ]
