@@ -30,6 +30,7 @@
     "vite": "^7.1.6"
   },
   "dependencies": {
+    "decimal.js": "^10.6.0",
     "svelte-inview": "^4.0.4"
   }
 }

@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded } from "./dataStore.js";
+import { D, toNumber, add, mul, div, max } from "./mathDecimal.js";
 
 const DEFAULT_XL_CHANCE_BY_RARITY = Object.freeze({
   infinity: 1 / 500,
@@ -181,47 +182,53 @@ export function calculateManualStats(manualStats, sources, numbers) {
 }
 
 function calculateStatsFromTotals(totals) {
-  const shinyBase =
-    (totals.baseShinyChance || 0) *
-    (1 + (totals.shinyChance || 0)) *
-    (totals.shinyChanceMultiplier || 1);
+  const shinyBase = toNumber(
+    D(totals.baseShinyChance || 0)
+      .times(D(1).plus(totals.shinyChance || 0))
+      .times(totals.shinyChanceMultiplier || 1),
+  );
 
   const getXlChanceForRarity = (rarity) => {
     const base =
       DEFAULT_XL_CHANCE_BY_RARITY[rarity] ?? DEFAULT_XL_CHANCE_BY_RARITY.common;
-    return (
-      base * (1 + (totals.xlChance || 0)) * (totals.xlChanceMultiplier || 1)
+
+    return toNumber(
+      D(base)
+        .times(D(1).plus(totals.xlChance || 0))
+        .times(totals.xlChanceMultiplier || 1),
     );
   };
 
-  const getSuperLegendaryChance = (pet) => {
-    return (
-      totals.baseSuperLegendaryChance *
-      (1 + (totals.superLegendaryChance || 0)) *
-      (totals.superLegendaryChanceMultiplier || 1)
+  const getSuperLegendaryChance = () =>
+    toNumber(
+      D(totals.baseSuperLegendaryChance)
+        .times(D(1).plus(totals.superLegendaryChance || 0))
+        .times(totals.superLegendaryChanceMultiplier || 1),
     );
-  };
 
   return {
     luck: calculateAdjustedLuck(totals),
     trueLuck: totals.trueLuck || 0,
-    secretLuck:
-      (totals.baseSecretLuck || 0) +
-      (totals.secretLuck || 0) * (totals.secretLuckMultiplier || 1),
-    infinityLuck:
-      (totals.baseInfinityLuck || 0) +
-      (totals.infinityLuck || 0) * (totals.infinityLuckMultiplier || 1),
+    secretLuck: add(
+      totals.baseSecretLuck || 0,
+      mul(totals.secretLuck || 0, totals.secretLuckMultiplier || 1),
+    ),
+    infinityLuck: add(
+      totals.baseInfinityLuck || 0,
+      mul(totals.infinityLuck || 0, totals.infinityLuckMultiplier || 1),
+    ),
     shinyChance: totals._applyAdjustedShiny
       ? calculateAdjustedShiny(shinyBase)
       : shinyBase,
-    mythicChance:
-      (totals.baseMythicChance || 0) *
-      (1 + totals.mythicChance) *
-      (totals.mythicChanceMultiplier || 1),
-    hatchSpeed:
-      (totals.baseHatchSpeed || 0) +
-      (totals.hatchSpeed || 0) * (totals.hatchSpeedMultiplier || 1),
-
+    mythicChance: toNumber(
+      D(totals.baseMythicChance || 0)
+        .times(D(1).plus(totals.mythicChance || 0))
+        .times(totals.mythicChanceMultiplier || 1),
+    ),
+    hatchSpeed: add(
+      totals.baseHatchSpeed || 0,
+      mul(totals.hatchSpeed || 0, totals.hatchSpeedMultiplier || 1),
+    ),
     getXlChanceForRarity,
     getSuperLegendaryChance,
   };
@@ -242,35 +249,44 @@ function applySource(totals, source) {
   }
 
   if (typeof source.trueLuck === "number") {
-    totals.trueLuck += source.trueLuck * times;
+    totals.trueLuck = add(totals.trueLuck, mul(source.trueLuck, times));
   }
 
   if (typeof source.luck === "number") {
-    totals.luck += source.luck * times;
+    totals.luck = add(totals.luck, mul(source.luck, times));
   }
 
   if (typeof source.hatchSpeed === "number") {
-    totals.hatchSpeed += source.hatchSpeed * times;
+    totals.hatchSpeed = add(totals.hatchSpeed, mul(source.hatchSpeed, times));
   }
 
   if (typeof source.shinyChance === "number") {
-    totals.shinyChance += source.shinyChance * times;
+    totals.shinyChance = add(
+      totals.shinyChance,
+      mul(source.shinyChance, times),
+    );
   }
 
   if (typeof source.mythicChance === "number") {
-    totals.mythicChance += source.mythicChance * times;
+    totals.mythicChance = add(
+      totals.mythicChance,
+      mul(source.mythicChance, times),
+    );
   }
 
   if (typeof source.xlChance === "number") {
-    totals.xlChance += source.xlChance * times;
+    totals.xlChance = add(totals.xlChance, mul(source.xlChance, times));
   }
 
   if (typeof source.secretLuck === "number") {
-    totals.secretLuck += source.secretLuck * times;
+    totals.secretLuck = add(totals.secretLuck, mul(source.secretLuck, times));
   }
 
   if (typeof source.infinityLuck === "number") {
-    totals.infinityLuck += source.infinityLuck * times;
+    totals.infinityLuck = add(
+      totals.infinityLuck,
+      mul(source.infinityLuck, times),
+    );
   }
 
   if (typeof source.luckMultiplier === "number") {

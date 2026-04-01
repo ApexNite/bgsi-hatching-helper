@@ -1,7 +1,8 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, processData } from "./dataStore.js";
+import { D, toNumber, mul, div, sumBy, gt, max } from "./mathDecimal.js";
 
-const BASE_HATCH_SECONDS = 4.5;
+const BASE_HATCH_SECONDS = D(4.5);
 const RARITY_ORDER = Object.freeze({
   common: 0,
   unique: 1,
@@ -13,7 +14,9 @@ const RARITY_ORDER = Object.freeze({
 });
 
 export function getPetsToDisplay(eggId, worldId, stats) {
-  const eggsWithPets = getEggsWithInjectedPets(Number(stats?.trueLuck ?? 1) <= 1);
+  const eggsWithPets = getEggsWithInjectedPets(
+    Number(stats?.trueLuck ?? 1) <= 1,
+  );
   const egg = eggsWithPets?.find((e) => e.id === eggId);
 
   if (!egg) {
@@ -42,15 +45,16 @@ export function getPetsToDisplay(eggId, worldId, stats) {
 }
 
 export function calculateMeanHatchTime(chance, hatchSpeed, eggsPerHatch) {
-  if (!chance || !eggsPerHatch || !hatchSpeed) {
+  if (!chance || !eggsPerHatch || !hatchSpeed || chance === Infinity) {
     return Infinity;
   }
 
-  if (chance === Infinity) {
+  const cps = calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
+  if (!(cps > 0)) {
     return Infinity;
   }
 
-  return 1 / chance / calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
+  return toNumber(D(1).div(D(chance)).div(D(cps)), Infinity);
 }
 
 export function calculateHatchTime(
@@ -59,21 +63,32 @@ export function calculateHatchTime(
   eggsPerHatch,
   probability,
 ) {
-  if (!chance || !eggsPerHatch || !hatchSpeed) {
+  if (!chance || !eggsPerHatch || !hatchSpeed || chance === Infinity) {
     return Infinity;
   }
 
-  if (chance === Infinity) {
+  const c = D(chance);
+  const p = D(probability);
+
+  if (!c.gt(0) || !c.lt(1) || !p.gt(0) || !p.lt(1)) {
     return Infinity;
   }
 
-  const eggsNeeded = Math.log(1 - probability) / Math.log(1 - chance);
+  const eggsNeeded = D(1).minus(p).ln().div(D(1).minus(c).ln());
+  const cps = D(calculateEggsPerSecond(hatchSpeed, eggsPerHatch));
 
-  return eggsNeeded / calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
+  if (!cps.gt(0)) {
+    return Infinity;
+  }
+
+  return toNumber(eggsNeeded.div(cps), Infinity);
 }
 
 export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {
-  return (hatchSpeed * eggsPerHatch) / BASE_HATCH_SECONDS;
+  return toNumber(
+    D(hatchSpeed).times(D(eggsPerHatch)).div(BASE_HATCH_SECONDS),
+    0,
+  );
 }
 
 export function sortByRarity(pets) {
@@ -117,8 +132,7 @@ export function insertAggregateRows(
     return pets;
   }
 
-  const sumChance = (items, key) =>
-    items.reduce((acc, p) => acc + Math.max(Number(p[key]), 0), 0);
+  const sumChance = (items, key) => sumBy(items, (p) => max(Number(p[key]), 0));
 
   const makeAggregateRow = (id, name, rarity, items) => {
     const finalChance = sumChance(items, "finalChance");
@@ -399,7 +413,7 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     const originalBaseChance = Number(p.baseChance ?? 0);
     const boostedBaseChance =
       rarity === "legendary" || rarity === "secret" || rarity === "infinity"
-        ? originalBaseChance * trueLuckMultiplier
+        ? mul(originalBaseChance, trueLuckMultiplier)
         : originalBaseChance;
 
     return {
@@ -421,38 +435,47 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
       ? 1
       : baseSecretMultiplier === 0
         ? 0
-        : baseSecretMultiplier / 2 +
-          0.5 * Math.exp(-(baseSecretMultiplier - 1) / 10);
+        : toNumber(
+            D(baseSecretMultiplier)
+              .div(2)
+              .plus(
+                D(0.5).times(
+                  D(baseSecretMultiplier).minus(1).div(10).neg().exp(),
+                ),
+              ),
+          );
     const epicLuck = Math.min(luckMultiplier, 4);
 
     switch (item.rarity) {
       case "infinity":
-        item.rawChance =
-          item.boostedBaseChance *
-          luckMultiplier *
-          secretMultiplier *
-          infinityLuckMultiplier;
+        item.rawChance = mul(
+          mul(mul(item.boostedBaseChance, luckMultiplier), secretMultiplier),
+          infinityLuckMultiplier,
+        );
         break;
       case "secret":
-        item.rawChance =
-          item.boostedBaseChance * luckMultiplier * secretMultiplier;
+        item.rawChance = mul(
+          mul(item.boostedBaseChance, luckMultiplier),
+          secretMultiplier,
+        );
         break;
       case "legendary":
-        item.rawChance = item.boostedBaseChance * luckMultiplier;
+        item.rawChance = mul(item.boostedBaseChance, luckMultiplier);
         break;
       case "epic":
-        item.rawChance = item.boostedBaseChance * epicLuck;
+        item.rawChance = mul(item.boostedBaseChance, epicLuck);
         break;
       default:
         item.rawChance = item.boostedBaseChance;
     }
   }
 
-  const epicIncrease = list
-    .filter((item) => item.rarity === "epic")
-    .reduce((sum, item) => sum + (item.rawChance - item.baseChance), 0);
+  const epicIncrease = sumBy(
+    list.filter((item) => item.rarity === "epic"),
+    (item) => D(item.rawChance).minus(item.baseChance),
+  );
 
-  if (epicIncrease > 0 && !isInfinityEgg) {
+  if (gt(epicIncrease, 0) && !isInfinityEgg) {
     redistributeDecrease(
       list,
       epicIncrease,
@@ -462,15 +485,14 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     );
   }
 
-  let totalRawChance = list.reduce((sum, item) => sum + item.rawChance, 0);
-
-  if (!(totalRawChance > 0)) {
+  let totalRawChance = sumBy(list, (item) => item.rawChance);
+  if (!gt(totalRawChance, 0)) {
     totalRawChance = 1;
   }
 
   return list.map((item) => ({
     ...item,
-    finalChance: item.rawChance / totalRawChance,
+    finalChance: div(item.rawChance, totalRawChance),
   }));
 }
 
@@ -560,9 +582,9 @@ function redistributeDecrease(list, amount, isEligible) {
     return;
   }
 
-  const decreasePerItem = amount / eligibleItems.length;
+  const decreasePerItem = div(amount, eligibleItems.length);
 
   for (const item of eligibleItems) {
-    item.rawChance = Math.max(0, item.rawChance - decreasePerItem);
+    item.rawChance = max(0, D(item.rawChance).minus(D(decreasePerItem)));
   }
 }
