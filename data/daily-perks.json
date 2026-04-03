@@ -19,7 +19,17 @@
   },
   "3": null,
   "4": null,
-  "5": null,
+  "5": {
+    "pets": [
+      {
+        "id": "queen-spitty",
+        "name": "Queen Spitty",
+        "rarity": "secret",
+        "baseChance": 2e-11,
+        "ignoreSecret": true
+      }
+    ]
+  },
   "6": {
     "normal": {
       "luck": 2
