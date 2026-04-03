@@ -26,6 +26,7 @@
         "name": "Queen Spitty",
         "rarity": "secret",
         "baseChance": 2e-11,
+        "ignoreTrueLuck": true,
         "ignoreSecret": true
       }
     ]
