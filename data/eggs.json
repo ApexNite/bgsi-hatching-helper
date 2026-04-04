@@ -1279,5 +1279,88 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "heavenly-egg",
+    "name": "Heavenly Egg",
+    "type": "world",
+    "world": "easter-paradise",
+    "event": "easter",
+    "riftable": true,
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "bunny-angel",
+        "name": "Bunny Angel",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "bunny-bee",
+        "name": "Bunny Bee",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "sheepish",
+        "name": "Sheepish",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "pastel-hexarium",
+        "name": "Pastel Hexarium",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "pastel-shock",
+        "name": "Pastel Shock",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "easter-titan",
+        "name": "Easter Titan",
+        "rarity": "legendary",
+        "baseChance": 5e-8
+      },
+      {
+        "id": "the-eggbringer",
+        "name": "The Eggbringer",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "carrot-defender",
+        "name": "Carrot Defender",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "faberge",
+        "name": "Fabergé",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "stargazer",
+        "name": "Stargazer",
+        "rarity": "secret",
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "easter-robot",
+        "name": "Easter Robot",
+        "rarity": "infinity",
+        "baseChance": 8e-12
+      },
+      {
+        "id": "resurrection",
+        "name": "Resurrection",
+        "rarity": "infinity",
+        "baseChance": 2e-12
+      }
+    ]
   }
 ]
