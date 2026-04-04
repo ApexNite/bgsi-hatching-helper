@@ -288,6 +288,7 @@ const schemas = {
     extends: ["id", "img"],
     imageDir: { type: "string", default: "worlds" },
     event: { type: "string", default: "none" },
+    infinityEgg: { type: "boolean", default: true },
   },
 };
 

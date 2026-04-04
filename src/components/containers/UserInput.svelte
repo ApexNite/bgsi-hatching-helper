@@ -150,6 +150,10 @@
     $dataStore.worlds?.find((w) => w.id === selectedOptions.worlds) ||
     $dataStore.worlds?.[0];
 
+  $: availableWorlds = isInfinityEgg
+    ? ($dataStore.worlds || []).filter((w) => w.infinityEgg !== false)
+    : $dataStore.worlds || [];
+
   $: activeEvent = (() => {
     const eggEvent = selectedEgg?.event;
     const worldEvent = selectedWorld?.event;
@@ -584,8 +588,8 @@
               <div class="menu-control">
                 <Dropdown
                   id="worlds"
-                  options={$dataStore.worlds || []}
-                  selectedOption={$dataStore.worlds?.find(
+                  options={availableWorlds}
+                  selectedOption={availableWorlds?.find(
                     (e) => e.id === selectedOptions.worlds,
                   )}
                   onSelect={handleSelect}
