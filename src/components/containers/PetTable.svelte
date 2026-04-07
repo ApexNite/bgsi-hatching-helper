@@ -25,6 +25,7 @@
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecretInfinity: false,
+    showAnyCelestial: false,
     showXL: false,
     hideNonSpecial: false,
     hideLegendary: false,
@@ -150,6 +151,7 @@
       ? insertAggregateRows(basePets, {
           anyLegendary: settings.showAnyLegendary,
           anySecretInfinity: settings.showAnySecretInfinity,
+          anyCelestial: settings.showAnyCelestial,
           superLegendaryOnly: settings.showSuperLegendary,
         })
       : [];
@@ -324,7 +326,11 @@
             <td>
               <div class="pet-name">
                 {#if pet.__aggregate}
-                  <div class="aggregate-dot rarity-{getRarityLabel(pet)}"></div>
+                  <div
+                    class={isCelestialPet(pet)
+                      ? "aggregate-dot aggregate-celestial"
+                      : "aggregate-dot rarity-" + getRarityLabel(pet)}
+                  ></div>
                   <div class="pet-info">
                     <span class="name">
                       {formatString(
@@ -567,6 +573,15 @@
         </label>
         <label class="row">
           <Checkbox
+            id="showAnyCelestial"
+            checked={settings.showAnyCelestial}
+            onChange={() => toggle("showAnyCelestial")}
+            size="sm"
+          />
+          <span>Show Any Celestial</span>
+        </label>
+        <label class="row">
+          <Checkbox
             id="hideNonSpecial"
             checked={settings.hideNonSpecial}
             onChange={() => toggle("hideNonSpecial")}
@@ -736,6 +751,11 @@
     border-radius: 50%;
   }
 
+  .aggregate-celestial {
+    color: #9ddffd;
+    animation: celestialHue 6s linear infinite;
+  }
+
   .pet-info {
     display: flex;
     flex-direction: column;
@@ -844,6 +864,18 @@
     }
     100% {
       background-position: -400% 0;
+    }
+  }
+
+  @keyframes celestialHue {
+    0% {
+      color: #9ddffd;
+    }
+    50% {
+      color: #ff9bf7;
+    }
+    100% {
+      color: #9ddffd;
     }
   }
 </style>

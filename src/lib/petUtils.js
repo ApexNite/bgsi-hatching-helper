@@ -12,6 +12,7 @@ const RARITY_ORDER = Object.freeze({
   secret: 5,
   infinity: 6,
 });
+const CELESTIAL_BASE_CHANCE_THRESHOLD = 1 / 25_000_000_000;
 
 export function getPetsToDisplay(eggId, worldId, stats) {
   const eggsWithPets = getEggsWithInjectedPets(
@@ -125,10 +126,14 @@ export function insertAggregateRows(
   {
     anyLegendary = false,
     anySecretInfinity = false,
+    anyCelestial = false,
     superLegendaryOnly = false,
   } = {},
 ) {
-  if (!Array.isArray(pets) || (!anyLegendary && !anySecretInfinity)) {
+  if (
+    !Array.isArray(pets) ||
+    (!anyLegendary && !anySecretInfinity && !anyCelestial)
+  ) {
     return pets;
   }
 
@@ -239,6 +244,15 @@ export function insertAggregateRows(
     );
   };
 
+  const isCelestialPet = (pet) =>
+    Boolean(
+      pet?.celestial ||
+        (!pet?.__aggregate &&
+          pet?.rarity === "secret" &&
+          typeof pet?.baseChance === "number" &&
+          pet.baseChance <= CELESTIAL_BASE_CHANCE_THRESHOLD),
+    );
+
   const aggregates = [];
 
   if (anyLegendary) {
@@ -280,6 +294,26 @@ export function insertAggregateRows(
       );
 
       if (agg) {
+        aggregates.push(agg);
+      }
+    }
+  }
+
+  if (anyCelestial) {
+    const celestials = pets.filter(
+      (p) => isCelestialPet(p) && hasPositiveChance(p),
+    );
+
+    if (celestials.length > 1) {
+      const agg = makeAggregateRow(
+        "__agg_celestial",
+        "Any Celestial",
+        "secret",
+        celestials,
+      );
+
+      if (agg) {
+        agg.celestial = true;
         aggregates.push(agg);
       }
     }
