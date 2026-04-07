@@ -8,7 +8,23 @@ Decimal.set({
 });
 
 export const D = (value, fallback = 0) => {
+  if (value instanceof Decimal) {
+    return value;
+  }
+
   if (value == null || value === "") {
+    return new Decimal(fallback);
+  }
+
+  if (value === Infinity) {
+    return new Decimal(Infinity);
+  }
+
+  if (value === -Infinity) {
+    return new Decimal(-Infinity);
+  }
+  
+  if (typeof value === "number" && Number.isNaN(value)) {
     return new Decimal(fallback);
   }
 
@@ -20,8 +36,22 @@ export const D = (value, fallback = 0) => {
 };
 
 export const toNumber = (value, fallback = 0) => {
-  const n = Number(D(value, fallback).toString());
-  return Number.isFinite(n) ? n : fallback;
+  const dec = D(value, fallback);
+
+  if (dec.isNaN()) {
+    return fallback;
+  }
+
+  if (!dec.isFinite()) {
+    return dec.isNeg() ? -Infinity : Infinity;
+  }
+
+  const n = dec.toNumber();
+  if (Number.isFinite(n)) {
+    return n;
+  }
+
+  return dec.isNeg() ? -Number.MAX_VALUE : Number.MAX_VALUE;
 };
 
 export const add = (a, b) => toNumber(D(a).plus(D(b)));
