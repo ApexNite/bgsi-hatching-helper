@@ -356,6 +356,12 @@
                     decoding="async"
                     size="32px"
                     zoom={settings.showXL ? 1.75 : 1}
+                    overlayBase={settings.showSuperLegendary &&
+                    isSuperLegendaryEligible(pet)
+                      ? "assets/images/icons/super-star"
+                      : null}
+                    overlayAlt="Super legendary"
+                    overlaySize={settings.showXL ? "14px" : "10px"}
                   />
                   <div class="pet-info">
                     <span class="name">
