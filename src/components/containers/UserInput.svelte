@@ -30,6 +30,7 @@
   let gamepassToggles = {};
   let eventToggles = {};
   let enchantValues = {};
+  let trueLuckMultiplierByEgg = {};
   let fragmentValues = {};
   let toggleValues = {
     dailyPerks: false,
@@ -140,7 +141,25 @@
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
   $: isTrueLuckEgg = !!selectedEgg && selectedEgg.trueLuck === true;
-  $: isTrueLuckActive = numericValues.trueLuckMultiplier > 1;
+
+  $: {
+    const eggId = selectedEgg?.id;
+
+    if (!eggId) {
+      // Do nothing
+    } else if (!isTrueLuckEgg) {
+      if (numericValues.trueLuckMultiplier !== 1) {
+        numericValues = { ...numericValues, trueLuckMultiplier: 1 };
+      }
+    } else {
+      const saved = trueLuckMultiplierByEgg[eggId] ?? 1;
+      if (numericValues.trueLuckMultiplier !== saved) {
+        numericValues = { ...numericValues, trueLuckMultiplier: saved };
+      }
+    }
+  }
+
+  $: isTrueLuckActive = isTrueLuckEgg && numericValues.trueLuckMultiplier > 1;
 
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
@@ -209,6 +228,10 @@
 
         numericValuesModified.riftMultiplier =
           selectedRift.id !== "other" ? 0 : numericValues.riftMultiplier;
+
+        numericValuesModified.trueLuckMultiplier = isTrueLuckEgg
+          ? numericValues.trueLuckMultiplier
+          : 1;
 
         stats = calculateManualStats(
           manualStats,
@@ -296,6 +319,10 @@
 
         numericValuesModified.riftMultiplier =
           selectedRift.id !== "other" ? 0 : numericValues.riftMultiplier;
+
+        numericValuesModified.trueLuckMultiplier = isTrueLuckEgg
+          ? numericValues.trueLuckMultiplier
+          : 1;
 
         stats = calculateStats(
           sources,
@@ -389,7 +416,8 @@
       collapsedSections,
       dismissedManualWarning,
       dismissedInfinityWarning,
-      dismissTrueLuckWarning,
+      dismissedTrueLuckWarning,
+      trueLuckMultiplierByEgg,
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -471,6 +499,12 @@
 
     if (numericData === numericValues) {
       numericValues = updated;
+      if (key === "trueLuckMultiplier" && isTrueLuckEgg && selectedEgg?.id) {
+        trueLuckMultiplierByEgg = {
+          ...trueLuckMultiplierByEgg,
+          [selectedEgg.id]: value,
+        };
+      }
     } else if (numericData === enchantValues) {
       enchantValues = updated;
     } else if (numericData === fragmentValues) {
