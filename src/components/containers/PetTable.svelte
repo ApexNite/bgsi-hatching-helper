@@ -355,7 +355,7 @@
                     alt={pet.name || pet.rarity}
                     decoding="async"
                     size="32px"
-                    zoom={settings.showXL ? 1.75 : 1}
+                    zoom={settings.showXL ? 2 : 1}
                     overlayBase={settings.showSuperLegendary &&
                     isSuperLegendaryEligible(pet)
                       ? "assets/images/icons/super-star"
