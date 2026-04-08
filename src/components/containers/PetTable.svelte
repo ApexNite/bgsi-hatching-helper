@@ -340,9 +340,7 @@
                     </span>
                     <span class="rarity-badge rarity-{getRarityLabel(pet)}">
                       {#if settings.showSuperLegendary && isSuperLegendaryEligible(pet)}
-                        <strong class="rarity-{getRarityLabel(pet)}"
-                          >Super</strong
-                        >
+                        Super
                       {/if}
                       {#if settings.showXL}
                         <strong class="rarity-{getRarityLabel(pet)}">XL</strong>
