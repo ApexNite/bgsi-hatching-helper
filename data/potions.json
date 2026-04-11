@@ -186,14 +186,14 @@
       {
         "id": "anniversary-elixir-iv",
         "name": "Anniversary Elixir IV",
-        "luck": 2.5,
-        "shinyChance": 1,
-        "mythicChance": 1.25
+        "luck": 4.11,
+        "shinyChance": 1.5,
+        "mythicChance": 1.5
       },
       {
         "id": "anniversary-elixir-iii",
         "name": "Anniversary Elixir III",
-        "luck": 1.75,
+        "luck": 2,
         "shinyChance": 0.75,
         "mythicChance": 0.75
       },
