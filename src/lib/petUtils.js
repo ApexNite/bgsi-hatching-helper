@@ -288,7 +288,7 @@ export function insertAggregateRows(
     if (secretsAndInfinity.length > 1) {
       const agg = makeAggregateRow(
         "__agg_secret_infinity",
-        "Any Secret",
+        "Any Secret+",
         "secret",
         secretsAndInfinity,
       );
@@ -308,7 +308,7 @@ export function insertAggregateRows(
     if (celestials.length > 1) {
       const agg = makeAggregateRow(
         "__agg_celestial",
-        "Any Celestial",
+        "Any Celestial+",
         "secret",
         celestials,
       );
