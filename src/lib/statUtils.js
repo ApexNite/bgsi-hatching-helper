@@ -151,7 +151,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     baseInfinityLuck: manualStats.infinityLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
-    baseSuperLegendaryChance: (1 / 2500) * 1.4,
+    baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: manualStats.hatchSpeed / 100,
   };
 
