@@ -5,14 +5,19 @@
     "img": "assets/images/runes/luck-i",
     "runes": [
       {
+        "id": "luck-iii",
+        "name": "Luck III",
+        "luck": 1
+      },
+      {
         "id": "luck-ii",
         "name": "Luck II",
-        "luck": 0.25
+        "luck": 0.5
       },
       {
         "id": "luck-i",
         "name": "Luck I",
-        "luck": 0.1
+        "luck": 0.2
       },
       {
         "id": "none",
@@ -26,14 +31,19 @@
     "img": "assets/images/runes/secret-i",
     "runes": [
       {
+        "id": "secret-iii",
+        "name": "Secret III",
+        "secretLuckMultiplier": 1.25
+      },
+      {
         "id": "secret-ii",
         "name": "Secret II",
-        "secretLuckMultiplier": 1.05
+        "secretLuckMultiplier": 1.10
       },
       {
         "id": "secret-i",
         "name": "Secret I",
-        "secretLuckMultiplier": 1.02
+        "secretLuckMultiplier": 1.05
       },
       {
         "id": "none",
