@@ -1096,6 +1096,12 @@
         "baseChance": 2e-9
       },
       {
+        "id": "og-king-mush",
+        "name": "OG King Mush",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
         "id": "og-sinister-skull",
         "name": "OG Sinister Skull",
         "rarity": "secret",
@@ -1128,6 +1134,12 @@
       {
         "id": "og-almighty-pumpkin",
         "name": "OG Almighty Pumpkin",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "og-lord-shock",
+        "name": "OG Lord Shock",
         "rarity": "secret",
         "baseChance": 5e-11
       },
