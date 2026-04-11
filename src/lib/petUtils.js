@@ -301,7 +301,8 @@ export function insertAggregateRows(
 
   if (anyCelestial) {
     const celestials = pets.filter(
-      (p) => isCelestialPet(p) && hasPositiveChance(p),
+      (p) =>
+        (isCelestialPet(p) || p.rarity === "infinity") && hasPositiveChance(p),
     );
 
     if (celestials.length > 1) {

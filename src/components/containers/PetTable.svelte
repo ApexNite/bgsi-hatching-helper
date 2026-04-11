@@ -573,7 +573,7 @@
             onChange={() => toggle("showAnySecretInfinity")}
             size="sm"
           />
-          <span>Show Any Secret</span>
+          <span>Show Any Secret+</span>
         </label>
         <label class="row">
           <Checkbox
@@ -582,7 +582,7 @@
             onChange={() => toggle("showAnyCelestial")}
             size="sm"
           />
-          <span>Show Any Celestial</span>
+          <span>Show Any Celestial+</span>
         </label>
         <label class="row">
           <Checkbox
