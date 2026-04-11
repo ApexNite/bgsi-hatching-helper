@@ -6,6 +6,7 @@
     calculateHatchTime,
     insertAggregateRows,
     isSuperLegendaryEligible,
+    isCelestialPet,
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -44,8 +45,6 @@
   let settingsMenu;
   let settingsMenuPosition = { top: 0, right: 0 };
   let windowWidth = window.innerWidth;
-
-  const CELESTIAL_BASE_CHANCE_THRESHOLD = 1 / 25_000_000_000;
 
   onMount(() => {
     try {
@@ -281,16 +280,6 @@
 
     return pet.finalShinyMythicChance;
   };
-
-  function isCelestialPet(pet) {
-    return (
-      pet.celestial ||
-      (!pet?.__aggregate &&
-        pet?.rarity === "secret" &&
-        typeof pet?.baseChance === "number" &&
-        pet.baseChance <= CELESTIAL_BASE_CHANCE_THRESHOLD)
-    );
-  }
 
   function getRarityLabel(pet) {
     return isCelestialPet(pet) ? "celestial" : pet.rarity;

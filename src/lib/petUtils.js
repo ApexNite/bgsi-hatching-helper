@@ -10,9 +10,9 @@ const RARITY_ORDER = Object.freeze({
   epic: 3,
   legendary: 4,
   secret: 5,
-  infinity: 6,
+  celestial: 6,
+  infinity: 7,
 });
-const CELESTIAL_BASE_CHANCE_THRESHOLD = 1 / 25_000_000_000;
 
 export function getPetsToDisplay(eggId, worldId, stats) {
   const eggsWithPets = getEggsWithInjectedPets(
@@ -94,8 +94,8 @@ export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {
 
 export function sortByRarity(pets) {
   pets.sort((a, b) => {
-    const rarityRankA = RARITY_ORDER[a.rarity] ?? 999;
-    const rarityRankB = RARITY_ORDER[b.rarity] ?? 999;
+    const rarityRankA = RARITY_ORDER[getSortRarity(a)] ?? 999;
+    const rarityRankB = RARITY_ORDER[getSortRarity(b)] ?? 999;
 
     if (rarityRankA !== rarityRankB) {
       return rarityRankA - rarityRankB;
@@ -244,15 +244,6 @@ export function insertAggregateRows(
     );
   };
 
-  const isCelestialPet = (pet) =>
-    Boolean(
-      pet?.celestial ||
-        (!pet?.__aggregate &&
-          pet?.rarity === "secret" &&
-          typeof pet?.baseChance === "number" &&
-          pet.baseChance <= CELESTIAL_BASE_CHANCE_THRESHOLD),
-    );
-
   const aggregates = [];
 
   if (anyLegendary) {
@@ -326,6 +317,17 @@ export function insertAggregateRows(
 
   return sortByRarity([...pets, ...aggregates]);
 }
+
+export function isCelestialPet(pet) {
+  return Boolean(
+    pet?.celestial ||
+      (!pet?.__aggregate &&
+        pet?.rarity === "secret" &&
+        typeof pet?.baseChance === "number" &&
+        pet.baseChance <= 4e-11),
+  );
+}
+
 
 function addVariantChances(pets, stats) {
   const shinyMultiplier = stats?.shinyChance ?? 0;
@@ -622,4 +624,16 @@ function redistributeDecrease(list, amount, isEligible) {
   for (const item of eligibleItems) {
     item.rawChance = max(0, D(item.rawChance).minus(D(decreasePerItem)));
   }
+}
+
+function getSortRarity(pet) {
+  if (pet?.rarity === "infinity") {
+    return "infinity";
+  }
+
+  if (isCelestialPet(pet)) {
+    return "celestial";
+  }
+
+  return pet?.rarity ?? "common";
 }
