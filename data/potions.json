@@ -176,5 +176,45 @@
         "name": "None"
       }
     ]
+  },
+  {
+    "id": "anniversary-elixir",
+    "name": "Anniversary Elixir",
+    "img": "assets/images/potions/anniversary-elixir-iv",
+    "event": "anniversary",
+    "potions": [
+      {
+        "id": "anniversary-elixir-iv",
+        "name": "Anniversary Elixir IV",
+        "luck": 2.5,
+        "shinyChance": 1,
+        "mythicChance": 1.25
+      },
+      {
+        "id": "anniversary-elixir-iii",
+        "name": "Anniversary Elixir III",
+        "luck": 1.75,
+        "shinyChance": 0.75,
+        "mythicChance": 0.75
+      },
+      {
+        "id": "anniversary-elixir-ii",
+        "name": "Anniversary Elixir II",
+        "luck": 1.5,
+        "shinyChance": 0.5,
+        "mythicChance": 0.5
+      },
+      {
+        "id": "anniversary-elixir-i",
+        "name": "Anniversary Elixir I",
+        "luck": 0.75,
+        "shinyChance": 0.25,
+        "mythicChance": 0.25
+      },
+      {
+        "id": "none",
+        "name": "None"
+      }
+    ]
   }
 ]
