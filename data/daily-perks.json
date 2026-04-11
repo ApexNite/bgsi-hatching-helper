@@ -24,7 +24,7 @@
       {
         "id": "queen-spitty",
         "name": "Queen Spitty",
-        "rarity": "secret",
+        "rarity": "infinity",
         "baseChance": 2e-11,
         "ignoreTrueLuck": true,
         "ignoreSecret": true
