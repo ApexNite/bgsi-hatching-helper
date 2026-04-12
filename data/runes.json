@@ -33,17 +33,17 @@
       {
         "id": "secret-iii",
         "name": "Secret III",
-        "secretLuckMultiplier": 1.25
+        "secretLuck": 0.25
       },
       {
         "id": "secret-ii",
         "name": "Secret II",
-        "secretLuckMultiplier": 1.10
+        "secretLuck": 0.10
       },
       {
         "id": "secret-i",
         "name": "Secret I",
-        "secretLuckMultiplier": 1.05
+        "secretLuck": 0.05
       },
       {
         "id": "none",
