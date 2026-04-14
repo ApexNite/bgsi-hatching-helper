@@ -25,8 +25,9 @@
     timesDisplayMode: "range",
     showHatchingTimes: true,
     showAnyLegendary: false,
-    showAnySecretInfinity: false,
+    showAnySecret: false,
     showAnyCelestial: false,
+    showAnyInfinity: false,
     showXL: false,
     hideNonSpecial: false,
     hideLegendary: false,
@@ -149,8 +150,9 @@
     basePets.length > 0
       ? insertAggregateRows(basePets, {
           anyLegendary: settings.showAnyLegendary,
-          anySecretInfinity: settings.showAnySecretInfinity,
+          anySecret: settings.showAnySecret,
           anyCelestial: settings.showAnyCelestial,
+          anyInfinity: settings.showAnyInfinity,
           superLegendaryOnly: settings.showSuperLegendary,
         })
       : [];
@@ -316,9 +318,12 @@
               <div class="pet-name">
                 {#if pet.__aggregate}
                   <div
-                    class={isCelestialPet(pet)
-                      ? "aggregate-dot aggregate-celestial"
-                      : "aggregate-dot rarity-" + getRarityLabel(pet)}
+                    class={"aggregate-dot " +
+                      (pet.rarity === "infinity"
+                        ? "aggregate-infinity"
+                        : isCelestialPet(pet)
+                          ? "aggregate-celestial"
+                          : "rarity-" + getRarityLabel(pet))}
                   ></div>
                   <div class="pet-info">
                     <span class="name">
@@ -557,9 +562,9 @@
         </label>
         <label class="row">
           <Checkbox
-            id="showAnySecretInfinity"
-            checked={settings.showAnySecretInfinity}
-            onChange={() => toggle("showAnySecretInfinity")}
+            id="showAnySecret"
+            checked={settings.showAnySecret}
+            onChange={() => toggle("showAnySecret")}
             size="sm"
           />
           <span>Show Any Secret+</span>
@@ -572,6 +577,15 @@
             size="sm"
           />
           <span>Show Any Celestial+</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="showAnyInfinity"
+            checked={settings.showAnyInfinity}
+            onChange={() => toggle("showAnyInfinity")}
+            size="sm"
+          />
+          <span>Show Any Infinity</span>
         </label>
         <label class="row">
           <Checkbox
@@ -746,7 +760,12 @@
 
   .aggregate-celestial {
     color: #9ddffd;
-    animation: celestialHue 6s linear infinite;
+    animation: celestialHue 3s linear infinite;
+  }
+
+  .aggregate-infinity {
+    color: red 0%;
+    animation: infinityHue 3s linear infinite;
   }
 
   .pet-info {
@@ -869,6 +888,18 @@
     }
     100% {
       color: #9ddffd;
+    }
+  }
+
+  @keyframes infinityHue {
+    0% {
+      color: red;
+    }
+    50% {
+      color: #6401ff;
+    }
+    100% {
+      color: red;
     }
   }
 </style>
