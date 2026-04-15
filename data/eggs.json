@@ -1374,7 +1374,6 @@
     "name": "Anniversary Egg",
     "type": "special",
     "event": "anniversary",
-    "riftable": true,
     "trueLuck": true,
     "pets": [
       {
