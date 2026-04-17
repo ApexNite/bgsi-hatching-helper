@@ -99,6 +99,7 @@
         "id": "timberdoodle",
         "name": "Timberdoodle",
         "rarity": "secret",
+        "hasMythic": false,
         "baseChance": 1e-10,
         "ignoreLuck": true,
         "ignoreSecret": true
@@ -1302,8 +1303,8 @@
         "id": "the-god-of-the-overworld",
         "name": "The God of The Overworld",
         "rarity": "infinity",
-        "baseChance": 1e-13,
-        "hasMythic": false
+        "hasMythic": false,
+        "baseChance": 1e-13
       }
     ]
   }
