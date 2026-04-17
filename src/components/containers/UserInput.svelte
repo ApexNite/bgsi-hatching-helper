@@ -1272,9 +1272,7 @@
                 <span class="menu-label">
                   <span class="menu-img">
                     <SmartImage
-                      base={selectedEgg.event === "easter"
-                        ? "assets/images/icons/easter-shrine"
-                        : "assets/images/icons/lucky-egg"}
+                      base={"assets/images/icons/lucky-egg"}
                       alt="Shrine Buff"
                       size="32px"
                       decoding="async"
