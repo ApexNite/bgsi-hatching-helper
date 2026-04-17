@@ -20,13 +20,5 @@
     "name": "Ultra Infinity Elixir",
     "event": "anniversary",
     "infinityLuckMultiplier": 1.5
-  },
-  {
-    "id": "easter-infinity-elixir",
-    "name": "Easter Infinity Elixir",
-    "event": "easter",
-    "potionLuckMultiplier": 1.5,
-    "potionShinyChanceMultiplier": 1.5,
-    "potionMythicChanceMultiplier": 1.5
   }
 ]
