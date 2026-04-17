@@ -1294,7 +1294,8 @@
         "id": "the-god-of-the-overworld",
         "name": "The God of The Overworld",
         "rarity": "infinity",
-        "baseChance": 1e-13
+        "baseChance": 1e-13,
+        "hasMythic": false
       }
     ]
   }
