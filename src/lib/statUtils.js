@@ -51,7 +51,7 @@ export function calculateStats(sources, toggles, numbers) {
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
-    baseSuperLegendaryChance: 1 / 2500,
+    baseSuperLegendaryChance: (1 / 2500) * 1.2,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
     _burstBlessingLevel: getBurstBlessingLevel(sources),
@@ -158,7 +158,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     baseInfinityLuck: manualStats.infinityLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
-    baseSuperLegendaryChance: 1 / 2500,
+    baseSuperLegendaryChance: (1 / 2500) * 1.2,
     baseHatchSpeed: manualStats.hatchSpeed / 100,
   };
 
