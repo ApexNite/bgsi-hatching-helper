@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, processData } from "./dataStore.js";
 import { D, toNumber, mul, div, sumBy, gt, max } from "./mathDecimal.js";
+import { getFlag } from "../debug.js";
 
 const BASE_HATCH_SECONDS = D(4.5);
 const RARITY_ORDER = Object.freeze({
@@ -458,6 +459,8 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     return [];
   }
 
+  const unlockTimberdoodle = Boolean(getFlag?.("unlock-timbderdoodle"));
+
   const parsedTrueLuck = Number(stats?.trueLuck ?? 1);
   const trueLuckMultiplier =
     Number.isFinite(parsedTrueLuck) && parsedTrueLuck > 0
@@ -487,8 +490,14 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
   const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
 
   for (const item of list) {
-    const luckMultiplier = item.ignoreLuck ? 1 : baseLuckMultiplier;
-    const secretMultiplier = item.ignoreSecret
+    const isTimberdoodle = item?.id === "timberdoodle";
+    const effectiveIgnoreLuck =
+      unlockTimberdoodle && isTimberdoodle ? false : item.ignoreLuck;
+    const effectiveIgnoreSecret =
+      unlockTimberdoodle && isTimberdoodle ? false : item.ignoreSecret;
+
+    const luckMultiplier = effectiveIgnoreLuck ? 1 : baseLuckMultiplier;
+    const secretMultiplier = effectiveIgnoreSecret
       ? 1
       : baseSecretMultiplier === 0
         ? 0
@@ -501,6 +510,7 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
                 ),
               ),
           );
+
     const epicLuck = Math.min(luckMultiplier, 4);
 
     switch (item.rarity) {
