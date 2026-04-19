@@ -1,0 +1,41 @@
+[
+  {
+    "id": "luck-board-event",
+    "name": "🍀Luck Event🍀",
+    "luckMultiplier": 1.25
+  },
+  {
+    "id": "secret-board-event",
+    "name": "❓Secret Event❓",
+    "secretLuckMultiplier": 1.25
+  },
+  {
+    "id": "celestial-board-event",
+    "name": "💫Celestial Event💫",
+    "celestialLuckMultiplier": 1.25
+  },
+  {
+    "id": "infinity-board-event",
+    "name": "♾️Infinity Event♾️",
+    "infinityLuckMultiplier": 1.25
+  },
+  {
+    "id": "mythic-board-event",
+    "name": "🔮Mythic Event🔮",
+    "mythicChanceMultiplier": 1.25
+  },
+  {
+    "id": "shiny-board-event",
+    "name": "⭐Shiny Event⭐",
+    "shinyChanceMultiplier": 1.25
+  },
+  {
+    "id": "xl-board-event",
+    "name": "XL Event",
+    "xlChanceMultiplier": 1.25
+  },
+  {
+    "id": "none",
+    "name": "None"
+  }
+]

@@ -18,11 +18,13 @@ import upgradesCompiled from "../../data/upgrades.json";
 import worldsCompiled from "../../data/worlds.json";
 import dataHashCompiled from "../data/hash.json";
 import runesCompiled from "../../data/runes.json";
+import boardEventsCompiled from "../../data/board-events.json";
 
 const schemas = {
   stats: {
     luck: { type: "number", default: 0 },
     trueLuck: { type: "number", default: 0 },
+    celestialLuck: { type: "number", default: 1 },
     secretLuck: { type: "number", default: 0 },
     infinityLuck: { type: "number", default: 0 },
     shinyChance: { type: "number", default: 0 },
@@ -31,6 +33,7 @@ const schemas = {
     hatchSpeed: { type: "number", default: 0 },
     baseLuck: { type: "number", default: 0 },
     baseSecretLuck: { type: "number", default: 0 },
+    baseCelestialLuck: { type: "number", default: 1 },
     baseInfinityLuck: { type: "number", default: 0 },
     baseShinyChance: { type: "number", default: 0 },
     baseMythicChance: { type: "number", default: 0 },
@@ -38,6 +41,7 @@ const schemas = {
     baseHatchSpeed: { type: "number", default: 0 },
     luckMultiplier: { type: "number", default: 0 },
     secretLuckMultiplier: { type: "number", default: 1 },
+    celestialLuckMultiplier: { type: "number", default: 1 },
     infinityLuckMultiplier: { type: "number", default: 1 },
     shinyChanceMultiplier: { type: "number", default: 1 },
     mythicChanceMultiplier: { type: "number", default: 1 },
@@ -298,6 +302,7 @@ export const dataStore = writable({
   enchants: null,
   environmentBuffs: null,
   events: null,
+  boardEvents: null,
   fragments: null,
   upgrades: null,
   gamepasses: null,
@@ -329,6 +334,7 @@ function buildDataFromSources(sources) {
     enchants: processData(sources.enchants, "enchant"),
     environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
     events: processData(sources.events, "event"),
+    boardEvents: processData(sources.boardEvents, ["stats", "id"]),
     fragments: processData(sources.fragments, "fragment"),
     upgrades: processData(sources.upgrades, "upgrade"),
     gamepasses: processData(sources.gamepasses, "gamepass"),
@@ -352,6 +358,7 @@ const compiledSources = {
   enchants: enchantsCompiled,
   environmentBuffs: environmentBuffsCompiled,
   events: eventsCompiled,
+  boardEvents: boardEventsCompiled,
   fragments: fragmentsCompiled,
   gamepasses: gamepassesCompiled,
   index: indexCompiled,
@@ -372,7 +379,7 @@ export async function loadData(forceFetch = false) {
   try {
     dataError.set(null);
 
-    if (!forceFetch && !await shouldUpdate()) {
+    if (!forceFetch && !(await shouldUpdate())) {
       const data = buildDataFromSources(compiledSources);
 
       dataStore.set(data);
@@ -390,6 +397,7 @@ export async function loadData(forceFetch = false) {
       enchantsData,
       environmentBuffsData,
       eventsData,
+      boardEventsData,
       fragmentsData,
       gamepassesData,
       indexData,
@@ -410,6 +418,7 @@ export async function loadData(forceFetch = false) {
       fetchJson("/assets/data/enchants.json"),
       fetchJson("/assets/data/environment-buffs.json"),
       fetchJson("/assets/data/events.json"),
+      fetchJson("/assets/data/board-events.json"),
       fetchJson("/assets/data/fragments.json"),
       fetchJson("/assets/data/gamepasses.json"),
       fetchJson("/assets/data/index.json"),
@@ -432,6 +441,7 @@ export async function loadData(forceFetch = false) {
       enchants: enchantsData,
       environmentBuffs: environmentBuffsData,
       events: eventsData,
+      boardEvents: boardEventsData,
       fragments: fragmentsData,
       gamepasses: gamepassesData,
       index: indexData,
@@ -473,7 +483,7 @@ export async function loadData(forceFetch = false) {
 
     hashPollIntervalId = setInterval(async () => {
       try {
-        if (!document.hidden && await shouldUpdate()) {
+        if (!document.hidden && (await shouldUpdate())) {
           await loadData(true);
         }
       } catch {}

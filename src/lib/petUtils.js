@@ -483,6 +483,7 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
 
   const baseLuckMultiplier = stats?.luck ?? 1;
   const baseSecretMultiplier = stats?.secretLuck ?? 1;
+  const celestialLuckMultiplier = stats?.celestialLuck ?? 1;
   const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
 
   for (const item of list) {
@@ -523,6 +524,10 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
         break;
       default:
         item.rawChance = item.boostedBaseChance;
+    }
+
+    if (isCelestialPet(item)) {
+      item.rawChance = mul(item.rawChance, celestialLuckMultiplier);
     }
   }
 

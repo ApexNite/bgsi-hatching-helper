@@ -32,6 +32,7 @@ export function calculateStats(sources, toggles, numbers) {
     luck: 1,
     trueLuck: 0,
     secretLuck: 1,
+    celestialLuck: 1,
     infinityLuck: 1,
     shinyChance: 0,
     mythicChance: 0,
@@ -40,6 +41,7 @@ export function calculateStats(sources, toggles, numbers) {
     hatchSpeed: 1,
     luckMultiplier: 0,
     secretLuckMultiplier: 1,
+    celestialLuckMultiplier: 1,
     infinityLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
@@ -48,6 +50,7 @@ export function calculateStats(sources, toggles, numbers) {
     hatchSpeedMultiplier: 0,
     baseLuck: 0,
     baseSecretLuck: 0,
+    baseCelestialLuck: 0,
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
@@ -141,6 +144,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     luck: 0,
     trueLuck: 0,
     secretLuck: 0,
+    celestialLuck: 0,
     infinityLuck: 0,
     shinyChance: 0,
     mythicChance: 0,
@@ -148,6 +152,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     superLegendaryChance: 0,
     hatchSpeed: 0,
     secretLuckMultiplier: 1,
+    celestialLuckMultiplier: 1,
     infinityLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
@@ -155,6 +160,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     superLegendaryChanceMultiplier: 1,
     baseLuck: 1 + manualStats.luck / 100,
     baseSecretLuck: manualStats.secretLuck,
+    baseCelestialLuck: 1,
     baseInfinityLuck: manualStats.infinityLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
@@ -218,6 +224,10 @@ function calculateStatsFromTotals(totals) {
     secretLuck: add(
       totals.baseSecretLuck || 0,
       mul(totals.secretLuck || 0, totals.secretLuckMultiplier || 1),
+    ),
+    celestialLuck: add(
+      totals.baseCelestialLuck || 0,
+      mul(totals.celestialLuck || 0, totals.celestialLuckMultiplier || 1),
     ),
     infinityLuck: add(
       totals.baseInfinityLuck || 0,
@@ -288,6 +298,13 @@ function applySource(totals, source) {
     totals.secretLuck = add(totals.secretLuck, mul(source.secretLuck, times));
   }
 
+  if (typeof source.celestialLuck === "number") {
+    totals.celestialLuck = add(
+      totals.celestialLuck,
+      mul(source.celestialLuck, times),
+    );
+  }
+
   if (typeof source.infinityLuck === "number") {
     totals.infinityLuck = add(
       totals.infinityLuck,
@@ -330,6 +347,13 @@ function applySource(totals, source) {
     totals.secretLuckMultiplier *= Math.pow(source.secretLuckMultiplier, times);
   }
 
+  if (typeof source.celestialLuckMultiplier === "number") {
+    totals.celestialLuckMultiplier *= Math.pow(
+      source.celestialLuckMultiplier,
+      times,
+    );
+  }
+
   if (typeof source.infinityLuckMultiplier === "number") {
     totals.infinityLuckMultiplier *= Math.pow(
       source.infinityLuckMultiplier,
@@ -355,6 +379,10 @@ function applySource(totals, source) {
 
   if (typeof source.baseSecretLuck === "number") {
     totals.baseSecretLuck += source.baseSecretLuck * times;
+  }
+
+  if (typeof source.baseCelestialLuck === "number") {
+    totals.baseCelestialLuck += source.baseCelestialLuck * times;
   }
 
   if (typeof source.baseInfinityLuck === "number") {
