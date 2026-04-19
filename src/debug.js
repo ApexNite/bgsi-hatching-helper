@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, dataError } from "./lib/dataStore.js";
-import { setCookie, getCookie } from "./lib/cookieUtils.js";
+import { setCookie, getCookie, deleteCookie } from "./lib/cookieUtils.js";
 
 let flags = {};
 
@@ -27,20 +27,28 @@ export function getBuildDate() {
 }
 
 export function setFlag(flag) {
-  flags = getCookie("debug-flags") || {};
+  flags = getCookie("hatching-helper-debug-flags") || {};
   flags[flag] = true;
-  setCookie("debug-flags", flags);
+  setCookie("hatching-helper-debug-flags", flags);
 }
 
 export function unsetFlag(flag) {
-  flags = getCookie("debug-flags") || {};
+  flags = getCookie("hatching-helper-debug-flags") || {};
   flags[flag] = false;
-  setCookie("debug-flags", flags);
+  setCookie("hatching-helper-debug-flags", flags);
 }
 
 export function getFlag(flag) {
-  flags = getCookie("debug-flags") || {};
+  flags = getCookie("hatching-helper-debug-flags") || {};
   return Object.prototype.hasOwnProperty.call(flags, flag) ? flags[flag] : null;
+}
+
+export function clearSettings() {
+  deleteCookie("hatching-helper-user-input");
+  deleteCookie("hatching-helper-pet-table-settings");
+  deleteCookie("hatching-helper-debug-flags");
+
+  window.location.reload();
 }
 
 function canReadData() {
@@ -56,5 +64,6 @@ if (typeof window !== "undefined") {
     setFlag,
     unsetFlag,
     getFlag,
+    clearSettings,
   };
 }
