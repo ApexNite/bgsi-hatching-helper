@@ -24,7 +24,7 @@ const schemas = {
   stats: {
     luck: { type: "number", default: 0 },
     trueLuck: { type: "number", default: 0 },
-    celestialLuck: { type: "number", default: 1 },
+    celestialLuck: { type: "number", default: 0 },
     secretLuck: { type: "number", default: 0 },
     infinityLuck: { type: "number", default: 0 },
     shinyChance: { type: "number", default: 0 },
@@ -33,7 +33,7 @@ const schemas = {
     hatchSpeed: { type: "number", default: 0 },
     baseLuck: { type: "number", default: 0 },
     baseSecretLuck: { type: "number", default: 0 },
-    baseCelestialLuck: { type: "number", default: 1 },
+    baseCelestialLuck: { type: "number", default: 0 },
     baseInfinityLuck: { type: "number", default: 0 },
     baseShinyChance: { type: "number", default: 0 },
     baseMythicChance: { type: "number", default: 0 },
