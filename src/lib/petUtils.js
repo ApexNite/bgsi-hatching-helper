@@ -459,8 +459,6 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
     return [];
   }
 
-  const unlockTimberdoodle = Boolean(getFlag?.("unlock-timbderdoodle"));
-
   const parsedTrueLuck = Number(stats?.trueLuck ?? 1);
   const trueLuckMultiplier =
     Number.isFinite(parsedTrueLuck) && parsedTrueLuck > 0
@@ -490,14 +488,8 @@ function normalizeEgg(items, stats, isInfinityEgg = false) {
   const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
 
   for (const item of list) {
-    const isTimberdoodle = item?.id === "timberdoodle";
-    const effectiveIgnoreLuck =
-      unlockTimberdoodle && isTimberdoodle ? false : item.ignoreLuck;
-    const effectiveIgnoreSecret =
-      unlockTimberdoodle && isTimberdoodle ? false : item.ignoreSecret;
-
-    const luckMultiplier = effectiveIgnoreLuck ? 1 : baseLuckMultiplier;
-    const secretMultiplier = effectiveIgnoreSecret
+    const luckMultiplier = item.ignoreLuck ? 1 : baseLuckMultiplier;
+    const secretMultiplier = item.ignoreSecret
       ? 1
       : baseSecretMultiplier === 0
         ? 0
