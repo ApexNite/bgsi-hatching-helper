@@ -100,8 +100,7 @@
         "name": "Timberdoodle",
         "rarity": "secret",
         "hasMythic": false,
-        "baseChance": 1e-10,
-        "ignoreSecret": true
+        "baseChance": 1e-10
       }
     ]
   },
