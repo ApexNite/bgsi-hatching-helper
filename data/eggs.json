@@ -101,7 +101,6 @@
         "rarity": "secret",
         "hasMythic": false,
         "baseChance": 1e-10,
-        "ignoreLuck": true,
         "ignoreSecret": true
       }
     ]
