@@ -1380,5 +1380,62 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "wonderland-egg",
+    "name": "Wonderland Egg",
+    "type": "special",
+    "event": "wonderland",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "que-pequena",
+        "name": "Que Pequena",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "white-rabbit",
+        "name": "White Rabbit",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "pawnacci",
+        "name": "Pawnacci",
+        "rarity": "legendary",
+        "baseChance": 0.00008
+      },
+      {
+        "id": "hatted-dragon",
+        "name": "Hatted Dragon",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "cup-o-bunny",
+        "name": "Cup o' Bunny",
+        "rarity": "legendary",
+        "baseChance": 2e-7
+      },
+      {
+        "id": "empress-of-hearts",
+        "name": "Empress of Hearts",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "the-dormouse",
+        "name": "The Dormouse",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "cheshire-cat",
+        "name": "Cheshire Cat",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]
