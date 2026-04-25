@@ -20,5 +20,13 @@
     "name": "Ultra Infinity Elixir",
     "event": "anniversary",
     "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "wonderland-elixir",
+    "name": "Wonderland Elixir",
+    "event": "wonderland",
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
   }
 ]
