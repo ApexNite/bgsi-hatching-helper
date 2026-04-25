@@ -427,6 +427,7 @@ function calculateSeasonPerks(stars) {
   return {
     luck: starsClamped / 600,
     hatchSpeed: starsClamped / 7500,
+    celestialLuck: starsClamped / 6000,
   };
 }
 
