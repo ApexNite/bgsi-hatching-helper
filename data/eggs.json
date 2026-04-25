@@ -1347,7 +1347,7 @@
         "id": "the-golflord",
         "name": "The Golflord",
         "rarity": "legendary",
-        "baseChance": 1e-7
+        "baseChance": 2e-7
       },
       {
         "id": "super-ace",
