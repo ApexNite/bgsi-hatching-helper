@@ -3,20 +3,13 @@ import { dataStore, isDataLoaded } from "./dataStore.js";
 import { D, toNumber, add, mul, div, max } from "./mathDecimal.js";
 
 const DEFAULT_XL_CHANCE_BY_RARITY = Object.freeze({
-  // infinity: 1 / 500,
-  // secret: 1 / 500,
-  // legendary: 1 / 2000,
-  // epic: 1 / 10000,
-  // rare: 1 / 25000,
-  // unique: 1 / 75000,
-  // common: 1 / 100000,
-  infinity: (1 / 500) * 1.5,
-  secret: (1 / 500) * 1.5,
-  legendary: (1 / 2000) * 1.5,
-  epic: (1 / 10000) * 1.5,
-  rare: (1 / 25000) * 1.5,
-  unique: (1 / 75000) * 1.5,
-  common: (1 / 100000) * 1.5,
+  infinity: 1 / 500,
+  secret: 1 / 500,
+  legendary: 1 / 2000,
+  epic: 1 / 10000,
+  rare: 1 / 25000,
+  unique: 1 / 75000,
+  common: 1 / 100000,
 });
 
 export function calculateStats(sources, toggles, numbers) {
@@ -54,7 +47,7 @@ export function calculateStats(sources, toggles, numbers) {
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
     baseMythicChance: 1 / 100,
-    baseSuperLegendaryChance: (1 / 2500) * 1.2,
+    baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
     _burstBlessingLevel: getBurstBlessingLevel(sources),
@@ -164,7 +157,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     baseInfinityLuck: manualStats.infinityLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
-    baseSuperLegendaryChance: (1 / 2500) * 1.2,
+    baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: manualStats.hatchSpeed / 100,
   };
 
