@@ -411,7 +411,7 @@ function addVariantChances(pets, stats) {
   return pets;
 }
 
-function getEggsWithInjectedPets(trueLuckEgg) {
+export function getEggsWithInjectedPets(trueLuckEgg) {
   const data = get(dataStore);
 
   if (!isDataLoaded || !data.eggs) {

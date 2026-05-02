@@ -3,6 +3,7 @@
   import { setCookie, getCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
   import { onMount } from "svelte";
+  import { getEggsWithInjectedPets } from "../../lib/petUtils.js";
 
   import Dropdown from "../control/Dropdown.svelte";
   import Checkbox from "../control/Checkbox.svelte";
@@ -59,9 +60,38 @@
   let shrineBuffSelections = {};
   let collapsedSections = {};
 
+  let injectedEggs = [];
+  let visibleEggs = [];
+
+  function hasLegendarySecretOrInfinityPets(egg) {
+    if (!Array.isArray(egg?.pets)) {
+      return false;
+    }
+
+    return egg.pets.some(
+      (p) =>
+        p?.rarity === "legendary" ||
+        p?.rarity === "secret" ||
+        p?.rarity === "infinity",
+    );
+  }
+
+  $: injectedEggs = $isDataLoaded ? getEggsWithInjectedPets(false) : [];
+
+  $: visibleEggs = (injectedEggs || []).filter(
+    (e) => e?.type === "infinity" || hasLegendarySecretOrInfinityPets(e),
+  );
+
+  $: if ($isDataLoaded && visibleEggs?.length) {
+    const currentId = selectedOptions.eggs;
+    if (!visibleEggs.some((e) => e.id === currentId)) {
+      selectedOptions = { ...selectedOptions, eggs: visibleEggs[0].id };
+    }
+  }
+
   $: if ($isDataLoaded) {
     const defaultSelectedOptions = {
-      eggs: $dataStore.eggs?.[0]?.id,
+      eggs: visibleEggs?.[0]?.id ?? $dataStore.eggs?.[0]?.id,
       worlds: $dataStore.worlds?.[0]?.id,
       rifts: $dataStore.rifts?.[0]?.id,
       ...Object.fromEntries(
@@ -136,8 +166,10 @@
   }
 
   $: selectedEgg =
+    (injectedEggs || []).find((e) => e.id === selectedOptions.eggs) ||
+    injectedEggs?.[0] ||
     $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs) ||
-    $dataStore.eggs[0];
+    $dataStore.eggs?.[0];
   $: isInfinityEgg = selectedEgg?.type === "infinity";
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
@@ -630,8 +662,8 @@
             <div class="menu-control">
               <Dropdown
                 id="eggs"
-                options={$dataStore.eggs || []}
-                selectedOption={$dataStore.eggs?.find(
+                options={visibleEggs}
+                selectedOption={visibleEggs?.find(
                   (e) => e.id === selectedOptions.eggs,
                 )}
                 onSelect={handleSelect}
