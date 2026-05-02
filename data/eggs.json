@@ -505,6 +505,12 @@
         "rarity": "secret",
         "baseChance": 2e-8,
         "staticMythic": true
+      },
+      {
+        "id": "nightmare-monster",
+        "name": "Nightmare Monster",
+        "rarity": "secret",
+        "baseChance": 2e-11
       }
     ]
   },
@@ -550,6 +556,18 @@
         "name": "Rainbow Shock",
         "rarity": "legendary",
         "baseChance": 0.000005
+      },
+      {
+        "id": "vantaknight",
+        "name": "Vantaknight",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      },
+      {
+        "id": "ultraperegrine",
+        "name": "Ultraperegrine",
+        "rarity": "infinity",
+        "baseChance": 1e-11
       }
     ]
   },
