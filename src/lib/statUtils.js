@@ -1,6 +1,18 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded } from "./dataStore.js";
-import { D, toNumber, add, mul, div, max } from "./mathDecimal.js";
+import {
+  D,
+  add,
+  sub,
+  mul,
+  div,
+  pow,
+  gt,
+  gte,
+  min,
+  max,
+  toNumber,
+} from "./mathDecimal.js";
 
 const DEFAULT_XL_CHANCE_BY_RARITY = Object.freeze({
   infinity: 1 / 500,
@@ -212,31 +224,41 @@ function calculateStatsFromTotals(totals) {
     );
 
   return {
-    luck: calculateAdjustedLuck(totals),
-    trueLuck: totals.trueLuck || 0,
-    secretLuck: add(
-      totals.baseSecretLuck || 0,
-      mul(totals.secretLuck || 0, totals.secretLuckMultiplier || 1),
+    luck: toNumber(calculateAdjustedLuck(totals)),
+    trueLuck: toNumber(totals.trueLuck || 0),
+    secretLuck: toNumber(
+      add(
+        totals.baseSecretLuck || 0,
+        mul(totals.secretLuck || 0, totals.secretLuckMultiplier || 1),
+      ),
     ),
-    celestialLuck: add(
-      totals.baseCelestialLuck || 0,
-      mul(totals.celestialLuck || 0, totals.celestialLuckMultiplier || 1),
+    celestialLuck: toNumber(
+      add(
+        totals.baseCelestialLuck || 0,
+        mul(totals.celestialLuck || 0, totals.celestialLuckMultiplier || 1),
+      ),
     ),
-    infinityLuck: add(
-      totals.baseInfinityLuck || 0,
-      mul(totals.infinityLuck || 0, totals.infinityLuckMultiplier || 1),
+    infinityLuck: toNumber(
+      add(
+        totals.baseInfinityLuck || 0,
+        mul(totals.infinityLuck || 0, totals.infinityLuckMultiplier || 1),
+      ),
     ),
-    shinyChance: totals._applyAdjustedShiny
-      ? calculateAdjustedShiny(shinyBase)
-      : shinyBase,
+    shinyChance: toNumber(
+      totals._applyAdjustedShiny
+        ? calculateAdjustedShiny(shinyBase)
+        : shinyBase,
+    ),
     mythicChance: toNumber(
       D(totals.baseMythicChance || 0)
         .times(D(1).plus(totals.mythicChance || 0))
         .times(totals.mythicChanceMultiplier || 1),
     ),
-    hatchSpeed: add(
-      totals.baseHatchSpeed || 0,
-      mul(totals.hatchSpeed || 0, totals.hatchSpeedMultiplier || 1),
+    hatchSpeed: toNumber(
+      add(
+        totals.baseHatchSpeed || 0,
+        mul(totals.hatchSpeed || 0, totals.hatchSpeedMultiplier || 1),
+      ),
     ),
     getXlChanceForRarity,
     getSuperLegendaryChance,

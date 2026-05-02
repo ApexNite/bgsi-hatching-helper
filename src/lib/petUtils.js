@@ -1,6 +1,18 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, processData } from "./dataStore.js";
-import { D, toNumber, mul, div, sumBy, gt, max } from "./mathDecimal.js";
+import {
+  D,
+  add,
+  sub,
+  mul,
+  div,
+  pow,
+  gt,
+  gte,
+  min,
+  max,
+  toNumber,
+} from "./mathDecimal.js";
 import { getFlag } from "../debug.js";
 
 const BASE_HATCH_SECONDS = D(4.5);
@@ -454,109 +466,117 @@ export function getEggsWithInjectedPets(trueLuckEgg) {
   return processData(eggsCopy, "egg");
 }
 
-function normalizeEgg(items, stats, isInfinityEgg = false) {
-  if (!items?.length) {
-    return [];
-  }
+function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
+  if (!items?.length) return [];
 
-  const parsedTrueLuck = Number(stats?.trueLuck ?? 1);
-  const trueLuckMultiplier =
-    Number.isFinite(parsedTrueLuck) && parsedTrueLuck > 0
-      ? Math.max(1, parsedTrueLuck)
-      : 1;
+  let pool = items.map((p) => ({
+    ...p,
+    rawChance: D(p.baseChance ?? 0),
+  }));
 
-  const list = items.map((p) => {
-    const rarity = p.rarity ?? "common";
-    const originalBaseChance = Number(p.baseChance ?? 0);
-    const boostedBaseChance =
-      rarity === "legendary" || rarity === "secret" || rarity === "infinity"
-        ? mul(originalBaseChance, trueLuckMultiplier)
-        : originalBaseChance;
+  const rarity = (item) => item.rarity;
 
-    return {
-      ...p,
-      rarity,
-      boostedBaseChance,
-      baseChance: originalBaseChance,
-      rawChance: boostedBaseChance,
-    };
-  });
+  const isEpic = (item) => rarity(item) === "epic";
 
-  const baseLuckMultiplier = stats?.luck ?? 1;
-  const baseSecretMultiplier = stats?.secretLuck ?? 1;
-  const celestialLuckMultiplier = stats?.celestialLuck ?? 1;
-  const infinityLuckMultiplier = stats?.infinityLuck ?? 1;
+  const isLegendaryOrSecret = (item) =>
+    rarity(item) === "legendary" ||
+    rarity(item) === "secret" ||
+    rarity(item) === "infinity";
 
-  for (const item of list) {
-    const luckMultiplier = item.ignoreLuck ? 1 : baseLuckMultiplier;
-    const secretMultiplier = item.ignoreSecret
+  const isSecret = (item) =>
+    rarity(item) === "secret" || rarity(item) === "infinity";
+
+  const isInfinity = (item) => rarity(item) === "infinity";
+
+  const luck = D(stats.luck ?? 1);
+
+  const secretLuck = D(
+    item.ignoreSecret
       ? 1
-      : baseSecretMultiplier === 0
+      : (stats.secretLuck ?? 1 === 0)
         ? 0
         : toNumber(
-            D(baseSecretMultiplier)
+            D(stats.secretLuck ?? 1)
               .div(2)
               .plus(
                 D(0.5).times(
-                  D(baseSecretMultiplier).minus(1).div(10).neg().exp(),
+                  D(stats.secretLuck ?? 1)
+                    .minus(1)
+                    .div(10)
+                    .neg()
+                    .exp(),
                 ),
               ),
-          );
-
-    const epicLuck = Math.min(luckMultiplier, 4);
-
-    switch (item.rarity) {
-      case "infinity":
-        item.rawChance = mul(
-          mul(mul(item.boostedBaseChance, luckMultiplier), secretMultiplier),
-          infinityLuckMultiplier,
-        );
-        break;
-      case "secret":
-        item.rawChance = mul(
-          mul(item.boostedBaseChance, luckMultiplier),
-          secretMultiplier,
-        );
-        break;
-      case "legendary":
-        item.rawChance = mul(item.boostedBaseChance, luckMultiplier);
-        break;
-      case "epic":
-        item.rawChance = mul(item.boostedBaseChance, epicLuck);
-        break;
-      default:
-        item.rawChance = item.boostedBaseChance;
-    }
-
-    if (isCelestialPet(item)) {
-      item.rawChance = mul(item.rawChance, celestialLuckMultiplier);
-    }
-  }
-
-  const epicIncrease = sumBy(
-    list.filter((item) => item.rarity === "epic"),
-    (item) => D(item.rawChance).minus(item.baseChance),
+          ),
   );
+  const infinityLuck = D(stats.infinityLuck ?? 1);
+  const celestialLuck = D(stats.celestialLuck ?? 1);
+  const epicLuck = min(luck, D(4));
 
-  if (gt(epicIncrease, 0) && !isInfinityEgg) {
-    redistributeDecrease(
-      list,
-      epicIncrease,
-      (item) =>
-        !["epic", "legendary", "secret", "infinity"].includes(item.rarity) &&
-        item.rawChance > 0,
-    );
+  pool = applyMultiplierToPool(pool, epicLuck, isEpic, isLegendaryOrSecret);
+  pool = applyMultiplierToPool(pool, luck, isLegendaryOrSecret);
+
+  if (gt(secretLuck, 1)) {
+    pool = applyMultiplierToPool(pool, secretLuck, isSecret);
   }
 
-  let totalRawChance = sumBy(list, (item) => item.rawChance);
-  if (!gt(totalRawChance, 0)) {
-    totalRawChance = 1;
+  if (gt(infinityLuck, 1)) {
+    pool = applyMultiplierToPool(pool, infinityLuck, isInfinity);
   }
 
-  return list.map((item) => ({
+  if (gt(celestialLuck, 1)) {
+    pool = applyMultiplierToPool(pool, celestialLuck, isCelestialPet);
+  }
+
+  let total = pool.reduce((sum, i) => sum.plus(i.rawChance), D(0));
+
+  if (!gt(total, 0)) {
+    total = D(1);
+  }
+
+  return pool.map((item) => ({
     ...item,
-    finalChance: div(item.rawChance, totalRawChance),
+    finalChance: toNumber(item.rawChance.div(total)),
   }));
+}
+
+function applyMultiplierToPool(pool, multiplier, matchFn, protectFn = null) {
+  let totalIncrease = D(0);
+
+  const next = pool.map((item) => {
+    if (matchFn(item)) {
+      const old = item.rawChance;
+      const updated = old.times(multiplier);
+
+      totalIncrease = totalIncrease.plus(updated.minus(old));
+
+      return { ...item, rawChance: updated };
+    }
+
+    return { ...item };
+  });
+
+  const candidates = [];
+
+  for (let i = 0; i < pool.length; i++) {
+    const item = pool[i];
+
+    if (!matchFn(item)) {
+      if (!protectFn || !protectFn(item)) {
+        candidates.push(i);
+      }
+    }
+  }
+
+  if (gt(totalIncrease, 0) && candidates.length > 0) {
+    const reduction = totalIncrease.div(candidates.length);
+
+    for (const i of candidates) {
+      next[i].rawChance = max(D(0), next[i].rawChance.minus(reduction));
+    }
+  }
+
+  return next;
 }
 
 function removeDuplicatePetsFromEggs(eggs) {
