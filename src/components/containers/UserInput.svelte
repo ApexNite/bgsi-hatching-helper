@@ -135,7 +135,7 @@
     };
   }
 
-  $: selectedEgg = $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs);
+  $: selectedEgg = $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs) || $dataStore.eggs[0];
   $: isInfinityEgg = selectedEgg?.type === "infinity";
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
