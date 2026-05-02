@@ -135,7 +135,9 @@
     };
   }
 
-  $: selectedEgg = $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs) || $dataStore.eggs[0];
+  $: selectedEgg =
+    $dataStore.eggs?.find((e) => e.id === selectedOptions.eggs) ||
+    $dataStore.eggs[0];
   $: isInfinityEgg = selectedEgg?.type === "infinity";
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
@@ -195,12 +197,35 @@
   );
   $: visibleMasteries = visibleByEvent($dataStore.masteries, activeEvent);
   $: visibleMilestones = visibleByEvent($dataStore.milestones, activeEvent);
-  $: visibleShrineBuffs = visibleByEvent($dataStore.shrineBuffs, activeEvent);
+
+  $: canUsePermanentShrineBuff = isWorldEgg && eggHasSecret(selectedEgg);
+
+  $: visibleShrineBuffs = ($dataStore.shrineBuffs || []).filter((sb) => {
+    if (sb?.id === "none") {
+      return true;
+    }
+
+    const ev = sb?.event ?? "none";
+
+    if (ev === "permanent") {
+      return canUsePermanentShrineBuff;
+    }
+
+    return ev === activeEvent;
+  });
+
   $: hasShrineBuffs = (visibleShrineBuffs || []).some(
     (sb) => sb.id !== "none" && !isTrueLuckActive,
   );
 
-  $: selectedShrineBuffId = shrineBuffSelections[activeEvent] ?? "none";
+  $: shrineBuffSelectionKey = selectedEgg?.id ?? "unknown-egg";
+
+  $: selectedShrineBuffId = (() => {
+    const desired = shrineBuffSelections[shrineBuffSelectionKey] ?? "none";
+    return (visibleShrineBuffs || []).some((sb) => sb.id === desired)
+      ? desired
+      : "none";
+  })();
 
   $: selectedEggId = selectedEgg.id;
   $: selectedWorldId = selectedWorld.id;
@@ -459,7 +484,7 @@
     } else if (id === "shrine-buff") {
       shrineBuffSelections = {
         ...shrineBuffSelections,
-        [activeEvent]: option.id,
+        [shrineBuffSelectionKey]: option.id,
       };
     } else {
       selectedOptions = { ...selectedOptions, [id]: option.id };
@@ -548,7 +573,16 @@
 
   function visibleByEvent(items, eventId) {
     const list = Array.isArray(items) ? items : [];
-    return list.filter((i) => i.event === "none" || i.event === eventId);
+    return list.filter(
+      (i) => (i.event ?? "none") === "none" || (i.event ?? "none") === eventId,
+    );
+  }
+
+  function eggHasSecret(egg) {
+    return (
+      Array.isArray(egg?.pets) &&
+      egg.pets.some((p) => p?.rarity === "secret" || p?.rarity === "infinity")
+    );
   }
 </script>
 
