@@ -735,37 +735,6 @@
     ]
   },
   {
-    "id": "chance-egg",
-    "name": "Chance Egg",
-    "type": "special",
-    "pets": [
-      {
-        "id": "galaxy-dice",
-        "name": "Galaxy Dice",
-        "rarity": "rare",
-        "baseChance": 0.9
-      },
-      {
-        "id": "chance-dragon",
-        "name": "Chance Dragon",
-        "rarity": "epic",
-        "baseChance": 0.1
-      },
-      {
-        "id": "ring-master",
-        "name": "Ring Master",
-        "rarity": "legendary",
-        "baseChance": 0.00001
-      },
-      {
-        "id": "royal-guardian",
-        "name": "Royal Guardian",
-        "rarity": "secret",
-        "baseChance": 5e-9
-      }
-    ]
-  },
-  {
     "id": "icy-egg",
     "name": "Icy Egg",
     "type": "world",
