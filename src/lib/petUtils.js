@@ -52,7 +52,7 @@ export function getPetsToDisplay(eggId, worldId, stats) {
       : egg.rarities;
 
   let pets = isInfinity
-    ? normalizeInfinityEgg(selectedRarities, worldEggs, stats)
+    ? normalizeInfinityEgg(selectedRarities, worldEggs, stats, worldId)
     : normalizeEgg(egg.pets, stats);
 
   return addVariantChances(sortByRarity(pets), stats);
@@ -491,23 +491,21 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
   const luck = D(stats.luck ?? 1);
 
   const secretLuck = D(
-    item.ignoreSecret
-      ? 1
-      : (stats.secretLuck ?? 1 === 0)
-        ? 0
-        : toNumber(
-            D(stats.secretLuck ?? 1)
-              .div(2)
-              .plus(
-                D(0.5).times(
-                  D(stats.secretLuck ?? 1)
-                    .minus(1)
-                    .div(10)
-                    .neg()
-                    .exp(),
-                ),
+    (stats.secretLuck ?? 1 === 0)
+      ? 0
+      : toNumber(
+          D(stats.secretLuck ?? 1)
+            .div(2)
+            .plus(
+              D(0.5).times(
+                D(stats.secretLuck ?? 1)
+                  .minus(1)
+                  .div(10)
+                  .neg()
+                  .exp(),
               ),
-          ),
+            ),
+        ),
   );
   const infinityLuck = D(stats.infinityLuck ?? 1);
   const celestialLuck = D(stats.celestialLuck ?? 1);
@@ -598,7 +596,7 @@ function removeDuplicatePetsFromEggs(eggs) {
   }
 }
 
-function normalizeInfinityEgg(rarities, worldEggs, stats) {
+function normalizeInfinityEgg(rarities, worldEggs, stats, worldId) {
   if (!rarities || !worldEggs?.length) {
     return [];
   }
@@ -607,6 +605,26 @@ function normalizeInfinityEgg(rarities, worldEggs, stats) {
 
   const normalizedRarities = normalizeEgg(rarities, stats, true);
   const petsByRarity = new Map();
+  const data = get(dataStore);
+  const now = new Date();
+  const utcDay = now.getUTCDay();
+  const utcDate = now.toISOString().slice(0, 10).replace(/-/g, "");
+  const bounty = data.secretBounty?.eggs?.[utcDate];
+
+  if (
+    worldId == "seven-seas" &&
+    bounty &&
+    data.eggs.find((e) => e.id === bounty.egg)?.world == "the-overworld"
+  ) {
+    const bountyPet = data.secretBounty?.pets?.[bounty.pet];
+    if (bountyPet) {
+      const rarityKey =
+        bountyPet.rarity === "infinity" ? "secret" : bountyPet.rarity;
+      const list = petsByRarity.get(rarityKey) ?? [];
+      list.push(bountyPet);
+      petsByRarity.set(rarityKey, list);
+    }
+  }
 
   for (const egg of worldEggs) {
     for (const pet of egg.pets) {
