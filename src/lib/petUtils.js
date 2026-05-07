@@ -488,34 +488,72 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
 
   const isInfinity = (item) => rarity(item) === "infinity";
 
+  const ignoresLuck = (item) => item?.ignoreLuck === true;
+  const ignoresSecretLuck = (item) => item?.ignoreSecret === true;
+
+  const applyMultiplierRespectingIgnore = (
+    currentPool,
+    multiplier,
+    matchFn,
+    protectFn = null,
+    ignoreFn = null,
+  ) => {
+    const shouldIgnore =
+      typeof ignoreFn === "function" ? ignoreFn : () => false;
+
+    const effectiveMatch = (item) => matchFn(item) && !shouldIgnore(item);
+    const effectiveProtect = protectFn
+      ? (item) => protectFn(item) || shouldIgnore(item)
+      : (item) => shouldIgnore(item);
+
+    return applyMultiplierToPool(
+      currentPool,
+      multiplier,
+      effectiveMatch,
+      effectiveProtect,
+    );
+  };
+
   const luck = D(stats.luck ?? 1);
 
-  const secretLuck = D(
-    (stats.secretLuck ?? 1 === 0)
-      ? 0
-      : toNumber(
-          D(stats.secretLuck ?? 1)
-            .div(2)
-            .plus(
-              D(0.5).times(
-                D(stats.secretLuck ?? 1)
-                  .minus(1)
-                  .div(10)
-                  .neg()
-                  .exp(),
-              ),
-            ),
-        ),
-  );
+  const secretLuck = D(stats.secretLuck ?? 1)
+    .div(2)
+    .plus(
+      D(0.5).times(
+        D(stats.secretLuck ?? 1)
+          .minus(1)
+          .div(10)
+          .neg()
+          .exp(),
+      ),
+    );
   const infinityLuck = D(stats.infinityLuck ?? 1);
   const celestialLuck = D(stats.celestialLuck ?? 1);
   const epicLuck = min(luck, D(4));
 
-  pool = applyMultiplierToPool(pool, epicLuck, isEpic, isLegendaryOrSecret);
-  pool = applyMultiplierToPool(pool, luck, isLegendaryOrSecret);
+  pool = applyMultiplierRespectingIgnore(
+    pool,
+    epicLuck,
+    isEpic,
+    isLegendaryOrSecret,
+    ignoresLuck,
+  );
+  pool = applyMultiplierRespectingIgnore(
+    pool,
+    luck,
+    isLegendaryOrSecret,
+    null,
+    ignoresLuck,
+  );
 
   if (gt(secretLuck, 1)) {
-    pool = applyMultiplierToPool(pool, secretLuck, isSecret);
+    pool = applyMultiplierRespectingIgnore(
+      pool,
+      secretLuck,
+      isSecret,
+      null,
+      ignoresSecretLuck,
+    );
   }
 
   if (gt(infinityLuck, 1)) {
