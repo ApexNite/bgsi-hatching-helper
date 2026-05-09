@@ -49,7 +49,7 @@
     luck: 0,
     secretLuck: 1,
     infinityLuck: 1,
-    shinyChance: 40,
+    shinyChance: (40) / 1.1,
     mythicChance: 100,
     // xlChance: 500,
     hatchSpeed: 100,

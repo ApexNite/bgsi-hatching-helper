@@ -57,7 +57,7 @@ export function calculateStats(sources, toggles, numbers) {
     baseSecretLuck: 0,
     baseCelestialLuck: 0,
     baseInfinityLuck: 0,
-    baseShinyChance: 1 / 40,
+    baseShinyChance: (1 / 40) * 1.1,
     baseMythicChance: 1 / 100,
     baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: 0,
