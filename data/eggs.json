@@ -1269,5 +1269,162 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "research-egg",
+    "name": "Research Egg",
+    "type": "special",
+    "event": "summer",
+    "pets": [
+      {
+        "id": "researcher-kitty",
+        "name": "Researcher Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "researcher-bunny",
+        "name": "Researcher Bunny",
+        "rarity": "unique",
+        "baseChance": 0.3
+      },
+      {
+        "id": "researcher-deer",
+        "name": "Researcher Deer",
+        "rarity": "rare",
+        "baseChance": 4
+      }
+    ]
+  },
+  {
+    "id": "summer-egg",
+    "name": "Summer Egg",
+    "type": "special",
+    "event": "summer",
+    "pets": [
+      {
+        "id": "summer-kitty",
+        "name": "Summer Kitty",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "summer-bunny",
+        "name": "Summer Bunny",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "summer-shark",
+        "name": "Summer Shark",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "summer-emerald-golem",
+        "name": "Summer Emerald Golem",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "holy-crab",
+        "name": "Holy Crab",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "big-beach-boi",
+        "name": "BIG BEACH BOI",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      },
+      {
+        "id": "king-crab",
+        "name": "King Crab",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      }
+    ]
+  },
+  {
+    "id": "tropical-egg",
+    "name": "Tropical Egg",
+    "type": "special",
+    "event": "summer",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "tropical-bunny",
+        "name": "Tropical Bunny",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "tropical-deer",
+        "name": "Tropical Deer",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "pineapple-boi",
+        "name": "Pineapple Boi",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "summer-serpent",
+        "name": "Summer Serpent",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "summer-virus",
+        "name": "Summer Virus",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "summer-cerberus",
+        "name": "Summer Cerberus",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "solstice-shock",
+        "name": "Solstice Shock",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "deep-sea-kraken",
+        "name": "Deep Sea Kraken",
+        "rarity": "secret",
+        "baseChance": 4e-10
+      },
+      {
+        "id": "eclipse",
+        "name": "Eclipse",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "solar-flare",
+        "name": "Solar Flare",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "grand-pearl",
+        "name": "Grand Pearl",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "duskseeker",
+        "name": "Dusk Seeker",
+        "rarity": "infinity",
+        "baseChance": 4e-12
+      }
+    ]
   }
 ]
