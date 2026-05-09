@@ -753,6 +753,68 @@
     ]
   },
   {
+    "id": "dice-egg",
+    "name": "Dice Egg",
+    "type": "special",
+    "event": "dice",
+    "pets": [
+      {
+        "id": "dice-doggy",
+        "name": "Dice Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "dice-deer",
+        "name": "Dice Deer",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "cute-dice",
+        "name": "Cute Dice",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "dice-stack",
+        "name": "Dice Stack",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "8-blast",
+        "name": "8 Blast",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "exoctic-seal",
+        "name": "Exoctic Seal",
+        "rarity": "legendary",
+        "baseChance": 0.00000015
+      },
+      {
+        "id": "pet-cards",
+        "name": "Pet Cards",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "heart-of-the-game",
+        "name": "Heart of the Game",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "the-ringmaster",
+        "name": "The Ringmaster",
+        "rarity": "infinity",
+        "baseChance": 2e-11
+      }
+    ]
+  },
+  {
     "id": "icy-egg",
     "name": "Icy Egg",
     "type": "world",
@@ -1205,68 +1267,6 @@
         "name": "Cheshire Cat",
         "rarity": "infinity",
         "baseChance": 1e-11
-      }
-    ]
-  },
-  {
-    "id": "dice-egg",
-    "name": "Dice Egg",
-    "type": "special",
-    "event": "dice",
-    "pets": [
-      {
-        "id": "dice-doggy",
-        "name": "Dice Doggy",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "dice-deer",
-        "name": "Dice Deer",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "cute-dice",
-        "name": "Cute Dice",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "dice-stack",
-        "name": "Dice Stack",
-        "rarity": "legendary",
-        "baseChance": 0.00005
-      },
-      {
-        "id": "8-blast",
-        "name": "8 Blast",
-        "rarity": "legendary",
-        "baseChance": 0.00001
-      },
-      {
-        "id": "exoctic-seal",
-        "name": "Exoctic Seal",
-        "rarity": "legendary",
-        "baseChance": 0.00000015
-      },
-      {
-        "id": "pet-cards",
-        "name": "Pet Cards",
-        "rarity": "secret",
-        "baseChance": 2e-9
-      },
-      {
-        "id": "heart-of-the-game",
-        "name": "Heart of the Game",
-        "rarity": "secret",
-        "baseChance": 4e-11
-      },
-      {
-        "id": "the-ringmaster",
-        "name": "The Ringmaster",
-        "rarity": "infinity",
-        "baseChance": 2e-11
       }
     ]
   }
