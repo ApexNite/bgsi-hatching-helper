@@ -157,7 +157,7 @@ export function insertAggregateRows(
       if (!Number.isFinite(v) || v <= 0) {
         return sum;
       }
-      
+
       return sum + v;
     }, 0);
 
@@ -475,12 +475,36 @@ export function getEggsWithInjectedPets(trueLuckEgg) {
 }
 
 function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
-  if (!items?.length) return [];
+  if (!items?.length) {
+    return [];
+  }
 
   let pool = items.map((p) => ({
     ...p,
     rawChance: D(p.baseChance ?? 0),
   }));
+
+  const trueLuckMultiplier = D(stats?.trueLuck ?? 1);
+  if (gt(trueLuckMultiplier, 1)) {
+    pool = pool.filter((p) => p?.ignoreTrueLuck !== true);
+
+    if (pool.length === 0) {
+      return [];
+    }
+    
+    const isTrueLuckAffected = (item) =>
+      item?.rarity === "legendary" ||
+      item?.rarity === "secret" ||
+      item?.rarity === "infinity" ||
+      isCelestialPet(item);
+
+    pool = pool.map((p) => ({
+      ...p,
+      rawChance: isTrueLuckAffected(p)
+        ? D(p.rawChance).times(trueLuckMultiplier)
+        : D(p.rawChance),
+    }));
+  }
 
   const rarity = (item) => item.rarity;
 

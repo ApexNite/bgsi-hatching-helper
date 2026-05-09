@@ -445,6 +445,7 @@
         dismissedManualWarning = savedData.dismissedManualWarning ?? false;
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         dismissedTrueLuckWarning = savedData.dismissedTrueLuckWarning ?? false;
+        trueLuckMultiplierByEgg = savedData.trueLuckMultiplierByEgg ?? {};
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
