@@ -151,7 +151,15 @@ export function insertAggregateRows(
     return pets;
   }
 
-  const sumChance = (items, key) => sumBy(items, (p) => max(Number(p[key]), 0));
+  const sumChance = (items, key) =>
+    items.reduce((sum, p) => {
+      const v = Number(p?.[key]);
+      if (!Number.isFinite(v) || v <= 0) {
+        return sum;
+      }
+      
+      return sum + v;
+    }, 0);
 
   const makeAggregateRow = (id, name, rarity, items) => {
     const finalChance = sumChance(items, "finalChance");
