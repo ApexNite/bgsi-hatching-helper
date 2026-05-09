@@ -1426,5 +1426,25 @@
         "baseChance": 4e-12
       }
     ]
+  },
+  {
+    "id": "seal-egg",
+    "name": "Seal Egg",
+    "type": "special",
+    "event": "seal",
+    "pets": [
+      {
+        "id": "seal",
+        "name": "Seal",
+        "rarity": "common",
+        "baseChance": 1
+      },
+      {
+        "id": "giant-seal",
+        "name": "Giant Seal",
+        "rarity": "infinity",
+        "baseChance": 4e-11
+      }
+    ]
   }
 ]
