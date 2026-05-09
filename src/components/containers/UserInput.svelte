@@ -63,13 +63,14 @@
   let injectedEggs = [];
   let visibleEggs = [];
 
-  function hasLegendarySecretOrInfinityPets(egg) {
+  function hasLuckAffectedPets(egg) {
     if (!Array.isArray(egg?.pets)) {
       return false;
     }
 
     return egg.pets.some(
       (p) =>
+        p?.rarity === "epic" ||
         p?.rarity === "legendary" ||
         p?.rarity === "secret" ||
         p?.rarity === "infinity",
@@ -79,7 +80,7 @@
   $: injectedEggs = $isDataLoaded ? getEggsWithInjectedPets(false) : [];
 
   $: visibleEggs = (injectedEggs || []).filter(
-    (e) => e?.type === "infinity" || hasLegendarySecretOrInfinityPets(e),
+    (e) => e?.type === "infinity" || hasLuckAffectedPets(e),
   );
 
   $: if ($isDataLoaded && visibleEggs?.length) {
