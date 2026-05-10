@@ -1240,6 +1240,69 @@
         <button
           class="section-separator"
           type="button"
+          on:click={() => toggleSection("mastery")}
+        >
+          <span>Mastery</span>
+          <strong>{(collapsedSections["mastery"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["mastery"] ?? true}
+          <section class="menu-section">
+            {#each visibleMasteries || [] as mastery (mastery.id)}
+              <div class="menu-row">
+                <span class="menu-label">
+                  {#if mastery.img}
+                    <span class="menu-img">
+                      <SmartImage
+                        base={mastery.img}
+                        alt={mastery.name}
+                        size="32px"
+                        decoding="async"
+                      />
+                    </span>
+                  {/if}
+                  {mastery.name}:
+                </span>
+                <div class="menu-control">
+                  <Dropdown
+                    id={mastery.id}
+                    options={mastery.levels}
+                    selectedOption={mastery.levels.find(
+                      (o) => o.id === selectedOptions[mastery.id],
+                    ) || mastery.levels[mastery.levels.length - 1]}
+                    onSelect={handleSelect}
+                  />
+                </div>
+              </div>
+            {/each}
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luckier-together"
+                    alt="Luckier Together"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Luckier Together:
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="luckier-together"
+                  value={numericValues.luckierTogether}
+                  onInput={({ value }) =>
+                    updateNumericValue(numericValues, "luckierTogether", value)}
+                  hoverText="Amount of friends in the server"
+                />
+              </div>
+            </div>
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
           on:click={() => toggleSection("leveled-buffs")}
         >
           <span>Leveled Buffs</span>
@@ -1526,69 +1589,6 @@
                 </div>
               </div>
             {/each}
-          </section>
-        {/if}
-
-        <button
-          class="section-separator"
-          type="button"
-          on:click={() => toggleSection("mastery")}
-        >
-          <span>Mastery</span>
-          <strong>{(collapsedSections["mastery"] ?? true) ? "−" : "+"}</strong>
-        </button>
-        {#if collapsedSections["mastery"] ?? true}
-          <section class="menu-section">
-            {#each visibleMasteries || [] as mastery (mastery.id)}
-              <div class="menu-row">
-                <span class="menu-label">
-                  {#if mastery.img}
-                    <span class="menu-img">
-                      <SmartImage
-                        base={mastery.img}
-                        alt={mastery.name}
-                        size="32px"
-                        decoding="async"
-                      />
-                    </span>
-                  {/if}
-                  {mastery.name}:
-                </span>
-                <div class="menu-control">
-                  <Dropdown
-                    id={mastery.id}
-                    options={mastery.levels}
-                    selectedOption={mastery.levels.find(
-                      (o) => o.id === selectedOptions[mastery.id],
-                    ) || mastery.levels[mastery.levels.length - 1]}
-                    onSelect={handleSelect}
-                  />
-                </div>
-              </div>
-            {/each}
-
-            <div class="menu-row">
-              <span class="menu-label">
-                <span class="menu-img">
-                  <SmartImage
-                    base="assets/images/icons/luckier-together"
-                    alt="Luckier Together"
-                    size="32px"
-                    decoding="async"
-                  />
-                </span>
-                Luckier Together:
-              </span>
-              <div class="menu-control">
-                <NumberInput
-                  id="luckier-together"
-                  value={numericValues.luckierTogether}
-                  onInput={({ value }) =>
-                    updateNumericValue(numericValues, "luckierTogether", value)}
-                  hoverText="Amount of friends in the server"
-                />
-              </div>
-            </div>
           </section>
         {/if}
 
