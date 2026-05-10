@@ -1,0 +1,37 @@
+[
+  {
+    "id": "luck-special-event",
+    "name": "Luck Event",
+    "luckMultiplier": 1.25
+  },
+  {
+    "id": "secret-special-event",
+    "name": "Secret Event",
+    "secretLuckMultiplier": 1.1
+  },
+  {
+    "id": "shiny-special-event",
+    "name": "Shiny Event",
+    "shinyChanceMultiplier": 1.25
+  },
+  {
+    "id": "mythic-special-event",
+    "name": "Mythic Event",
+    "mythicChanceMultiplier": 1.25
+  },
+  {
+    "id": "celestial-special-event",
+    "name": "Celestial Event",
+    "celestialLuckMultiplier": 1.25
+  },
+  {
+    "id": "infinity-special-event",
+    "name": "Infinity Event",
+    "infinityLuckMultiplier": 1.25
+  },
+  {
+    "id": "xl-special-event",
+    "name": "XL Event",
+    "xlChanceMultiplier": 1.25
+  }
+]

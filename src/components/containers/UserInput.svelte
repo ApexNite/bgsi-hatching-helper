@@ -4,6 +4,7 @@
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
   import { onMount } from "svelte";
   import { getEggsWithInjectedPets } from "../../lib/petUtils.js";
+  import { SeededRandom } from "../../lib/rand.js";
 
   import Dropdown from "../control/Dropdown.svelte";
   import Checkbox from "../control/Checkbox.svelte";
@@ -12,6 +13,8 @@
   import SmartImage from "../control/SmartImage.svelte";
   import TogglePill from "../control/TogglePill.svelte";
   import TooltipWarning from "../control/TooltipWarning.svelte";
+
+  const BOARD_EVENT_PERIOD = 1_800_000;
 
   export let stats;
   export let eggsPerHatch;
@@ -49,7 +52,7 @@
     luck: 0,
     secretLuck: 1,
     infinityLuck: 1,
-    shinyChance: (40) / 1.1,
+    shinyChance: 40 / 1.1,
     mythicChance: 100,
     // xlChance: 500,
     hatchSpeed: 100,
@@ -62,6 +65,10 @@
 
   let injectedEggs = [];
   let visibleEggs = [];
+
+  let activeBoardEventId = "none";
+  let boardEventTimeoutId = null;
+  let boardEventIntervalId = null;
 
   function hasLuckAffectedPets(egg) {
     if (!Array.isArray(egg?.pets)) {
@@ -264,6 +271,15 @@
   $: selectedWorldId = selectedWorld.id;
   $: selectedEventId = activeEvent;
 
+  $: eventBoardOptions = [
+    { id: "none", name: "None" },
+    ...($dataStore.eventBoard || []),
+  ];
+  $: selectedBoardEvent =
+    activeBoardEventId !== "none"
+      ? ($dataStore.eventBoard || []).find((e) => e.id === activeBoardEventId)
+      : null;
+
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
       ? worldIndexStates[selectedEgg.world] || {
@@ -298,6 +314,7 @@
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
+          ...(selectedBoardEvent ? [selectedBoardEvent] : []),
           ...(selectedShrineBuffId !== "none" && !isTrueLuckActive
             ? (visibleShrineBuffs || []).filter(
                 (sb) => sb.id === selectedShrineBuffId,
@@ -450,6 +467,9 @@
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
     }
+
+    updateActiveBoardEvent();
+    startBoardEventSchedule();
 
     isUserInputReady = true;
   });
@@ -617,6 +637,46 @@
       Array.isArray(egg?.pets) &&
       egg.pets.some((p) => p?.rarity === "secret" || p?.rarity === "infinity")
     );
+  }
+
+  function updateActiveBoardEvent() {
+    const nextId = pickBoardEventIdFromTime($dataStore.eventBoard, Date.now());
+    if (nextId !== activeBoardEventId) {
+      activeBoardEventId = nextId;
+    }
+  }
+
+  function startBoardEventSchedule() {
+    if (boardEventTimeoutId) {
+      clearTimeout(boardEventTimeoutId);
+    }
+    if (boardEventIntervalId) {
+      clearInterval(boardEventIntervalId);
+    }
+
+    const now = Date.now();
+    const msToNextBoundary = BOARD_EVENT_PERIOD - (now % BOARD_EVENT_PERIOD);
+
+    boardEventTimeoutId = setTimeout(() => {
+      updateActiveBoardEvent();
+      boardEventIntervalId = setInterval(
+        updateActiveBoardEvent,
+        BOARD_EVENT_PERIOD,
+      );
+    }, msToNextBoundary + 25);
+  }
+
+  function pickBoardEventIdFromTime(eventBoard, nowMs = Date.now()) {
+    const events = Array.isArray(eventBoard) ? eventBoard : [];
+    if (events.length === 0) {
+      return "none";
+    }
+
+    const seed = Math.floor(nowMs / 1000 / 1800);
+    const rand = new SeededRandom(seed);
+
+    const randomIndex = rand.nextInteger(0, events.length - 1);
+    return events[randomIndex]?.id ?? "none";
   }
 </script>
 
@@ -1627,6 +1687,47 @@
                 </div>
               </div>
             {/each}
+          </section>
+        {/if}
+
+        <button
+          class="section-separator"
+          type="button"
+          on:click={() => toggleSection("event-board")}
+        >
+          <span>Event Board</span>
+          <strong
+            >{(collapsedSections["event-board"] ?? true) ? "−" : "+"}</strong
+          >
+        </button>
+        {#if collapsedSections["event-board"] ?? true}
+          <section class="menu-section">
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luck"
+                    alt="Special Event"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Special Event:
+              </span>
+              <div class="menu-control">
+                <Dropdown
+                  id="event-board-special-event"
+                  options={eventBoardOptions}
+                  selectedOption={eventBoardOptions.find(
+                    (o) => o.id === activeBoardEventId,
+                  ) || eventBoardOptions[0]}
+                  onSelect={({ option }) => {
+                    activeBoardEventId = option.id;
+                    saveToCache();
+                  }}
+                />
+              </div>
+            </div>
           </section>
         {/if}
 

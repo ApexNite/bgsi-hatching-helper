@@ -19,6 +19,7 @@ import worldsCompiled from "../../data/worlds.json";
 import dataHashCompiled from "../data/hash.json";
 import runesCompiled from "../../data/runes.json";
 import boardEventsCompiled from "../../data/board-events.json";
+import eventBoardCompiled from "../../data/event-board.json";
 
 const schemas = {
   stats: {
@@ -303,6 +304,7 @@ export const dataStore = writable({
   environmentBuffs: null,
   events: null,
   boardEvents: null,
+  eventBoard: null,
   fragments: null,
   upgrades: null,
   gamepasses: null,
@@ -335,6 +337,7 @@ function buildDataFromSources(sources) {
     environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
     events: processData(sources.events, "event"),
     boardEvents: processData(sources.boardEvents, ["stats", "id"]),
+    eventBoard: processData(sources.eventBoard, ["stats", "id"]),
     fragments: processData(sources.fragments, "fragment"),
     upgrades: processData(sources.upgrades, "upgrade"),
     gamepasses: processData(sources.gamepasses, "gamepass"),
@@ -359,6 +362,7 @@ const compiledSources = {
   environmentBuffs: environmentBuffsCompiled,
   events: eventsCompiled,
   boardEvents: boardEventsCompiled,
+  eventBoard: eventBoardCompiled,
   fragments: fragmentsCompiled,
   gamepasses: gamepassesCompiled,
   index: indexCompiled,
@@ -398,6 +402,7 @@ export async function loadData(forceFetch = false) {
       environmentBuffsData,
       eventsData,
       boardEventsData,
+      eventBoardData,
       fragmentsData,
       gamepassesData,
       indexData,
@@ -419,6 +424,7 @@ export async function loadData(forceFetch = false) {
       fetchJson("/assets/data/environment-buffs.json"),
       fetchJson("/assets/data/events.json"),
       fetchJson("/assets/data/board-events.json"),
+      fetchJson("/assets/data/event-board.json"),
       fetchJson("/assets/data/fragments.json"),
       fetchJson("/assets/data/gamepasses.json"),
       fetchJson("/assets/data/index.json"),
@@ -442,6 +448,7 @@ export async function loadData(forceFetch = false) {
       environmentBuffs: environmentBuffsData,
       events: eventsData,
       boardEvents: boardEventsData,
+      eventBoard: eventBoardData,
       fragments: fragmentsData,
       gamepasses: gamepassesData,
       index: indexData,
