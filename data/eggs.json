@@ -1446,5 +1446,80 @@
         "baseChance": 4e-11
       }
     ]
+  },
+  {
+    "id": "flower-kingdom-egg",
+    "name": "Flower Kingdom Egg",
+    "type": "special",
+    "event": "summer",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "yellow-flower",
+        "name": "Yellow Flower",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "pink-flower",
+        "name": "Pink Flower",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "romeo",
+        "name": "Romeo",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "caterpillar",
+        "name": "Caterpillar",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "blooming-elemental",
+        "name": "Blooming Elemental",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "viridian-kitsune",
+        "name": "Viridian Kitsune",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "big-floral-caterpillar",
+        "name": "Big Floral Caterpillar",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "the-dahlia",
+        "name": "The Dahlia",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "lotus-gem",
+        "name": "Lotus Gem",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "hibiscia",
+        "name": "Hibiscia",
+        "rarity": "secret",
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "ananas-dragon",
+        "name": "Ananas Dragon",
+        "rarity": "secret",
+        "baseChance": 6e-12
+      }
+    ]
   }
 ]
