@@ -1349,7 +1349,7 @@
       {
         "id": "ananas-dragon",
         "name": "Ananas Dragon",
-        "rarity": "secret",
+        "rarity": "infinity",
         "baseChance": 6e-12
       }
     ]
