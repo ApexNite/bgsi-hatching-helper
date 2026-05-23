@@ -54,7 +54,7 @@
   {
     "id": "summer-rune",
     "name": "Summer Rune",
-    "img": "assets/images/runes/summer-ii",
+    "img": "assets/images/runes/summer-i",
     "event": "summer",
     "runes": [
       {
