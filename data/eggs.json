@@ -1353,5 +1353,74 @@
         "baseChance": 6e-12
       }
     ]
+  },
+  {
+    "id": "oceanic-egg",
+    "name": "Oceanic Egg",
+    "type": "special",
+    "event": "summer",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "coral-doggy",
+        "name": "Coral Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "coral-kitty",
+        "name": "Coral Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "coral-shark",
+        "name": "Coral Shark",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "coral-wanderer",
+        "name": "Coral Wanderer",
+        "rarity": "legendary",
+        "baseChance": 0.00005
+      },
+      {
+        "id": "coconut-crab",
+        "name": "Coconut Crab",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "coral-whale",
+        "name": "Coral Whale",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "flying-dutchman",
+        "name": "Flying Dutman",
+        "rarity": "secret",
+        "baseChance": 5e-9
+      },
+      {
+        "id": "sea-queen",
+        "name": "Sea Queen",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "abyssalisk",
+        "name": "Abyssalisk",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "anchovy-airship",
+        "name": "Anchovy Airship",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]
