@@ -20,5 +20,13 @@
     "name": "Ultra Infinity Elixir",
     "event": "summer",
     "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "summer-infinity-elixir",
+    "name": "Summer Infinity Elixir",
+    "event": "summer",
+    "potionLuckMultiplier": 1.5,
+    "potionShinyChanceMultiplier": 1.5,
+    "potionMythicChanceMultiplier": 1.5
   }
 ]
