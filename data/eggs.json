@@ -1422,5 +1422,116 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "600m-egg",
+    "name": "600m Egg",
+    "type": "special",
+    "event": "600m",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "six",
+        "name": "Six",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "orange-zero",
+        "name": "Orange Zero",
+        "rarity": "unique",
+        "baseChance": 0.65
+      },
+      {
+        "id": "pink-zero",
+        "name": "Pink Zero",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "million",
+        "name": "Million",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "hyper-hydra",
+        "name": "Hyper Hydra",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "coral-whale",
+        "name": "Coral Whale",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "hyperwave-doggy",
+        "name": "Hyperwave Doggy",
+        "rarity": "secret",
+        "baseChance": 2e-8
+      },
+      {
+        "id": "hyperlord",
+        "name": "Hyperlord",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "cubidium",
+        "name": "Cubidium",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "hyperwave-kraken",
+        "name": "Hyperwave Kraken",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "hyperwave-pyramidium",
+        "name": "Hyperwave Pyramidium",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "hyperwave-soul",
+        "name": "Hyperwave Soul",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "hypercore",
+        "name": "Hypercore",
+        "rarity": "secret",
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "hyperwave-gem",
+        "name": "Hyperwave Gem",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "immortal-trophy",
+        "name": "Immortal Trophy",
+        "rarity": "infinity",
+        "baseChance": 1.5e-11
+      },
+      {
+        "id": "mecha-leviathan",
+        "name": "Mecha Leviathan",
+        "rarity": "infinity",
+        "baseChance": 4e-12
+      },
+      {
+        "id": "spitty-god",
+        "name": "Spitty God",
+        "rarity": "infinity",
+        "baseChance": 2e-13
+      }
+    ]
   }
 ]
