@@ -176,24 +176,5 @@
         "name": "None"
       }
     ]
-  },
-  {
-    "id": "600m-elixir",
-    "name": "600M Elixir",
-    "img": "assets/images/potions/600m-elixir",
-    "event": "600m",
-    "potions": [
-      {
-        "id": "600m-elixir",
-        "name": "600M Elixir",
-        "luck": 4.5,
-        "shinyChance": 1.75,
-        "mythicChance": 1.75
-      },
-      {
-        "id": "none",
-        "name": "None"
-      }
-    ]
   }
 ]
