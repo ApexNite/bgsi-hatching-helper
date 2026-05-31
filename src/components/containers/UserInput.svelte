@@ -2,9 +2,12 @@
   import { calculateStats, calculateManualStats } from "../../lib/statUtils.js";
   import { setCookie, getCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
+  import {
+    getEventBoardFromTime,
+    BOARD_EVENT_PERIOD,
+  } from "../../lib/gameUtil.js";
   import { onMount } from "svelte";
   import { getEggsWithInjectedPets } from "../../lib/petUtils.js";
-  import { SeededRandom } from "../../lib/rand.js";
 
   import Dropdown from "../control/Dropdown.svelte";
   import Checkbox from "../control/Checkbox.svelte";
@@ -13,8 +16,6 @@
   import SmartImage from "../control/SmartImage.svelte";
   import TogglePill from "../control/TogglePill.svelte";
   import TooltipWarning from "../control/TooltipWarning.svelte";
-
-  const BOARD_EVENT_PERIOD = 1_800_000;
 
   export let stats;
   export let eggsPerHatch;
@@ -640,7 +641,7 @@
   }
 
   function updateActiveBoardEvent() {
-    const nextId = pickBoardEventIdFromTime($dataStore.eventBoard, Date.now());
+    const nextId = getEventBoardFromTime();
     if (nextId !== activeBoardEventId) {
       activeBoardEventId = nextId;
     }
@@ -664,19 +665,6 @@
         BOARD_EVENT_PERIOD,
       );
     }, msToNextBoundary + 25);
-  }
-
-  function pickBoardEventIdFromTime(eventBoard, nowMs = Date.now()) {
-    const events = Array.isArray(eventBoard) ? eventBoard : [];
-    if (events.length === 0) {
-      return "none";
-    }
-
-    const seed = Math.floor(nowMs / 1000 / 1800);
-    const rand = new SeededRandom(seed);
-
-    const randomIndex = rand.nextInteger(0, events.length - 1);
-    return events[randomIndex]?.id ?? "none";
   }
 </script>
 
