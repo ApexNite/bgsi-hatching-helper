@@ -1434,25 +1434,25 @@
         "id": "six",
         "name": "Six",
         "rarity": "common",
-        "baseChance": 0.40
+        "baseChance": 0.45
       },
       {
         "id": "orange-zero",
         "name": "Orange Zero",
         "rarity": "unique",
-        "baseChance": 0.25
+        "baseChance": 0.30
       },
       {
         "id": "pink-zero",
         "name": "Pink Zero",
         "rarity": "rare",
-        "baseChance": 0.05
+        "baseChance": 0.15
       },
       {
         "id": "million",
         "name": "Million",
         "rarity": "epic",
-        "baseChance": 0.04
+        "baseChance": 0.05
       },
       {
         "id": "hyper-hydra",
