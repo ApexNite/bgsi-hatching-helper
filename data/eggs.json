@@ -1434,19 +1434,19 @@
         "id": "six",
         "name": "Six",
         "rarity": "common",
-        "baseChance": 0.65
+        "baseChance": 0.40
       },
       {
         "id": "orange-zero",
         "name": "Orange Zero",
         "rarity": "unique",
-        "baseChance": 0.65
+        "baseChance": 0.25
       },
       {
         "id": "pink-zero",
         "name": "Pink Zero",
         "rarity": "rare",
-        "baseChance": 0.3
+        "baseChance": 0.05
       },
       {
         "id": "million",
@@ -1461,8 +1461,8 @@
         "baseChance": 1e-6
       },
       {
-        "id": "coral-whale",
-        "name": "Coral Whale",
+        "id": "hyperwave-shock",
+        "name": "Hyperwave Shock",
         "rarity": "legendary",
         "baseChance": 1e-7
       },
@@ -1497,8 +1497,8 @@
         "baseChance": 1e-10
       },
       {
-        "id": "hyperwave-soul",
-        "name": "Hyperwave Soul",
+        "id": "vaporwave-soul",
+        "name": "Vaporwave Soul",
         "rarity": "secret",
         "baseChance": 4e-11
       },
@@ -1528,7 +1528,7 @@
       },
       {
         "id": "spitty-god",
-        "name": "Spitty God",
+        "name": "SPITTY GOD",
         "rarity": "infinity",
         "baseChance": 2e-13
       }
