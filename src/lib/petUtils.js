@@ -491,7 +491,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
     if (pool.length === 0) {
       return [];
     }
-    
+
     const isTrueLuckAffected = (item) =>
       item?.rarity === "legendary" ||
       item?.rarity === "secret" ||
@@ -522,6 +522,8 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
 
   const ignoresLuck = (item) => item?.ignoreLuck === true;
   const ignoresSecretLuck = (item) => item?.ignoreSecret === true;
+
+  const protectInfinity = (item) => item?.rarity === "infinity";
 
   const applyMultiplierRespectingIgnore = (
     currentPool,
@@ -567,14 +569,14 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
     pool,
     epicLuck,
     isEpic,
-    isLegendaryOrSecret,
+    (item) => isLegendaryOrSecret(item) || protectInfinity(item),
     ignoresLuck,
   );
   pool = applyMultiplierRespectingIgnore(
     pool,
     luck,
     isLegendaryOrSecret,
-    null,
+    protectInfinity,
     ignoresLuck,
   );
 
@@ -583,7 +585,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
       pool,
       secretLuck,
       isSecret,
-      null,
+      protectInfinity,
       ignoresSecretLuck,
     );
   }
@@ -593,7 +595,12 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
   }
 
   if (gt(celestialLuck, 1)) {
-    pool = applyMultiplierToPool(pool, celestialLuck, isCelestialPet);
+    pool = applyMultiplierToPool(
+      pool,
+      celestialLuck,
+      isCelestialPet,
+      protectInfinity,
+    );
   }
 
   let total = pool.reduce((sum, i) => sum.plus(i.rawChance), D(0));
