@@ -1491,6 +1491,12 @@
         "baseChance": 5e-10
       },
       {
+        "id": "hyperwave-star",
+        "name": "Hyperwave Star",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
         "id": "hyperwave-pyramidium",
         "name": "Hyperwave Pyramidium",
         "rarity": "secret",
@@ -1509,6 +1515,12 @@
         "baseChance": 2.5e-11
       },
       {
+        "id": "hacker-gem",
+        "name": "Hacker Gem",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
         "id": "hyperwave-gem",
         "name": "Hyperwave Gem",
         "rarity": "secret",
@@ -1521,10 +1533,23 @@
         "baseChance": 1.5e-11
       },
       {
+        "id": "the-duality",
+        "name": "The Duality",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      },
+      {
         "id": "mecha-leviathan",
         "name": "Mecha Leviathan",
         "rarity": "infinity",
         "baseChance": 4e-12
+      },
+      {
+        "id": "voidseeker",
+        "name": "VOIDSEEKER",
+        "rarity": "secret",
+        "baseChance": 1e-12,
+        "ignoreTrueLuck": true
       },
       {
         "id": "spitty-god",

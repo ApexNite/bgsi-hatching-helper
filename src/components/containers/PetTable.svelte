@@ -7,6 +7,7 @@
     insertAggregateRows,
     isSuperLegendaryEligible,
     isCelestialPet,
+    isVoidPet,
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -87,7 +88,7 @@
         const elements = document.querySelectorAll(
           isLegendaryAnimation
             ? ".rarity-legendary"
-            : ".rarity-infinity, .rarity-celestial",
+            : ".rarity-infinity, .rarity-celestial, .rarity-void",
         );
 
         function getAnimation(element) {
@@ -284,6 +285,10 @@
   };
 
   function getRarityLabel(pet) {
+    if (isVoidPet(pet)) {
+      return "void";
+    }
+
     return isCelestialPet(pet) ? "celestial" : pet.rarity;
   }
 </script>
@@ -844,6 +849,16 @@
 
   .rarity-celestial {
     background: linear-gradient(90deg, #9ddffd 0%, #ff9bf7 50%, #9ddffd 100%);
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    border-color: var(--rarity-infinity-border);
+    animation: infinityWave 8s linear infinite;
+  }
+
+  .rarity-void {
+    background: linear-gradient(90deg, #2b00f7 0%, #e400ff 50%, #2b00f7 100%);
     background-size: 400% 100%;
     background-clip: text;
     -webkit-background-clip: text;

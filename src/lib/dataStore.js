@@ -82,7 +82,9 @@ const schemas = {
     ignoreLuck: { type: "boolean", default: false },
     ignoreTrueLuck: { type: "boolean", default: false },
     ignoreSecret: { type: "boolean", default: false },
+    hideTrueLuck: { type: "boolean", default: false },
     celestial: { type: "boolean", default: false },
+    void: { type: "boolean", default: false },
   },
   dailyPerk: {
     imageDir: { type: "string", default: "perk" },

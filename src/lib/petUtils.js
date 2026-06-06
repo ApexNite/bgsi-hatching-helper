@@ -25,6 +25,7 @@ const RARITY_ORDER = Object.freeze({
   secret: 5,
   celestial: 6,
   infinity: 7,
+  void: 8,
 });
 
 export function getPetsToDisplay(eggId, worldId, stats) {
@@ -361,11 +362,22 @@ export function insertAggregateRows(
 
 export function isCelestialPet(pet) {
   return Boolean(
-    pet?.celestial ||
+    !pet?.void &&
+      (pet?.celestial ||
+        (!pet?.__aggregate &&
+          pet?.rarity === "secret" &&
+          typeof pet?.baseChance === "number" &&
+          pet.baseChance <= 4e-11)),
+  );
+}
+
+export function isVoidPet(pet) {
+  return Boolean(
+    pet?.void ||
       (!pet?.__aggregate &&
         pet?.rarity === "secret" &&
         typeof pet?.baseChance === "number" &&
-        pet.baseChance <= 4e-11),
+        pet.baseChance <= 1e-12),
   );
 }
 
@@ -459,7 +471,7 @@ export function getEggsWithInjectedPets(trueLuckEgg) {
   const bounty = data.secretBounty?.eggs?.[utcDate];
   if (bounty) {
     const bountyPet = data.secretBounty?.pets?.[bounty.pet];
-    if (bountyPet && (!bountyPet.ignoreTrueLuck || trueLuckEgg)) {
+    if (bountyPet && (!bountyPet.hideTrueLuck || trueLuckEgg)) {
       const targetEgg = eggsCopy.find((e) => e.id === bounty.egg);
       if (targetEgg) {
         targetEgg.pets = targetEgg.pets || [];
@@ -488,17 +500,18 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
 
   const trueLuckMultiplier = D(stats?.trueLuck ?? 1);
   if (gt(trueLuckMultiplier, 1)) {
-    pool = pool.filter((p) => p?.ignoreTrueLuck !== true);
+    pool = pool.filter((p) => p?.hideTrueLuck !== true);
 
     if (pool.length === 0) {
       return [];
     }
 
     const isTrueLuckAffected = (item) =>
-      item?.rarity === "legendary" ||
-      item?.rarity === "secret" ||
-      item?.rarity === "infinity" ||
-      isCelestialPet(item);
+      !item?.ignoreTrueLuck &&
+      (item?.rarity === "legendary" ||
+        item?.rarity === "secret" ||
+        item?.rarity === "infinity" ||
+        isCelestialPet(item));
 
     pool = pool.map((p) => ({
       ...p,
@@ -774,6 +787,10 @@ function redistributeDecrease(list, amount, isEligible) {
 function getSortRarity(pet) {
   if (pet?.rarity === "infinity") {
     return "infinity";
+  }
+
+  if (isVoidPet(pet)) {
+    return "void";
   }
 
   if (isCelestialPet(pet)) {
