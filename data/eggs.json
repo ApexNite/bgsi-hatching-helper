@@ -1556,6 +1556,7 @@
         "id": "spitty-god",
         "name": "SPITTY GOD",
         "rarity": "infinity",
+        "hasMythic": false,
         "baseChance": 2e-13
       }
     ]
