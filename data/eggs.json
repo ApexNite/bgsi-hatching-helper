@@ -1440,7 +1440,7 @@
         "id": "orange-zero",
         "name": "Orange Zero",
         "rarity": "unique",
-        "baseChance": 0.30
+        "baseChance": 0.3
       },
       {
         "id": "pink-zero",
@@ -1547,10 +1547,11 @@
       {
         "id": "voidseeker",
         "name": "VOIDSEEKER",
-        "rarity": "secret",
+        "rarity": "infinity",
         "baseChance": 1e-12,
         "hasMythic": false,
-        "ignoreTrueLuck": true
+        "ignoreTrueLuck": true,
+        "void": true
       },
       {
         "id": "spitty-god",

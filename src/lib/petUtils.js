@@ -372,13 +372,7 @@ export function isCelestialPet(pet) {
 }
 
 export function isVoidPet(pet) {
-  return Boolean(
-    pet?.void ||
-      (!pet?.__aggregate &&
-        pet?.rarity === "secret" &&
-        typeof pet?.baseChance === "number" &&
-        pet.baseChance <= 1e-12),
-  );
+  return Boolean(pet?.void);
 }
 
 function addVariantChances(pets, stats) {
@@ -785,12 +779,12 @@ function redistributeDecrease(list, amount, isEligible) {
 }
 
 function getSortRarity(pet) {
-  if (pet?.rarity === "infinity") {
-    return "infinity";
-  }
-
   if (isVoidPet(pet)) {
     return "void";
+  }
+
+  if (pet?.rarity === "infinity") {
+    return "infinity";
   }
 
   if (isCelestialPet(pet)) {
