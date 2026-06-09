@@ -1547,7 +1547,7 @@
       {
         "id": "voidseeker",
         "name": "VOIDSEEKER",
-        "rarity": "infinity",
+        "rarity": "secret",
         "baseChance": 1e-12,
         "hasMythic": false,
         "ignoreTrueLuck": true,

@@ -532,7 +532,9 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
   const ignoresLuck = (item) => item?.ignoreLuck === true;
   const ignoresSecretLuck = (item) => item?.ignoreSecret === true;
 
+  const protectVoid = (item) => isVoidPet(item);
   const protectInfinity = (item) => item?.rarity === "infinity";
+  const protectInfinityVoid = (item) => protectInfinity(item) || protectVoid(item);
 
   const applyMultiplierRespectingIgnore = (
     currentPool,
@@ -602,7 +604,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
   }
 
   if (gt(infinityLuck, 1)) {
-    pool = applyMultiplierToPool(pool, infinityLuck, isInfinity);
+    pool = applyMultiplierToPool(pool, infinityLuck, isInfinity, protectVoid);
   }
 
   if (gt(celestialLuck, 1)) {
@@ -610,7 +612,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
       pool,
       celestialLuck,
       isCelestialPet,
-      protectInfinity,
+      protectInfinityVoid,
     );
   }
 
