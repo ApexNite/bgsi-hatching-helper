@@ -376,7 +376,7 @@
               level = Math.min(level, Object.keys(upgrade.levels).length);
 
               if (level > 0 && upgrade.levels[level]) {
-                return { ...upgrade.levels[level], event: upgrade.event };
+                return { id: upgrade.id, ...upgrade.levels[level], event: upgrade.event };
               }
 
               return null;
