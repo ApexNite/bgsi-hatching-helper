@@ -50,32 +50,5 @@
         "name": "None"
       }
     ]
-  },
-  {
-    "id": "summer-rune",
-    "name": "Summer Rune",
-    "img": "assets/images/runes/summer-i",
-    "event": "summer",
-    "runes": [
-      {
-        "id": "summer-iii",
-        "name": "Summer III",
-        "luck": 1
-      },
-      {
-        "id": "summer-ii",
-        "name": "Summer II",
-        "luck": 0.5
-      },
-      {
-        "id": "summer-i",
-        "name": "Summer I",
-        "luck": 0.25
-      },
-      {
-        "id": "none",
-        "name": "None"
-      }
-    ]
   }
 ]
