@@ -63,7 +63,7 @@
     "id": "frozen-luck",
     "name": "Frozen Luck",
     "img": "assets/images/icons/luck",
-    "event": "flaming",
+    "event": "frozen",
     "levels": {
       "1": {
         "luck": 0.05
