@@ -1,5 +1,17 @@
 {
-  "0": null,
+  "0": {
+    "pets": [
+      {
+        "id": "void-sentinel",
+        "name": "Void Sentinel",
+        "rarity": "secret",
+        "baseChance": 1e-12,
+        "hasMythic": false,
+        "ignoreTrueLuck": true,
+        "void": true
+      }
+    ]
+  },
   "1": null,
   "2": {
     "normal": {
@@ -38,6 +50,16 @@
     "premium": {
       "luck": 3.5
     },
-    "pets": []
+    "pets": [
+      {
+        "id": "void-sentinel",
+        "name": "Void Sentinel",
+        "rarity": "secret",
+        "baseChance": 1e-12,
+        "hasMythic": false,
+        "ignoreTrueLuck": true,
+        "void": true
+      }
+    ]
   }
 }
