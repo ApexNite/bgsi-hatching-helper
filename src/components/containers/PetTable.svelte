@@ -590,7 +590,7 @@
             onChange={() => toggle("showAnyInfinity")}
             size="sm"
           />
-          <span>Show Any Infinity</span>
+          <span>Show Any Infinity+</span>
         </label>
         <label class="row">
           <Checkbox

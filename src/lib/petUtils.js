@@ -316,7 +316,8 @@ export function insertAggregateRows(
   if (anyCelestial) {
     const celestials = pets.filter(
       (p) =>
-        (isCelestialPet(p) || p.rarity === "infinity" || isVoidPet(p)) && hasPositiveChance(p),
+        (isCelestialPet(p) || p.rarity === "infinity" || isVoidPet(p)) &&
+        hasPositiveChance(p),
     );
 
     if (celestials.length > 1) {
@@ -336,13 +337,13 @@ export function insertAggregateRows(
 
   if (anyInfinity) {
     const infinities = pets.filter(
-      (p) => p.rarity === "infinity" && hasPositiveChance(p),
+      (p) => (p.rarity === "infinity" || isVoidPet(p)) && hasPositiveChance(p),
     );
 
     if (infinities.length > 1) {
       const agg = makeAggregateRow(
         "__agg_infinity",
-        "Any Infinity",
+        "Any Infinity+",
         "infinity",
         infinities,
       );
@@ -534,7 +535,8 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
 
   const protectVoid = (item) => isVoidPet(item);
   const protectInfinity = (item) => item?.rarity === "infinity";
-  const protectInfinityVoid = (item) => protectInfinity(item) || protectVoid(item);
+  const protectInfinityVoid = (item) =>
+    protectInfinity(item) || protectVoid(item);
 
   const applyMultiplierRespectingIgnore = (
     currentPool,
