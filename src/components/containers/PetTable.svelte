@@ -24,6 +24,7 @@
   const defaultSettings = {
     chanceDisplayMode: "auto",
     timesDisplayMode: "range",
+    autoHatchingTimes: false,
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecret: false,
@@ -192,17 +193,17 @@
 
   function displayTime(value) {
     if (settings.timesDisplayMode === "median") {
-      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5);
+      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5, settings.autoHatchingTimes);
     }
 
     if (settings.timesDisplayMode === "range") {
       return [
-        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5),
-        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9),
+        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5, settings.autoHatchingTimes),
+        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9, settings.autoHatchingTimes),
       ];
     }
 
-    return calculateMeanHatchTime(value, stats.hatchSpeed, eggsPerHatch);
+    return calculateMeanHatchTime(value, stats.hatchSpeed, eggsPerHatch, settings.autoHatchingTimes);
   }
 
   function toggle(key) {
@@ -524,6 +525,15 @@
             size="sm"
           />
           <span>Range</span>
+        </label>
+        <label class="row">
+          <Checkbox
+            id="autoHatchingTimes"
+            checked={settings.autoHatchingTimes}
+            onChange={() => toggle("autoHatchingTimes")}
+            size="sm"
+          />
+          <span>Auto Hatching Speed</span>
         </label>
       </div>
 

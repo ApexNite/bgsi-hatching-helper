@@ -17,6 +17,17 @@
   let settings;
 
   $: hasIgnoreSecretPets = selectedEggId === "infinity-egg";
+  $: hatchingNote = `${
+    settings?.autoHatchingTimes
+      ? "Hatching times use auto mode without key spam."
+      : "Hatching times assume E/R key spam."
+  } ${
+    settings?.timesDisplayMode === "range"
+      ? "There is a 50% chance to hatch the pet before the range starts and 90% before it ends."
+      : settings?.timesDisplayMode === "median"
+        ? "There is a 50% chance to hatch the pet before or by the listed median time."
+        : "There is a 63.2% chance to hatch the pet before or by the listed average (mean) time."
+  }`;
 
   onMount(() => {
     loadData();
@@ -59,31 +70,10 @@
         />
 
         <div>
-          {#if settings.timesDisplayMode === "range"}
-            <div class="footer-note">
-              <p>*</p>
-              <p>
-                Hatching times assume E/R key spam. There is a 50% chance to
-                hatch the pet before the range starts and 90% before it ends.
-              </p>
-            </div>
-          {:else if settings.timesDisplayMode === "median"}
-            <div class="footer-note">
-              <p>*</p>
-              <p>
-                Hatching times assume E/R key spam. There is a 50% chance to
-                hatch the pet before or by the listed median time.
-              </p>
-            </div>
-          {:else}
-            <div class="footer-note">
-              <p>*</p>
-              <p>
-                Hatching times assume E/R key spam. There is a 63.2% chance to
-                hatch the pet before or by the listed average (mean) time.
-              </p>
-            </div>
-          {/if}
+          <div class="footer-note">
+            <p>*</p>
+            <p>{hatchingNote}</p>
+          </div>
           <div class="footer-note">
             <p>*&thinsp;*</p>
             <p>

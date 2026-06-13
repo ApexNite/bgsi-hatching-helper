@@ -16,6 +16,7 @@ import {
 import { getFlag } from "../debug.js";
 
 const BASE_HATCH_SECONDS = D(4.5);
+const BASE_HATCH_SECONDS_AUTO = D(8);
 const RARITY_ORDER = Object.freeze({
   common: 0,
   unique: 1,
@@ -59,12 +60,12 @@ export function getPetsToDisplay(eggId, worldId, stats) {
   return addVariantChances(sortByRarity(pets), stats);
 }
 
-export function calculateMeanHatchTime(chance, hatchSpeed, eggsPerHatch) {
+export function calculateMeanHatchTime(chance, hatchSpeed, eggsPerHatch, useAuto) {
   if (!chance || !eggsPerHatch || !hatchSpeed || chance === Infinity) {
     return Infinity;
   }
 
-  const cps = calculateEggsPerSecond(hatchSpeed, eggsPerHatch);
+  const cps = calculateEggsPerSecond(hatchSpeed, eggsPerHatch, useAuto);
   if (!(cps > 0)) {
     return Infinity;
   }
@@ -77,6 +78,7 @@ export function calculateHatchTime(
   hatchSpeed,
   eggsPerHatch,
   probability,
+  useAuto
 ) {
   if (!chance || !eggsPerHatch || !hatchSpeed || chance === Infinity) {
     return Infinity;
@@ -90,7 +92,7 @@ export function calculateHatchTime(
   }
 
   const eggsNeeded = D(1).minus(p).ln().div(D(1).minus(c).ln());
-  const cps = D(calculateEggsPerSecond(hatchSpeed, eggsPerHatch));
+  const cps = D(calculateEggsPerSecond(hatchSpeed, eggsPerHatch, useAuto));
 
   if (!cps.gt(0)) {
     return Infinity;
@@ -99,9 +101,9 @@ export function calculateHatchTime(
   return toNumber(eggsNeeded.div(cps), Infinity);
 }
 
-export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {
+export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch, useAuto) {
   return toNumber(
-    D(hatchSpeed).times(D(eggsPerHatch)).div(BASE_HATCH_SECONDS),
+    D(hatchSpeed).times(D(eggsPerHatch)).div(useAuto ? BASE_HATCH_SECONDS_AUTO : BASE_HATCH_SECONDS),
     0,
   );
 }
