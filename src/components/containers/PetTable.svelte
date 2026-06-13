@@ -49,6 +49,10 @@
   let settingsMenuPosition = { top: 0, right: 0 };
   let windowWidth = window.innerWidth;
 
+  const settingsMenuMargin = 8;
+  const settingsMenuGap = 4;
+  const settingsMenuMaxHeight = 480;
+
   onMount(() => {
     try {
       const savedData = getCookie("hatching-helper-pet-table-settings");
@@ -134,8 +138,20 @@
   function toggleSettings() {
     if (!settingsOpen && settingsButton) {
       const rect = settingsButton.getBoundingClientRect();
+      const menuHeight = Math.min(
+        settingsMenuMaxHeight,
+        window.innerHeight - settingsMenuMargin * 2,
+      );
+      const openBelow =
+        rect.bottom + settingsMenuGap + menuHeight <=
+        window.innerHeight - settingsMenuMargin;
       settingsMenuPosition = {
-        top: rect.bottom + 4,
+        top: openBelow
+          ? Math.max(settingsMenuMargin, rect.bottom + settingsMenuGap)
+          : Math.max(
+              settingsMenuMargin,
+              rect.top - settingsMenuGap - menuHeight,
+            ),
         right: window.innerWidth - rect.right,
       };
     }
@@ -193,17 +209,40 @@
 
   function displayTime(value) {
     if (settings.timesDisplayMode === "median") {
-      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5, settings.autoHatchingTimes);
+      return calculateHatchTime(
+        value,
+        stats.hatchSpeed,
+        eggsPerHatch,
+        0.5,
+        settings.autoHatchingTimes,
+      );
     }
 
     if (settings.timesDisplayMode === "range") {
       return [
-        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5, settings.autoHatchingTimes),
-        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9, settings.autoHatchingTimes),
+        calculateHatchTime(
+          value,
+          stats.hatchSpeed,
+          eggsPerHatch,
+          0.5,
+          settings.autoHatchingTimes,
+        ),
+        calculateHatchTime(
+          value,
+          stats.hatchSpeed,
+          eggsPerHatch,
+          0.9,
+          settings.autoHatchingTimes,
+        ),
       ];
     }
 
-    return calculateMeanHatchTime(value, stats.hatchSpeed, eggsPerHatch, settings.autoHatchingTimes);
+    return calculateMeanHatchTime(
+      value,
+      stats.hatchSpeed,
+      eggsPerHatch,
+      settings.autoHatchingTimes,
+    );
   }
 
   function toggle(key) {
@@ -495,7 +534,7 @@
       </div>
 
       <div class="section">
-        <div class="section-title">Times display</div>
+        <div class="section-title">Hatching time</div>
         <label class="row">
           <Radio
             name="timesMode"
@@ -533,12 +572,12 @@
             onChange={() => toggle("autoHatchingTimes")}
             size="sm"
           />
-          <span>Auto Hatching Speed</span>
+          <span>Auto hatching speed</span>
         </label>
       </div>
 
       <div class="section">
-        <div class="section-title">Rows</div>
+        <div class="section-title">Visibility</div>
         <label class="row">
           <Checkbox
             id="showHatchingTimes"
@@ -546,7 +585,7 @@
             onChange={() => toggle("showHatchingTimes")}
             size="sm"
           />
-          <span>Show Hatching Times</span>
+          <span>Hatching times</span>
         </label>
         <label class="row">
           <Checkbox
@@ -555,7 +594,7 @@
             onChange={() => toggle("showXL")}
             size="sm"
           />
-          <span>Show XL</span>
+          <span>XL</span>
         </label>
         <label class="row">
           <Checkbox
@@ -564,7 +603,7 @@
             onChange={() => toggle("showSuperLegendary")}
             size="sm"
           />
-          <span>Show Super Legendary</span>
+          <span>Super Legendary</span>
         </label>
         <label class="row">
           <Checkbox
@@ -573,7 +612,7 @@
             onChange={() => toggle("showAnyLegendary")}
             size="sm"
           />
-          <span>Show Any Legendary</span>
+          <span>Any Legendary</span>
         </label>
         <label class="row">
           <Checkbox
@@ -582,7 +621,7 @@
             onChange={() => toggle("showAnySecret")}
             size="sm"
           />
-          <span>Show Any Secret+</span>
+          <span>Any Secret+</span>
         </label>
         <label class="row">
           <Checkbox
@@ -591,7 +630,7 @@
             onChange={() => toggle("showAnyCelestial")}
             size="sm"
           />
-          <span>Show Any Celestial+</span>
+          <span>Any Celestial+</span>
         </label>
         <label class="row">
           <Checkbox
@@ -600,8 +639,10 @@
             onChange={() => toggle("showAnyInfinity")}
             size="sm"
           />
-          <span>Show Any Infinity+</span>
+          <span>Any Infinity+</span>
         </label>
+
+        <div class="section-title">Filters</div>
         <label class="row">
           <Checkbox
             id="hideNonSpecial"
@@ -609,7 +650,7 @@
             onChange={() => toggle("hideNonSpecial")}
             size="sm"
           />
-          <span>Hide Easy Pets</span>
+          <span>Hide non-special pets</span>
         </label>
         <label class="row">
           <Checkbox
@@ -618,7 +659,7 @@
             onChange={() => toggle("hideLegendary")}
             size="sm"
           />
-          <span>Hide Legendary Pets</span>
+          <span>Hide legendary pets</span>
         </label>
       </div>
     </div>
@@ -730,7 +771,10 @@
   .settings-menu {
     position: fixed;
     z-index: 1000;
-    width: 260px;
+    width: min(240px, calc(100vw - 1rem));
+    max-height: min(480px, calc(100vh - 1rem));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 0.5rem;
     background: var(--menu-bg);
     border: 1px solid var(--border);
