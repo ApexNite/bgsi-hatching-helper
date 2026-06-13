@@ -1,1 +1,122 @@
-[]
+[
+  {
+    "id": "flaming-luck",
+    "name": "Flaming Luck",
+    "img": "assets/images/icons/luck",
+    "event": "flaming",
+    "levels": {
+      "1": {
+        "luck": 0.05
+      },
+      "2": {
+        "luck": 0.1
+      },
+      "3": {
+        "luck": 0.25
+      },
+      "4": {
+        "luck": 0.5
+      }
+    }
+  },
+  {
+    "id": "flaming-secret-luck",
+    "name": "Secret Luck",
+    "img": "assets/images/icons/secret-pet-luck",
+    "event": "flaming",
+    "levels": {
+      "1": {
+        "secretLuck": 0.25
+      },
+      "2": {
+        "secretLuck": 0.5
+      },
+      "3": {
+        "secretLuck": 0.75
+      },
+      "4": {
+        "secretLuck": 0.1
+      }
+    }
+  },
+  {
+    "id": "flaming-infinity-luck",
+    "name": "Infinity Luck",
+    "img": "assets/images/icons/infinity-luck",
+    "event": "flaming",
+    "levels": {
+      "1": {
+        "infinityLuck": 0.25
+      },
+      "2": {
+        "infinityLuck": 0.5
+      },
+      "3": {
+        "infinityLuck": 0.75
+      },
+      "4": {
+        "infinityLuck": 0.1
+      }
+    }
+  },
+  {
+    "id": "frozen-luck",
+    "name": "Frozen Luck",
+    "img": "assets/images/icons/luck",
+    "event": "flaming",
+    "levels": {
+      "1": {
+        "luck": 0.05
+      },
+      "2": {
+        "luck": 0.1
+      },
+      "3": {
+        "luck": 0.25
+      },
+      "4": {
+        "luck": 0.5
+      }
+    }
+  },
+  {
+    "id": "frozen-secret-luck",
+    "name": "Secret Luck",
+    "img": "assets/images/icons/secret-pet-luck",
+    "event": "frozen",
+    "levels": {
+      "1": {
+        "secretLuck": 0.25
+      },
+      "2": {
+        "secretLuck": 0.5
+      },
+      "3": {
+        "secretLuck": 0.75
+      },
+      "4": {
+        "secretLuck": 0.1
+      }
+    }
+  },
+  {
+    "id": "frozen-infinity-luck",
+    "name": "Infinity Luck",
+    "img": "assets/images/icons/infinity-luck",
+    "event": "frozen",
+    "levels": {
+      "1": {
+        "infinityLuck": 0.25
+      },
+      "2": {
+        "infinityLuck": 0.5
+      },
+      "3": {
+        "infinityLuck": 0.75
+      },
+      "4": {
+        "infinityLuck": 0.1
+      }
+    }
+  }
+]

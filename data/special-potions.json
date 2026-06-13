@@ -28,5 +28,21 @@
     "luck": 4.5,
     "shinyChance": 1.75,
     "mythicChance": 1.75
+  },
+  {
+    "id": "fire-elixir-iv",
+    "name": "Fire Elixir IV",
+    "event": "flaming",
+    "luck": 2.5,
+    "shinyChance": 1.75,
+    "mythicChance": 1.75
+  },
+  {
+    "id": "ice-elixir-iv",
+    "name": "Ice Elixir IV",
+    "event": "frozen",
+    "luck": 2.5,
+    "shinyChance": 1.75,
+    "mythicChance": 1.75
   }
 ]
