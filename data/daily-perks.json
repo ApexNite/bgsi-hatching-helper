@@ -5,7 +5,7 @@
         "id": "void-sentinel",
         "name": "Void Sentinel",
         "rarity": "secret",
-        "baseChance": 1e-12,
+        "baseChance": 2e-12,
         "hasMythic": false,
         "ignoreTrueLuck": true,
         "void": true
@@ -55,7 +55,7 @@
         "id": "void-sentinel",
         "name": "Void Sentinel",
         "rarity": "secret",
-        "baseChance": 1e-12,
+        "baseChance": 2e-12,
         "hasMythic": false,
         "ignoreTrueLuck": true,
         "void": true
