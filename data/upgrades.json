@@ -26,16 +26,16 @@
     "event": "flaming",
     "levels": {
       "1": {
-        "secretLuck": 0.25
+        "secretLuck": 0.025
       },
       "2": {
-        "secretLuck": 0.5
+        "secretLuck": 0.05
       },
       "3": {
-        "secretLuck": 0.75
+        "secretLuck": 0.075
       },
       "4": {
-        "secretLuck": 0.1
+        "secretLuck": 0.01
       }
     }
   },
@@ -46,16 +46,16 @@
     "event": "flaming",
     "levels": {
       "1": {
-        "infinityLuck": 0.25
+        "infinityLuck": 0.025
       },
       "2": {
-        "infinityLuck": 0.5
+        "infinityLuck": 0.05
       },
       "3": {
-        "infinityLuck": 0.75
+        "infinityLuck": 0.075
       },
       "4": {
-        "infinityLuck": 0.1
+        "infinityLuck": 0.01
       }
     }
   },
@@ -86,13 +86,13 @@
     "event": "frozen",
     "levels": {
       "1": {
-        "secretLuck": 0.25
+        "secretLuck": 0.025
       },
       "2": {
-        "secretLuck": 0.5
+        "secretLuck": 0.05
       },
       "3": {
-        "secretLuck": 0.75
+        "secretLuck": 0.075
       },
       "4": {
         "secretLuck": 0.1
@@ -106,13 +106,13 @@
     "event": "frozen",
     "levels": {
       "1": {
-        "infinityLuck": 0.25
+        "infinityLuck": 0.025
       },
       "2": {
-        "infinityLuck": 0.5
+        "infinityLuck": 0.05
       },
       "3": {
-        "infinityLuck": 0.75
+        "infinityLuck": 0.075
       },
       "4": {
         "infinityLuck": 0.1
