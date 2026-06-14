@@ -22,6 +22,18 @@
     "infinityLuckMultiplier": 1.5
   },
   {
+    "id": "flaming-ultra-infinity-elixir",
+    "name": "Ultra Infinity Elixir",
+    "event": "flaming",
+    "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "frozen-ultra-infinity-elixir",
+    "name": "Ultra Infinity Elixir",
+    "event": "frozen",
+    "infinityLuckMultiplier": 1.5
+  },
+  {
     "id": "600m-elixir",
     "name": "600M Elixir",
     "event": "600m",
