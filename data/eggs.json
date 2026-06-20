@@ -1388,5 +1388,62 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "obsidian-egg",
+    "name": "Obsidian Egg",
+    "type": "special",
+    "event": "obsidian",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "obsidian-doggy",
+        "name": "Obsidian Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "obsidian-golem",
+        "name": "Obsidian Golem",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "obsidian-deer",
+        "name": "Obsidian Deer",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "obsidian-serpent",
+        "name": "Obsidian Serpent",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "obsidian-gargoyle",
+        "name": "Obsidian Gargoyle",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "obsidian-core",
+        "name": "Obsidian Core",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "shadowstone",
+        "name": "Shadowstone",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "darkstone-skull",
+        "name": "Darkstone Skull",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      }
+    ]
   }
 ]

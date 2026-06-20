@@ -18,7 +18,7 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "event": "600m",
+    "event": "obsidian",
     "infinityLuckMultiplier": 1.5
   },
   {
@@ -54,6 +54,14 @@
     "name": "Ice Elixir IV",
     "event": "frozen",
     "luck": 2.5,
+    "shinyChance": 1.75,
+    "mythicChance": 1.75
+  },
+  {
+    "id": "obsidian-iv",
+    "name": "Obsidian IV",
+    "event": "obsidian",
+    "luck": 3,
     "shinyChance": 1.75,
     "mythicChance": 1.75
   }
