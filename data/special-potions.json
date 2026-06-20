@@ -32,7 +32,7 @@
   {
     "id": "fire-elixir-iv",
     "name": "Fire Elixir IV",
-    "event": "flaming",
+    "eggs": ["flaming-egg", "fusion-egg"],
     "luck": 2.5,
     "shinyChance": 1.75,
     "mythicChance": 1.75
@@ -40,7 +40,7 @@
   {
     "id": "ice-elixir-iv",
     "name": "Ice Elixir IV",
-    "event": "frozen",
+    "eggs": ["frozen-egg", "fusion-egg"],
     "luck": 2.5,
     "shinyChance": 1.75,
     "mythicChance": 1.75
@@ -56,7 +56,7 @@
   {
     "id": "fusion-elixir",
     "name": "Fusion Elixir",
-    "eggs": ["flaming-egg", "frozen-egg"],
+    "eggs": ["flaming-egg", "frozen-egg", "fusion-egg"],
     "potionLuckMultiplier": 1.5,
     "potionShinyChanceMultiplier": 1.5,
     "potionMythicChanceMultiplier": 1.5
