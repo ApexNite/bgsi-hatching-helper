@@ -35,41 +35,6 @@
     "infinityLuckMultiplier": 1.5
   },
   {
-    "id": "600m-2.5x-luck",
-    "name": "+2.5x Luck",
-    "event": "600m",
-    "img": "assets/images/icons/lucky-egg",
-    "luckMultiplier": 2.5
-  },
-  {
-    "id": "600m-1.5x-shiny-luck",
-    "name": "+1.5x Shiny",
-    "event": "600m",
-    "img": "assets/images/icons/shiny",
-    "shinyChanceMultiplier": 1.5
-  },
-  {
-    "id": "600m-1.5x-mythic-luck",
-    "name": "+1.5x Mythic",
-    "event": "600m",
-    "img": "assets/images/icons/mythic",
-    "mythicChanceMultiplier": 1.5
-  },
-  {
-    "id": "600m-1.25x-secret-luck",
-    "name": "+1.25x Secret",
-    "event": "600m",
-    "img": "assets/images/icons/secret-pet-luck",
-    "secretLuckMultiplier": 1.25
-  },
-  {
-    "id": "600m-1.5x-infinity-luck",
-    "name": "+1.5x Infinity",
-    "event": "600m",
-    "img": "assets/images/icons/infinity-luck",
-    "infinityLuckMultiplier": 1.5
-  },
-  {
     "id": "flaming-2.5x-luck",
     "name": "+2.5x Luck",
     "event": "flaming",

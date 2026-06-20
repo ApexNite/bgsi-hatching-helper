@@ -34,14 +34,6 @@
     "infinityLuckMultiplier": 1.5
   },
   {
-    "id": "600m-elixir",
-    "name": "600M Elixir",
-    "event": "600m",
-    "luck": 4.5,
-    "shinyChance": 1.75,
-    "mythicChance": 1.75
-  },
-  {
     "id": "fire-elixir-iv",
     "name": "Fire Elixir IV",
     "event": "flaming",
