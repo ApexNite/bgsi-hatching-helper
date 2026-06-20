@@ -1278,6 +1278,12 @@
         "baseChance": 1e-7
       },
       {
+        "id": "fracture-overlord",
+        "name": "Fracture Overlord",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
         "id": "inferno-king-slime",
         "name": "Inferno King Slime",
         "rarity": "secret",
@@ -1294,6 +1300,12 @@
         "name": "Inferno Soul",
         "rarity": "secret",
         "baseChance": 4e-11
+      },
+      {
+        "id": "freezerburn-dogcat",
+        "name": "Freezerburn Dogcat",
+        "rarity": "secret",
+        "baseChance": 2e-11
       },
       {
         "id": "revelation",
@@ -1340,6 +1352,12 @@
         "baseChance": 1e-7
       },
       {
+        "id": "fracture-overlord",
+        "name": "Fracture Overlord",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
         "id": "ice-queen-slime",
         "name": "Ice Queen Slime",
         "rarity": "secret",
@@ -1356,6 +1374,12 @@
         "name": "Frozen Soul",
         "rarity": "secret",
         "baseChance": 4e-11
+      },
+      {
+        "id": "freezerburn-dogcat",
+        "name": "Freezerburn Dogcat",
+        "rarity": "secret",
+        "baseChance": 2e-11
       },
       {
         "id": "revelation",
