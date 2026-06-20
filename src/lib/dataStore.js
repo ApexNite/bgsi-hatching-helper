@@ -234,6 +234,11 @@ const schemas = {
       type: "string",
       default: (item, parent) => parent?.event || "none",
     },
+    eggs: {
+      type: "array",
+      default: [],
+      itemType: "string",
+    },
     imageDir: { type: "string", default: "potions" },
     img: {
       type: "string",

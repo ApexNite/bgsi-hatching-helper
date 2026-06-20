@@ -376,7 +376,11 @@
               level = Math.min(level, Object.keys(upgrade.levels).length);
 
               if (level > 0 && upgrade.levels[level]) {
-                return { id: upgrade.id, ...upgrade.levels[level], event: upgrade.event };
+                return {
+                  id: upgrade.id,
+                  ...upgrade.levels[level],
+                  event: upgrade.event,
+                };
               }
 
               return null;
@@ -628,9 +632,15 @@
 
   function visibleByEvent(items, eventId) {
     const list = Array.isArray(items) ? items : [];
-    return list.filter(
-      (i) => (i.event ?? "none") === "none" || (i.event ?? "none") === eventId,
-    );
+    return list.filter((i) => {
+      const ev = i.event ?? "none";
+      const hasEggs = Array.isArray(i.eggs) && i.eggs.length > 1;
+      const matchesEvent = (ev === "none" || ev === eventId) && !hasEggs;
+      const matchesEggs =
+        hasEggs && selectedEgg?.id ? i.eggs.includes(selectedEgg.id) : false;
+
+      return matchesEvent || matchesEggs;
+    });
   }
 
   function eggHasSecret(egg) {

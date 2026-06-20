@@ -16,21 +16,17 @@
     "overwriteMythicChanceMultiplier": true
   },
   {
+    "id": "star-elixir",
+    "name": "Star Elixir",
+    "eggs": ["obsidian-egg", "vine-egg", "atlantis-egg"],
+    "luck": 1,
+    "shinyChance": 1,
+    "mythicChance": 1
+  },
+  {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "event": "obsidian",
-    "infinityLuckMultiplier": 1.5
-  },
-  {
-    "id": "flaming-ultra-infinity-elixir",
-    "name": "Ultra Infinity Elixir",
-    "event": "flaming",
-    "infinityLuckMultiplier": 1.5
-  },
-  {
-    "id": "frozen-ultra-infinity-elixir",
-    "name": "Ultra Infinity Elixir",
-    "event": "frozen",
+    "eggs": ["obsidian-egg", "flaming-egg", "frozen-egg"],
     "infinityLuckMultiplier": 1.5
   },
   {
@@ -50,11 +46,19 @@
     "mythicChance": 1.75
   },
   {
-    "id": "obsidian-iv",
-    "name": "Obsidian IV",
+    "id": "obsidian-elixir-iv",
+    "name": "Obsidian Elixir IV",
     "event": "obsidian",
     "luck": 3,
     "shinyChance": 1.75,
     "mythicChance": 1.75
+  },
+  {
+    "id": "fusion-elixir",
+    "name": "Fusion Elixir",
+    "eggs": ["flaming-egg", "frozen-egg"],
+    "potionLuckMultiplier": 1.5,
+    "potionShinyChanceMultiplier": 1.5,
+    "potionMythicChanceMultiplier": 1.5
   }
 ]
