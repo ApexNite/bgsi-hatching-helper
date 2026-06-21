@@ -1285,7 +1285,7 @@
         "id": "obsidian-gargoyle",
         "name": "Obsidian Gargoyle",
         "rarity": "legendary",
-        "baseChance": 1e-7
+        "baseChance": 1e-6
       },
       {
         "id": "obsidian-core",
