@@ -1101,5 +1101,156 @@
         "baseChance": 2.5e-11
       }
     ]
+  },
+  {
+    "id": "popcorn-egg",
+    "name": "Popcorn Egg",
+    "type": "special",
+    "event": "carnival",
+    "pets": [
+      {
+        "id": "popcorn-doggy",
+        "name": "Popcorn Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "popcorn-kitty",
+        "name": "Popcorn Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "popcorn-bunny",
+        "name": "Popcorn Bunny",
+        "rarity": "rare",
+        "baseChance": 0.04
+      }
+    ]
+  },
+  {
+    "id": "sweet-egg",
+    "name": "Sweet Egg",
+    "type": "special",
+    "event": "carnival",
+    "pets": [
+      {
+        "id": "sugar-ball",
+        "name": "Sugar Ball",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "sugar-cube",
+        "name": "Sugar Cube",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "pink-gumdrop",
+        "name": "Punk Gumdrop",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "lollipop",
+        "name": "Lollipop",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "sweet-candy-heart",
+        "name": "Sweet Candy Heart",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "taffy-dogcat",
+        "name": "Taffy Dogcat",
+        "rarity": "secret",
+        "baseChance": 2e-8
+      }
+    ]
+  },
+  {
+    "id": "exotic-egg",
+    "name": "Exotic Egg",
+    "type": "special",
+    "event": "carnival",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "red-frog",
+        "name": "Red Frog",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "green-frog",
+        "name": "Green Frog",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "clown-shark",
+        "name": "Clown Shark",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "lynx",
+        "name": "Lynx",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "ocelot",
+        "name": "Ocelot",
+        "rarity": "legendary",
+        "baseChance": 5e-7
+      },
+      {
+        "id": "jester-axolotl-plushie",
+        "name": "Obsidian Core",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "owolord-plushie",
+        "name": "OwOlord Plushie",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "dark-matter-dragon",
+        "name": "Dark Matter Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "earth-dragon",
+        "name": "Earth Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "taffy-dragon",
+        "name": "Taffy Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "spectral-hunter",
+        "name": "Spectral Hunter",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      },
+      {
+        "id": "jester-face-god",
+        "name": "JESTER FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 4e-12
+      }
+    ]
   }
 ]

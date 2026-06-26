@@ -26,7 +26,15 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "eggs": ["obsidian-egg", "flaming-egg", "frozen-egg"],
+    "event": "carnival",
     "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "carnival-elixir-iv",
+    "name": "Carnival Elixir IV",
+    "event": "carnival",
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
   }
 ]
