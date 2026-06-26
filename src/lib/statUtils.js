@@ -58,7 +58,7 @@ export function calculateStats(sources, toggles, numbers) {
     baseCelestialLuck: 0,
     baseInfinityLuck: 0,
     baseShinyChance: 1 / 40,
-    baseMythicChance: (1 / 100) * 1.1,
+    baseMythicChance: 1 / 100,
     baseSuperLegendaryChance: 1 / 2500,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
