@@ -28,37 +28,5 @@
     "name": "Ultra Infinity Elixir",
     "eggs": ["obsidian-egg", "flaming-egg", "frozen-egg"],
     "infinityLuckMultiplier": 1.5
-  },
-  {
-    "id": "fire-elixir-iv",
-    "name": "Fire Elixir IV",
-    "eggs": ["flaming-egg", "fusion-egg"],
-    "luck": 2.5,
-    "shinyChance": 1.75,
-    "mythicChance": 1.75
-  },
-  {
-    "id": "ice-elixir-iv",
-    "name": "Ice Elixir IV",
-    "eggs": ["frozen-egg", "fusion-egg"],
-    "luck": 2.5,
-    "shinyChance": 1.75,
-    "mythicChance": 1.75
-  },
-  {
-    "id": "obsidian-elixir-iv",
-    "name": "Obsidian Elixir IV",
-    "event": "obsidian",
-    "luck": 3,
-    "shinyChance": 1.75,
-    "mythicChance": 1.75
-  },
-  {
-    "id": "fusion-elixir",
-    "name": "Fusion Elixir",
-    "eggs": ["flaming-egg", "frozen-egg", "fusion-egg"],
-    "potionLuckMultiplier": 1.5,
-    "potionShinyChanceMultiplier": 1.5,
-    "potionMythicChanceMultiplier": 1.5
   }
 ]
