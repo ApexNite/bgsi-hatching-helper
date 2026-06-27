@@ -15,10 +15,22 @@
         "luck": 0.1
       },
       "4": {
-        "luck": 0.15
+        "luck": 0.2
       },
       "5": {
-        "luck": 0.20
+        "luck": 0.25
+      },
+      "6": {
+        "luck": 0.4
+      },
+      "7": {
+        "luck": 0.6
+      },
+      "8": {
+        "luck": 1
+      },
+      "9": {
+        "luck": 2
       }
     }
   },
@@ -35,13 +47,16 @@
         "secretLuck": 0.1
       },
       "3": {
-        "secretLuck": 0.15
-      },
-      "4": {
         "secretLuck": 0.2
       },
-      "5": {
+      "4": {
         "secretLuck": 0.25
+      },
+      "5": {
+        "secretLuck": 0.35
+      },
+      "6": {
+        "secretLuck": 0.5
       }
     }
   },
@@ -61,10 +76,13 @@
         "infinityLuck": 0.075
       },
       "4": {
-        "infinityLuck": 0.01
+        "infinityLuck": 0.1
       },
       "5": {
-        "infinityLuck": 0.0125
+        "infinityLuck": 0.15
+      },
+      "6": {
+        "infinityLuck": 0.2
       }
     }
   }
