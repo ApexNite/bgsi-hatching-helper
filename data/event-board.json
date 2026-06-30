@@ -35,13 +35,6 @@
     "xlChanceMultiplier": 1.25
   },
   {
-    "id": "600m-special",
-    "name": "600M Special",
-    "secretLuckMultiplier": 1.5,
-    "infinityLuckMultiplier": 1.5,
-    "celestialLuckMultiplier": 1.5
-  },
-  {
     "id": "super-palooza",
     "name": "Super Palooza",
     "superLegendaryChanceMultiplier": 2
