@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["exotic-egg", "nightmare-egg", "common-egg"],
+    "eggs": ["exotic-egg", "doodle-egg", "common-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -36,5 +36,14 @@
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
+  },
+  {
+    "id": "patriotic-elixir-iv",
+    "name": "Patriotic Elixir IV",
+    "event": "july4th",
+    "luck": 4.44,
+    "shinyChance": 2,
+    "mythicChance": 2
   }
 ]
+

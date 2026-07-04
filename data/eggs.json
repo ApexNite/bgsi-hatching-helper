@@ -1252,5 +1252,140 @@
         "baseChance": 4e-12
       }
     ]
+  },
+  {
+    "id": "patriotic-egg",
+    "name": "Patriotic Egg",
+    "type": "special",
+    "event": "july4th",
+    "trueLuck": true,
+    "riftable": true,
+    "pets": [
+      {
+        "id": "patriotic-bunny",
+        "name": "Patriotic Bunny",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "patriotic-slime",
+        "name": "Patriotic Slime",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "patriotic-angel",
+        "name": "Patriotic Angel",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "patriotic-octopus",
+        "name": "Patriotic Octopus",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "patriotic-elemental",
+        "name": "Patriotic Elemental",
+        "rarity": "legendary",
+        "baseChance": 5e-7
+      },
+      {
+        "id": "patriotic-mush",
+        "name": "Patriotic Mush",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "patriotic-overlord",
+        "name": "Patriotic Overlord",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "patriotic-star",
+        "name": "Patriotic Star",
+        "rarity": "secret",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "liberty-torch",
+        "name": "Liberty Torch",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "firework-god",
+        "name": "Firework God",
+        "rarity": "infinity",
+        "baseChance": 8e-12
+      },
+      {
+        "id": "patriotic-robot-20",
+        "name": "Patriotic Robot 2.0",
+        "rarity": "infinity",
+        "baseChance": 4e-12
+      },
+      {
+        "id": "void-guardian",
+        "name": "VOID GUARDIAN",
+        "rarity": "infinity",
+        "ignoreTrueLuck": true,
+        "baseChance": 1e-12,
+        "void": true
+      }
+    ]
+  },
+  {
+    "id": "doodle-egg",
+    "name": "Doodle Egg",
+    "type": "special",
+    "event": "doodle",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "doodle-doggy",
+        "name": "Doodle Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "doodle-kitty",
+        "name": "Doodle Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "doodle-dragon",
+        "name": "Doodle Dragon",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "doodle-elemental",
+        "name": "Doodle Elemental",
+        "rarity": "legendary",
+        "baseChance": 5e-7
+      },
+      {
+        "id": "doodlevoid",
+        "name": "DoodleVoid",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "doodle-leviathan",
+        "name": "Doodle Leviathan",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "the-doodlementor",
+        "name": "The Doodlementor",
+        "rarity": "infinity",
+        "baseChance": 1.5e-11
+      }
+    ]
   }
 ]
