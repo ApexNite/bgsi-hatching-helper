@@ -1319,6 +1319,7 @@
         "id": "firework-god",
         "name": "Firework God",
         "rarity": "infinity",
+        "hasMythic": false,
         "baseChance": 8e-12
       },
       {
