@@ -30,7 +30,7 @@
         "luck": 1
       },
       "9": {
-        "luck": 2
+        "luck": 2.5
       }
     }
   },
@@ -57,6 +57,9 @@
       },
       "6": {
         "secretLuck": 0.5
+      },
+      "7": {
+        "secretLuck": 0.75
       }
     }
   },
@@ -82,7 +85,13 @@
         "infinityLuck": 0.15
       },
       "6": {
-        "infinityLuck": 0.2
+        "infinityLuck": 0.20
+      },
+      "7": {
+        "infinityLuck": 0.25
+      },
+      "8": {
+        "infinityLuck": 0.3
       }
     }
   }
