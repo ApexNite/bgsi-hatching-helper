@@ -35,6 +35,41 @@
     "infinityLuckMultiplier": 1.5
   },
   {
+    "id": "carnival-2.5x-luck",
+    "name": "+2.5x Luck",
+    "event": "carnival",
+    "img": "assets/images/icons/lucky-egg",
+    "luckMultiplier": 2.5
+  },
+  {
+    "id": "carnival-1.5x-shiny-luck",
+    "name": "+1.5x Shiny",
+    "event": "carnival",
+    "img": "assets/images/icons/shiny",
+    "shinyChanceMultiplier": 1.5
+  },
+  {
+    "id": "carnival-1.5x-mythic-luck",
+    "name": "+1.5x Mythic",
+    "event": "carnival",
+    "img": "assets/images/icons/mythic",
+    "mythicChanceMultiplier": 1.5
+  },
+  {
+    "id": "carnival-1.25x-secret-luck",
+    "name": "+1.25x Secret",
+    "event": "carnival",
+    "img": "assets/images/icons/secret-pet-luck",
+    "secretLuckMultiplier": 1.25
+  },
+  {
+    "id": "carnival-1.5x-infinity-luck",
+    "name": "+1.5x Infinity",
+    "event": "carnival",
+    "img": "assets/images/icons/infinity-luck",
+    "infinityLuckMultiplier": 1.5
+  },
+  {
     "id": "none",
     "name": "None"
   }
