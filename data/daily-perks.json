@@ -2,8 +2,8 @@
   "0": {
     "pets": [
       {
-        "id": "void-sentinel",
-        "name": "Void Sentinel",
+        "id": "void-shadow-leviathan",
+        "name": "VOID SHADOW LEVIATHAN",
         "rarity": "secret",
         "baseChance": 2e-12,
         "hasMythic": false,
@@ -52,8 +52,8 @@
     },
     "pets": [
       {
-        "id": "void-sentinel",
-        "name": "Void Sentinel",
+        "id": "void-shadow-leviathan",
+        "name": "VOID SHADOW LEVIATHAN",
         "rarity": "secret",
         "baseChance": 2e-12,
         "hasMythic": false,
