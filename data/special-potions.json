@@ -26,7 +26,7 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "event": "carnival",
+    "eggs": ["popcorn-egg", "sweet-egg", "exotic-egg", "plushie-egg", "patriotic-egg"],
     "infinityLuckMultiplier": 1.5
   },
   {
