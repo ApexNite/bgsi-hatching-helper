@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["exotic-egg", "doodle-egg", "common-egg"],
+    "eggs": ["patriotic-egg", "doodle-egg", "common-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
