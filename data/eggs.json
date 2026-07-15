@@ -407,7 +407,7 @@
         "id": "nullvoid",
         "name": "NULLVoid",
         "rarity": "legendary",
-        "baseChance": 0.000001
+        "baseChance": 7.5e-7
       }
     ]
   },
@@ -742,7 +742,7 @@
         "id": "equalizer",
         "name": "Equalizer",
         "rarity": "legendary",
-        "baseChance": 0.0000012
+        "baseChance": 7.5e-7
       },
       {
         "id": "hyperwave-kitty",
