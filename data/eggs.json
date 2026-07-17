@@ -1329,91 +1329,6 @@
     ]
   },
   {
-    "id": "patriotic-egg",
-    "name": "Patriotic Egg",
-    "type": "special",
-    "event": "july4th",
-    "trueLuck": true,
-    "riftable": true,
-    "pets": [
-      {
-        "id": "patriotic-bunny",
-        "name": "Patriotic Bunny",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "patriotic-slime",
-        "name": "Patriotic Slime",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "patriotic-angel",
-        "name": "Patriotic Angel",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "patriotic-octopus",
-        "name": "Patriotic Octopus",
-        "rarity": "legendary",
-        "baseChance": 0.00001
-      },
-      {
-        "id": "patriotic-elemental",
-        "name": "Patriotic Elemental",
-        "rarity": "legendary",
-        "baseChance": 5e-7
-      },
-      {
-        "id": "patriotic-mush",
-        "name": "Patriotic Mush",
-        "rarity": "secret",
-        "baseChance": 4e-9
-      },
-      {
-        "id": "patriotic-overlord",
-        "name": "Patriotic Overlord",
-        "rarity": "secret",
-        "baseChance": 1e-9
-      },
-      {
-        "id": "patriotic-star",
-        "name": "Patriotic Star",
-        "rarity": "secret",
-        "baseChance": 1e-10
-      },
-      {
-        "id": "liberty-torch",
-        "name": "Liberty Torch",
-        "rarity": "secret",
-        "baseChance": 4e-11
-      },
-      {
-        "id": "firework-god",
-        "name": "Firework God",
-        "rarity": "infinity",
-        "hasMythic": false,
-        "baseChance": 8e-12
-      },
-      {
-        "id": "patriotic-robot-20",
-        "name": "Patriotic Robot 2.0",
-        "rarity": "infinity",
-        "baseChance": 4e-12
-      },
-      {
-        "id": "void-guardian",
-        "name": "VOID GUARDIAN",
-        "rarity": "infinity",
-        "ignoreTrueLuck": true,
-        "baseChance": 1e-12,
-        "void": true
-      }
-    ]
-  },
-  {
     "id": "doodle-egg",
     "name": "Doodle Egg",
     "type": "special",
@@ -1462,6 +1377,233 @@
         "rarity": "infinity",
         "hasMythic": false,
         "baseChance": 1.5e-11
+      }
+    ]
+  },
+  {
+    "id": "ultra-carnival-egg",
+    "name": "Ultra Carnival Egg",
+    "type": "special",
+    "event": "carnival",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "popcorn-doggy",
+        "name": "Popcorn Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "popcorn-kitty",
+        "name": "Popcorn Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "popcorn-bunny",
+        "name": "Popcorn Bunny",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "sugar-ball",
+        "name": "Sugar Ball",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "sugar-cube",
+        "name": "Sugar Cube",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "pink-gumdrop",
+        "name": "Punk Gumdrop",
+        "rarity": "rare",
+        "baseChance": 0.04
+      },
+      {
+        "id": "red-frog",
+        "name": "Red Frog",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "green-frog",
+        "name": "Green Frog",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "clown-shark",
+        "name": "Clown Shark",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "stuffed-doggy",
+        "name": "Stuffed Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "stuffed-demon",
+        "name": "Stuffed Demon",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "stuffed-lamb",
+        "name": "Stuffed Lamb",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "lollipop",
+        "name": "Lollipop",
+        "rarity": "legendary",
+        "baseChance": 0.0001
+      },
+      {
+        "id": "sweet-candy-heart",
+        "name": "Sweet Candy Heart",
+        "rarity": "legendary",
+        "baseChance": 0.00002
+      },
+      {
+        "id": "lynx",
+        "name": "Lynx",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "ocelot",
+        "name": "Ocelot",
+        "rarity": "legendary",
+        "baseChance": 5e-7
+      },
+      {
+        "id": "stuffed-imp",
+        "name": "Stuffed Imp",
+        "rarity": "legendary",
+        "baseChance": 0.00001
+      },
+      {
+        "id": "stuffed-dweller",
+        "name": "Stuffed Dweller",
+        "rarity": "legendary",
+        "baseChance": 5e-7
+      },
+      {
+        "id": "carnival-jester",
+        "name": "Carnival Jester",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "taffy-dogcat",
+        "name": "Taffy Dogcat",
+        "rarity": "secret",
+        "baseChance": 2e-8
+      },
+      {
+        "id": "jester-axolotl-plushie",
+        "name": "Jester Axolotl Plushie",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
+        "id": "owolord-plushie",
+        "name": "OwOlord Plushie",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "dark-matter-dragon",
+        "name": "Dark Matter Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "earth-dragon",
+        "name": "Earth Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "taffy-dragon",
+        "name": "Taffy Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "spectral-hunter",
+        "name": "Spectral Hunter",
+        "rarity": "infinity",
+        "baseChance": 1e-11
+      },
+      {
+        "id": "stuffed-seal",
+        "name": "Stuffed Seal",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "doggy-plushie",
+        "name": "Doggy Plushie",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      },
+      {
+        "id": "bunny-plushie",
+        "name": "Bunny Plushie",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "kitsune-plushie",
+        "name": "Kitsune Plushie",
+        "rarity": "secret",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "plush-dogcat",
+        "name": "Plush Dogcat",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "jester-face-god",
+        "name": "JESTER FACE GOD",
+        "rarity": "infinity",
+        "baseChance": 4e-12
+      },
+      {
+        "id": "dementor-plushie",
+        "name": "Dementor Plushie",
+        "rarity": "infinity",
+        "baseChance": 2e-12
+      },
+      {
+        "id": "carnival-dragon",
+        "name": "Carnival Dragon",
+        "rarity": "secret",
+        "baseChance": 2e-11
+      },
+      {
+        "id": "carnival-ferris-wheel",
+        "name": "Carnival Ferris Wheel",
+        "rarity": "infinity",
+        "baseChance": 2e-12
+      },
+      {
+        "id": "voidium",
+        "name": "VOIDIUM",
+        "rarity": "infinity",
+        "baseChance": 1e-12,
+        "void": true,
+        "hasMythic": false
       }
     ]
   }
