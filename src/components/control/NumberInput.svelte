@@ -4,6 +4,7 @@
   export let maxValue = Number.MAX_VALUE;
   export let onInput = null;
   export let hoverText = "";
+  export let compact = false;
 
   const MAX_LEN = 12;
   const DISPLAY_MAX_LEN = MAX_LEN + Math.floor(MAX_LEN / 3);
@@ -66,6 +67,7 @@
 <div class="wrapper">
   <input
     type="text"
+    class:compact
     class="number-input"
     value={text}
     on:input={handleInput}
@@ -98,5 +100,10 @@
   .number-input:hover,
   .number-input:focus-visible {
     background-color: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
+  }
+
+  .number-input.compact {
+    width: 88px;
+    padding-inline: 0.65rem;
   }
 </style>

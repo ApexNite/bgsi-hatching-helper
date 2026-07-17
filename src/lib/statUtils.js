@@ -62,7 +62,6 @@ export function calculateStats(sources, toggles, numbers) {
     baseSuperLegendaryChance: (1 / 2500) * 2,
     baseHatchSpeed: 0,
     _applyAdjustedShiny: hasGoldenEggMastery(sources),
-    _burstBlessingLevel: getBurstBlessingLevel(sources),
   };
 
   let fragmentFlag =
@@ -139,7 +138,7 @@ export function calculateStats(sources, toggles, numbers) {
     });
   }
 
-  const stats = calculateStatsFromTotals(totals);
+  const stats = calculateStatsFromTotals(totals, sources);
 
   return stats;
 }
@@ -195,10 +194,10 @@ export function calculateManualStats(manualStats, sources, numbers) {
     applySource(totals, { ...{ trueLuck: numbers.trueLuckMultiplier } });
   }
 
-  return calculateStatsFromTotals(totals);
+  return calculateStatsFromTotals(totals, sources);
 }
 
-function calculateStatsFromTotals(totals) {
+function calculateStatsFromTotals(totals, sources) {
   const shinyBase = toNumber(
     D(totals.baseShinyChance || 0)
       .times(D(1).plus(totals.shinyChance || 0))
@@ -224,7 +223,7 @@ function calculateStatsFromTotals(totals) {
     );
 
   return {
-    luck: toNumber(calculateAdjustedLuck(totals)),
+    luck: toNumber(calculateAdjustedLuck(totals, sources)),
     trueLuck: toNumber(totals.trueLuck || 0),
     secretLuck: toNumber(
       add(
@@ -446,36 +445,55 @@ function calculateSeasonPerks(stars) {
   };
 }
 
-function calculateAdjustedLuck(totals, interval = 100) {
+function calculateAdjustedLuck(totals, sources, interval = 100) {
   const baseLuck = Number(totals.baseLuck) || 0;
   const luck = Number(totals.luck) || 0;
   const luckMultiplier = Number(totals.luckMultiplier) || 1;
 
-  const level = Math.max(0, Number(totals._burstBlessingLevel) || 0);
-  const burstBonus = level * 10;
-
   const normalLuck = baseLuck + luck * luckMultiplier;
+
+  const burstVariantCounts = new Map();
+
+  for (const source of sources || []) {
+    if (source?.id !== "burst-blessing") {
+      continue;
+    }
+
+    const every = Math.max(1, Number(source.every) || interval);
+    const multiplier = Number(source.multiplier) || 0;
+    const count = Number(source._value) || 0;
+
+    if (!count || !multiplier) {
+      continue;
+    }
+
+    const key = `${every}:${multiplier}`;
+    burstVariantCounts.set(key, (burstVariantCounts.get(key) || 0) + count);
+  }
+
+  const burstBonus = Array.from(burstVariantCounts.entries()).reduce(
+    (totalBonus, [key, count]) => {
+      const [everyText, multiplierText] = key.split(":");
+      const every = Math.max(1, Number(everyText) || interval);
+      const multiplier = Number(multiplierText) || 0;
+      const effectiveCount = Math.min(1, Number(count) || 0);
+
+      if (!effectiveCount || !multiplier) {
+        return totalBonus;
+      }
+
+      return totalBonus + effectiveCount * multiplier * (interval / every);
+    },
+    0,
+  );
 
   if (burstBonus <= 0 || interval === 1) {
     return normalLuck;
   }
 
-  // const burstLuck = baseLuck + luck * (luckMultiplier + burstBonus);
   const burstLuck = normalLuck * burstBonus;
 
   return ((interval - 1) * normalLuck + burstLuck) / interval;
-}
-
-function getBurstBlessingLevel(sources) {
-  let totalLevel = 0;
-
-  for (const source of sources) {
-    if (source.id === "burst-blessing") {
-      totalLevel += source._value != null ? Number(source._value) : 1;
-    }
-  }
-
-  return totalLevel;
 }
 
 function calculateAdjustedShiny(shinyChance, interval = 75) {

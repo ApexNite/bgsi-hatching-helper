@@ -58,6 +58,8 @@ const schemas = {
     potionXlChanceMultiplier: { type: "number", default: 1 },
     potionHatchSpeedMultiplier: { type: "number", default: 1 },
     overwriteMythicChanceMultiplier: { type: "boolean", default: false },
+    every: { type: "number", default: 0 },
+    multiplier: { type: "number", default: 0 },
   },
   id: {
     id: { type: "string", required: true },
@@ -227,6 +229,11 @@ const schemas = {
   enchant: {
     extends: ["id", "stats"],
     super: { type: "boolean", default: false },
+    variants: { type: "object", default: {}, schema: "enchantVariant" },
+  },
+  enchantVariant: {
+    base: { type: "object", default: {}, schema: "stats" },
+    plus: { type: "object", default: {}, schema: "stats" },
   },
   potion: {
     extends: ["stats", "id", "img"],

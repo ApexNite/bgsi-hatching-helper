@@ -35,6 +35,7 @@
   let gamepassToggles = {};
   let eventToggles = {};
   let enchantValues = {};
+  let superEnchantValues = {};
   let trueLuckMultiplierByEgg = {};
   let fragmentValues = {};
   let toggleValues = {
@@ -158,10 +159,19 @@
     };
     enchantValues = {
       ...Object.fromEntries(
-        ($dataStore.enchants || []).map((e) => [
-          e.id,
-          enchantValues[e.id] ?? 0,
-        ]),
+        ($dataStore.enchants || [])
+          .filter((e) => !e.super)
+          .map((e) => [e.id, enchantValues[e.id] ?? 0]),
+      ),
+    };
+    superEnchantValues = {
+      ...Object.fromEntries(
+        ($dataStore.enchants || [])
+          .filter((e) => e.super)
+          .map((e) => [
+            e.id,
+            normalizeSuperEnchantValues(e, superEnchantValues[e.id]),
+          ]),
       ),
     };
     fragmentValues = {
@@ -357,12 +367,8 @@
           ),
           ...($dataStore.gamepasses || []).filter((g) => gamepassToggles[g.id]),
           ...($dataStore.events || []).filter((ev) => eventToggles[ev.id]),
-          ...($dataStore.enchants || [])
-            .map((enchant) => ({
-              ...enchant,
-              _value: Number(enchantValues[enchant.id]),
-            }))
-            .filter((e) => e._value > 0),
+          ...buildNormalEnchantSources($dataStore.enchants, enchantValues),
+          ...buildSuperEnchantSources($dataStore.enchants, superEnchantValues),
           ...($dataStore.fragments || [])
             .map((fragment) => ({
               ...fragment,
@@ -440,6 +446,23 @@
         };
         eventToggles = { ...eventToggles, ...savedData.eventToggles };
         enchantValues = { ...enchantValues, ...savedData.enchantValues };
+        const legacySuperEnchantValues = savedData.enchantValues || {};
+        const savedSuperEnchantValues = savedData.superEnchantValues || {};
+        superEnchantValues = {
+          ...superEnchantValues,
+          ...Object.fromEntries(
+            ($dataStore.enchants || [])
+              .filter((enchant) => enchant.super)
+              .map((enchant) => [
+                enchant.id,
+                normalizeSuperEnchantValues(
+                  enchant,
+                  savedSuperEnchantValues[enchant.id] ??
+                    legacySuperEnchantValues[enchant.id],
+                ),
+              ]),
+          ),
+        };
         fragmentValues = { ...fragmentValues, ...savedData.fragmentValues };
         toggleValues = { ...toggleValues, ...savedData.toggleValues };
         numericValues = { ...numericValues, ...savedData.numericValues };
@@ -488,6 +511,7 @@
       gamepassToggles,
       eventToggles,
       enchantValues,
+      superEnchantValues,
       fragmentValues,
       toggleValues,
       numericValues,
@@ -597,6 +621,90 @@
     } else if (numericData === manualStats) {
       manualStats = updated;
     }
+
+    saveToCache();
+  }
+
+  function normalizeSuperEnchantValues(enchant, value) {
+    if (value && typeof value === "object") {
+      return {
+        base: Number(value.base) || 0,
+        plus: Number(value.plus) || 0,
+      };
+    }
+
+    if (typeof value === "number") {
+      return {
+        base: value,
+        plus: 0,
+      };
+    }
+
+    return {
+      base: 0,
+      plus: 0,
+    };
+  }
+
+  function buildNormalEnchantSources(enchants, valuesById) {
+    return (enchants || [])
+      .filter((enchant) => !enchant?.super)
+      .map((enchant) => ({
+        ...enchant,
+        _value: Number(valuesById?.[enchant.id]),
+      }))
+      .filter((enchant) => enchant._value > 0);
+  }
+
+  function buildSuperEnchantSources(enchants, valuesById) {
+    const sources = [];
+
+    for (const enchant of enchants || []) {
+      if (!enchant?.super) {
+        continue;
+      }
+
+      const values = normalizeSuperEnchantValues(
+        enchant,
+        valuesById?.[enchant.id],
+      );
+
+      const baseCount = Number(values.base) || 0;
+      const plusCount = Number(values.plus) || 0;
+
+      if (baseCount > 0 && enchant.variants?.base) {
+        sources.push({
+          ...enchant.variants.base,
+          id: enchant.id,
+          name: enchant.name,
+          _value: baseCount,
+        });
+      }
+
+      if (plusCount > 0 && enchant.variants?.plus) {
+        sources.push({
+          ...enchant.variants.plus,
+          id: enchant.id,
+          name: enchant.name,
+          _value: plusCount,
+        });
+      }
+    }
+
+    return sources;
+  }
+
+  function updateSuperEnchantValue(enchantId, key, value) {
+    superEnchantValues = {
+      ...superEnchantValues,
+      [enchantId]: {
+        ...normalizeSuperEnchantValues(
+          $dataStore.enchants?.find((enchant) => enchant.id === enchantId),
+          superEnchantValues[enchantId],
+        ),
+        [key]: value,
+      },
+    };
 
     saveToCache();
   }
@@ -1525,22 +1633,31 @@
         </button>
         {#if collapsedSections["super-enchants"] ?? true}
           <section class="menu-section">
+            <div class="super-enchant-header">
+              <span></span>
+              <span>Base</span>
+              <span>Plus</span>
+            </div>
             {#each $dataStore.enchants || [] as enchant (enchant.id)}
               {#if enchant.super}
                 <div class="menu-row">
                   <span class="menu-label">{enchant.name}:</span>
-                  <!-- {#if enchant.id == "burst-blessing"}
-                    <TooltipWarning
-                      text="It's unclear whether Burst Blessing gives a flat 10x multiplier or boosts luck like green fragments. Earlier calculations assumed the best-case flat 10x; this now uses the worst-case 10x boost. If you think this is incorrect, contact me on Discord."
-                    />
-                  {/if} -->
-                  <div class="menu-control">
+                  <div class="menu-control super-enchant-controls">
                     <NumberInput
-                      id={enchant.id}
-                      value={enchantValues[enchant.id]}
+                      id={`${enchant.id}-base`}
+                      compact={true}
+                      value={superEnchantValues[enchant.id]?.base}
                       onInput={({ value }) =>
-                        updateNumericValue(enchantValues, enchant.id, value)}
-                      hoverText="Amount of pets equiped with the {enchant.name} enchant"
+                        updateSuperEnchantValue(enchant.id, "base", value)}
+                      hoverText={`Base count for ${enchant.name}`}
+                    />
+                    <NumberInput
+                      id={`${enchant.id}-plus`}
+                      compact={true}
+                      value={superEnchantValues[enchant.id]?.plus}
+                      onInput={({ value }) =>
+                        updateSuperEnchantValue(enchant.id, "plus", value)}
+                      hoverText={`Plus count for ${enchant.name}`}
                     />
                   </div>
                 </div>
@@ -1905,6 +2022,28 @@
     display: flex;
     justify-content: flex-end;
     min-width: 120px;
+  }
+
+  .super-enchant-header {
+    display: grid;
+    grid-template-columns: 1fr 88px 88px;
+    gap: 0.75rem;
+    align-items: center;
+    color: var(--secondary-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0 0.25rem 0.15rem;
+  }
+
+  .super-enchant-header > span:first-child {
+    min-height: 1px;
+  }
+
+  .super-enchant-controls {
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    min-width: 0;
   }
 
   .section-separator {

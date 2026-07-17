@@ -22,36 +22,81 @@
   {
     "id": "burst-blessing",
     "name": "🥚 Burst Blessing",
-    "super": true
+    "super": true,
+    "variants": {
+      "base": {
+        "every": 100,
+        "multiplier": 10
+      },
+      "plus": {
+        "every": 75,
+        "multiplier": 15
+      }
+    }
   },
   {
     "id": "luck-boost",
     "name": "🍀 Luck Boost",
-    "luckMultiplier": 1,
-    "super": true
+    "super": true,
+    "variants": {
+      "base": {
+        "luckMultiplier": 1
+      },
+      "plus": {
+        "luckMultiplier": 2
+      }
+    }
   },
   {
     "id": "hatch-blessing",
     "name": "⚡ Hatch Blessing",
-    "baseHatchSpeed": 0.75,
-    "super": true
+    "super": true,
+    "variants": {
+      "base": {
+        "baseHatchSpeed": 0.75
+      },
+      "plus": {
+        "baseHatchSpeed": 1
+      }
+    }
   },
   {
     "id": "shiny-blessing",
     "name": "🌟 Shiny Blessing",
-    "shinyChance": 0.1,
-    "super": true
+    "super": true,
+    "variants": {
+      "base": {
+        "shinyChance": 0.1
+      },
+      "plus": {
+        "shinyChance": 0.15
+      }
+    }
   },
   {
     "id": "mythic-blessing",
     "name": "🔮 Mythic Blessing",
-    "mythicChance": 0.1,
-    "super": true
+    "super": true,
+    "variants": {
+      "base": {
+        "mythicChance": 0.1
+      },
+      "plus": {
+        "mythicChance": 0.15
+      }
+    }
   },
   {
     "id": "infinity-blessing",
     "name": "♾️ Infinity Blessing",
-    "infinityLuck": 0.075,
-    "super": true
+    "super": true,
+    "variants": {
+      "base": {
+        "infinityLuck": 0.075
+      },
+      "plus": {
+        "infinityLuck": 0.15
+      }
+    }
   }
 ]
