@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["patriotic-egg", "doodle-egg", "common-egg"],
+    "eggs": ["plushie-egg", "doodle-egg", "exotic-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -38,11 +38,11 @@
     "mythicChance": 1.5
   },
   {
-    "id": "patriotic-elixir-iv",
-    "name": "Patriotic Elixir IV",
-    "event": "july4th",
-    "luck": 4.44,
-    "shinyChance": 2,
-    "mythicChance": 2
+    "id": "carnival-tickets",
+    "name": "Carnival Tickets",
+    "event": "carnival",
+    "luck": 3.75,
+    "shinyChance": 2.25,
+    "mythicChance": 2.25
   }
 ]
