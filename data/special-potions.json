@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["plushie-egg", "doodle-egg", "exotic-egg"],
+    "eggs": ["crystal-ore-egg", "doodle-egg", "rainbow-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -30,19 +30,11 @@
     "infinityLuckMultiplier": 1.5
   },
   {
-    "id": "carnival-elixir-iv",
-    "name": "Carnival Elixir IV",
-    "event": "carnival",
+    "id": "power-crystal-iv",
+    "name": "Power Crystal IV",
+    "eggs": ["crystal-ore-egg"],
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
-  },
-  {
-    "id": "carnival-tickets",
-    "name": "Carnival Tickets",
-    "event": "carnival",
-    "luck": 3.75,
-    "shinyChance": 2.25,
-    "mythicChance": 2.25
   }
 ]
