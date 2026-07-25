@@ -1156,7 +1156,8 @@
         "id": "doodle-shard",
         "name": "Doodle Shard",
         "rarity": "secret",
-        "baseChance": 8e-11
+        "baseChance": 8e-11,
+        "celestial": true
       }
     ]
   },
