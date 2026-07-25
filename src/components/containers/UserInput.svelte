@@ -240,14 +240,31 @@
     return "none";
   })();
 
-  $: visiblePotions = visibleByEvent($dataStore.potions, activeEvent);
-  $: visibleRunes = visibleByEvent($dataStore.runes, activeEvent);
+  $: visiblePotions = visibleByEvent(
+    $dataStore.potions,
+    activeEvent,
+    numericValues.trueLuckMultiplier,
+  );
+  $: visibleRunes = visibleByEvent(
+    $dataStore.runes,
+    activeEvent,
+    numericValues.trueLuckMultiplier,
+  );
   $: visibleSpecialPotions = visibleByEvent(
     $dataStore.specialPotions,
     activeEvent,
+    numericValues.trueLuckMultiplier,
   );
-  $: visibleMasteries = visibleByEvent($dataStore.masteries, activeEvent);
-  $: visibleMilestones = visibleByEvent($dataStore.milestones, activeEvent);
+  $: visibleMasteries = visibleByEvent(
+    $dataStore.masteries,
+    activeEvent,
+    numericValues.trueLuckMultiplier,
+  );
+  $: visibleMilestones = visibleByEvent(
+    $dataStore.milestones,
+    activeEvent,
+    numericValues.trueLuckMultiplier,
+  );
 
   $: canUsePermanentShrineBuff = isWorldEgg && eggHasSecret(selectedEgg);
 
@@ -738,7 +755,7 @@
     saveToCache();
   }
 
-  function visibleByEvent(items, eventId) {
+  function visibleByEvent(items, eventId, trueLuckMultiplier = 1) {
     const list = Array.isArray(items) ? items : [];
     return list.filter((i) => {
       const ev = i.event ?? "none";
@@ -747,7 +764,10 @@
       const matchesEggs =
         hasEggs && selectedEgg?.id ? i.eggs.includes(selectedEgg.id) : false;
 
-      return matchesEvent || matchesEggs;
+      return (
+        (matchesEvent || matchesEggs) &&
+        (!i.excludeTrueLuck || trueLuckMultiplier == 1)
+      );
     });
   }
 

@@ -60,6 +60,7 @@ const schemas = {
     overwriteMythicChanceMultiplier: { type: "boolean", default: false },
     every: { type: "number", default: 0 },
     multiplier: { type: "number", default: 0 },
+    excludeTrueLuck: { type: "boolean", default: false },
   },
   id: {
     id: { type: "string", required: true },
