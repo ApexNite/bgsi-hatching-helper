@@ -742,7 +742,7 @@
     const list = Array.isArray(items) ? items : [];
     return list.filter((i) => {
       const ev = i.event ?? "none";
-      const hasEggs = Array.isArray(i.eggs) && i.eggs.length > 1;
+      const hasEggs = Array.isArray(i.eggs) && i.eggs.length > 0;
       const matchesEvent = (ev === "none" || ev === eventId) && !hasEggs;
       const matchesEggs =
         hasEggs && selectedEgg?.id ? i.eggs.includes(selectedEgg.id) : false;

@@ -32,7 +32,7 @@
   {
     "id": "power-crystal-iv",
     "name": "Power Crystal IV",
-    "event": "ore",
+    "eggs": ["crystal-ore-egg"],
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
