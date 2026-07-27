@@ -1137,6 +1137,7 @@
         "id": "doodlevoid",
         "name": "DoodleVoid",
         "rarity": "secret",
+        "hasMythic": false,
         "baseChance": 4e-9
       },
       {
