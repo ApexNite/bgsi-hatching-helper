@@ -19,7 +19,6 @@
     "id": "star-elixir",
     "name": "Star Elixir",
     "eggs": ["crystal-ore-egg", "doodle-egg", "rainbow-egg"],
-    "excludeTrueLuck": true,
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
