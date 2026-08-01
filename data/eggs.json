@@ -1200,10 +1200,22 @@
         "baseChance": 5e-7
       },
       {
+        "id": "crystal-pyramidium",
+        "name": "Crystal Pyramidium",
+        "rarity": "secret",
+        "baseChance": 2e-9
+      },
+      {
         "id": "crystal-golem",
         "name": "Crystal Golem",
         "rarity": "secret",
         "baseChance": 5e-10
+      },
+      {
+        "id": "soul-star",
+        "name": "Soul Star",
+        "rarity": "secret",
+        "baseChance": 5e-11
       },
       {
         "id": "ruby-crystal-dragon",
@@ -1228,6 +1240,12 @@
         "name": "Crowned Jewel",
         "rarity": "secret",
         "baseChance": 2e-11
+      },
+      {
+        "id": "crystal-koi",
+        "name": "Crystal Koi",
+        "rarity": "secret",
+        "baseChance": 1.25e-11
       },
       {
         "id": "crystal-dementor",
