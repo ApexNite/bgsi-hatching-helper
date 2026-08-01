@@ -24,7 +24,6 @@
   const defaultSettings = {
     chanceDisplayMode: "auto",
     timesDisplayMode: "range",
-    autoHatchingTimes: false,
     showHatchingTimes: true,
     showAnyLegendary: false,
     showAnySecret: false,
@@ -213,8 +212,7 @@
         value,
         stats.hatchSpeed,
         eggsPerHatch,
-        0.5,
-        settings.autoHatchingTimes,
+        0.5
       );
     }
 
@@ -225,14 +223,12 @@
           stats.hatchSpeed,
           eggsPerHatch,
           0.5,
-          settings.autoHatchingTimes,
         ),
         calculateHatchTime(
           value,
           stats.hatchSpeed,
           eggsPerHatch,
           0.9,
-          settings.autoHatchingTimes,
         ),
       ];
     }
@@ -241,7 +237,6 @@
       value,
       stats.hatchSpeed,
       eggsPerHatch,
-      settings.autoHatchingTimes,
     );
   }
 
@@ -564,15 +559,6 @@
             size="sm"
           />
           <span>Range</span>
-        </label>
-        <label class="row">
-          <Checkbox
-            id="autoHatchingTimes"
-            checked={settings.autoHatchingTimes}
-            onChange={() => toggle("autoHatchingTimes")}
-            size="sm"
-          />
-          <span>Auto hatching speed</span>
         </label>
       </div>
 
