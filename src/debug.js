@@ -2,7 +2,6 @@
 import { get } from "svelte/store";
 import { dataStore, isDataLoaded, dataError } from "./lib/dataStore.js";
 import { setCookie, getCookie, deleteCookie } from "./lib/cookieUtils.js";
-import { getEventBoardFromTime, BOARD_EVENT_PERIOD } from "./lib/gameUtil.js";
 
 let flags = {};
 
@@ -52,18 +51,6 @@ export function clearSettings() {
   window.location.reload();
 }
 
-export function getEventBoard(amount = 1) {
-  let time = Date.now();
-
-  for (let i = 0; i < amount; i++) {
-    console.log(
-      `${new Date(time).toLocaleString()}: ${getEventBoardFromTime(time)}`
-    );
-
-    time += BOARD_EVENT_PERIOD;
-  }
-}
-
 function canReadData() {
   return !get(dataError) && get(isDataLoaded);
 }
@@ -78,6 +65,5 @@ if (typeof window !== "undefined") {
     unsetFlag,
     getFlag,
     clearSettings,
-    getEventBoard
   };
 }

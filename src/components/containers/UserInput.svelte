@@ -2,10 +2,6 @@
   import { calculateStats, calculateManualStats } from "../../lib/statUtils.js";
   import { setCookie, getCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
-  import {
-    getEventBoardFromTime,
-    BOARD_EVENT_PERIOD,
-  } from "../../lib/gameUtil.js";
   import { onMount } from "svelte";
   import { getEggsWithInjectedPets } from "../../lib/petUtils.js";
 
@@ -69,8 +65,6 @@
   let visibleEggs = [];
 
   let activeBoardEventId = "none";
-  let boardEventTimeoutId = null;
-  let boardEventIntervalId = null;
 
   function hasLuckAffectedPets(egg) {
     if (!Array.isArray(egg?.pets)) {
@@ -513,9 +507,6 @@
       deleteCookie("hatching-helper-user-input");
     }
 
-    updateActiveBoardEvent();
-    startBoardEventSchedule();
-
     isUserInputReady = true;
   });
 
@@ -776,33 +767,6 @@
       Array.isArray(egg?.pets) &&
       egg.pets.some((p) => p?.rarity === "secret" || p?.rarity === "infinity")
     );
-  }
-
-  function updateActiveBoardEvent() {
-    const nextId = getEventBoardFromTime();
-    if (nextId !== activeBoardEventId) {
-      activeBoardEventId = nextId;
-    }
-  }
-
-  function startBoardEventSchedule() {
-    if (boardEventTimeoutId) {
-      clearTimeout(boardEventTimeoutId);
-    }
-    if (boardEventIntervalId) {
-      clearInterval(boardEventIntervalId);
-    }
-
-    const now = Date.now();
-    const msToNextBoundary = BOARD_EVENT_PERIOD - (now % BOARD_EVENT_PERIOD);
-
-    boardEventTimeoutId = setTimeout(() => {
-      updateActiveBoardEvent();
-      boardEventIntervalId = setInterval(
-        updateActiveBoardEvent,
-        BOARD_EVENT_PERIOD,
-      );
-    }, msToNextBoundary + 25);
   }
 </script>
 
