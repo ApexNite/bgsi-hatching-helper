@@ -7,7 +7,7 @@
   {
     "id": "secret-special-event",
     "name": "Secret Event",
-    "secretLuckMultiplier": 1.1
+    "secretLuckMultiplier": 1.25
   },
   {
     "id": "shiny-special-event",
@@ -17,7 +17,7 @@
   {
     "id": "mythic-special-event",
     "name": "Mythic Event",
-    "mythicChanceMultiplier": 1.25
+    "mythicChanceMultiplier": 1.5
   },
   {
     "id": "celestial-special-event",
@@ -27,7 +27,7 @@
   {
     "id": "infinity-special-event",
     "name": "Infinity Event",
-    "infinityLuckMultiplier": 1.25
+    "infinityLuckMultiplier": 1.5
   },
   {
     "id": "xl-special-event",
