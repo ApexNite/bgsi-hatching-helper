@@ -26,7 +26,7 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "eggs": ["crystal-ore-egg"],
+    "eggs": ["tarot-egg"],
     "infinityLuckMultiplier": 1.5
   },
   {
