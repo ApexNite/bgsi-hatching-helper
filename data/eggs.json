@@ -929,6 +929,12 @@
         "name": "Sky Champion",
         "rarity": "secret",
         "baseChance": 2e-9
+      },
+      {
+        "id": "water-champion",
+        "name": "Water Champion",
+        "rarity": "secret",
+        "baseChance": 2e-9
       }
     ]
   },
@@ -1163,95 +1169,67 @@
     ]
   },
   {
-    "id": "crystal-ore-egg",
-    "name": "Crystal Ore Egg",
+    "id": "tarot-egg",
+    "name": "Tarot Egg",
     "type": "special",
-    "event": "ore",
+    "event": "tarot",
     "trueLuck": true,
     "pets": [
       {
-        "id": "ore-doggy",
-        "name": "Ore Doggy",
+        "id": "the-sun-card",
+        "name": "The Sun Card",
         "rarity": "common",
         "baseChance": 0.65
       },
       {
-        "id": "ore-bunny",
-        "name": "Ore Bunny",
+        "id": "the-moon-card",
+        "name": "The Moon Card",
         "rarity": "rare",
         "baseChance": 0.3
       },
       {
-        "id": "ore-dragon",
-        "name": "Ore Dragon",
+        "id": "the-star-card",
+        "name": "The Star Card",
         "rarity": "epic",
         "baseChance": 0.04
       },
       {
-        "id": "crystal-phoenix",
-        "name": "Crystal Phoenix",
+        "id": "the-magician",
+        "name": "The Magician",
         "rarity": "legendary",
-        "baseChance": 5e-6
+        "baseChance": 1e-5
       },
       {
-        "id": "crystal-overlord",
-        "name": "Crystal Overlord",
+        "id": "the-tower",
+        "name": "The Tower",
         "rarity": "legendary",
-        "baseChance": 5e-7
+        "baseChance": 1e-7
       },
       {
-        "id": "crystal-pyramidium",
-        "name": "Crystal Pyramidium",
+        "id": "high-priestess",
+        "name": "High Priestess",
         "rarity": "secret",
-        "baseChance": 2e-9
+        "baseChance": 5e-9
       },
       {
-        "id": "crystal-golem",
-        "name": "Crystal Golem",
-        "rarity": "secret",
-        "baseChance": 5e-10
-      },
-      {
-        "id": "soul-star",
-        "name": "Soul Star",
-        "rarity": "secret",
-        "baseChance": 5e-11
-      },
-      {
-        "id": "ruby-crystal-dragon",
-        "name": "Ruby Crystal Dragon",
+        "id": "the-lovers",
+        "name": "The Lovers",
         "rarity": "secret",
         "baseChance": 4e-11
       },
       {
-        "id": "sapphire-crystal-dragon",
-        "name": "Sapphire Crystal Dragon",
-        "rarity": "secret",
-        "baseChance": 4e-11
-      },
-      {
-        "id": "emerald-crystal-dragon",
-        "name": "Emerald Crystal Dragon",
-        "rarity": "secret",
-        "baseChance": 4e-11
-      },
-      {
-        "id": "crowned-jewel",
-        "name": "Crowned Jewel",
-        "rarity": "secret",
-        "baseChance": 2e-11
-      },
-      {
-        "id": "crystal-koi",
-        "name": "Crystal Koi",
-        "rarity": "secret",
-        "baseChance": 1.25e-11
-      },
-      {
-        "id": "crystal-dementor",
-        "name": "Crystal Dementor",
+        "id": "the-hermit",
+        "name": "The Hermit",
         "rarity": "infinity",
-        "baseChance": 2e-12
+        "baseChance": 1e-11
+      },
+      {
+        "id": "void-radiance",
+        "name": "VOID RADIANCE",
+        "rarity": "infinity",
+        "baseChance": 2.5e-12,
+        "void": true,
+        "hasMythic":false
       }
     ]
   }
