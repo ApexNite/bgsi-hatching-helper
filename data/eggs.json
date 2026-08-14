@@ -1223,6 +1223,18 @@
         "rarity": "infinity",
         "baseChance": 1e-11
       },
+            {
+        "id": "the-death",
+        "name": "The Death",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      },
+      {
+        "id": "the-devil",
+        "name": "The Devil",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      },
       {
         "id": "void-radiance",
         "name": "VOID RADIANCE",
@@ -1230,6 +1242,165 @@
         "baseChance": 2.5e-12,
         "void": true,
         "hasMythic":false
+      }
+    ]
+  },
+  {
+    "id": "dark-rift-egg",
+    "name": "Dark Rift Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "dark-rift-doggy",
+        "name": "Dark Rift Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "dark-rift-kitty",
+        "name": "Dark Rift Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "dark-rift-bunny",
+        "name": "Dark Rift Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "shadow-mantle",
+        "name": "Shadow Mantle",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "dark-rift-imp",
+        "name": "Dark Rift Imp",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "dark-deatheater",
+        "name": "Dark Deatheater",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "angel-of-death",
+        "name": "Angel of Death",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      }
+    ]
+  },
+  {
+    "id": "corrupt-dark-rift-egg",
+    "name": "Corrupt Dark Rift Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "dark-rift-doggy",
+        "name": "Dark Rift Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "dark-rift-kitty",
+        "name": "Dark Rift Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "dark-rift-bunny",
+        "name": "Dark Rift Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "shadow-mantle",
+        "name": "Shadow Mantle",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "dark-rift-imp",
+        "name": "Dark Rift Imp",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "corrupted-dark-deatheater",
+        "name": "Corrupted Dark Deatheater",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "corrupted-angel-of-death",
+        "name": "Corrupted Angel of Death",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      }
+    ]
+  },
+  {
+    "id": "overlord-egg",
+    "name": "Overlord Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "doggy-overlord",
+        "name": "Doggy Overlord",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "kitty-overlord",
+        "name": "Kitty Overlord",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "bunny-overlord",
+        "name": "Bunny Overlord",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "overlord-elemental",
+        "name": "Overlord Elemental",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "overlord-electra",
+        "name": "Overlord Electra",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "overlord-droid",
+        "name": "Overlord Droid",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "shard-lord",
+        "name": "Shard Lord",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "shadow-overlord",
+        "name": "Shadow Overlord",
+        "rarity": "secret",
+        "baseChance": 1e-9
       }
     ]
   }
