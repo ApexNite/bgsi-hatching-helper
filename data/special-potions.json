@@ -30,9 +30,9 @@
     "infinityLuckMultiplier": 1.5
   },
   {
-    "id": "power-crystal-iv",
-    "name": "Power Crystal IV",
-    "eggs": ["crystal-ore-egg"],
+    "id": "rift-elixir-iv",
+    "name": "Rift Elixir IV",
+    "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "overlord-egg"],
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
