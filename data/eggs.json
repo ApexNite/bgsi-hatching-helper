@@ -1169,83 +1169,6 @@
     ]
   },
   {
-    "id": "tarot-egg",
-    "name": "Tarot Egg",
-    "type": "special",
-    "event": "tarot",
-    "trueLuck": true,
-    "pets": [
-      {
-        "id": "the-sun-card",
-        "name": "The Sun Card",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "the-moon-card",
-        "name": "The Moon Card",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "the-star-card",
-        "name": "The Star Card",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "the-magician",
-        "name": "The Magician",
-        "rarity": "legendary",
-        "baseChance": 1e-5
-      },
-      {
-        "id": "the-tower",
-        "name": "The Tower",
-        "rarity": "legendary",
-        "baseChance": 1e-7
-      },
-      {
-        "id": "high-priestess",
-        "name": "High Priestess",
-        "rarity": "secret",
-        "baseChance": 5e-9
-      },
-      {
-        "id": "the-lovers",
-        "name": "The Lovers",
-        "rarity": "secret",
-        "baseChance": 4e-11
-      },
-      {
-        "id": "the-hermit",
-        "name": "The Hermit",
-        "rarity": "infinity",
-        "baseChance": 1e-11
-      },
-            {
-        "id": "the-death",
-        "name": "The Death",
-        "rarity": "infinity",
-        "baseChance": 5e-12
-      },
-      {
-        "id": "the-devil",
-        "name": "The Devil",
-        "rarity": "infinity",
-        "baseChance": 5e-12
-      },
-      {
-        "id": "void-radiance",
-        "name": "VOID RADIANCE",
-        "rarity": "infinity",
-        "baseChance": 2.5e-12,
-        "void": true,
-        "hasMythic":false
-      }
-    ]
-  },
-  {
     "id": "dark-rift-egg",
     "name": "Dark Rift Egg",
     "type": "special",
@@ -1401,6 +1324,64 @@
         "name": "Shadow Overlord",
         "rarity": "secret",
         "baseChance": 1e-9
+      }
+    ]
+  },
+  {
+    "id": "cloudy-rift-egg",
+    "name": "Cloudy Rift Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "cloudy-doggy",
+        "name": "Cloudy Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "cloudy-kitty",
+        "name": "Cloudy Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "cloudy-bunny",
+        "name": "Cloudy Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "cloudy-hydra",
+        "name": "Cloudy Hydra",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "cloudy-elemental",
+        "name": "Cloudy Elemental",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "cloud-catcher",
+        "name": "Cloud Catcher",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "sky-chime",
+        "name": "Sky Chime",
+        "rarity": "secret",
+        "celestial": "true",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "pisces-twins",
+        "name": "Pisces Twins",
+        "rarity": "infinity",
+        "baseChance": 1e-11
       }
     ]
   }
