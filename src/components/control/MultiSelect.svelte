@@ -222,13 +222,4 @@
     flex: 1 1 auto;
     min-width: 0;
   }
-
-  .item-check {
-    flex: 0 0 auto;
-    margin-left: auto;
-    width: 1rem;
-    text-align: center;
-    opacity: 0.9;
-    font-weight: 600;
-  }
 </style>
