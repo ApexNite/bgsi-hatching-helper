@@ -6,6 +6,7 @@
   import { getEggsWithInjectedPets } from "../../lib/petUtils.js";
 
   import Dropdown from "../control/Dropdown.svelte";
+  import MultiSelect from "../control/MultiSelect.svelte";
   import Checkbox from "../control/Checkbox.svelte";
   import NumberInput from "../control/NumberInput.svelte";
   import WarningBanner from "../control/WarningBanner.svelte";
@@ -64,7 +65,7 @@
   let injectedEggs = [];
   let visibleEggs = [];
 
-  let activeBoardEventId = "none";
+  let activeBoardEventIds = [];
 
   function hasLuckAffectedPets(egg) {
     if (!Array.isArray(egg?.pets)) {
@@ -293,14 +294,10 @@
   $: selectedWorldId = selectedWorld.id;
   $: selectedEventId = activeEvent;
 
-  $: eventBoardOptions = [
-    { id: "none", name: "None" },
-    ...($dataStore.eventBoard || []),
-  ];
-  $: selectedBoardEvent =
-    activeBoardEventId !== "none"
-      ? ($dataStore.eventBoard || []).find((e) => e.id === activeBoardEventId)
-      : null;
+  $: eventBoardOptions = $dataStore.eventBoard || [];
+  $: selectedBoardEvents = (eventBoardOptions || []).filter((event) =>
+    activeBoardEventIds.includes(event.id),
+  );
 
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
@@ -336,7 +333,7 @@
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
-          ...(selectedBoardEvent ? [selectedBoardEvent] : []),
+          ...(selectedBoardEvents || []),
           ...(selectedShrineBuffId !== "none" && !isTrueLuckActive
             ? (visibleShrineBuffs || []).filter(
                 (sb) => sb.id === selectedShrineBuffId,
@@ -502,6 +499,11 @@
         dismissedInfinityWarning = savedData.dismissedInfinityWarning ?? false;
         dismissedTrueLuckWarning = savedData.dismissedTrueLuckWarning ?? false;
         trueLuckMultiplierByEgg = savedData.trueLuckMultiplierByEgg ?? {};
+        activeBoardEventIds = Array.isArray(savedData.activeBoardEventIds)
+          ? savedData.activeBoardEventIds
+          : savedData.activeBoardEventId && savedData.activeBoardEventId !== "none"
+            ? [savedData.activeBoardEventId]
+            : [];
       }
     } catch (e) {
       deleteCookie("hatching-helper-user-input");
@@ -533,6 +535,8 @@
       dismissedInfinityWarning,
       dismissedTrueLuckWarning,
       trueLuckMultiplierByEgg,
+      activeBoardEventIds,
+      activeBoardEventId: activeBoardEventIds[0] ?? "none",
     };
 
     setCookie("hatching-helper-user-input", dataToSave);
@@ -1814,14 +1818,12 @@
                 Special Event:
               </span>
               <div class="menu-control">
-                <Dropdown
+                <MultiSelect
                   id="event-board-special-event"
                   options={eventBoardOptions}
-                  selectedOption={eventBoardOptions.find(
-                    (o) => o.id === activeBoardEventId,
-                  ) || eventBoardOptions[0]}
-                  onSelect={({ option }) => {
-                    activeBoardEventId = option.id;
+                  selectedOptions={selectedBoardEvents}
+                  onChange={({ options }) => {
+                    activeBoardEventIds = options.map((option) => option.id);
                     saveToCache();
                   }}
                 />
