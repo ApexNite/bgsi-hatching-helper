@@ -5,6 +5,12 @@
     "img": "assets/images/icons/multi-egg",
     "tiers": [
       {
+        "id": "omega-iii",
+        "name": "Omega III",
+        "luck": 4.5,
+        "baseHatchSpeed": 1.4
+      },
+      {
         "id": "omega-ii",
         "name": "Omega II",
         "luck": 4,
@@ -105,6 +111,14 @@
     "img": "assets/images/icons/secret-pets",
     "tiers": [
       {
+        "id": "omega-iii",
+        "name": "Omega III",
+        "luck": 3.5,
+        "_secretLuck": 0.1,
+        "_shinyChance": 0.08,
+        "_mythicChance": 0.05
+      },
+      {
         "id": "omega-ii",
         "name": "Omega II",
         "luck": 3,
@@ -183,6 +197,12 @@
     "name": "World Eggs",
     "img": "assets/images/eggs/rainbow-egg",
     "tiers": [
+      {
+        "id": "omega-iii",
+        "name": "Omega III",
+        "luck": 1.75,
+        "xlChance": 0.015
+      },
       {
         "id": "omega-ii",
         "name": "Omega II",

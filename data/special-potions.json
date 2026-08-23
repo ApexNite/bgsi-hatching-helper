@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["tarot-egg", "doodle-egg", "rainbow-egg"],
+    "eggs": ["cloudy-rift-egg", "doodle-egg", "dark-rift-egg", "corrupt-dark-rift-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -30,9 +30,17 @@
     "infinityLuckMultiplier": 1.5
   },
   {
-    "id": "power-crystal-iv",
-    "name": "Power Crystal IV",
-    "eggs": ["crystal-ore-egg"],
+    "id": "rift-elixir-iv",
+    "name": "Rift Elixir IV",
+    "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "overlord-egg", "cloudy-rift-egg"],
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
+  },
+  {
+    "id": "sky-elixir-iv",
+    "name": "Sky Elixir IV",
+    "eggs": ["cloudy-rift-egg"],
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5

@@ -1169,67 +1169,219 @@
     ]
   },
   {
-    "id": "tarot-egg",
-    "name": "Tarot Egg",
+    "id": "dark-rift-egg",
+    "name": "Dark Rift Egg",
     "type": "special",
-    "event": "tarot",
-    "trueLuck": true,
+    "event": "rift",
+    "riftable": true,
     "pets": [
       {
-        "id": "the-sun-card",
-        "name": "The Sun Card",
+        "id": "dark-rift-doggy",
+        "name": "Dark Rift Doggy",
         "rarity": "common",
         "baseChance": 0.65
       },
       {
-        "id": "the-moon-card",
-        "name": "The Moon Card",
+        "id": "dark-rift-kitty",
+        "name": "Dark Rift Kitty",
         "rarity": "rare",
         "baseChance": 0.3
       },
       {
-        "id": "the-star-card",
-        "name": "The Star Card",
+        "id": "dark-rift-bunny",
+        "name": "Dark Rift Bunny",
         "rarity": "epic",
         "baseChance": 0.04
       },
       {
-        "id": "the-magician",
-        "name": "The Magician",
+        "id": "shadow-mantle",
+        "name": "Shadow Mantle",
         "rarity": "legendary",
-        "baseChance": 1e-5
+        "baseChance": 1e-6
       },
       {
-        "id": "the-tower",
-        "name": "The Tower",
+        "id": "dark-rift-imp",
+        "name": "Dark Rift Imp",
         "rarity": "legendary",
-        "baseChance": 1e-7
+        "baseChance": 2.5e-7
       },
       {
-        "id": "high-priestess",
-        "name": "High Priestess",
+        "id": "dark-deatheater",
+        "name": "Dark Deatheater",
         "rarity": "secret",
-        "baseChance": 5e-9
+        "baseChance": 4e-9
       },
       {
-        "id": "the-lovers",
-        "name": "The Lovers",
+        "id": "angel-of-death",
+        "name": "Angel of Death",
         "rarity": "secret",
-        "baseChance": 4e-11
+        "baseChance": 5e-10
+      }
+    ]
+  },
+  {
+    "id": "corrupt-dark-rift-egg",
+    "name": "Corrupt Dark Rift Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "dark-rift-doggy",
+        "name": "Dark Rift Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
       },
       {
-        "id": "the-hermit",
-        "name": "The Hermit",
+        "id": "dark-rift-kitty",
+        "name": "Dark Rift Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "dark-rift-bunny",
+        "name": "Dark Rift Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "shadow-mantle",
+        "name": "Shadow Mantle",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "dark-rift-imp",
+        "name": "Dark Rift Imp",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "corrupted-dark-deatheater",
+        "name": "Corrupted Dark Deatheater",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "corrupted-angel-of-death",
+        "name": "Corrupted Angel of Death",
+        "rarity": "secret",
+        "baseChance": 5e-10
+      }
+    ]
+  },
+  {
+    "id": "overlord-egg",
+    "name": "Overlord Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "doggy-overlord",
+        "name": "Doggy Overlord",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "kitty-overlord",
+        "name": "Kitty Overlord",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "bunny-overlord",
+        "name": "Bunny Overlord",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "overlord-elemental",
+        "name": "Overlord Elemental",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "overlord-electra",
+        "name": "Overlord Electra",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "overlord-droid",
+        "name": "Overlord Droid",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "shard-lord",
+        "name": "Shard Lord",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "shadow-overlord",
+        "name": "Shadow Overlord",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      }
+    ]
+  },
+  {
+    "id": "cloudy-rift-egg",
+    "name": "Cloudy Rift Egg",
+    "type": "special",
+    "event": "rift",
+    "riftable": true,
+    "pets": [
+      {
+        "id": "cloudy-doggy",
+        "name": "Cloudy Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "cloudy-kitty",
+        "name": "Cloudy Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "cloudy-bunny",
+        "name": "Cloudy Bunny",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "cloudy-hydra",
+        "name": "Cloudy Hydra",
+        "rarity": "legendary",
+        "baseChance": 1e-6
+      },
+      {
+        "id": "cloudy-elemental",
+        "name": "Cloudy Elemental",
+        "rarity": "legendary",
+        "baseChance": 2.5e-7
+      },
+      {
+        "id": "cloud-catcher",
+        "name": "Cloud Catcher",
+        "rarity": "secret",
+        "baseChance": 1e-9
+      },
+      {
+        "id": "sky-chime",
+        "name": "Sky Chime",
+        "rarity": "secret",
+        "celestial": "true",
+        "baseChance": 1e-10
+      },
+      {
+        "id": "pisces-twins",
+        "name": "Pisces Twins",
         "rarity": "infinity",
         "baseChance": 1e-11
-      },
-      {
-        "id": "void-radiance",
-        "name": "VOID RADIANCE",
-        "rarity": "infinity",
-        "baseChance": 2.5e-12,
-        "void": true,
-        "hasMythic":false
       }
     ]
   }
