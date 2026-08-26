@@ -1215,7 +1215,8 @@
         "id": "angel-of-death",
         "name": "Angel of Death",
         "rarity": "secret",
-        "baseChance": 5e-10
+        "baseChance": 5e-10,
+        "celestial": true
       }
     ]
   },
