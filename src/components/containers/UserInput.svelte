@@ -298,6 +298,9 @@
   $: selectedBoardEvents = (eventBoardOptions || []).filter((event) =>
     activeBoardEventIds.includes(event.id),
   );
+  $: selectedEvents = ($dataStore.events || []).filter(
+    (event) => eventToggles[event.id],
+  );
 
   $: currentWorldIndexState =
     isWorldEgg && selectedEgg?.world
@@ -1796,26 +1799,24 @@
         <button
           class="section-separator"
           type="button"
-          on:click={() => toggleSection("event-board")}
+          on:click={() => toggleSection("events")}
         >
-          <span>Event Board</span>
-          <strong
-            >{(collapsedSections["event-board"] ?? true) ? "−" : "+"}</strong
-          >
+          <span>Events</span>
+          <strong>{(collapsedSections["events"] ?? true) ? "−" : "+"}</strong>
         </button>
-        {#if collapsedSections["event-board"] ?? true}
+        {#if collapsedSections["events"] ?? true}
           <section class="menu-section">
             <div class="menu-row">
               <span class="menu-label">
                 <span class="menu-img">
                   <SmartImage
                     base="assets/images/icons/luck"
-                    alt="Special Event"
+                    alt="Special Events"
                     size="32px"
                     decoding="async"
                   />
                 </span>
-                Special Event:
+                Special Events:
               </span>
               <div class="menu-control">
                 <MultiSelect
@@ -1829,43 +1830,36 @@
                 />
               </div>
             </div>
-          </section>
-        {/if}
-
-        <button
-          class="section-separator"
-          type="button"
-          on:click={() => toggleSection("events")}
-        >
-          <span>Events</span>
-          <strong>{(collapsedSections["events"] ?? true) ? "−" : "+"}</strong>
-        </button>
-        {#if collapsedSections["events"] ?? true}
-          <section class="menu-section">
-            {#each $dataStore.events || [] as event (event.id)}
-              <div class="menu-row">
-                <span class="menu-label">
-                  {#if event.img}
-                    <span class="menu-img">
-                      <SmartImage
-                        base={event.img}
-                        alt={event.name}
-                        size="32px"
-                        decoding="async"
-                      />
-                    </span>
-                  {/if}
-                  {event.name}:
-                </span>
-                <div class="menu-control">
-                  <Checkbox
-                    id={event.id}
-                    checked={eventToggles[event.id]}
-                    onChange={() => updateToggle(eventToggles, event.id)}
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luck"
+                    alt="Global Events"
+                    size="32px"
+                    decoding="async"
                   />
-                </div>
+                </span>
+                Global Events:
+              </span>
+              <div class="menu-control">
+                <MultiSelect
+                  id="events"
+                  options={$dataStore.events || []}
+                  selectedOptions={selectedEvents}
+                  onChange={({ options }) => {
+                    const selectedIds = new Set(options.map((option) => option.id));
+                    eventToggles = Object.fromEntries(
+                      ($dataStore.events || []).map((event) => [
+                        event.id,
+                        selectedIds.has(event.id),
+                      ]),
+                    );
+                    saveToCache();
+                  }}
+                />
               </div>
-            {/each}
+            </div>
           </section>
         {/if}
       {/if}
