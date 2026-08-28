@@ -1,42 +1,42 @@
 [
   {
     "id": "luck-special-event",
-    "name": "Luck Event",
+    "name": "🍀 Luck 🍀",
     "luckMultiplier": 1.25
   },
   {
     "id": "secret-special-event",
-    "name": "Secret Event",
+    "name": "❓ Secret ❓",
     "secretLuckMultiplier": 1.25
   },
   {
     "id": "shiny-special-event",
-    "name": "Shiny Event",
+    "name": "✨ Shiny ✨",
     "shinyChanceMultiplier": 1.25
   },
   {
     "id": "mythic-special-event",
-    "name": "Mythic Event",
+    "name": "🔮 Mythic 🔮",
     "mythicChanceMultiplier": 1.5
   },
   {
     "id": "celestial-special-event",
-    "name": "Celestial Event",
+    "name": "💫 Celestial 💫",
     "celestialLuckMultiplier": 1.25
   },
   {
     "id": "infinity-special-event",
-    "name": "Infinity Event",
+    "name": "♾️ Infinity ♾️",
     "infinityLuckMultiplier": 1.5
   },
   {
     "id": "xl-special-event",
-    "name": "XL Event",
+    "name": "🎁 XL 🎁",
     "xlChanceMultiplier": 1.25
   },
   {
     "id": "super-palooza",
-    "name": "Super Palooza",
+    "name": "🎁 Super Palooza 🎁",
     "superLegendaryChanceMultiplier": 2
   }
 ]

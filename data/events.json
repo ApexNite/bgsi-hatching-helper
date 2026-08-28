@@ -1,31 +1,31 @@
 [
   {
     "id": "lucky-event",
-    "name": "Lucky Event",
+    "name": "Lucky",
     "img": "assets/images/icons/luck",
     "luckMultiplier": 2
   },
   {
     "id": "secret-chance-event",
-    "name": "Secret Chance Event",
+    "name": "Secret Chance",
     "img": "assets/images/icons/secret-luck",
     "secretLuckMultiplier": 2
   },
   {
     "id": "infinity-event",
-    "name": "Infinity Event",
+    "name": "Infinity",
     "img": "assets/images/icons/infinity-luck",
     "infinityLuckMultiplier": 2
   },
   {
     "id": "mythic-event",
-    "name": "Mythic Event",
+    "name": "Mythic",
     "img": "assets/images/icons/mythic",
     "mythicChance": 0.25
   },
   {
     "id": "shiny-event",
-    "name": "Shiny Event",
+    "name": "Shiny",
     "img": "assets/images/icons/shiny",
     "shinyChanceMultiplier": 1.25
   },
