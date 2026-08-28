@@ -1385,5 +1385,57 @@
         "baseChance": 1e-11
       }
     ]
+  },
+  {
+    "id": "stratus-egg",
+    "name": "Stratus Egg",
+    "type": "special",
+    "event": "straus",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "little-cloud",
+        "name": "Little Cloud",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "sky-bird",
+        "name": "Sky Bird",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "hot-air-phoenix",
+        "name": "Hot Air Phoenix",
+        "rarity": "legendary",
+        "baseChance": 1e-5
+      },
+      {
+        "id": "jawcraft",
+        "name": "Jawcraft",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "empyrean-bolt",
+        "name": "Empyrean Bolt",
+        "rarity": "secret",
+        "baseChance": 1e-8
+      },
+      {
+        "id": "rainshine",
+        "name": "Rainshine",
+        "rarity": "secret",
+        "celestial": "true",
+        "baseChance": 4e-11
+      },
+      {
+        "id": "cloudbuster",
+        "name": "Cloudbuster",
+        "rarity": "infinity",
+        "baseChance": 5e-12
+      }
+    ]
   }
 ]
