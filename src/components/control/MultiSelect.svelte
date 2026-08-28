@@ -27,6 +27,10 @@
     return names.length > 1 ? `${names[0]} +${names.length - 1}` : names[0];
   })();
 
+  $: selectedImageOptions = normalizedSelectedOptions.filter(
+    (option) => option.img,
+  );
+
   function toggle() {
     open = !open;
   }
@@ -63,7 +67,27 @@
     title={selectedLabel}
   >
     <span class="button-content">
-      <span class="button-label">{selectedLabel}</span>
+      {#if selectedImageOptions.length}
+        <span class="selected-icons" aria-label={selectedLabel}>
+          {#each selectedImageOptions.slice(0, 3) as option (option.id)}
+            <span class="selected-icon">
+              <SmartImage
+                base={option.img}
+                alt={option.name}
+                decoding="async"
+                size="26px"
+              />
+            </span>
+          {/each}
+          {#if selectedImageOptions.length > 3}
+            <span class="selected-count"
+              >+{selectedImageOptions.length - 3}</span
+            >
+          {/if}
+        </span>
+      {:else}
+        <span class="button-label">{selectedLabel}</span>
+      {/if}
     </span>
     <span class="button-caret">{open ? "▴" : "▾"}</span>
   </button>
@@ -86,9 +110,6 @@
           on:click={() => selectOption(option)}
         >
           <span class:filled={selectedIds.has(option.id)} class="item-box">
-            {#if selectedIds.has(option.id)}
-              ✓
-            {/if}
           </span>
           {#if option.img}
             <span class="img-wrapper">
@@ -111,6 +132,8 @@
   .wrapper {
     display: inline-block;
     position: relative;
+    width: max-content;
+    max-width: 100%;
   }
 
   .button-dropdown,
@@ -131,12 +154,14 @@
     justify-content: space-between;
     gap: 0.75rem;
     border: 1.5px solid var(--border);
+    width: 100%;
   }
 
   .button-content {
     display: flex;
     align-items: center;
     min-width: 0;
+    overflow: hidden;
   }
 
   .button-label {
@@ -148,6 +173,26 @@
   .button-caret {
     flex: 0 0 auto;
     opacity: 0.8;
+  }
+
+  .selected-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .selected-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+  }
+
+  .selected-count {
+    flex: 0 0 auto;
+    padding-left: 0.15rem;
+    white-space: nowrap;
   }
 
   .dropdown-item {
@@ -199,27 +244,45 @@
   }
 
   .item-box {
+    position: relative;
     flex: 0 0 auto;
-    width: 1rem;
-    height: 1rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 20px;
+    height: 20px;
     border: 1.5px solid var(--border);
-    border-radius: 0.2rem;
+    border-radius: var(--radius-md);
     background: var(--menu-bg);
-    color: var(--primary-text);
-    font-size: 0.75rem;
-    line-height: 1;
+    transition: background-color 0.2s ease;
+  }
+
+  .item-box::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    border: solid var(--accent);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    top: 45%;
+    left: 50%;
+    margin: -5px 0 0 -3px;
   }
 
   .item-box.filled {
-    background: color-mix(in srgb, var(--accent) 18%, var(--menu-bg));
-    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    background: color-mix(in srgb, var(--accent) 5%, var(--menu-bg));
+    border-color: var(--accent);
+  }
+
+  .item-box.filled::after {
+    opacity: 1;
   }
 
   .item-label {
     flex: 1 1 auto;
     min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>
