@@ -1272,63 +1272,6 @@
     ]
   },
   {
-    "id": "overlord-egg",
-    "name": "Overlord Egg",
-    "type": "special",
-    "event": "rift",
-    "riftable": true,
-    "pets": [
-      {
-        "id": "doggy-overlord",
-        "name": "Doggy Overlord",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "kitty-overlord",
-        "name": "Kitty Overlord",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "bunny-overlord",
-        "name": "Bunny Overlord",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "overlord-elemental",
-        "name": "Overlord Elemental",
-        "rarity": "legendary",
-        "baseChance": 1e-6
-      },
-      {
-        "id": "overlord-electra",
-        "name": "Overlord Electra",
-        "rarity": "legendary",
-        "baseChance": 2.5e-7
-      },
-      {
-        "id": "overlord-droid",
-        "name": "Overlord Droid",
-        "rarity": "secret",
-        "baseChance": 4e-9
-      },
-      {
-        "id": "shard-lord",
-        "name": "Shard Lord",
-        "rarity": "secret",
-        "baseChance": 4e-9
-      },
-      {
-        "id": "shadow-overlord",
-        "name": "Shadow Overlord",
-        "rarity": "secret",
-        "baseChance": 1e-9
-      }
-    ]
-  },
-  {
     "id": "cloudy-rift-egg",
     "name": "Cloudy Rift Egg",
     "type": "special",
@@ -1435,6 +1378,22 @@
         "name": "Cloudbuster",
         "rarity": "infinity",
         "baseChance": 5e-12
+      },
+      {
+        "id": "void-shinigami",
+        "name": "VOID SHINIGAMI",
+        "rarity": "infinity",
+        "baseChance": 2e-12,
+        "void": true,
+        "hasMythic": false
+      },
+      {
+        "id": "void-radiance",
+        "name": "VOID RADIANCE",
+        "rarity": "infinity",
+        "baseChance": 2e-12,
+        "void": true,
+        "hasMythic": false
       }
     ]
   }
