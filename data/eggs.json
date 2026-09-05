@@ -1388,8 +1388,8 @@
         "hasMythic": false
       },
       {
-        "id": "void-radiance",
-        "name": "VOID RADIANCE",
+        "id": "void-koi",
+        "name": "VOID KOI",
         "rarity": "infinity",
         "baseChance": 1e-12,
         "void": true,
