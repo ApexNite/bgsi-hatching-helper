@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["cloudy-rift-egg", "doodle-egg", "dark-rift-egg", "corrupt-dark-rift-egg"],
+    "eggs": ["void-realm-egg", "doodle-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -33,14 +33,6 @@
     "id": "rift-elixir-iv",
     "name": "Rift Elixir IV",
     "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "overlord-egg", "cloudy-rift-egg"],
-    "luck": 2.5,
-    "shinyChance": 1.5,
-    "mythicChance": 1.5
-  },
-  {
-    "id": "sky-elixir-iv",
-    "name": "Sky Elixir IV",
-    "eggs": ["cloudy-rift-egg", "stratus-egg"],
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
