@@ -44,6 +44,14 @@ export function calculateStats(sources, toggles, numbers) {
     xlChance: 0,
     superLegendaryChance: 0,
     hatchSpeed: 1,
+    rawLuckMultiplier: 1,
+    rawSecretLuckMultiplier: 1,
+    rawCelestialLuckMultiplier: 1,
+    rawInfinityLuckMultiplier: 1,
+    rawShinyChanceMultiplier: 1,
+    rawMythicChanceMultiplier: 1,
+    rawXLChanceMultiplier: 1,
+    rawHatchSpeedMultiplier: 1,
     luckMultiplier: 0,
     secretLuckMultiplier: 1,
     celestialLuckMultiplier: 1,
@@ -199,9 +207,12 @@ export function calculateManualStats(manualStats, sources, numbers) {
 
 function calculateStatsFromTotals(totals, sources) {
   const shinyBase = toNumber(
-    D(totals.baseShinyChance || 0)
-      .times(D(1).plus(totals.shinyChance || 0))
-      .times(totals.shinyChanceMultiplier || 1),
+    mul(
+      D(totals.baseShinyChance || 0)
+        .times(D(1).plus(totals.shinyChance || 0))
+        .times(totals.shinyChanceMultiplier || 1),
+      totals.rawShinyChanceMultiplier || 1,
+    ),
   );
 
   const getXlChanceForRarity = (rarity) => {
@@ -226,21 +237,30 @@ function calculateStatsFromTotals(totals, sources) {
     luck: toNumber(calculateAdjustedLuck(totals, sources)),
     trueLuck: toNumber(totals.trueLuck || 0),
     secretLuck: toNumber(
-      add(
-        totals.baseSecretLuck || 0,
-        mul(totals.secretLuck || 0, totals.secretLuckMultiplier || 1),
+      mul(
+        add(
+          totals.baseSecretLuck || 0,
+          mul(totals.secretLuck || 0, totals.secretLuckMultiplier || 1),
+        ),
+        totals.rawSecretLuckMultiplier || 1,
       ),
     ),
     celestialLuck: toNumber(
-      add(
-        totals.baseCelestialLuck || 0,
-        mul(totals.celestialLuck || 0, totals.celestialLuckMultiplier || 1),
+      mul(
+        add(
+          totals.baseCelestialLuck || 0,
+          mul(totals.celestialLuck || 0, totals.celestialLuckMultiplier || 1),
+        ),
+        totals.rawCelestialLuckMultiplier || 1,
       ),
     ),
     infinityLuck: toNumber(
-      add(
-        totals.baseInfinityLuck || 0,
-        mul(totals.infinityLuck || 0, totals.infinityLuckMultiplier || 1),
+      mul(
+        add(
+          totals.baseInfinityLuck || 0,
+          mul(totals.infinityLuck || 0, totals.infinityLuckMultiplier || 1),
+        ),
+        totals.rawInfinityLuckMultiplier || 1,
       ),
     ),
     shinyChance: toNumber(
@@ -249,14 +269,20 @@ function calculateStatsFromTotals(totals, sources) {
         : shinyBase,
     ),
     mythicChance: toNumber(
-      D(totals.baseMythicChance || 0)
-        .times(D(1).plus(totals.mythicChance || 0))
-        .times(totals.mythicChanceMultiplier || 1),
+      mul(
+        D(totals.baseMythicChance || 0)
+          .times(D(1).plus(totals.mythicChance || 0))
+          .times(totals.mythicChanceMultiplier || 1),
+        totals.rawMythicChanceMultiplier || 1,
+      ),
     ),
     hatchSpeed: toNumber(
-      add(
-        totals.baseHatchSpeed || 0,
-        mul(totals.hatchSpeed || 0, totals.hatchSpeedMultiplier || 1),
+      mul(
+        add(
+          totals.baseHatchSpeed || 0,
+          mul(totals.hatchSpeed || 0, totals.hatchSpeedMultiplier || 1),
+        ),
+        totals.rawHatchSpeedMultiplier || 1,
       ),
     ),
     getXlChanceForRarity,
@@ -323,6 +349,59 @@ function applySource(totals, source) {
     totals.infinityLuck = add(
       totals.infinityLuck,
       mul(source.infinityLuck, times),
+    );
+  }
+
+  if (typeof source.rawLuckMultiplier === "number") {
+    totals.rawLuckMultiplier *= Math.pow(source.rawLuckMultiplier, times);
+  }
+
+  if (typeof source.rawHatchSpeedMultiplier === "number") {
+    totals.rawHatchSpeedMultiplier *= Math.pow(
+      source.rawHatchSpeedMultiplier,
+      times,
+    );
+  }
+
+  if (typeof source.rawShinyChanceMultiplier === "number") {
+    totals.rawShinyChanceMultiplier *= Math.pow(
+      source.rawShinyChanceMultiplier,
+      times,
+    );
+  }
+
+  if (typeof source.rawMythicChanceMultiplier === "number") {
+    totals.rawMythicChanceMultiplier *= Math.pow(
+      source.rawMythicChanceMultiplier,
+      times,
+    );
+  }
+
+  if (typeof source.rawXLChanceMultiplier === "number") {
+    totals.rawXLChanceMultiplier *= Math.pow(
+      source.rawXLChanceMultiplier,
+      times,
+    );
+  }
+
+  if (typeof source.rawSecretLuckMultiplier === "number") {
+    totals.rawSecretLuckMultiplier *= Math.pow(
+      source.rawSecretLuckMultiplier,
+      times,
+    );
+  }
+
+  if (typeof source.rawCelestialLuckMultiplier === "number") {
+    totals.rawCelestialLuckMultiplier *= Math.pow(
+      source.rawCelestialLuckMultiplier,
+      times,
+    );
+  }
+
+  if (typeof source.rawInfinityLuckMultiplier === "number") {
+    totals.rawInfinityLuckMultiplier *= Math.pow(
+      source.rawInfinityLuckMultiplier,
+      times,
     );
   }
 
@@ -448,9 +527,10 @@ function calculateSeasonPerks(stars) {
 function calculateAdjustedLuck(totals, sources, interval = 100) {
   const baseLuck = Number(totals.baseLuck) || 0;
   const luck = Number(totals.luck) || 0;
+  const rawLuckMultiplier = Number(totals.rawLuckMultiplier || 1);
   const luckMultiplier = Number(totals.luckMultiplier) || 1;
 
-  const normalLuck = baseLuck + luck * luckMultiplier;
+  const normalLuck = (baseLuck + luck * luckMultiplier) * rawLuckMultiplier;
 
   const burstVariantCounts = new Map();
 
