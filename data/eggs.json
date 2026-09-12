@@ -1272,128 +1272,55 @@
     ]
   },
   {
-    "id": "cloudy-rift-egg",
-    "name": "Cloudy Rift Egg",
+    "id": "void-realm-egg",
+    "name": "Void Realm Egg",
     "type": "special",
-    "event": "rift",
-    "riftable": true,
-    "pets": [
-      {
-        "id": "cloudy-doggy",
-        "name": "Cloudy Doggy",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "cloudy-kitty",
-        "name": "Cloudy Kitty",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "cloudy-bunny",
-        "name": "Cloudy Bunny",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "cloudy-hydra",
-        "name": "Cloudy Hydra",
-        "rarity": "legendary",
-        "baseChance": 1e-6
-      },
-      {
-        "id": "cloudy-elemental",
-        "name": "Cloudy Elemental",
-        "rarity": "legendary",
-        "baseChance": 2.5e-7
-      },
-      {
-        "id": "cloud-catcher",
-        "name": "Cloud Catcher",
-        "rarity": "secret",
-        "baseChance": 1e-9
-      },
-      {
-        "id": "sky-chime",
-        "name": "Sky Chime",
-        "rarity": "secret",
-        "celestial": "true",
-        "baseChance": 1e-10
-      },
-      {
-        "id": "pisces-twins",
-        "name": "Pisces Twins",
-        "rarity": "infinity",
-        "baseChance": 1e-11
-      }
-    ]
-  },
-  {
-    "id": "stratus-egg",
-    "name": "Stratus Egg",
-    "type": "special",
-    "event": "straus",
+    "event": "voidrealm",
     "trueLuck": true,
     "pets": [
       {
-        "id": "little-cloud",
-        "name": "Little Cloud",
+        "id": "shattered-doggy",
+        "name": "Shattered Doggy",
         "rarity": "common",
         "baseChance": 0.65
       },
       {
-        "id": "sky-bird",
-        "name": "Sky Bird",
+        "id": "shattered-kitty",
+        "name": "Shattered Kitty",
         "rarity": "rare",
         "baseChance": 0.3
       },
       {
-        "id": "hot-air-phoenix",
-        "name": "Hot Air Phoenix",
+        "id": "the-voided",
+        "name": "The Voided",
         "rarity": "legendary",
         "baseChance": 1e-5
       },
       {
-        "id": "jawcraft",
-        "name": "Jawcraft",
+        "id": "eye-of-null",
+        "name": "Eye of Null",
         "rarity": "legendary",
         "baseChance": 1e-7
       },
       {
-        "id": "empyrean-bolt",
-        "name": "Empyrean Bolt",
-        "rarity": "secret",
-        "baseChance": 1e-8
-      },
-      {
-        "id": "rainshine",
-        "name": "Rainshine",
+        "id": "purevoid",
+        "name": "PureVOID",
         "rarity": "secret",
         "celestial": "true",
         "baseChance": 4e-11
       },
       {
-        "id": "cloudbuster",
-        "name": "Cloudbuster",
+        "id": "nihil",
+        "name": "Nihil",
         "rarity": "infinity",
-        "baseChance": 5e-12
+        "baseChance": 8e-12
       },
       {
-        "id": "void-shinigami",
-        "name": "VOID SHINIGAMI",
-        "rarity": "infinity",
-        "baseChance": 2e-12,
+        "id": "[redacted]",
+        "name": "[REDACTED]",
+        "rarity": "secret",
         "void": true,
-        "hasMythic": false
-      },
-      {
-        "id": "void-koi",
-        "name": "VOID KOI",
-        "rarity": "infinity",
-        "baseChance": 1e-12,
-        "void": true,
-        "hasMythic": false
+        "baseChance": 1e-11
       }
     ]
   }
