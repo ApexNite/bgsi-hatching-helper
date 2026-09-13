@@ -504,7 +504,8 @@
         trueLuckMultiplierByEgg = savedData.trueLuckMultiplierByEgg ?? {};
         activeBoardEventIds = Array.isArray(savedData.activeBoardEventIds)
           ? savedData.activeBoardEventIds
-          : savedData.activeBoardEventId && savedData.activeBoardEventId !== "none"
+          : savedData.activeBoardEventId &&
+              savedData.activeBoardEventId !== "none"
             ? [savedData.activeBoardEventId]
             : [];
       }
@@ -1189,6 +1190,74 @@
         <button
           class="section-separator"
           type="button"
+          on:click={() => toggleSection("events")}
+        >
+          <span>Events</span>
+          <strong>{(collapsedSections["events"] ?? true) ? "−" : "+"}</strong>
+        </button>
+        {#if collapsedSections["events"] ?? true}
+          <section class="menu-section">
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luck"
+                    alt="Special Events"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Special Events:
+              </span>
+              <div class="menu-control">
+                <MultiSelect
+                  id="event-board-special-event"
+                  options={eventBoardOptions}
+                  selectedOptions={selectedBoardEvents}
+                  onChange={({ options }) => {
+                    activeBoardEventIds = options.map((option) => option.id);
+                    saveToCache();
+                  }}
+                />
+              </div>
+            </div>
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
+                    base="assets/images/icons/luck"
+                    alt="Global Events"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Global Events:
+              </span>
+              <div class="menu-control">
+                <MultiSelect
+                  id="events"
+                  options={$dataStore.events || []}
+                  selectedOptions={selectedEvents}
+                  onChange={({ options }) => {
+                    const selectedIds = new Set(
+                      options.map((option) => option.id),
+                    );
+                    eventToggles = Object.fromEntries(
+                      ($dataStore.events || []).map((event) => [
+                        event.id,
+                        selectedIds.has(event.id),
+                      ]),
+                    );
+                    saveToCache();
+                  }}
+                />
+              </div>
+            </div>
+          </section>
+        {/if}
+        <button
+          class="section-separator"
+          type="button"
           on:click={() => toggleSection("potions")}
         >
           <span>Potions</span>
@@ -1793,73 +1862,6 @@
                 </div>
               </div>
             {/each}
-          </section>
-        {/if}
-
-        <button
-          class="section-separator"
-          type="button"
-          on:click={() => toggleSection("events")}
-        >
-          <span>Events</span>
-          <strong>{(collapsedSections["events"] ?? true) ? "−" : "+"}</strong>
-        </button>
-        {#if collapsedSections["events"] ?? true}
-          <section class="menu-section">
-            <div class="menu-row">
-              <span class="menu-label">
-                <span class="menu-img">
-                  <SmartImage
-                    base="assets/images/icons/luck"
-                    alt="Special Events"
-                    size="32px"
-                    decoding="async"
-                  />
-                </span>
-                Special Events:
-              </span>
-              <div class="menu-control">
-                <MultiSelect
-                  id="event-board-special-event"
-                  options={eventBoardOptions}
-                  selectedOptions={selectedBoardEvents}
-                  onChange={({ options }) => {
-                    activeBoardEventIds = options.map((option) => option.id);
-                    saveToCache();
-                  }}
-                />
-              </div>
-            </div>
-            <div class="menu-row">
-              <span class="menu-label">
-                <span class="menu-img">
-                  <SmartImage
-                    base="assets/images/icons/luck"
-                    alt="Global Events"
-                    size="32px"
-                    decoding="async"
-                  />
-                </span>
-                Global Events:
-              </span>
-              <div class="menu-control">
-                <MultiSelect
-                  id="events"
-                  options={$dataStore.events || []}
-                  selectedOptions={selectedEvents}
-                  onChange={({ options }) => {
-                    const selectedIds = new Set(options.map((option) => option.id));
-                    eventToggles = Object.fromEntries(
-                      ($dataStore.events || []).map((event) => [
-                        event.id,
-                        selectedIds.has(event.id),
-                      ]),
-                    );
-                    saveToCache();
-                  }}
-                />
-              </div>
-            </div>
           </section>
         {/if}
       {/if}
