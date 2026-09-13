@@ -93,7 +93,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatChancePercent(stats.hatchSpeed, true, "floor", true)}</strong
+    <strong>{formatChancePercent(stats.hatchSpeed, true, "round", true)}</strong
     >
   </div>
   <div class="stat">
