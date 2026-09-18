@@ -1320,7 +1320,7 @@
         "name": "[REDACTED]",
         "rarity": "secret",
         "void": true,
-        "baseChance": 1e-11
+        "baseChance": 1e-12
       }
     ]
   }
