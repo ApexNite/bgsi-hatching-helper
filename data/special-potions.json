@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["void-realm-egg", "doodle-egg"],
+    "eggs": ["harvest-egg", "neon-harvest-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -26,13 +26,21 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "eggs": ["void-realm-egg"],
+    "eggs": ["neon-pumpkin-egg"],
     "infinityLuckMultiplier": 1.5
   },
   {
     "id": "rift-elixir-iv",
     "name": "Rift Elixir IV",
     "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "overlord-egg", "cloudy-rift-egg"],
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
+  },
+  {
+    "id": "autumn-elixir-iv",
+    "name": "Autumn Elixir IV",
+    "event": "autumn",
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
