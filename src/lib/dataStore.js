@@ -18,7 +18,6 @@ import upgradesCompiled from "../../data/upgrades.json";
 import worldsCompiled from "../../data/worlds.json";
 import dataHashCompiled from "../data/hash.json";
 import runesCompiled from "../../data/runes.json";
-import boardEventsCompiled from "../../data/board-events.json";
 import eventBoardCompiled from "../../data/event-board.json";
 
 const schemas = {
@@ -328,7 +327,6 @@ export const dataStore = writable({
   enchants: null,
   environmentBuffs: null,
   events: null,
-  boardEvents: null,
   eventBoard: null,
   fragments: null,
   upgrades: null,
@@ -361,7 +359,6 @@ function buildDataFromSources(sources) {
     enchants: processData(sources.enchants, "enchant"),
     environmentBuffs: processData(sources.environmentBuffs, "environmentBuff"),
     events: processData(sources.events, "event"),
-    boardEvents: processData(sources.boardEvents, ["stats", "id"]),
     eventBoard: processData(sources.eventBoard, ["stats", "id"]),
     fragments: processData(sources.fragments, "fragment"),
     upgrades: processData(sources.upgrades, "upgrade"),
@@ -386,7 +383,6 @@ const compiledSources = {
   enchants: enchantsCompiled,
   environmentBuffs: environmentBuffsCompiled,
   events: eventsCompiled,
-  boardEvents: boardEventsCompiled,
   eventBoard: eventBoardCompiled,
   fragments: fragmentsCompiled,
   gamepasses: gamepassesCompiled,
@@ -426,7 +422,6 @@ export async function loadData(forceFetch = false) {
       enchantsData,
       environmentBuffsData,
       eventsData,
-      boardEventsData,
       eventBoardData,
       fragmentsData,
       gamepassesData,
@@ -448,7 +443,6 @@ export async function loadData(forceFetch = false) {
       fetchJson("/assets/data/enchants.json"),
       fetchJson("/assets/data/environment-buffs.json"),
       fetchJson("/assets/data/events.json"),
-      fetchJson("/assets/data/board-events.json"),
       fetchJson("/assets/data/event-board.json"),
       fetchJson("/assets/data/fragments.json"),
       fetchJson("/assets/data/gamepasses.json"),
@@ -472,7 +466,6 @@ export async function loadData(forceFetch = false) {
       enchants: enchantsData,
       environmentBuffs: environmentBuffsData,
       events: eventsData,
-      boardEvents: boardEventsData,
       eventBoard: eventBoardData,
       fragments: fragmentsData,
       gamepasses: gamepassesData,
