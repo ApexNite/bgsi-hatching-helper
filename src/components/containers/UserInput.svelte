@@ -1542,10 +1542,10 @@
                 <NumberInput
                   id="season-stars"
                   value={numericValues.seasonStars}
-                  maxValue={2500}
+                  maxValue={1750}
                   onInput={({ value }) =>
                     updateNumericValue(numericValues, "seasonStars", value)}
-                  hoverText="Season Pass Stars (Max 2500)"
+                  hoverText="Season Pass Stars (Max 1750)"
                 />
               </div>
             </div>

@@ -515,12 +515,12 @@ function calculateDreamerBlessing(level) {
 }
 
 function calculateSeasonPerks(stars) {
-  const starsClamped = Math.floor(clamp(stars, 0, 2500));
+  const starsClamped = Math.floor(clamp(stars, 0, 1750));
 
   return {
-    luck: (500 * (starsClamped / 2500)) / 100,
-    hatchSpeed: (25 * (starsClamped / 2500)) / 100,
-    celestialLuck: (150 * (starsClamped / 2500)) / 100,
+    luck: (500 * (starsClamped / 1750)) / 100,
+    hatchSpeed: (25 * (starsClamped / 1750)) / 100,
+    celestialLuck: (150 * (starsClamped / 1750)) / 100,
   };
 }
 
