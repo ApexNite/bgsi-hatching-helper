@@ -1,9 +1,86 @@
 [
   {
-    "id": "carnival-luck",
-    "name": "Carnival Luck",
+    "id": "autumn-luck",
+    "name": "Autumn Luck",
     "img": "assets/images/icons/luck",
-    "event": "carnival",
+    "event": "autumn",
+    "levels": {
+      "1": {
+        "luck": 0.025
+      },
+      "2": {
+        "luck": 0.05
+      },
+      "3": {
+        "luck": 0.1
+      },
+      "4": {
+        "luck": 0.2
+      },
+      "5": {
+        "luck": 0.25
+      },
+      "6": {
+        "luck": 0.4
+      },
+      "7": {
+        "luck": 0.6
+      }
+    }
+  },
+  {
+    "id": "autumn-secret-luck",
+    "name": "Secret Luck",
+    "img": "assets/images/icons/secret-pet-luck",
+    "event": "autumn",
+    "levels": {
+      "1": {
+        "secretLuck": 0.05
+      },
+      "2": {
+        "secretLuck": 0.1
+      },
+      "3": {
+        "secretLuck": 0.15
+      },
+      "4": {
+        "secretLuck": 0.2
+      },
+      "5": {
+        "secretLuck": 0.25
+      }
+    }
+  },
+  {
+    "id": "autumn-infinity-luck",
+    "name": "Infinity Luck",
+    "img": "assets/images/icons/infinity-luck",
+    "event": "autumn",
+    "levels": {
+      "1": {
+        "infinityLuck": 0.025
+      },
+      "2": {
+        "infinityLuck": 0.05
+      },
+      "3": {
+        "infinityLuck": 0.075
+      },
+      "4": {
+        "infinityLuck": 0.1
+      },
+      "5": {
+        "infinityLuck": 0.125
+      }
+    }
+  }
+]
+[
+  {
+    "id": "autumn-luck",
+    "name": "Autumn Luck",
+    "img": "assets/images/icons/luck",
+    "event": "autumn",
     "levels": {
       "1": {
         "luck": 0.025
@@ -38,10 +115,10 @@
     }
   },
   {
-    "id": "carnival-secret-luck",
+    "id": "autumn-secret-luck",
     "name": "Secret Luck",
     "img": "assets/images/icons/secret-pet-luck",
-    "event": "carnival",
+    "event": "autumn",
     "levels": {
       "1": {
         "secretLuck": 0.05
@@ -70,10 +147,10 @@
     }
   },
   {
-    "id": "carnival-infinity-luck",
+    "id": "autumn-infinity-luck",
     "name": "Infinity Luck",
     "img": "assets/images/icons/infinity-luck",
-    "event": "carnival",
+    "event": "autumn",
     "levels": {
       "1": {
         "infinityLuck": 0.025
