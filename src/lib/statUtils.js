@@ -218,10 +218,9 @@ function calculateStatsFromTotals(totals, sources) {
   const getXlChanceForRarity = (rarity) => {
     const base =
       DEFAULT_XL_CHANCE_BY_RARITY[rarity] ?? DEFAULT_XL_CHANCE_BY_RARITY.common;
-
     return toNumber(
       D(base)
-        .times(D(1).plus(totals.xlChance || 0))
+        .div(D(1).plus(totals.xlChance || 0))
         .times(totals.xlChanceMultiplier || 1),
     );
   };
