@@ -2,7 +2,7 @@
   {
     "id": "luck-special-event",
     "name": "🍀 Luck 🍀",
-    "luckMultiplier": 1.25
+    "luckMultiplier": 0.25
   },
   {
     "id": "secret-special-event",
@@ -12,12 +12,12 @@
   {
     "id": "shiny-special-event",
     "name": "✨ Shiny ✨",
-    "shinyChanceMultiplier": 1.25
+    "shinyChance": 1.25
   },
   {
     "id": "mythic-special-event",
     "name": "🔮 Mythic 🔮",
-    "mythicChanceMultiplier": 1.5
+    "mythicChance": 1.5
   },
   {
     "id": "celestial-special-event",
@@ -27,12 +27,12 @@
   {
     "id": "infinity-special-event",
     "name": "♾️ Infinity ♾️",
-    "infinityLuckMultiplier": 1.5
+    "infinityLuck": 0.5
   },
   {
     "id": "xl-special-event",
     "name": "🎁 XL 🎁",
-    "xlChanceMultiplier": 1.25
+    "xlChance": 0.25
   },
   {
     "id": "super-palooza",
