@@ -140,13 +140,11 @@ export function calculateStats(sources, toggles, numbers) {
     applySource(totals, selectedPerks);
   }
 
-  if (fragmentFlag) {
-    applySource(totals, {
-      luckMultiplier: 1.25,
-    });
-  }
-
   const stats = calculateStatsFromTotals(totals, sources);
+
+  if (fragmentFlag) {
+    stats.luck = stats.luck * 1.25;
+  }
 
   return stats;
 }
