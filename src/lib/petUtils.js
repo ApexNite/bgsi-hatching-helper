@@ -76,7 +76,7 @@ export function calculateHatchTime(
   chance,
   hatchSpeed,
   eggsPerHatch,
-  probability
+  probability,
 ) {
   if (!chance || !eggsPerHatch || !hatchSpeed || chance === Infinity) {
     return Infinity;
@@ -553,6 +553,10 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
       ? (item) => protectFn(item) || shouldIgnore(item)
       : (item) => shouldIgnore(item);
 
+    if (!protectFn) {
+      return applyMultiplierToPool(currentPool, multiplier, effectiveMatch);
+    }
+
     return applyMultiplierToPool(
       currentPool,
       multiplier,
@@ -591,7 +595,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
     pool,
     luck,
     isLegendaryOrSecret,
-    protectInfinity,
+    null,
     ignoresLuck,
   );
 
@@ -600,22 +604,17 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
       pool,
       secretLuck,
       isSecret,
-      protectInfinity,
+      null,
       ignoresSecretLuck,
     );
   }
 
   if (gt(infinityLuck, 1)) {
-    pool = applyMultiplierToPool(pool, infinityLuck, isInfinity, protectVoid);
+    pool = applyMultiplierToPool(pool, infinityLuck, isInfinity);
   }
 
   if (gt(celestialLuck, 1)) {
-    pool = applyMultiplierToPool(
-      pool,
-      celestialLuck,
-      isCelestialPet,
-      protectInfinityVoid,
-    );
+    pool = applyMultiplierToPool(pool, celestialLuck, isCelestialPet);
   }
 
   let total = pool.reduce((sum, i) => sum.plus(i.rawChance), D(0));
@@ -651,10 +650,8 @@ function applyMultiplierToPool(pool, multiplier, matchFn, protectFn = null) {
   for (let i = 0; i < pool.length; i++) {
     const item = pool[i];
 
-    if (!matchFn(item)) {
-      if (!protectFn || !protectFn(item)) {
-        candidates.push(i);
-      }
+    if (!matchFn(item) && protectFn && !protectFn(item)) {
+      candidates.push(i);
     }
   }
 
