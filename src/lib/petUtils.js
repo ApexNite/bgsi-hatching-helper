@@ -132,7 +132,7 @@ export function isMythicEligible(pet) {
 }
 
 export function isSuperLegendaryEligible(pet) {
-  return pet.rarity === "legendary" && pet.baseChance < 0.000001;
+  return pet.rarity === "legendary" && pet.baseChance < 9.09090909090909e-7;
 }
 
 export function insertAggregateRows(
