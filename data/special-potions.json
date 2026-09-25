@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["harvest-egg", "neon-harvest-egg"],
+    "eggs": ["harvest-egg", "neon-pumpkin-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
