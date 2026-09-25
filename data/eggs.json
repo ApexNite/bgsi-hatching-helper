@@ -1314,6 +1314,7 @@
     "name": "Neon Pumpkin Egg",
     "type": "special",
     "event": "autumn",
+    "trueLuck": true,
     "pets": [
       {
         "id": "pumpkin-deer",
