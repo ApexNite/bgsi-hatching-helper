@@ -179,7 +179,7 @@ export function calculateEggsPerSecond(hatchSpeed, eggsPerHatch) {
   );
 }
 
-export function sortByRarity(pets) {
+export function sortByRarity(pets, chanceKey = "finalChance") {
   pets.sort((a, b) => {
     const rarityRankA = RARITY_ORDER[getSortRarity(a)] ?? 999;
     const rarityRankB = RARITY_ORDER[getSortRarity(b)] ?? 999;
@@ -188,7 +188,7 @@ export function sortByRarity(pets) {
       return rarityRankA - rarityRankB;
     }
 
-    return b.finalChance - a.finalChance;
+    return (b[chanceKey] ?? b.finalChance) - (a[chanceKey] ?? a.finalChance);
   });
 
   return pets;
@@ -431,7 +431,11 @@ export function insertAggregateRows(
     return pets;
   }
 
-  return sortByRarity([...pets, ...aggregates]);
+  const sortKey = superLegendaryOnly
+    ? "finalSuperLegendaryChance"
+    : "finalChance";
+
+  return sortByRarity([...pets, ...aggregates], sortKey);
 }
 
 export function isCelestialPet(pet) {
