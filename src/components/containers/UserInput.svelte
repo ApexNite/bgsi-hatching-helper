@@ -424,6 +424,7 @@
           sources,
           toggleValuesModified,
           numericValuesModified,
+          selectedEgg,
         );
       }
     }

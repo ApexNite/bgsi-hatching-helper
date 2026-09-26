@@ -24,7 +24,7 @@ const DEFAULT_XL_CHANCE_BY_RARITY = Object.freeze({
   common: 0.0002 / 100,
 });
 
-export function calculateStats(sources, toggles, numbers) {
+export function calculateStats(sources, toggles, numbers, egg) {
   if (!get(isDataLoaded)) {
     return null;
   }
@@ -138,6 +138,10 @@ export function calculateStats(sources, toggles, numbers) {
 
   if (selectedPerks) {
     applySource(totals, selectedPerks);
+  }
+
+  if (getLuckyStreakLevel(sources) > 0 && !eggHasLegendary(egg)) {
+    totals.luck -= 0.1 + 0.1 * getLuckyStreakLevel(sources);
   }
 
   const stats = calculateStatsFromTotals(totals, sources);
@@ -586,6 +590,27 @@ function hasGoldenEggMastery(sources) {
       return source.levelNumber >= 4;
     }
   }
+}
+
+function getLuckyStreakLevel(sources) {
+  for (const source of sources) {
+    if (source.masteryId === "pets-mastery") {
+      const level = source.levelNumber;
+      if (level >= 4 && level < 11) {
+        return 1;
+      } else if (level >= 11) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+  }
+}
+
+function eggHasLegendary(egg) {
+  return (
+    Array.isArray(egg?.pets) && egg.pets.some((p) => p?.rarity === "legendary")
+  );
 }
 
 function clamp(value, min, max) {
