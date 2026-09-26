@@ -1366,5 +1366,63 @@
         "baseChance": 2e-12
       }
     ]
+  },
+  {
+    "id": "spirit-egg",
+    "name": "Spirit Egg",
+    "type": "special",
+    "event": "autumn",
+    "trueLuck": true,
+    "pets": [
+      {
+        "id": "twig",
+        "name": "Twig",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "squash",
+        "name": "Squash",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "harvest-chick",
+        "name": "Harvest Chick",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "phantom-cube",
+        "name": "Phantom Cube",
+        "rarity": "legendary",
+        "baseChance": 1e-5
+      },
+      {
+        "id": "spirit-stag",
+        "name": "Spirit Stag",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "phantom-soul",
+        "name": "Phantom Soul",
+        "rarity": "secret",
+        "baseChance": 4e-10
+      },
+      {
+        "id": "autumn-spirit",
+        "name": "Autumn Spirit",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "ent-of-the-equinox",
+        "name": "Ent of the Equinox",
+        "rarity": "infinity",
+        "baseChance": 2.5e-12
+      }
+    ]
   }
 ]
