@@ -8,7 +8,10 @@
   import SmartImage from "./components/control/SmartImage.svelte";
   import InfoOverlay from "./components/overlays/InfoOverlay.svelte";
 
+  import "tippy.js/dist/tippy.css";
+
   let stats;
+  let debugStats;
   let eggsPerHatch;
   let selectedEggId;
   let selectedWorldId;
@@ -51,6 +54,7 @@
       <div class="left-pane">
         <UserInput
           bind:stats
+          bind:debugStats
           bind:eggsPerHatch
           bind:selectedEggId
           bind:selectedWorldId
@@ -59,7 +63,7 @@
       </div>
 
       <section class="right-pane">
-        <StatsBar {stats} {eggsPerHatch} {hasIgnoreSecretPets} />
+        <StatsBar {stats} {debugStats} {eggsPerHatch} {hasIgnoreSecretPets} />
 
         <PetTable
           {stats}

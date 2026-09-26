@@ -1,5 +1,9 @@
 <script>
-  import { calculateStats, calculateManualStats } from "../../lib/statUtils.js";
+  import {
+    calculateStats,
+    calculateManualStats,
+    calculateDebugStats,
+  } from "../../lib/statUtils.js";
   import { setCookie, getCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
   import { onMount } from "svelte";
@@ -15,6 +19,7 @@
   import TooltipWarning from "../control/TooltipWarning.svelte";
 
   export let stats;
+  export let debugStats = null;
   export let eggsPerHatch;
   export let selectedEggId;
   export let selectedWorldId;
@@ -310,6 +315,20 @@
         }
       : { worldNormal: false, worldShiny: false };
 
+  $: isWorldOrInfinityEgg = isWorldEgg || isInfinityEgg;
+
+  $: debugWorldIndexState = isWorldEgg
+    ? currentWorldIndexState
+    : isInfinityEgg
+      ? worldIndexStates[selectedWorld?.id] || {
+          worldNormal: false,
+          worldShiny: false,
+        }
+      : worldIndexStates["the-overworld"] || {
+          worldNormal: false,
+          worldShiny: false,
+        };
+
   $: visibleUpgrades = ($dataStore.upgrades || []).filter(
     (u) => activeEvent && u.event === activeEvent,
   );
@@ -333,6 +352,7 @@
           [selectedRift],
           numericValuesModified,
         );
+        debugStats = null;
       } else if (calculationMode === "calculated") {
         const sources = [
           selectedRift,
@@ -423,6 +443,19 @@
         stats = calculateStats(
           sources,
           toggleValuesModified,
+          numericValuesModified,
+          selectedEgg,
+        );
+
+        const debugToggleValuesModified = {
+          ...toggleValues,
+          worldNormal: debugWorldIndexState.worldNormal,
+          worldShiny: debugWorldIndexState.worldShiny,
+        };
+
+        debugStats = calculateDebugStats(
+          sources,
+          debugToggleValuesModified,
           numericValuesModified,
           selectedEgg,
         );

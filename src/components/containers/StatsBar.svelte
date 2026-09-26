@@ -7,6 +7,8 @@
   import { calculateEggsPerSecond } from "../../lib/petUtils.js";
   import SmartImage from "../control/SmartImage.svelte";
 
+  import tippy from "tippy.js";
+
   export let stats = {
     luck: 1,
     secretLuck: 1,
@@ -16,12 +18,46 @@
     xlChance: 1 / 500,
     hatchSpeed: 1,
   };
+  export let debugStats = null;
   export let eggsPerHatch = 1;
   export let hasIgnoreSecretPets = false;
+
+  function tooltip(node, content) {
+    const instance = tippy(node, { content, allowHTML: true });
+
+    return {
+      update(newContent) {
+        instance.setContent(newContent);
+      },
+      destroy() {
+        instance.destroy();
+      },
+    };
+  }
+
+  function debugLine(label, value) {
+    if (!debugStats) {
+      return label;
+    }
+
+    return `<div style="text-align:center;">
+      <div>${label}</div>
+      <div style="margin:4px 0;height:1px;background:rgba(255,255,255,0.15);"></div>
+      <div style="opacity:0.85;font-size:0.85em;">In-Game Debug Stats</div>
+      <strong>${value}</strong>
+    </div>`;
+  }
 </script>
 
 <div class="stats">
-  <div class="stat">
+  <div
+    class="stat"
+    use:tooltip={debugLine(
+      "Luck",
+      debugStats &&
+        formatChancePercent(debugStats.luck - 1, true, "floor", true),
+    )}
+  >
     <SmartImage
       base="assets/images/icons/luck"
       alt="Luck"
@@ -30,7 +66,14 @@
     />
     <strong>{formatChancePercent(stats.luck - 1, true, "floor", true)}</strong>
   </div>
-  <div class="stat" class:dimmed={hasIgnoreSecretPets}>
+  <div
+    class="stat"
+    class:dimmed={hasIgnoreSecretPets}
+    use:tooltip={debugLine(
+      "Secret Luck",
+      debugStats && formatMultiplier(debugStats.secretLuck, 3, "round"),
+    )}
+  >
     <SmartImage
       base="assets/images/icons/secret-luck"
       alt="Secret Luck"
@@ -39,7 +82,14 @@
     />
     <strong>{formatMultiplier(stats.secretLuck, 3, "round")}</strong>
   </div>
-  <div class="stat" class:dimmed={hasIgnoreSecretPets}>
+  <div
+    class="stat"
+    class:dimmed={hasIgnoreSecretPets}
+    use:tooltip={debugLine(
+      "Infinity Luck",
+      debugStats && formatMultiplier(debugStats.infinityLuck, 2, "ceil"),
+    )}
+  >
     <SmartImage
       base="assets/images/icons/infinity-luck"
       alt="Infinity Luck"
@@ -48,7 +98,13 @@
     />
     <strong>{formatMultiplier(stats.infinityLuck, 2, "ceil")}</strong>
   </div>
-  <div class="stat">
+  <div
+    class="stat"
+    use:tooltip={debugLine(
+      "Shiny Chance",
+      debugStats && formatChanceFraction(debugStats.shinyChance),
+    )}
+  >
     <SmartImage
       base="assets/images/icons/shiny"
       alt="Shiny Chance"
@@ -57,7 +113,13 @@
     />
     <strong>{formatChanceFraction(stats.shinyChance)}</strong>
   </div>
-  <div class="stat">
+  <div
+    class="stat"
+    use:tooltip={debugLine(
+      "Mythic Chance",
+      debugStats && formatChanceFraction(debugStats.mythicChance),
+    )}
+  >
     <SmartImage
       base="assets/images/icons/mythic"
       alt="Mythic Chance"
@@ -66,16 +128,7 @@
     />
     <strong>{formatChanceFraction(stats.mythicChance)}</strong>
   </div>
-  <!-- <div class="stat">
-    <SmartImage
-      base="assets/images/icons/XL"
-      alt="XL Chance"
-      decoding="async"
-      size="24px"
-    />
-    <strong>{formatChanceFraction(stats.xlChance)}</strong>
-  </div> -->
-  <div class="stat">
+  <div class="stat" use:tooltip={"Shiny Mythic Chance"}>
     <SmartImage
       base="assets/images/icons/shiny-mythic"
       alt="Shiny Mythic Chance"
@@ -86,7 +139,14 @@
       >{formatChanceFraction(stats.shinyChance * stats.mythicChance)}</strong
     >
   </div>
-  <div class="stat">
+  <div
+    class="stat"
+    use:tooltip={debugLine(
+      "Hatch Speed",
+      debugStats &&
+        formatChancePercent(debugStats.hatchSpeed, true, "round", true),
+    )}
+  >
     <SmartImage
       base="assets/images/icons/timer"
       alt="Hatch Speed"
@@ -96,7 +156,7 @@
     <strong>{formatChancePercent(stats.hatchSpeed, true, "round", true)}</strong
     >
   </div>
-  <div class="stat">
+  <div class="stat" use:tooltip={"Eggs Per Second"}>
     <SmartImage
       base="assets/images/icons/multi-egg"
       alt="Eggs Per Second"

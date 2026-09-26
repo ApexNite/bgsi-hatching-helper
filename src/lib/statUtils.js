@@ -139,12 +139,179 @@ export function calculateStats(sources, toggles, numbers, egg) {
   if (selectedPerks) {
     applySource(totals, selectedPerks);
   }
-
-  if (getLuckyStreakLevel(sources) > 0 && !eggHasLegendary(egg)) {
+  if (
+    getLuckyStreakLevel(sources) > 0 &&
+    egg?.type !== "infinity" &&
+    !eggHasLegendary(egg)
+  ) {
+    console.log("apply");
     totals.luck -= 0.1 + 0.1 * getLuckyStreakLevel(sources);
   }
 
   const stats = calculateStatsFromTotals(totals, sources);
+
+  if (fragmentFlag) {
+    stats.luck = stats.luck * 1.25;
+  }
+
+  return stats;
+}
+
+export function calculateDebugStats(sources, toggles, numbers, egg) {
+  if (!get(isDataLoaded)) {
+    return null;
+  }
+
+  const data = get(dataStore);
+  const dailyPerksData = data.dailyPerks;
+  const indexData = data.index;
+
+  const isWorldOrInfinity = egg?.type === "world" || egg?.type === "infinity";
+
+  const effectiveSources = isWorldOrInfinity
+    ? sources
+    : sources.filter((source) => {
+        if (source?.id === "ultra-infinity-elixir") {
+          return true;
+        }
+
+        if (Array.isArray(source?.eggs) && source.eggs.length > 0) {
+          return false;
+        }
+
+        return !source?.event || source.event === "none";
+      });
+
+  const effectiveNumbers = isWorldOrInfinity
+    ? numbers
+    : { ...numbers, riftMultiplier: 0 };
+
+  const totals = {
+    luck: 1,
+    trueLuck: 0,
+    secretLuck: 1,
+    celestialLuck: 1,
+    infinityLuck: 1,
+    shinyChance: 0,
+    mythicChance: 0,
+    xlChance: 0,
+    superLegendaryChance: 0,
+    hatchSpeed: 1,
+    rawLuckMultiplier: 1,
+    rawSecretLuckMultiplier: 1,
+    rawCelestialLuckMultiplier: 1,
+    rawInfinityLuckMultiplier: 1,
+    rawShinyChanceMultiplier: 1,
+    rawMythicChanceMultiplier: 1,
+    rawXLChanceMultiplier: 1,
+    rawHatchSpeedMultiplier: 1,
+    luckMultiplier: 0,
+    secretLuckMultiplier: 1,
+    celestialLuckMultiplier: 1,
+    infinityLuckMultiplier: 1,
+    shinyChanceMultiplier: 1,
+    mythicChanceMultiplier: 1,
+    xlChanceMultiplier: 1,
+    superLegendaryChanceMultiplier: 1,
+    hatchSpeedMultiplier: 0,
+    baseLuck: 0,
+    baseSecretLuck: 0,
+    baseCelestialLuck: 0,
+    baseInfinityLuck: 0,
+    baseShinyChance: 0.03125,
+    baseMythicChance: 0.0125,
+    baseSuperLegendaryChance: 1 / 2000,
+    baseHatchSpeed: 0,
+    _applyAdjustedShiny: false,
+  };
+
+  let fragmentFlag =
+    effectiveSources.some((s) => s.id === "green-fragment") &&
+    effectiveSources.some((s) => s.id === "blue-fragment") &&
+    effectiveSources.some((s) => s.id === "purple-fragment") &&
+    effectiveSources.some((s) => s.id === "rainbow-fragment");
+
+  const eventBonusMultipliers = collectEventBonusMultipliers(effectiveSources);
+
+  for (const source of effectiveSources) {
+    const adjusted = applyEventBonusMultipliersToSource(
+      source,
+      eventBonusMultipliers,
+    );
+    applySource(totals, adjusted);
+
+    if (source.id.includes("fragment") && source._value !== 250) {
+      fragmentFlag = false;
+    }
+  }
+
+  applySource(totals, calculateBubbleBlessing(effectiveNumbers.shrineBlessing));
+  applySource(
+    totals,
+    calculateDreamerBlessing(effectiveNumbers.dreamerBlessing),
+  );
+  applySource(totals, calculateSeasonPerks(effectiveNumbers.seasonStars));
+
+  if (toggles.worldNormal) {
+    if (indexData?.normal) {
+      applySource(totals, indexData.normal);
+    }
+  }
+
+  if (toggles.worldShiny) {
+    if (indexData?.shiny) {
+      applySource(totals, indexData.shiny);
+    }
+  }
+
+  if (effectiveNumbers.luckierTogether > 0) {
+    applySource(totals, {
+      ...{ baseLuck: 0.1 },
+      _value: Number(effectiveNumbers.luckierTogether),
+    });
+  }
+
+  if (effectiveNumbers.riftMultiplier > 0) {
+    applySource(totals, {
+      ...{
+        baseLuck:
+          effectiveNumbers.riftMultiplier === 1
+            ? 0
+            : effectiveNumbers.riftMultiplier,
+      },
+    });
+  }
+
+  if (effectiveNumbers.trueLuckMultiplier > 0) {
+    applySource(totals, {
+      ...{ trueLuck: effectiveNumbers.trueLuckMultiplier },
+    });
+  }
+
+  const today = dailyPerksData
+    ? dailyPerksData[new Date().getUTCDay()]
+    : undefined;
+  const selectedPerks = today
+    ? toggles.dailyPerks
+      ? today.premium
+      : today.normal
+    : undefined;
+
+  if (selectedPerks) {
+    applySource(totals, selectedPerks);
+  }
+
+  if (
+    getLuckyStreakLevel(effectiveSources) > 0 &&
+    egg?.type !== "infinity" &&
+    !eggHasLegendary(egg)
+  ) {
+    totals.luck -= 0.1 + 0.1 * getLuckyStreakLevel(effectiveSources);
+  }
+
+  const stats = calculateStatsFromTotals(totals, effectiveSources, {
+    ignoreBurst: true,
+  });
 
   if (fragmentFlag) {
     stats.luck = stats.luck * 1.25;
@@ -207,7 +374,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
   return calculateStatsFromTotals(totals, sources);
 }
 
-function calculateStatsFromTotals(totals, sources) {
+function calculateStatsFromTotals(totals, sources, options = {}) {
   const shinyBase = toNumber(
     mul(
       D(totals.baseShinyChance || 0)
@@ -235,7 +402,9 @@ function calculateStatsFromTotals(totals, sources) {
     );
 
   return {
-    luck: toNumber(calculateAdjustedLuck(totals, sources)),
+    luck: toNumber(
+      calculateAdjustedLuck(totals, sources, 100, !options.ignoreBurst),
+    ),
     trueLuck: toNumber(totals.trueLuck || 0),
     secretLuck: toNumber(
       mul(
@@ -525,13 +694,22 @@ function calculateSeasonPerks(stars) {
   };
 }
 
-function calculateAdjustedLuck(totals, sources, interval = 100) {
+function calculateAdjustedLuck(
+  totals,
+  sources,
+  interval = 100,
+  applyBurst = true,
+) {
   const baseLuck = Number(totals.baseLuck) || 0;
   const luck = Number(totals.luck) || 0;
   const rawLuckMultiplier = Number(totals.rawLuckMultiplier || 1);
   const luckMultiplier = Number(totals.luckMultiplier) || 1;
 
   const normalLuck = (baseLuck + luck * luckMultiplier) * rawLuckMultiplier;
+
+  if (!applyBurst) {
+    return normalLuck;
+  }
 
   const burstVariantCounts = new Map();
 
