@@ -15,7 +15,9 @@
     infinityLuck: 1,
     shinyChance: 1 / 40,
     mythicChance: 1 / 100,
-    xlChance: 1 / 500,
+    getXlChanceForRarity: (rarity) => {
+      return 1 / 200;
+    },
     hatchSpeed: 1,
   };
   export let debugStats = null;
@@ -35,7 +37,7 @@
     };
   }
 
-  function debugLine(label, value) {
+  function headerLine(label, value, header = "In-Game Debug Stats") {
     if (!debugStats) {
       return label;
     }
@@ -43,8 +45,8 @@
     return `<div style="text-align:center;">
       <div>${label}</div>
       <div style="margin:4px 0;height:1px;background:rgba(255,255,255,0.15);"></div>
-      <div style="opacity:0.85;font-size:0.85em;">In-Game Debug Stats</div>
-      <strong>${value}</strong>
+      <div style="opacity:0.85;font-size:0.85em;">${header}</div>
+      <strong style="white-space:pre-line;">${value}</strong>
     </div>`;
   }
 </script>
@@ -52,7 +54,7 @@
 <div class="stats">
   <div
     class="stat"
-    use:tooltip={debugLine(
+    use:tooltip={headerLine(
       "Luck",
       debugStats &&
         formatChancePercent(debugStats.luck - 1, true, "floor", true),
@@ -69,7 +71,7 @@
   <div
     class="stat"
     class:dimmed={hasIgnoreSecretPets}
-    use:tooltip={debugLine(
+    use:tooltip={headerLine(
       "Secret Luck",
       debugStats && formatMultiplier(debugStats.secretLuck, 3, "round"),
     )}
@@ -85,7 +87,7 @@
   <div
     class="stat"
     class:dimmed={hasIgnoreSecretPets}
-    use:tooltip={debugLine(
+    use:tooltip={headerLine(
       "Infinity Luck",
       debugStats && formatMultiplier(debugStats.infinityLuck, 2, "ceil"),
     )}
@@ -100,7 +102,7 @@
   </div>
   <div
     class="stat"
-    use:tooltip={debugLine(
+    use:tooltip={headerLine(
       "Shiny Chance",
       debugStats && formatChanceFraction(debugStats.shinyChance),
     )}
@@ -115,7 +117,7 @@
   </div>
   <div
     class="stat"
-    use:tooltip={debugLine(
+    use:tooltip={headerLine(
       "Mythic Chance",
       debugStats && formatChanceFraction(debugStats.mythicChance),
     )}
@@ -141,7 +143,31 @@
   </div>
   <div
     class="stat"
-    use:tooltip={debugLine(
+    use:tooltip={headerLine(
+      "XL Chance*",
+      debugStats &&
+        `Secret+: ${formatChanceFraction(debugStats.getXlChanceForRarity("secret"))}
+        Legendary: ${formatChanceFraction(debugStats.getXlChanceForRarity("legendary"))}
+        Epic: ${formatChanceFraction(debugStats.getXlChanceForRarity("epic"))}
+        Rare: ${formatChanceFraction(debugStats.getXlChanceForRarity("rare"))}
+        Unique: ${formatChanceFraction(debugStats.getXlChanceForRarity("unique"))}
+        Common: ${formatChanceFraction(debugStats.getXlChanceForRarity("common"))}
+        \n*XL buffs are currently\nbugged and instead lower\nyour chances`,
+      "",
+    )}
+  >
+    <SmartImage
+      base="assets/images/icons/xl"
+      alt="XL Chance"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatChanceFraction(stats.getXlChanceForRarity("secret"))}</strong
+    >
+  </div>
+  <div
+    class="stat"
+    use:tooltip={headerLine(
       "Hatch Speed",
       debugStats &&
         formatChancePercent(debugStats.hatchSpeed, true, "round", true),
