@@ -37,7 +37,7 @@
       decoding="async"
       size="24px"
     />
-    <strong>{formatMultiplier(stats.secretLuck, 1, "floor")}</strong>
+    <strong>{formatMultiplier(stats.secretLuck, 3, "round")}</strong>
   </div>
   <div class="stat" class:dimmed={hasIgnoreSecretPets}>
     <SmartImage
