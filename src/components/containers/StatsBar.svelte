@@ -37,8 +37,8 @@
     };
   }
 
-  function headerLine(label, value, header = "In-Game Debug Stats") {
-    if (!debugStats) {
+  function headerLine(label, value, header = "In-Game Debug Stats", needDebug = true) {
+    if (!debugStats && needDebug) {
       return label;
     }
 
@@ -158,15 +158,15 @@
     class="stat"
     use:tooltip={headerLine(
       "XL Chance*",
-      debugStats &&
-        `Secret+: ${formatChanceFraction(debugStats.getXlChanceForRarity("secret"))}
-        Legendary: ${formatChanceFraction(debugStats.getXlChanceForRarity("legendary"))}
-        Epic: ${formatChanceFraction(debugStats.getXlChanceForRarity("epic"))}
-        Rare: ${formatChanceFraction(debugStats.getXlChanceForRarity("rare"))}
-        Unique: ${formatChanceFraction(debugStats.getXlChanceForRarity("unique"))}
-        Common: ${formatChanceFraction(debugStats.getXlChanceForRarity("common"))}
+      stats &&
+        `Secret+: ${formatChanceFraction(stats.getXlChanceForRarity("secret"))}
+        Legendary: ${formatChanceFraction(stats.getXlChanceForRarity("legendary"))}
+        Epic: ${formatChanceFraction(stats.getXlChanceForRarity("epic"))}
+        Rare: ${formatChanceFraction(stats.getXlChanceForRarity("rare"))}
+        Unique: ${formatChanceFraction(stats.getXlChanceForRarity("unique"))}
+        Common: ${formatChanceFraction(stats.getXlChanceForRarity("common"))}
         \n*XL buffs are currently\nbugged and instead lower\nyour chances`,
-      "",
+      "", false
     )}
   >
     <SmartImage
