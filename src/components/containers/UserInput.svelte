@@ -61,10 +61,11 @@
   let manualStats = {
     luck: 0,
     secretLuck: 1,
+    celestialLuck: 1,
     infinityLuck: 1,
     shinyChance: 40,
     mythicChance: 100,
-    // xlChance: 500,
+    xlChance: 250,
     hatchSpeed: 100,
   };
   let worldIndexStates = {};
@@ -1180,6 +1181,28 @@
               <span class="menu-label">
                 <span class="menu-img">
                   <SmartImage
+                    base="assets/images/icons/celestial-luck"
+                    alt="Celestial Luck"
+                    size="32px"
+                    decoding="async"
+                  />
+                </span>
+                Celestial Luck (x):
+              </span>
+              <div class="menu-control">
+                <NumberInput
+                  id="manual-celestial-luck"
+                  value={manualStats.celestialLuck}
+                  onInput={({ value }) =>
+                    updateNumericValue(manualStats, "celestialLuck", value)}
+                />
+              </div>
+            </div>
+
+            <div class="menu-row">
+              <span class="menu-label">
+                <span class="menu-img">
+                  <SmartImage
                     base="assets/images/icons/shiny"
                     alt="Shiny Chance"
                     size="32px"
@@ -1220,11 +1243,11 @@
               </div>
             </div>
 
-            <!-- <div class="menu-row">
+            <div class="menu-row">
               <span class="menu-label">
                 <span class="menu-img">
                   <SmartImage
-                    base="assets/images/icons/XL"
+                    base="assets/images/icons/xl"
                     alt="XL Chance"
                     size="32px"
                     decoding="async"
@@ -1240,7 +1263,7 @@
                     updateNumericValue(manualStats, "xlChance", value)}
                 />
               </div>
-            </div> -->
+            </div>
 
             <div class="menu-row">
               <span class="menu-label">

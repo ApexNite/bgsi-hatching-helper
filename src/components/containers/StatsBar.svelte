@@ -37,7 +37,12 @@
     };
   }
 
-  function headerLine(label, value, header = "In-Game Debug Stats", needDebug = true) {
+  function headerLine(
+    label,
+    value,
+    header = "In-Game Debug Stats",
+    needDebug = true,
+  ) {
     if (!debugStats && needDebug) {
       return label;
     }
@@ -166,7 +171,8 @@
         Unique: ${formatChanceFraction(stats.getXlChanceForRarity("unique"))}
         Common: ${formatChanceFraction(stats.getXlChanceForRarity("common"))}
         \n*XL buffs are currently\nbugged and instead lower\nyour chances`,
-      "", false
+      "",
+      false,
     )}
   >
     <SmartImage

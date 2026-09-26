@@ -329,7 +329,11 @@ export function calculateManualStats(manualStats, sources, numbers) {
     infinityLuck: 0,
     shinyChance: 0,
     mythicChance: 0,
-    xlChance: 0,
+    xlChance: toNumber(
+      D(DEFAULT_XL_CHANCE_BY_RARITY.secret)
+        .times(manualStats.xlChance)
+        .minus(1),
+    ),
     superLegendaryChance: 0,
     hatchSpeed: 0,
     secretLuckMultiplier: 1,
@@ -341,7 +345,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     superLegendaryChanceMultiplier: 1,
     baseLuck: 1 + manualStats.luck / 100,
     baseSecretLuck: manualStats.secretLuck,
-    baseCelestialLuck: 1,
+    baseCelestialLuck: manualStats.celestialLuck,
     baseInfinityLuck: manualStats.infinityLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
