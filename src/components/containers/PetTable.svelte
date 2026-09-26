@@ -8,6 +8,7 @@
     isSuperLegendaryEligible,
     isCelestialPet,
     isVoidPet,
+    manualBountyPets,
   } from "../../lib/petUtils.js";
   import {
     formatChance,
@@ -159,7 +160,7 @@
   }
 
   $: basePets =
-    stats && selectedEggId && selectedWorldId
+    stats && selectedEggId && selectedWorldId && $manualBountyPets
       ? getPetsToDisplay(selectedEggId, selectedWorldId, stats)
       : [];
 
@@ -208,36 +209,17 @@
 
   function displayTime(value) {
     if (settings.timesDisplayMode === "median") {
-      return calculateHatchTime(
-        value,
-        stats.hatchSpeed,
-        eggsPerHatch,
-        0.5
-      );
+      return calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5);
     }
 
     if (settings.timesDisplayMode === "range") {
       return [
-        calculateHatchTime(
-          value,
-          stats.hatchSpeed,
-          eggsPerHatch,
-          0.5,
-        ),
-        calculateHatchTime(
-          value,
-          stats.hatchSpeed,
-          eggsPerHatch,
-          0.9,
-        ),
+        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.5),
+        calculateHatchTime(value, stats.hatchSpeed, eggsPerHatch, 0.9),
       ];
     }
 
-    return calculateMeanHatchTime(
-      value,
-      stats.hatchSpeed,
-      eggsPerHatch,
-    );
+    return calculateMeanHatchTime(value, stats.hatchSpeed, eggsPerHatch);
   }
 
   function toggle(key) {

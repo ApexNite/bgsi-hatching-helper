@@ -7,7 +7,12 @@
   import { setCookie, getCookie, deleteCookie } from "../../lib/cookieUtils.js";
   import { dataStore, isDataLoaded, loadData } from "../../lib/dataStore.js";
   import { onMount } from "svelte";
-  import { getEggsWithInjectedPets } from "../../lib/petUtils.js";
+  import {
+    getEggsWithInjectedPets,
+    getActiveBountyPetIds,
+    manualBountyPets,
+    toggleManualBountyPet,
+  } from "../../lib/petUtils.js";
 
   import Dropdown from "../control/Dropdown.svelte";
   import MultiSelect from "../control/MultiSelect.svelte";
@@ -17,6 +22,7 @@
   import SmartImage from "../control/SmartImage.svelte";
   import TogglePill from "../control/TogglePill.svelte";
   import TooltipWarning from "../control/TooltipWarning.svelte";
+  import BountyPetSelector from "../control/BountyPetSelector.svelte";
 
   export let stats;
   export let debugStats = null;
@@ -86,7 +92,8 @@
     );
   }
 
-  $: injectedEggs = $isDataLoaded ? getEggsWithInjectedPets(false) : [];
+  $: injectedEggs =
+    $isDataLoaded && $manualBountyPets ? getEggsWithInjectedPets(false) : [];
 
   $: visibleEggs = (injectedEggs || []).filter(
     (e) => e?.type === "infinity" || hasLuckAffectedPets(e),
@@ -212,6 +219,21 @@
   }
 
   $: isTrueLuckActive = isTrueLuckEgg && numericValues.trueLuckMultiplier > 1;
+
+  $: bountyPets = Object.values($dataStore.secretBounty?.pets || {});
+  $: selectedEggBountyIds = selectedEgg?.id
+    ? getActiveBountyPetIds(
+        selectedEgg.id,
+        $dataStore.secretBounty,
+        $manualBountyPets,
+      )
+    : [];
+
+  function handleBountyPetToggle(petId) {
+    if (selectedEgg?.id) {
+      toggleManualBountyPet(selectedEgg.id, petId);
+    }
+  }
 
   $: selectedRift =
     $dataStore.rifts?.find((r) => r.id === selectedOptions.rifts) ||
@@ -1010,6 +1032,29 @@
                     )}
                   hoverText="True Luck Multiplier"
                 /> -->
+            </div>
+          </div>
+        {/if}
+
+        {#if !isInfinityEgg}
+          <div class="menu-row">
+            <span class="menu-label">
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/secret-pets"
+                  alt="Bounty Pets"
+                  size="32px"
+                  decoding="async"
+                />
+              </span>
+              Added Pets:
+            </span>
+            <div class="menu-control">
+              <BountyPetSelector
+                pets={bountyPets}
+                selectedIds={selectedEggBountyIds}
+                onToggle={handleBountyPetToggle}
+              />
             </div>
           </div>
         {/if}

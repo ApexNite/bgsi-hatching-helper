@@ -1,4 +1,4 @@
-import { get } from "svelte/store";
+import { get, writable } from "svelte/store";
 import { dataStore, isDataLoaded, processData } from "./dataStore.js";
 import {
   D,
@@ -14,6 +14,79 @@ import {
   toNumber,
 } from "./mathDecimal.js";
 import { getFlag } from "../debug.js";
+import { getCookie, setCookie } from "./cookieUtils.js";
+
+const MANUAL_BOUNTY_COOKIE = "hatching-helper-manual-bounty-pets";
+
+function loadManualBountyPets() {
+  const saved = getCookie(MANUAL_BOUNTY_COOKIE);
+  return saved && typeof saved === "object" ? saved : {};
+}
+
+function todayUtcDate() {
+  return new Date().toISOString().slice(0, 10).replace(/-/g, "");
+}
+
+export const manualBountyPets = writable(loadManualBountyPets());
+
+manualBountyPets.subscribe((value) => {
+  setCookie(MANUAL_BOUNTY_COOKIE, value);
+});
+
+function getAutoBountyPetId(eggId, secretBounty) {
+  const bounty = secretBounty?.eggs?.[todayUtcDate()];
+  return bounty?.egg === eggId ? bounty.pet : null;
+}
+
+export function getActiveBountyPetIds(eggId, secretBounty, manualState) {
+  const override = manualState?.[eggId] || {};
+  const added = override.added || [];
+  const removed = override.removed || [];
+  const autoPetId = getAutoBountyPetId(eggId, secretBounty);
+
+  const ids = new Set(added);
+  if (autoPetId && !removed.includes(autoPetId)) {
+    ids.add(autoPetId);
+  }
+
+  return Array.from(ids);
+}
+
+export function toggleManualBountyPet(eggId, petId) {
+  const autoPetId = getAutoBountyPetId(eggId, get(dataStore).secretBounty);
+
+  manualBountyPets.update((state) => {
+    const current = state[eggId] || { added: [], removed: [] };
+    const added = new Set(current.added || []);
+    const removed = new Set(current.removed || []);
+    const isActive =
+      added.has(petId) || (autoPetId === petId && !removed.has(petId));
+
+    if (isActive) {
+      added.delete(petId);
+      if (autoPetId === petId) {
+        removed.add(petId);
+      }
+    } else {
+      removed.delete(petId);
+      added.add(petId);
+    }
+
+    const updated = { ...state };
+    const nextOverride = {
+      added: Array.from(added),
+      removed: Array.from(removed),
+    };
+
+    if (nextOverride.added.length || nextOverride.removed.length) {
+      updated[eggId] = nextOverride;
+    } else {
+      delete updated[eggId];
+    }
+
+    return updated;
+  });
+}
 
 const BASE_HATCH_SECONDS = D(4.5);
 const RARITY_ORDER = Object.freeze({
@@ -463,10 +536,17 @@ export function getEggsWithInjectedPets(trueLuckEgg) {
     }
   }
 
+  const manualSelections = get(manualBountyPets);
+
   const bounty = data.secretBounty?.eggs?.[utcDate];
   if (bounty) {
+    const removedForEgg = manualSelections[bounty.egg]?.removed || [];
     const bountyPet = data.secretBounty?.pets?.[bounty.pet];
-    if (bountyPet && (!bountyPet.hideTrueLuck || trueLuckEgg)) {
+    if (
+      bountyPet &&
+      !removedForEgg.includes(bounty.pet) &&
+      (!bountyPet.hideTrueLuck || trueLuckEgg)
+    ) {
       const targetEgg = eggsCopy.find((e) => e.id === bounty.egg);
       if (targetEgg) {
         targetEgg.pets = targetEgg.pets || [];
@@ -474,6 +554,31 @@ export function getEggsWithInjectedPets(trueLuckEgg) {
         if (!targetEgg.pets.some((p) => p.id === bountyPet.id)) {
           targetEgg.pets.push(bountyPet);
         }
+      }
+    }
+  }
+
+  for (const [eggId, override] of Object.entries(manualSelections)) {
+    const addedPetIds = override?.added || [];
+    if (!addedPetIds.length) {
+      continue;
+    }
+
+    const targetEgg = eggsCopy.find((e) => e.id === eggId);
+    if (!targetEgg) {
+      continue;
+    }
+
+    targetEgg.pets = targetEgg.pets || [];
+
+    for (const petId of addedPetIds) {
+      const bountyPet = data.secretBounty?.pets?.[petId];
+      if (!bountyPet || (bountyPet.hideTrueLuck && !trueLuckEgg)) {
+        continue;
+      }
+
+      if (!targetEgg.pets.some((p) => p.id === bountyPet.id)) {
+        targetEgg.pets.push(bountyPet);
       }
     }
   }
