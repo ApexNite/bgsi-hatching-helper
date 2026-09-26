@@ -1050,7 +1050,7 @@
                   decoding="async"
                 />
               </span>
-              Added Pets:
+              Bounty Pets:
             </span>
             <div class="menu-control">
               <BountyPetSelector
