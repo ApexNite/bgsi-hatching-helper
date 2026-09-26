@@ -87,6 +87,19 @@
   <div
     class="stat"
     class:dimmed={hasIgnoreSecretPets}
+    use:tooltip={"Celestial Luck"}
+  >
+    <SmartImage
+      base="assets/images/icons/celestial-luck"
+      alt="Celestial Luck"
+      decoding="async"
+      size="24px"
+    />
+    <strong>{formatMultiplier(stats.celestialLuck, 2, "ceil")}</strong>
+  </div>
+  <div
+    class="stat"
+    class:dimmed={hasIgnoreSecretPets}
     use:tooltip={headerLine(
       "Infinity Luck",
       debugStats && formatMultiplier(debugStats.infinityLuck, 2, "ceil"),
