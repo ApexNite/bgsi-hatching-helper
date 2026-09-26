@@ -96,9 +96,11 @@
   $: injectedEggs =
     $isDataLoaded && $manualBountyPets ? getEggsWithInjectedPets(false) : [];
 
-  $: visibleEggs = (injectedEggs || []).filter(
-    (e) => e?.type === "infinity" || hasLuckAffectedPets(e),
-  );
+  // $: visibleEggs = (injectedEggs || []).filter(
+  //   (e) => e?.type === "infinity" || hasLuckAffectedPets(e),
+  // );
+
+  $: visibleEggs = injectedEggs || [];
 
   $: if ($isDataLoaded && visibleEggs?.length) {
     const currentId = selectedOptions.eggs;
