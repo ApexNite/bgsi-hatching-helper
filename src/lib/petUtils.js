@@ -353,7 +353,7 @@ export function insertAggregateRows(
     if (legends.length > 1) {
       const agg = makeAggregateRow(
         "__agg_legendary",
-        "Any Legendary",
+        `Any${superLegendaryOnly ? " Super " : " "}Legendary`,
         "legendary",
         legends,
       );
