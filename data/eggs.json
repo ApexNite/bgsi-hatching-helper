@@ -1554,17 +1554,17 @@
         "baseChance": 2.5e-11
       },
       {
-        "id": "spirited-nature",
-        "name": "Spirited Nature",
-        "rarity": "infinity",
-        "baseChance": 2e-12
-      },
-      {
         "id": "autumn-pyramidum",
         "name": "Autumn Pyramidum",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 1.5e-12
+        "baseChance": 1.5e-11
+      },
+      {
+        "id": "spirited-nature",
+        "name": "Spirited Nature",
+        "rarity": "infinity",
+        "baseChance": 2e-12
       },
       {
         "id": "ent-of-the-equinox",
