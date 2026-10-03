@@ -18,7 +18,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["harvest-egg", "spirit-egg"],
+    "eggs": ["spirit-egg", "ultra-fall-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
@@ -44,5 +44,13 @@
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
+  },
+  {
+    "id": "autumn-infinity-elixir",
+    "name": "Autumn Infinity Elixir",
+    "event": "autumn",
+    "luck": 3.75,
+    "shinyChance": 2.25,
+    "mythicChance": 2.25
   }
 ]

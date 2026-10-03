@@ -1424,5 +1424,167 @@
         "baseChance": 2.5e-12
       }
     ]
+  },
+  {
+    "id": "ultra-fall-egg",
+    "name": "Ultra Fall Egg",
+    "type": "special",
+    "event": "autumn",
+    "pets": [
+      {
+        "id": "harvest-bee",
+        "name": "Harvest Bee",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "harvest-spitty",
+        "name": "Harvest Spitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "pumpkin-deer",
+        "name": "Pumpkin Deer",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "pumpkin-demon",
+        "name": "Pumpkin Demon",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "pumpkin-bat",
+        "name": "Pumpkin Bat",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "twig",
+        "name": "Twig",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "squash",
+        "name": "Squash",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "harvest-chick",
+        "name": "Harvest Chick",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "harvest-marshmallow",
+        "name": "Harvest Marshmallow",
+        "rarity": "legendary",
+        "baseChance": 1e-4
+      },
+      {
+        "id": "harvest-king",
+        "name": "Harvest King",
+        "rarity": "legendary",
+        "baseChance": 2e-5
+      },
+      {
+        "id": "harvest-seal",
+        "name": "Harvest Seal",
+        "rarity": "legendary",
+        "baseChance": 1e-5
+      },
+      {
+        "id": "jack-o-harvest",
+        "name": "Jack-O-Harvest",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "phantom-cube",
+        "name": "Phantom Cube",
+        "rarity": "legendary",
+        "baseChance": 1e-5
+      },
+      {
+        "id": "spirit-stag",
+        "name": "Spirit Stag",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "phantom-phoenix",
+        "name": "Phantom Phoenix",
+        "rarity": "legendary",
+        "baseChance": 1e-7
+      },
+      {
+        "id": "harvest-axolotl-plushie",
+        "name": "Harvest Axolotl Plushie",
+        "rarity": "secret",
+        "baseChance": 2e-8
+      },
+      {
+        "id": "autumn-jam",
+        "name": "Autumn Jam",
+        "rarity": "secret",
+        "baseChance": 2e-10
+      },
+      {
+        "id": "phantom-soul",
+        "name": "Phantom Soul",
+        "rarity": "secret",
+        "baseChance": 4e-10
+      },
+      {
+        "id": "harvest-moon",
+        "name": "Harvest Moon",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2e-11
+      },
+      {
+        "id": "autumn-spirit",
+        "name": "Autumn Spirit",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "spirited-nature",
+        "name": "Spirited Nature",
+        "rarity": "infinity",
+        "baseChance": 2e-12
+      },
+      {
+        "id": "autumn-pyramidum",
+        "name": "Autumn Pyramidum",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 1.5e-12
+      },
+      {
+        "id": "ent-of-the-equinox",
+        "name": "Ent of the Equinox",
+        "rarity": "infinity",
+        "baseChance": 2.5e-12
+      },
+      {
+        "id": "soul-hound",
+        "name": "Soul Hound",
+        "rarity": "infinity",
+        "baseChance": 8e-13
+      },
+      {
+        "id": "void-dementor",
+        "name": "VOID DEMENTOR",
+        "rarity": "infinity",
+        "void": true,
+        "baseChance": 4e-13
+      }
+    ]
   }
 ]
