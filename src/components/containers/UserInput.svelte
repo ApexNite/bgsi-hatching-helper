@@ -63,8 +63,8 @@
     secretLuck: 1,
     celestialLuck: 1,
     infinityLuck: 1,
-    shinyChance: 32,
-    mythicChance: 80,
+    shinyChance: 40,
+    mythicChance: 100,
     xlChance: 250,
     hatchSpeed: 100,
   };
