@@ -364,15 +364,28 @@ export function insertAggregateRows(
     }
   }
 
-  if (anySecret) {
-    const secrets = pets.filter((p) => {
-      return (
-        (p.rarity === "secret" || p.rarity === "infinity") &&
-        hasPositiveChance(p)
-      );
-    });
+  const secrets = pets.filter((p) => {
+    return (
+      (p.rarity === "secret" || p.rarity === "infinity") && hasPositiveChance(p)
+    );
+  });
 
-    if (secrets.length > 1) {
+  const celestials = pets.filter(
+    (p) =>
+      (isCelestialPet(p) || p.rarity === "infinity" || isVoidPet(p)) &&
+      hasPositiveChance(p),
+  );
+
+  const infinities = pets.filter(
+    (p) => (p.rarity === "infinity" || isVoidPet(p)) && hasPositiveChance(p),
+  );
+
+  if (anySecret) {
+    if (
+      secrets.length > 1 &&
+      (!anyCelestial || secrets.length != celestials.length) &&
+      (!anyInfinity || secrets.length != infinities.length)
+    ) {
       const agg = makeAggregateRow(
         "__agg_secret",
         "Any Secret+",
@@ -387,13 +400,10 @@ export function insertAggregateRows(
   }
 
   if (anyCelestial) {
-    const celestials = pets.filter(
-      (p) =>
-        (isCelestialPet(p) || p.rarity === "infinity" || isVoidPet(p)) &&
-        hasPositiveChance(p),
-    );
-
-    if (celestials.length > 1) {
+    if (
+      celestials.length > 1 &&
+      (!anyInfinity || celestials.length != infinities.length)
+    ) {
       const agg = makeAggregateRow(
         "__agg_celestial",
         "Any Celestial+",
@@ -409,10 +419,6 @@ export function insertAggregateRows(
   }
 
   if (anyInfinity) {
-    const infinities = pets.filter(
-      (p) => (p.rarity === "infinity" || isVoidPet(p)) && hasPositiveChance(p),
-    );
-
     if (infinities.length > 1) {
       const agg = makeAggregateRow(
         "__agg_infinity",
