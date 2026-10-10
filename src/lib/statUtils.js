@@ -234,10 +234,6 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
   const eventBonusMultipliers = collectEventBonusMultipliers(effectiveSources);
 
   for (const source of effectiveSources) {
-    if (source.imageDir?.includes("runes")) {
-      continue;
-    }
-
     const adjusted = applyEventBonusMultipliersToSource(
       source,
       eventBonusMultipliers,
