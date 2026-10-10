@@ -7,21 +7,21 @@
       {
         "id": "max",
         "name": "MAX",
-        "rawLuckMultiplier": 1.15,
-        "rawHatchSpeedMultiplier": 1.15,
-        "rawSecretLuckMultiplier": 1.225
+        "rawLuckMultiplier": 1.20,
+        "rawHatchSpeedMultiplier": 1.20,
+        "rawSecretLuckMultiplier": 1.125
       },
       {
         "id": "level-23",
         "name": "Level 23",
-        "rawLuckMultiplier": 1.35,
-        "rawHatchSpeedMultiplier": 1.35,
+        "rawLuckMultiplier": 1.20,
+        "rawHatchSpeedMultiplier": 1.20,
         "rawSecretLuckMultiplier": 1.1
       },
       {
         "id": "level-22",
         "name": "Level 22",
-        "rawLuckMultiplier": 1.35,
+        "rawLuckMultiplier": 1.20,
         "rawHatchSpeedMultiplier": 1.15,
         "rawSecretLuckMultiplier": 1.1
       },
