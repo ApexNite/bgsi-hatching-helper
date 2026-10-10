@@ -1341,8 +1341,8 @@
         "baseChance": 1e-5
       },
       {
-        "id": "vampires-globet",
-        "name": "Vampire's Globet",
+        "id": "vampires-goblet",
+        "name": "Vampire's Goblet",
         "rarity": "secret",
         "baseChance": 5e-10
       },
