@@ -26,6 +26,54 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
+    "event": "halloween",
+    "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "rift-elixir-iv",
+    "name": "Rift Elixir IV",
+    "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "overlord-egg", "cloudy-rift-egg"],
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
+  },
+  {
+    "id": "sinister-elixir-iv",
+    "name": "Sinister Elixir IV",
+    "event": "halloween",
+    "luck": 2.5,
+    "shinyChance": 1.5,
+    "mythicChance": 1.5
+  }
+]
+[
+  {
+    "id": "infinity-elixir",
+    "name": "Infinity Elixir",
+    "luckMultiplier": 2,
+    "secretLuckMultiplier": 2,
+    "shinyChanceMultiplier": 2,
+    "mythicChanceMultiplier": 2,
+    "hatchSpeedMultiplier": 2
+  },
+  {
+    "id": "secret-elixir",
+    "name": "Secret Elixir",
+    "secretLuckMultiplier": 2,
+    "mythicChanceMultiplier": 0.2,
+    "overwriteMythicChanceMultiplier": true
+  },
+  {
+    "id": "star-elixir",
+    "name": "Star Elixir",
+    "eggs": ["spirit-egg", "ultra-fall-egg"],
+    "luck": 1,
+    "shinyChance": 1,
+    "mythicChance": 1
+  },
+  {
+    "id": "ultra-infinity-elixir",
+    "name": "Ultra Infinity Elixir",
     "event": "autumn",
     "infinityLuckMultiplier": 1.5
   },
