@@ -1304,7 +1304,7 @@
       {
         "id": "void-sinister-lord",
         "name": "VOID SINISTER LORD",
-        "rarity": "infinity",
+        "rarity": "secret",
         "void": true,
         "baseChance": 4e-13
       }
@@ -1356,7 +1356,7 @@
       {
         "id": "void-sinister-lord",
         "name": "VOID SINISTER LORD",
-        "rarity": "infinity",
+        "rarity": "secret",
         "void": true,
         "baseChance": 4e-13
       }
@@ -1421,7 +1421,7 @@
       {
         "id": "void-sinister-lord",
         "name": "VOID SINISTER LORD",
-        "rarity": "infinity",
+        "rarity": "secret",
         "void": true,
         "baseChance": 4e-13
       }
