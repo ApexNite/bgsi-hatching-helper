@@ -78,6 +78,7 @@
           <h3>Attribution</h3>
           <ul>
             <li>Created by ApexLite</li>
+            <li>Extra help from Emberdoor</li>
             <li>UI Feedback from vtxp4nd4</li>
           </ul>
         </div>
