@@ -1,9 +1,9 @@
 [
   {
-    "id": "autumn-luck",
-    "name": "Autumn Luck",
+    "id": "halloween-luck",
+    "name": "Halloween Luck",
     "img": "assets/images/icons/luck",
-    "event": "autumn",
+    "event": "halloween",
     "levels": {
       "1": {
         "luck": 0.025
@@ -38,10 +38,10 @@
     }
   },
   {
-    "id": "autumn-secret-luck",
+    "id": "halloween-secret-luck",
     "name": "Secret Luck",
     "img": "assets/images/icons/secret-pet-luck",
-    "event": "autumn",
+    "event": "halloween",
     "levels": {
       "1": {
         "secretLuck": 0.05
@@ -70,10 +70,10 @@
     }
   },
   {
-    "id": "autumn-infinity-luck",
+    "id": "halloween-infinity-luck",
     "name": "Infinity Luck",
     "img": "assets/images/icons/infinity-luck",
-    "event": "autumn",
+    "event": "halloween",
     "levels": {
       "1": {
         "infinityLuck": 0.025
