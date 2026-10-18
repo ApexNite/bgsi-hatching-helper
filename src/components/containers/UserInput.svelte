@@ -56,6 +56,7 @@
     luckierTogether: 0,
     riftMultiplier: 0,
     trueLuckMultiplier: 1,
+    hatchLuckMultiplier: 0,
     eggsPerHatch: 1,
   };
   let manualStats = {
@@ -203,6 +204,7 @@
   $: isWorldEgg = selectedEgg?.type === "world";
   $: isRiftableEgg = !!selectedEgg && selectedEgg.riftable === true;
   $: isTrueLuckEgg = !!selectedEgg && selectedEgg.trueLuck === true;
+  $: isHatchLuckEgg = !!selectedEgg && selectedEgg.hatchLuck === true;
 
   $: {
     const eggId = selectedEgg?.id;
@@ -1035,6 +1037,35 @@
                     )}
                   hoverText="True Luck Multiplier"
                 /> -->
+            </div>
+          </div>
+        {/if}
+
+        {#if isHatchLuckEgg}
+          <div class="menu-row">
+            <span class="menu-label">
+              <span class="menu-img">
+                <SmartImage
+                  base="assets/images/icons/luck"
+                  alt="Global Hatch Luck Multiplier"
+                  size="32px"
+                  decoding="async"
+                />
+              </span>
+              Global Hatch Luck:
+            </span>
+            <div class="menu-control">
+              <NumberInput
+                id="hatch-luck-multiplier"
+                value={numericValues.hatchLuckMultiplier}
+                onInput={({ value }) =>
+                  updateNumericValue(
+                    numericValues,
+                    "hatchLuckMultiplier",
+                    value,
+                  )}
+                hoverText="Global Hatch Luck Multiplier"
+              />
             </div>
           </div>
         {/if}

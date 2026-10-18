@@ -1432,6 +1432,7 @@
     "name": "Luminant Egg",
     "type": "special",
     "event": "halloween",
+    "hatchLuck": true,
     "pets": [
       {
         "id": "luminant-doggy",

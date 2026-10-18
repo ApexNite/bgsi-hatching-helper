@@ -115,6 +115,12 @@ export function calculateStats(sources, toggles, numbers, egg) {
     });
   }
 
+  if (numbers.hatchLuckMultiplier > 0) {
+    applySource(totals, {
+      ...{ luck: numbers.hatchLuckMultiplier / 100 },
+    });
+  }
+
   if (numbers.riftMultiplier > 0) {
     applySource(totals, {
       ...{

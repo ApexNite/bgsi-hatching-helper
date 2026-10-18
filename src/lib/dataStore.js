@@ -129,6 +129,7 @@ const schemas = {
     event: { type: "string", default: "none" },
     riftable: { type: "boolean", default: false },
     trueLuck: { type: "boolean", default: false },
+    hatchLuck: { type: "boolean", default: false },
     pets: {
       type: "array",
       default: [],
