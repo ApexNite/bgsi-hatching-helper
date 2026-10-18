@@ -1426,5 +1426,134 @@
         "baseChance": 4e-13
       }
     ]
+  },
+  {
+    "id": "luminant-egg",
+    "name": "Luminant Egg",
+    "type": "special",
+    "event": "halloween",
+    "pets": [
+      {
+        "id": "luminant-doggy",
+        "name": "Luminant Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "luminant-kitty",
+        "name": "Luminant Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "luminant-cube",
+        "name": "Luminant Cube",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "luminant-kitsune",
+        "name": "Luminant Kitsune",
+        "rarity": "legendary",
+        "baseChance": 1e-5
+      },
+      {
+        "id": "luminant-guardian",
+        "name": "Luminant Guardian",
+        "rarity": "legendary",
+        "baseChance": 1.5e-7
+      },
+      {
+        "id": "luminant-shard",
+        "name": "Luminant Shard",
+        "rarity": "secret",
+        "baseChance": 4e-10
+      },
+      {
+        "id": "effulgency",
+        "name": "Effulgency",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 1.25e-11
+      },
+      {
+        "id": "spectral-ghosdeeri",
+        "name": "Spectral Ghosdeeri",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 1.25e-11
+      },
+      {
+        "id": "the-luminance",
+        "name": "The Luminance",
+        "rarity": "infinity",
+        "baseChance": 4e-13
+      },
+      {
+        "id": "void-sinister-lord",
+        "name": "VOID SINISTER LORD",
+        "rarity": "secret",
+        "void": true,
+        "baseChance": 4e-13
+      },
+      {
+        "id": "god-of-the-eternal-void",
+        "name": "GOD OF THE ETERNAL VOID",
+        "rarity": "secret",
+        "void": true,
+        "baseChance": 2e-13
+      }
+    ]
+  },
+  {
+    "id": "admin-shadow-egg",
+    "name": "Admin Shadow Egg",
+    "riftable": true,
+    "type": "special",
+    "pets": [
+      {
+        "id": "shadow-doggy",
+        "name": "Shadow Doggy",
+        "rarity": "common",
+        "baseChance": 0.65
+      },
+      {
+        "id": "shadow-kitty",
+        "name": "Shadow Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "shadow-serpent",
+        "name": "Shadow Serpent",
+        "rarity": "legendary",
+        "baseChance": 2e-6
+      },
+      {
+        "id": "shadow-hydra",
+        "name": "Shadow Hydra",
+        "rarity": "legendary",
+        "baseChance": 0.0000012
+      },
+      {
+        "id": "the-darkenedlord",
+        "name": "The Darkenedlord",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "darkened-skull",
+        "name": "Darkened Skull",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "darkened-shard",
+        "name": "Darkened Shard",
+        "rarity": "infinity",
+        "baseChance": 2e-12
+      }
+    ]
   }
 ]
