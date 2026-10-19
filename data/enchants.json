@@ -98,5 +98,31 @@
         "infinityLuck": 0.15
       }
     }
+  },
+  {
+    "id": "void-luck",
+    "name": "🌌 Void Luck",
+    "super": true,
+    "variants": {
+      "base": {
+        "voidLuck": 0.1
+      },
+      "plus": {
+        "voidLuck": 0.25
+      }
+    }
+  },
+  {
+    "id": "xl-luck",
+    "name": "📈 XL Luck",
+    "super": true,
+    "variants": {
+      "base": {
+        "xlChanceMultiplier": 0.1
+      },
+      "plus": {
+        "xlChanceMultiplier": 0.25
+      }
+    }
   }
 ]

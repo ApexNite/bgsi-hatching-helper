@@ -39,6 +39,7 @@ export function calculateStats(sources, toggles, numbers, egg) {
     secretLuck: 1,
     celestialLuck: 1,
     infinityLuck: 1,
+    voidLuck: 1,
     shinyChance: 0,
     mythicChance: 0,
     xlChance: 0,
@@ -48,6 +49,7 @@ export function calculateStats(sources, toggles, numbers, egg) {
     rawSecretLuckMultiplier: 1,
     rawCelestialLuckMultiplier: 1,
     rawInfinityLuckMultiplier: 1,
+    rawVoidLuckMultiplier: 1,
     rawShinyChanceMultiplier: 1,
     rawMythicChanceMultiplier: 1,
     rawXLChanceMultiplier: 1,
@@ -56,6 +58,7 @@ export function calculateStats(sources, toggles, numbers, egg) {
     secretLuckMultiplier: 1,
     celestialLuckMultiplier: 1,
     infinityLuckMultiplier: 1,
+    voidLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
     xlChanceMultiplier: 1,
@@ -65,6 +68,7 @@ export function calculateStats(sources, toggles, numbers, egg) {
     baseSecretLuck: 0,
     baseCelestialLuck: 0,
     baseInfinityLuck: 0,
+    baseVoidLuck: 0,
     baseShinyChance: 0.025,
     baseMythicChance: 0.01,
     baseSuperLegendaryChance: 1 / 1000,
@@ -198,6 +202,7 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
     secretLuck: 1,
     celestialLuck: 1,
     infinityLuck: 1,
+    voidLuck: 1,
     shinyChance: 0,
     mythicChance: 0,
     xlChance: 0,
@@ -207,6 +212,7 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
     rawSecretLuckMultiplier: 1,
     rawCelestialLuckMultiplier: 1,
     rawInfinityLuckMultiplier: 1,
+    rawVoidLuckMultiplier: 1,
     rawShinyChanceMultiplier: 1,
     rawMythicChanceMultiplier: 1,
     rawXLChanceMultiplier: 1,
@@ -215,6 +221,7 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
     secretLuckMultiplier: 1,
     celestialLuckMultiplier: 1,
     infinityLuckMultiplier: 1,
+    voidLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
     xlChanceMultiplier: 1,
@@ -224,6 +231,7 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
     baseSecretLuck: 0,
     baseCelestialLuck: 0,
     baseInfinityLuck: 0,
+    baseVoidLuck: 0,
     baseShinyChance: 0.025,
     baseMythicChance: 0.01,
     baseSuperLegendaryChance: 1 / 1000,
@@ -333,6 +341,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     secretLuck: 0,
     celestialLuck: 0,
     infinityLuck: 0,
+    voidLuck: 0,
     shinyChance: 0,
     mythicChance: 0,
     xlChance: toNumber(
@@ -345,6 +354,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     secretLuckMultiplier: 1,
     celestialLuckMultiplier: 1,
     infinityLuckMultiplier: 1,
+    voidLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
     xlChanceMultiplier: 1,
@@ -353,6 +363,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     baseSecretLuck: manualStats.secretLuck,
     baseCelestialLuck: manualStats.celestialLuck,
     baseInfinityLuck: manualStats.infinityLuck || 1,
+    baseVoidLuck: manualStats.voidLuck || 1,
     baseShinyChance: 1 / manualStats.shinyChance,
     baseMythicChance: 1 / manualStats.mythicChance,
     baseSuperLegendaryChance: 1 / 2000,
@@ -400,7 +411,7 @@ function calculateStatsFromTotals(totals, sources, options = {}) {
     return toNumber(
       D(base)
         .div(D(1).plus(totals.xlChance || 0))
-        .times(totals.xlChanceMultiplier || 1),
+        .times(1 + (totals.xlChanceMultiplier || 0)),
     );
   };
 
@@ -441,6 +452,15 @@ function calculateStatsFromTotals(totals, sources, options = {}) {
           mul(totals.infinityLuck || 0, totals.infinityLuckMultiplier || 1),
         ),
         totals.rawInfinityLuckMultiplier || 1,
+      ),
+    ),
+    voidLuck: toNumber(
+      mul(
+        add(
+          totals.baseVoidLuck || 0,
+          mul(totals.voidLuck || 0, totals.voidLuckMultiplier || 1),
+        ),
+        totals.rawVoidLuckMultiplier || 1,
       ),
     ),
     shinyChance: toNumber(
@@ -532,6 +552,10 @@ function applySource(totals, source) {
     );
   }
 
+  if (typeof source.voidLuck === "number") {
+    totals.voidLuck = add(totals.voidLuck, mul(source.voidLuck, times));
+  }
+
   if (typeof source.rawLuckMultiplier === "number") {
     totals.rawLuckMultiplier *= Math.pow(source.rawLuckMultiplier, times);
   }
@@ -585,6 +609,13 @@ function applySource(totals, source) {
     );
   }
 
+  if (typeof source.rawVoidLuckMultiplier === "number") {
+    totals.rawVoidLuckMultiplier *= Math.pow(
+      source.rawVoidLuckMultiplier,
+      times,
+    );
+  }
+
   if (typeof source.luckMultiplier === "number") {
     totals.luckMultiplier += source.luckMultiplier * times;
   }
@@ -613,7 +644,7 @@ function applySource(totals, source) {
   }
 
   if (typeof source.xlChanceMultiplier === "number") {
-    totals.xlChanceMultiplier *= source.xlChanceMultiplier;
+    totals.xlChanceMultiplier *= source.xlChanceMultiplier * times;
   }
 
   if (typeof source.secretLuckMultiplier === "number") {
@@ -632,6 +663,10 @@ function applySource(totals, source) {
       source.infinityLuckMultiplier,
       times,
     );
+  }
+
+  if (typeof source.voidLuckMultiplier === "number") {
+    totals.voidLuckMultiplier *= Math.pow(source.voidLuckMultiplier, times);
   }
 
   if (typeof source.baseLuck === "number") {
@@ -660,6 +695,10 @@ function applySource(totals, source) {
 
   if (typeof source.baseInfinityLuck === "number") {
     totals.baseInfinityLuck += source.baseInfinityLuck * times;
+  }
+
+  if (typeof source.baseVoidLuck === "number") {
+    totals.baseVoidLuck += source.baseVoidLuck * times;
   }
 
   if (typeof source.superLegendaryChance === "number") {
@@ -826,7 +865,8 @@ function collectEventBonusMultipliers(sources) {
       source.potionMythicChanceMultiplier !== 1 ||
       source.potionXLChanceMultiplier !== 1 ||
       source.potionSecretLuckMultiplier !== 1 ||
-      source.potionInfinityLuckMultiplier !== 1;
+      source.potionInfinityLuckMultiplier !== 1 ||
+      source.potionVoidLuckMultiplier !== 1;
 
     if (!isProvider || !source?.event) {
       continue;
@@ -855,7 +895,8 @@ function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
     source.potionMythicChanceMultiplier !== 1 ||
     source.potionXlChanceMultiplier !== 1 ||
     source.potionSecretLuckMultiplier !== 1 ||
-    source.potionInfinityLuckMultiplier !== 1;
+    source.potionInfinityLuckMultiplier !== 1 ||
+    source.potionVoidLuckMultiplier !== 1;
 
   if (isProvider) {
     return source;
@@ -910,6 +951,13 @@ function applyEventBonusMultipliersToSource(source, eventBonusMultipliers) {
       typeof p.potionInfinityLuckMultiplier === "number"
     ) {
       adjusted.infinityLuck *= p.potionInfinityLuckMultiplier;
+      changed = true;
+    }
+    if (
+      typeof adjusted.voidLuck === "number" &&
+      typeof p.potionVoidLuckMultiplier === "number"
+    ) {
+      adjusted.voidLuck *= p.potionVoidLuckMultiplier;
       changed = true;
     }
     if (

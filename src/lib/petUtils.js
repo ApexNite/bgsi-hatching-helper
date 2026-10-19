@@ -696,6 +696,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
           ),
         );
   const infinityLuck = D(stats.infinityLuck ?? 1);
+  const voidLuck = D(stats.voidLuck ?? 1);
   const celestialLuck = D(stats.celestialLuck ?? 1);
   const epicLuck = min(luck, D(4));
 
@@ -726,6 +727,10 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
 
   if (gt(infinityLuck, 1)) {
     pool = applyMultiplierToPool(pool, infinityLuck, isInfinity);
+  }
+
+  if (gt(voidLuck, 1)) {
+    pool = applyMultiplierToPool(pool, voidLuck, isVoidPet);
   }
 
   if (gt(celestialLuck, 1)) {

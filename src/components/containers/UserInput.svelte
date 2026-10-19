@@ -64,6 +64,7 @@
     secretLuck: 1,
     celestialLuck: 1,
     infinityLuck: 1,
+    voidLuck: 1,
     shinyChance: 40,
     mythicChance: 100,
     xlChance: 250,
