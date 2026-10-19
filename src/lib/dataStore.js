@@ -58,7 +58,7 @@ const schemas = {
     voidLuckMultiplier: { type: "number", default: 1 },
     shinyChanceMultiplier: { type: "number", default: 1 },
     mythicChanceMultiplier: { type: "number", default: 1 },
-    xlChanceMultiplier: { type: "number", default: 1 },
+    xlChanceMultiplier: { type: "number", default: 0 },
     superLegendaryChanceMultiplier: { type: "number", default: 1 },
     hatchSpeedMultiplier: { type: "number", default: 0 },
     potionLuckMultiplier: { type: "number", default: 1 },
