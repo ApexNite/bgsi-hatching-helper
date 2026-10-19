@@ -170,7 +170,7 @@
         Rare: ${formatChanceFraction(stats.getXlChanceForRarity("rare"))}
         Unique: ${formatChanceFraction(stats.getXlChanceForRarity("unique"))}
         Common: ${formatChanceFraction(stats.getXlChanceForRarity("common"))}
-        \n*XL buffs are currently\nbugged and instead lower\nyour chances`,
+        \n*Some XL buffs are currently\nbugged and instead lower\nyour chances`,
       "",
       false,
     )}
