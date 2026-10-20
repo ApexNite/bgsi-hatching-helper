@@ -32,7 +32,7 @@
   {
     "id": "rift-elixir-iv",
     "name": "Rift Elixir IV",
-    "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "overlord-egg", "cloudy-rift-egg"],
+    "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "doodle-egg"],
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
