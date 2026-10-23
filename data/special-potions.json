@@ -16,6 +16,13 @@
     "overwriteMythicChanceMultiplier": true
   },
   {
+    "id": "super-secret-elixir",
+    "name": "Super Secret Elixir",
+    "secretLuckMultiplier": 2,
+    "mythicChanceMultiplier": 0.5,
+    "overwriteMythicChanceMultiplier": true
+  },
+  {
     "id": "star-elixir",
     "name": "Star Elixir",
     "eggs": ["luminant-egg", "creaking-egg"],
@@ -28,6 +35,11 @@
     "name": "Ultra Infinity Elixir",
     "event": "halloween",
     "infinityLuckMultiplier": 1.5
+  },
+  {
+    "id": "super-infinity-elixir",
+    "name": "Super Infinity Elixir",
+    "infinityLuckMultiplier": 2
   },
   {
     "id": "rift-elixir-iv",
