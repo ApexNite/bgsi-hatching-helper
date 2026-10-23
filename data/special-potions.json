@@ -44,5 +44,27 @@
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
-  }
+  },
+  {
+    "id": "super-infinity-elixir",
+    "name": "Super Infinity Elixir",
+    "infinityLuckMultiplier": 2
+  },
+  {
+    "id": "super-secret-elixir",
+    "name": "Super Secret Elixir",
+    "secretLuckMultiplier": 2,
+    "mythicChanceMultiplier": 0.5,
+    "overwriteMythicChanceMultiplier": true
+  },
+  {
+    "id": "super-legendary-elixir",
+    "name": "Super Legendary Elixir",
+    "superLegendaryChanceMultiplier": 2
+  },
+  {
+    "id": "super-xl-elixir",
+    "name": "Super XL Elixir",
+    "xlChance": 1.5
+  },
 ]
