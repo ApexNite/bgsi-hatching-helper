@@ -1471,6 +1471,20 @@
         "baseChance": 4e-10
       },
       {
+        "id": "pentagram-shard",
+        "name": "Pentagram Shard",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2e-9
+      },
+      {
+        "id": "vampire-skull",
+        "name": "Vampire Skull",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2e-9
+      },
+      {
         "id": "effulgency",
         "name": "Effulgency",
         "rarity": "secret",
@@ -1483,6 +1497,12 @@
         "rarity": "secret",
         "celestial": true,
         "baseChance": 1.25e-11
+      },
+      {
+        "id": "radiant-skull",
+        "name": "Radiant Skull",
+        "rarity": "infinity",
+        "baseChance": 1e-10
       },
       {
         "id": "the-luminance",
