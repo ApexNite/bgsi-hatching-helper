@@ -1,17 +1,5 @@
 {
-  "0": {
-    "pets": [
-      {
-        "id": "void-shadow-leviathan",
-        "name": "VOID SHADOW LEVIATHAN",
-        "rarity": "secret",
-        "baseChance": 2e-12,
-        "hasMythic": false,
-        "ignoreTrueLuck": true,
-        "void": true
-      }
-    ]
-  },
+  "0": null,
   "1": null,
   "2": {
     "normal": {
@@ -50,16 +38,6 @@
     "premium": {
       "luck": 3.5
     },
-    "pets": [
-      {
-        "id": "void-shadow-leviathan",
-        "name": "VOID SHADOW LEVIATHAN",
-        "rarity": "secret",
-        "baseChance": 2e-12,
-        "hasMythic": false,
-        "ignoreTrueLuck": true,
-        "void": true
-      }
-    ]
+    "pets": []
   }
 }
