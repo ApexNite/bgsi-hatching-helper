@@ -66,5 +66,13 @@
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
+  },
+  {
+    "id": "sinister-infinity-elixir",
+    "name": "Sinister Infinity Elixir",
+    "event": "halloween",
+    "potionLuckMultiplier": 1.5,
+    "potionShinyChanceMultiplier": 1.5,
+    "potionMythicChanceMultiplier": 1.5
   }
 ]
