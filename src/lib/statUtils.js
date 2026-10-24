@@ -61,7 +61,7 @@ export function calculateStats(sources, toggles, numbers, egg) {
     voidLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
-    xlChanceMultiplier: 1,
+    xlChanceMultiplier: 0,
     superLegendaryChanceMultiplier: 1,
     hatchSpeedMultiplier: 0,
     baseLuck: 0,
@@ -224,7 +224,7 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
     voidLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
-    xlChanceMultiplier: 1,
+    xlChanceMultiplier: 0,
     superLegendaryChanceMultiplier: 1,
     hatchSpeedMultiplier: 0,
     baseLuck: 0,
@@ -357,7 +357,7 @@ export function calculateManualStats(manualStats, sources, numbers) {
     voidLuckMultiplier: 1,
     shinyChanceMultiplier: 1,
     mythicChanceMultiplier: 1,
-    xlChanceMultiplier: 1,
+    xlChanceMultiplier: 0,
     superLegendaryChanceMultiplier: 1,
     baseLuck: 1 + manualStats.luck / 100,
     baseSecretLuck: manualStats.secretLuck,
@@ -411,7 +411,8 @@ function calculateStatsFromTotals(totals, sources, options = {}) {
     return toNumber(
       D(base)
         .div(D(1).plus(totals.xlChance || 0))
-        .times(1 + (totals.xlChanceMultiplier || 0)),
+        .times(1 + (totals.xlChanceMultiplier || 0))
+        .times(totals.rawXLChanceMultiplier || 0),
     );
   };
 
@@ -644,7 +645,7 @@ function applySource(totals, source) {
   }
 
   if (typeof source.xlChanceMultiplier === "number") {
-    totals.xlChanceMultiplier *= source.xlChanceMultiplier * times;
+    totals.xlChanceMultiplier += source.xlChanceMultiplier * times;
   }
 
   if (typeof source.secretLuckMultiplier === "number") {
