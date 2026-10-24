@@ -82,6 +82,16 @@ export function calculateStats(sources, toggles, numbers, egg) {
     sources.some((s) => s.id === "purple-fragment") &&
     sources.some((s) => s.id === "rainbow-fragment");
 
+  if (
+    sources.some(
+      (s) =>
+        s.id === "secret-elixir" &&
+        sources.some((s) => s.id === "super-secret-elixir"),
+    )
+  ) {
+    sources = sources.filter((s) => s.id !== "secret-elixir");
+  }
+
   const eventBonusMultipliers = collectEventBonusMultipliers(sources);
 
   for (const source of sources) {

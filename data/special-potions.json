@@ -42,6 +42,16 @@
     "infinityLuckMultiplier": 2
   },
   {
+    "id": "super-legendary-elixir",
+    "name": "Super Legendary Elixir",
+    "superLegendaryChanceMultiplier": 2
+  },
+  {
+    "id": "super-xl-elixir",
+    "name": "Super XL Elixir",
+    "rawXLChanceMultiplier": 1.5
+  },
+  {
     "id": "rift-elixir-iv",
     "name": "Rift Elixir IV",
     "eggs": ["dark-rift-egg", "corrupt-dark-rift-egg", "doodle-egg"],
