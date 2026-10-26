@@ -1406,8 +1406,8 @@
         "baseChance": 8e-10
       },
       {
-        "id": "balemoon-nevermore",
-        "name": "Balemoon Nevermore",
+        "id": "balemoon-nevermare",
+        "name": "Balemoon Nevermare",
         "rarity": "secret",
         "celestial": true,
         "baseChance": 4e-11

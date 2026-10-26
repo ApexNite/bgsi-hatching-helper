@@ -42,25 +42,25 @@
     "luckMultiplier": 2.5
   },
   {
-    "id": "halloween-1.5x-shiny-luck",
-    "name": "+1.5x Shiny",
+    "id": "halloween-1.25x-shiny-luck",
+    "name": "+1.25x Shiny",
     "event": "halloween",
     "img": "assets/images/icons/shiny",
-    "shinyChanceMultiplier": 1.5
+    "shinyChanceMultiplier": 1.25
   },
   {
-    "id": "halloween-1.5x-mythic-luck",
-    "name": "+1.5x Mythic",
+    "id": "halloween-1.25x-mythic-luck",
+    "name": "+1.25x Mythic",
     "event": "halloween",
     "img": "assets/images/icons/mythic",
-    "mythicChanceMultiplier": 1.5
+    "mythicChanceMultiplier": 1.25
   },
   {
-    "id": "halloween-1.25x-secret-luck",
-    "name": "+1.25x Secret",
+    "id": "halloween-1.5x-secret-luck",
+    "name": "+1.5x Secret",
     "event": "halloween",
     "img": "assets/images/icons/secret-pet-luck",
-    "secretLuckMultiplier": 1.25
+    "secretLuckMultiplier": 1.5
   },
   {
     "id": "halloween-1.5x-infinity-luck",
