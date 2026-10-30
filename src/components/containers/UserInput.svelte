@@ -1014,10 +1014,10 @@
                   decoding="async"
                 />
               </span>
-              4x True Luck:
+              True Luck:
             </span>
             <div class="menu-control">
-              <Checkbox
+              <!-- <Checkbox
                 id="true-luck-4x"
                 checked={numericValues.trueLuckMultiplier == 4}
                 onChange={() =>
@@ -1026,8 +1026,8 @@
                     "trueLuckMultiplier",
                     numericValues.trueLuckMultiplier == 4 ? 1 : 4,
                   )}
-              />
-              <!-- <NumberInput
+              /> -->
+              <NumberInput
                   id="true-luck-multiplier"
                   value={numericValues.trueLuckMultiplier}
                   onInput={({ value }) =>
@@ -1037,7 +1037,7 @@
                       value,
                     )}
                   hoverText="True Luck Multiplier"
-                /> -->
+                />
             </div>
           </div>
         {/if}
