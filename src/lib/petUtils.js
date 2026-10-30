@@ -601,8 +601,6 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
     return [];
   }
 
-  const normalSecretFormula = Boolean(getFlag?.("use-normal-secret-formula"));
-
   let pool = items.map((p) => ({
     ...p,
     rawChance: D(p.baseChance ?? 0),
@@ -682,19 +680,7 @@ function normalizeEgg(items, stats = {}, isInfinityEgg = false) {
 
   const luck = D(stats.luck ?? 1);
 
-  const secretLuck = normalSecretFormula
-    ? D(stats.secretLuck ?? 1)
-    : D(stats.secretLuck ?? 1)
-        .div(2)
-        .plus(
-          D(0.5).times(
-            D(stats.secretLuck ?? 1)
-              .minus(1)
-              .div(10)
-              .neg()
-              .exp(),
-          ),
-        );
+  const secretLuck = D(stats.secretLuck ?? 1);
   const infinityLuck = D(stats.infinityLuck ?? 1);
   const voidLuck = D(stats.voidLuck ?? 1);
   const celestialLuck = D(stats.celestialLuck ?? 1);
