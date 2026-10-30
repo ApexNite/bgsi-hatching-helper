@@ -3,7 +3,7 @@
     "id": "infinity-elixir",
     "name": "Infinity Elixir",
     "luckMultiplier": 2,
-    "secretLuckMultiplier": 2,
+    "_secretLuckMultiplier": 2,
     "shinyChanceMultiplier": 2,
     "mythicChanceMultiplier": 2,
     "hatchSpeedMultiplier": 2
