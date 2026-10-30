@@ -341,6 +341,10 @@ export function calculateDebugStats(sources, toggles, numbers, egg) {
     stats.luck = stats.luck * 1.25;
   }
 
+  if (sources.some((s) => s.id === "infinity-elixir")) {
+    stats.secretLuck = stats.secretLuck * 2;
+  }
+
   return stats;
 }
 
