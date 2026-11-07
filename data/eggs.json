@@ -1620,5 +1620,69 @@
         "baseChance": 2.5e-13
       }
     ]
+  },
+  {
+    "id": "wintery-egg",
+    "name": "Wintery Egg",
+    "type": "special",
+    "event": "wintery",
+    "hatchLuck": true,
+    "pets": [
+      {
+        "id": "snow-mole",
+        "name": "Snow Mole",
+        "rarity": "common",
+        "baseChance": 0.66
+      },
+      {
+        "id": "frozen-cube",
+        "name": "Frozen Cube",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "cold-judgement",
+        "name": "Cold Judgement",
+        "rarity": "epic",
+        "baseChance": 0.04
+      },
+      {
+        "id": "frost-jelly",
+        "name": "Frost Jelly",
+        "rarity": "legendary",
+        "baseChance": 2e-5
+      },
+      {
+        "id": "dual-cones",
+        "name": "Dual Cones",
+        "rarity": "legendary",
+        "baseChance": 8e-7
+      },
+      {
+        "id": "icetide-passerine",
+        "name": "Icetide Passerine",
+        "rarity": "secret",
+        "baseChance": 5e-11
+      },
+      {
+        "id": "blizzard-kitsune",
+        "name": "Blizzard Kitsune",
+        "rarity": "secret",
+        "baseChance": 5e-12
+      },
+      {
+        "id": "frostglint-shard",
+        "name": "Frostglint Shard",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 1.25e-11
+      },
+      {
+        "id": "the-king-polar-bear",
+        "name": "The King Polar Bear",
+        "rarity": "infinity",
+        "baseChance": 1e-12
+      }
+    ]
   }
 ]
