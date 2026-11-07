@@ -1662,13 +1662,13 @@
         "id": "icetide-passerine",
         "name": "Icetide Passerine",
         "rarity": "secret",
-        "baseChance": 5e-11
+        "baseChance": 5e-10
       },
       {
         "id": "blizzard-kitsune",
         "name": "Blizzard Kitsune",
         "rarity": "secret",
-        "baseChance": 5e-12
+        "baseChance": 5e-11
       },
       {
         "id": "frostglint-shard",
