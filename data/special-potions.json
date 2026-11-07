@@ -25,7 +25,7 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["luminant-egg", "creaking-egg", "super-halloween-egg"],
+    "eggs": ["wintery-egg", "super-halloween-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
