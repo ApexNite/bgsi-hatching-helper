@@ -1272,356 +1272,6 @@
     ]
   },
   {
-    "id": "skelly-egg",
-    "name": "Skelly Egg",
-    "type": "special",
-    "event": "halloween",
-    "pets": [
-      {
-        "id": "skelly-doggy",
-        "name": "Skelly Doggy",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "skelly-kitty",
-        "name": "Skelly Kitty",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "skelly-bunny",
-        "name": "Skelly Bunny",
-        "rarity": "rare",
-        "baseChance": 0.04
-      },
-      {
-        "id": "durrkin",
-        "name": "Durrkin",
-        "rarity": "secret",
-        "baseChance": 2e-8
-      },
-      {
-        "id": "void-sinister-lord",
-        "name": "VOID SINISTER LORD",
-        "rarity": "secret",
-        "void": true,
-        "baseChance": 4e-13
-      }
-    ]
-  },
-  {
-    "id": "vampire-egg",
-    "name": "Vampire Egg",
-    "type": "special",
-    "event": "halloween",
-    "pets": [
-      {
-        "id": "vampire-mouse",
-        "name": "Vampire Mouse",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "vampire-wolf",
-        "name": "Vampire Wolf",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "vampire-panda",
-        "name": "Vampire Panda",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "vampire-shock",
-        "name": "Vampire Shock",
-        "rarity": "legendary",
-        "baseChance": 1e-5
-      },
-      {
-        "id": "vampires-goblet",
-        "name": "Vampire's Goblet",
-        "rarity": "secret",
-        "baseChance": 5e-10
-      },
-      {
-        "id": "vampires-pendant",
-        "name": "Vampire's Pendant",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 4e-11
-      },
-      {
-        "id": "mango-bird",
-        "name": "Mango Bird",
-        "rarity": "infinity",
-        "baseChance": 2.5e-12
-      },
-      {
-        "id": "void-sinister-lord",
-        "name": "VOID SINISTER LORD",
-        "rarity": "secret",
-        "void": true,
-        "baseChance": 4e-13
-      }
-    ]
-  },
-  {
-    "id": "creaking-egg",
-    "name": "Creaking Egg",
-    "type": "special",
-    "event": "halloween",
-    "trueLuck": true,
-    "pets": [
-      {
-        "id": "moon-kitty",
-        "name": "Moon Kitty",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "moon-bunny",
-        "name": "Moon Bunny",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "ghost-skull",
-        "name": "Ghost Skull",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "shadow-phoenix",
-        "name": "Shadow Phoenix",
-        "rarity": "legendary",
-        "baseChance": 1.5e-5
-      },
-      {
-        "id": "shadow-squire",
-        "name": "Shadow Squire",
-        "rarity": "legendary",
-        "baseChance": 2e-7
-      },
-      {
-        "id": "unholy-bell",
-        "name": "Unholy Bell",
-        "rarity": "secret",
-        "baseChance": 8e-10
-      },
-      {
-        "id": "balemoon-nevermare",
-        "name": "Balemoon Nevermare",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 4e-11
-      },
-      {
-        "id": "sinister-lord-20",
-        "name": "Sinister Lord 2.0",
-        "rarity": "infinity",
-        "baseChance": 6e-13
-      },
-      {
-        "id": "void-sinister-lord",
-        "name": "VOID SINISTER LORD",
-        "rarity": "secret",
-        "void": true,
-        "baseChance": 4e-13
-      }
-    ]
-  },
-  {
-    "id": "luminant-egg",
-    "name": "Luminant Egg",
-    "type": "special",
-    "event": "halloween",
-    "pets": [
-      {
-        "id": "luminant-doggy",
-        "name": "Luminant Doggy",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "luminant-kitty",
-        "name": "Luminant Kitty",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "luminant-cube",
-        "name": "Luminant Cube",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "luminant-kitsune",
-        "name": "Luminant Kitsune",
-        "rarity": "legendary",
-        "baseChance": 1e-5
-      },
-      {
-        "id": "luminant-guardian",
-        "name": "Luminant Guardian",
-        "rarity": "legendary",
-        "baseChance": 1.5e-7
-      },
-      {
-        "id": "luminant-shard",
-        "name": "Luminant Shard",
-        "rarity": "secret",
-        "baseChance": 4e-10
-      },
-      {
-        "id": "effulgency",
-        "name": "Effulgency",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 1.25e-11
-      },
-      {
-        "id": "pentagram-shard",
-        "name": "Pentagram Shard",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 2e-11
-      },
-      {
-        "id": "vampire-skull",
-        "name": "Vampire Skull",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 2e-11
-      },
-      {
-        "id": "spectral-ghosdeeri",
-        "name": "Spectral Ghosdeeri",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 1.25e-11
-      },
-      {
-        "id": "raidiant-skull",
-        "name": "Raidiant Skull",
-        "rarity": "infinity",
-        "baseChance": 1e-12
-      },
-      {
-        "id": "the-luminance",
-        "name": "The Luminance",
-        "rarity": "infinity",
-        "baseChance": 4e-13
-      },
-      {
-        "id": "void-sinister-lord",
-        "name": "VOID SINISTER LORD",
-        "rarity": "secret",
-        "void": true,
-        "baseChance": 4e-13
-      },
-      {
-        "id": "god-of-the-eternal-void",
-        "name": "GOD OF THE ETERNAL VOID",
-        "rarity": "secret",
-        "void": true,
-        "baseChance": 2e-13
-      }
-    ]
-  },
-  {
-    "id": "super-halloween-egg",
-    "name": "Super Halloween Egg",
-    "type": "special",
-    "event": "halloween",
-    "hatchLuck": true,
-    "trueLuck": true,
-    "pets": [
-      {
-        "id": "witch-doggy",
-        "name": "Witch Doggy",
-        "rarity": "common",
-        "baseChance": 0.65
-      },
-      {
-        "id": "demon-spitty",
-        "name": "Demon Spitty",
-        "rarity": "rare",
-        "baseChance": 0.3
-      },
-      {
-        "id": "demon-spirit",
-        "name": "Demon Spirit",
-        "rarity": "epic",
-        "baseChance": 0.04
-      },
-      {
-        "id": "killer",
-        "name": "Killer",
-        "rarity": "legendary",
-        "baseChance": 1e-5
-      },
-      {
-        "id": "cauldron-spirit",
-        "name": "Cauldron Spirit",
-        "rarity": "legendary",
-        "baseChance": 1.5e-7
-      },
-      {
-        "id": "spirit-lantern",
-        "name": "Spirit Lantern",
-        "rarity": "secret",
-        "baseChance": 4e-10
-      },
-      {
-        "id": "bloodmoon",
-        "name": "Bloodmoon",
-        "rarity": "secret",
-        "baseChance": 2e-10
-      },
-      {
-        "id": "will-o-the-wisp",
-        "name": "Will-o'-the-Wisp",
-        "rarity": "secret",
-        "baseChance": 5e-11
-      },
-      {
-        "id": "dawnfire",
-        "name": "Dawnfire",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 4e-11
-      },
-      {
-        "id": "giant-demon-spitty",
-        "name": "Giant Demon Spitty",
-        "rarity": "secret",
-        "celestial": true,
-        "baseChance": 2e-11
-      },
-      {
-        "id": "moonlit-shard",
-        "name": "Moonlit Shard",
-        "rarity": "infinity",
-        "baseChance": 1e-12
-      },
-      {
-        "id": "nyx",
-        "name": "Nyx",
-        "rarity": "infinity",
-        "baseChance": 5e-13
-      },
-      {
-        "id": "cursed-craving",
-        "name": "Cursed Carving",
-        "rarity": "infinity",
-        "baseChance": 2.5e-13
-      }
-    ]
-  },
-  {
     "id": "wintery-egg",
     "name": "Wintery Egg",
     "type": "special",
@@ -1665,6 +1315,12 @@
         "baseChance": 5e-10
       },
       {
+        "id": "og-blizzard-bell",
+        "name": "OG Blizzard Bell",
+        "rarity": "secret",
+        "baseChance": 6e-11
+      },
+      {
         "id": "blizzard-kitsune",
         "name": "Blizzard Kitsune",
         "rarity": "secret",
@@ -1678,8 +1334,85 @@
         "baseChance": 1.25e-11
       },
       {
+        "id": "og-wintery-champion",
+        "name": "OG Wintery Champion",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 1.25e-11
+      },
+      {
+        "id": "ice-queen-seal",
+        "name": "Ice Queen Seal",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 1.25e-11
+      },
+      {
+        "id": "eternal-snow-soul",
+        "name": "Eternal Snow Soul",
+        "rarity": "infinity",
+        "baseChance": 1.75e-12
+      },
+      {
         "id": "the-king-polar-bear",
         "name": "The King Polar Bear",
+        "rarity": "infinity",
+        "baseChance": 1e-12
+      },
+      {
+        "id": "og-snowy-leviathan",
+        "name": "OG Snowy Leviathan",
+        "rarity": "infinity",
+        "baseChance": 5e-13
+      }
+    ]
+  },
+  {
+    "id": "admin-diy-egg",
+    "name": "Admin DIY Egg",
+    "riftable": true,
+    "type": "special",
+    "pets": [
+      {
+        "id": "diy-doggy",
+        "name": "D.I.Y Doggy",
+        "rarity": "common",
+        "baseChance": 0.7
+      },
+      {
+        "id": "diy-kitty",
+        "name": "D.I.Y Kitty",
+        "rarity": "rare",
+        "baseChance": 0.3
+      },
+      {
+        "id": "diy-inferno-dragon",
+        "name": "D.I.Y Inferno Dragon",
+        "rarity": "legendary",
+        "baseChance": 2e-6
+      },
+      {
+        "id": "diy-elemental",
+        "name": "D.I.Y Elemental",
+        "rarity": "legendary",
+        "baseChance": 0.0000012
+      },
+      {
+        "id": "diy-dogcat",
+        "name": "D.I.Y Dogcat",
+        "rarity": "secret",
+        "baseChance": 4e-9
+      },
+      {
+        "id": "diy-king-doggy",
+        "name": "D.I.Y King Doggy",
+        "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "diy-godly-gem",
+        "name": "D.I.Y Godly Gem",
         "rarity": "infinity",
         "baseChance": 1e-12
       }
