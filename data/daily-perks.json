@@ -1,12 +1,24 @@
 {
   "0": null,
-  "1": null,
-  "2": {
+  "1": {
     "normal": {
-      "baseHatchSpeed": 0.15
+      "luck": 2,
+      "rawXLChanceMultiplier": 1.2
     },
     "premium": {
-      "baseHatchSpeed": 0.3
+      "luck": 2.5,
+      "rawXLChanceMultiplier": 1.4
+    },
+    "pets": []
+  },
+  "2": {
+    "normal": {
+      "baseHatchSpeed": 0.15,
+      "infinityLuckMultiplier": 1.1
+    },
+    "premium": {
+      "baseHatchSpeed": 0.3,
+      "infinityLuckMultiplier": 1.15
     },
     "pets": [
       {
@@ -17,9 +29,27 @@
       }
     ]
   },
-  "3": null,
+  "3": {
+    "normal": {
+      "secretLuckMultiplier": 1.25,
+      "mythicChance": 1.1
+    },
+    "premium": {
+      "secretLuckMultiplier": 1.35,
+      "mythicChance": 1.15
+    },
+    "pets": []
+  },
   "4": null,
   "5": {
+    "normal": {
+      "luck": 1.5,
+      "shinyChance": 1.1
+    },
+    "premium": {
+      "luck": 2.25,
+      "shinyChance": 1.15
+    },
     "pets": [
       {
         "id": "queen-spitty",
@@ -33,10 +63,10 @@
   },
   "6": {
     "normal": {
-      "luck": 2
+      "luck": 1
     },
     "premium": {
-      "luck": 3.5
+      "luck": 2.5
     },
     "pets": []
   }

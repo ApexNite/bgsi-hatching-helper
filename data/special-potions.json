@@ -31,9 +31,17 @@
     "mythicChance": 1
   },
   {
+    "id": "snowflake-elixir-iv",
+    "name": "Snowflake Elixir",
+    "eggs": ["wintery-egg"],
+    "luck": 2,
+    "shinyChance": 0.5,
+    "mythicChance": 0.5
+  },
+  {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "event": "halloween",
+    "eggs": ["admin-diy-egg"],
     "infinityLuckMultiplier": 1.5
   },
   {
@@ -58,21 +66,5 @@
     "luck": 2.5,
     "shinyChance": 1.5,
     "mythicChance": 1.5
-  },
-  {
-    "id": "sinister-elixir-iv",
-    "name": "Sinister Elixir IV",
-    "event": "halloween",
-    "luck": 2.5,
-    "shinyChance": 1.5,
-    "mythicChance": 1.5
-  },
-  {
-    "id": "sinister-infinity-elixir",
-    "name": "Sinister Infinity Elixir",
-    "event": "halloween",
-    "potionLuckMultiplier": 1.5,
-    "potionShinyChanceMultiplier": 1.5,
-    "potionMythicChanceMultiplier": 1.5
   }
 ]
