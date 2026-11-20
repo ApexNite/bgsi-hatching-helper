@@ -1326,28 +1326,28 @@
         "name": "Blizzard Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 6e-11
+        "baseChance": 6e-12
       },
       {
         "id": "electro-leaf",
         "name": "Electro Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 6e-11
+        "baseChance": 6e-12
       },
       {
         "id": "inferno-leaf",
         "name": "Inferno Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 6e-11
+        "baseChance": 6e-12
       },
       {
         "id": "windy-leaf",
         "name": "Windy Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 6e-11
+        "baseChance": 6e-12
       },
       {
         "id": "golden-cornucopia",
