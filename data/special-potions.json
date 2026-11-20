@@ -25,15 +25,15 @@
   {
     "id": "star-elixir",
     "name": "Star Elixir",
-    "eggs": ["wintery-egg", "super-halloween-egg"],
+    "eggs": ["thanksgiving-egg", "admin-diy-egg"],
     "luck": 1,
     "shinyChance": 1,
     "mythicChance": 1
   },
   {
-    "id": "snowflake-elixir-iv",
-    "name": "Snowflake Elixir",
-    "eggs": ["wintery-egg"],
+    "id": "fall-elixir-iv",
+    "name": "Fall Elixir IV",
+    "eggs": ["thanksgiving-egg"],
     "luck": 2,
     "shinyChance": 0.5,
     "mythicChance": 0.5
@@ -41,7 +41,7 @@
   {
     "id": "ultra-infinity-elixir",
     "name": "Ultra Infinity Elixir",
-    "eggs": ["admin-diy-egg"],
+    "eggs": ["thanksgiving-egg"],
     "infinityLuckMultiplier": 1.5
   },
   {
