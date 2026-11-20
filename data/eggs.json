@@ -1272,96 +1272,86 @@
     ]
   },
   {
-    "id": "wintery-egg",
-    "name": "Wintery Egg",
+    "id": "thanksgiving-egg",
+    "name": "Thanksgiving Egg",
     "type": "special",
-    "event": "wintery",
+    "event": "thanksgiving",
     "hatchLuck": true,
     "pets": [
       {
-        "id": "snow-mole",
-        "name": "Snow Mole",
+        "id": "harvest-kitty",
+        "name": "Harvest Kitty",
         "rarity": "common",
         "baseChance": 0.66
       },
       {
-        "id": "frozen-cube",
-        "name": "Frozen Cube",
+        "id": "turkey-leg",
+        "name": "Turkey Leg",
         "rarity": "rare",
         "baseChance": 0.3
       },
       {
-        "id": "cold-judgement",
-        "name": "Cold Judgement",
+        "id": "corn-boi",
+        "name": "Corn Boi",
         "rarity": "epic",
         "baseChance": 0.04
       },
       {
-        "id": "frost-jelly",
-        "name": "Frost Jelly",
+        "id": "blessed-apple",
+        "name": "Blessed Apple",
         "rarity": "legendary",
         "baseChance": 2e-5
       },
       {
-        "id": "dual-cones",
-        "name": "Dual Cones",
+        "id": "jar-o-cranberry",
+        "name": "Jar `O Cranberry",
         "rarity": "legendary",
         "baseChance": 8e-7
       },
       {
-        "id": "icetide-passerine",
-        "name": "Icetide Passerine",
+        "id": "eternal-corn",
+        "name": "Eternal Corn",
         "rarity": "secret",
         "baseChance": 5e-10
       },
       {
-        "id": "og-blizzard-bell",
-        "name": "OG Blizzard Bell",
+        "id": "apple-pie-pilgrim",
+        "name": "Apple Pie Pilgrim",
         "rarity": "secret",
+        "celestial": true,
+        "baseChance": 2.5e-11
+      },
+      {
+        "id": "blizzard-leaf",
+        "name": "Blizzard Leaf",
+        "rarity": "secret",
+        "celestial": true,
         "baseChance": 6e-11
       },
       {
-        "id": "blizzard-kitsune",
-        "name": "Blizzard Kitsune",
-        "rarity": "secret",
-        "baseChance": 5e-11
-      },
-      {
-        "id": "frostglint-shard",
-        "name": "Frostglint Shard",
+        "id": "electro-leaf",
+        "name": "Electro Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 1.25e-11
+        "baseChance": 6e-11
       },
       {
-        "id": "og-wintery-champion",
-        "name": "OG Wintery Champion",
+        "id": "inferno-leaf",
+        "name": "Inferno Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 1.25e-11
+        "baseChance": 6e-11
       },
       {
-        "id": "ice-queen-seal",
-        "name": "Ice Queen Seal",
+        "id": "windy-leaf",
+        "name": "Windy Leaf",
         "rarity": "secret",
         "celestial": true,
-        "baseChance": 1.25e-11
+        "baseChance": 6e-11
       },
       {
-        "id": "eternal-snow-soul",
-        "name": "Eternal Snow Soul",
-        "rarity": "infinity",
-        "baseChance": 1.75e-12
-      },
-      {
-        "id": "the-king-polar-bear",
-        "name": "The King Polar Bear",
-        "rarity": "infinity",
-        "baseChance": 1e-12
-      },
-      {
-        "id": "og-snowy-leviathan",
-        "name": "OG Snowy Leviathan",
+        "id": "golden-cornucopia",
+        "name": "Golden Cornucopia",
         "rarity": "infinity",
         "baseChance": 5e-13
       }
